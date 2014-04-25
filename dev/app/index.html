@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+
+<head>
+    <title>Soundcloudfy</title>
+  
+    <!-- style -->
+    <link href="thirdparty/pure.min.css" rel="stylesheet">
+    <link href="thirdparty/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
+
+    <!-- script -->
+    <script src="//connect.soundcloud.com/sdk.js"></script>
+    <script>
+        SC.initialize({
+            client_id: "342b8a7af638944906dcdb46f9d56d98",
+            redirect_uri: "http://0.0.0.0:8000/callback.html"
+        });
+    </script>
+
+</head>
+
+<body>    
+    
+    <!-- main nav -->
+    <nav class="mainNav">
+        <ul class="mainNav_nav">
+            <li class="mainNav_item">
+                <a class="mainNav_button" href=""></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- main nav / end -->
+
+    <div class="container" ng-view></div>
+
+    <!-- third party -->
+    <script src="thirdparty/angular.js"></script>
+    <script src="thirdparty/angular-route.js"></script>
+
+    <!-- app -->
+    <script src="app.js"></script>
+    <script src="home/home.js"></script>
+
+</body>
+</html>

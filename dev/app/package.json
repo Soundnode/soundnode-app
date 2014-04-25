@@ -1,0 +1,24 @@
+{
+  "name": "Soundcloudfy",
+  "version": "0.0.1",
+  "description": "Soundcloudfy is a native Application that uses Soundcloud API to play songs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "window": {
+    "title": "Soundcloudfy",
+    "toolbar": true,
+    "frame": true,
+    "width": 1024,
+    "height": 768,
+    "position": "center"/*,
+    "icon": "link.png",
+    "min_width": 400,
+    "min_height": 200,
+    "max_width": 800,
+    "max_height": 600*/
+  }
+}
