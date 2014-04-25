@@ -32,10 +32,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="27" selection-start="829" selection-end="829" vertical-scroll-proportion="0.5292172" vertical-offset="0" max-vertical-offset="907">
+            <state line="5" column="2" selection-start="88" selection-end="88" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="5" selection-start="34" selection-end="34" vertical-scroll-proportion="0.048439182" vertical-offset="0" max-vertical-offset="929">
               <folding />
             </state>
           </provider>
@@ -63,6 +72,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/callback.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/../.gitignore" />
       </list>
     </option>
   </component>
@@ -245,7 +255,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="27" selection-start="829" selection-end="829" vertical-scroll-proportion="0.5292172" vertical-offset="0" max-vertical-offset="907">
+        <state line="5" column="2" selection-start="88" selection-end="88" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="5" selection-start="34" selection-end="34" vertical-scroll-proportion="0.048439182" vertical-offset="0" max-vertical-offset="929">
           <folding />
         </state>
       </provider>
