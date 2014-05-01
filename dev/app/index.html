@@ -5,42 +5,113 @@
     <title>Soundcloudfy</title>
   
     <!-- style -->
-    <link href="thirdparty/pure.min.css" rel="stylesheet">
-    <link href="thirdparty/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="app.css" rel="stylesheet">
-
-    <!-- script -->
-    <script src="//connect.soundcloud.com/sdk.js"></script>
-    <script>
-        SC.initialize({
-            client_id: "342b8a7af638944906dcdb46f9d56d98",
-            redirect_uri: "http://0.0.0.0:8000/callback.html"
-        });
-    </script>
+    <link href="public/stylesheets/css/pure.min.css" rel="stylesheet">
+    <link href="public/stylesheets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="public/stylesheets/css/app.css" rel="stylesheet">
 
 </head>
 
-<body>    
+<body>
     
-    <!-- main nav -->
-    <nav class="mainNav">
-        <ul class="mainNav_nav">
-            <li class="mainNav_item">
-                <a class="mainNav_button" href=""></a>
-            </li>
-        </ul>
-    </nav>
-    <!-- main nav / end -->
+    <!-- iframe - used to authenticate user -->
+    <!-- <iframe id="elIframe" src="http://sc-redirect.herokuapp.com/" frameborder="0" width="0" height="0" nwdisable nwfaketop></iframe> -->
+    <!-- iframe - used to authenticate user / end -->
+    
+    <!-- UI App -->
+    <div class="ui_app">
+        
+        <!-- aside -->
+        <aside class="aside">
 
-    <div class="container" ng-view></div>
+            <!-- header -->
+            <header class="header pure-u-1-1">
+                <!-- user -->
+                <div class="user" ng-controller="userController">
+                    <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb" style="width: {{ userThumbWidth }}; height: {{ userThumbHeight }};">
+                    <span class="user_name">{{ name }}</span>
+                </div>
+                <!-- user / end -->
+            </header>
+            <!-- header / end -->
 
-    <!-- third party -->
-    <script src="thirdparty/angular.js"></script>
-    <script src="thirdparty/angular-route.js"></script>
+            <!-- search -->
+            <div class="search">
+                <input type="search" placeholder="Search" id="search" class="search_field">
+            </div>
+            <!-- search / end -->
+
+            <!-- main nav -->
+            <nav class="mainNav">
+                <h2 class="ui_title">Main</h2>
+                <ul class="mainNav_nav">
+                    <li class="mainNav_item">
+                        <a class="mainNav_button" href="#/stream">
+                            <i class="fa fa-cloud"></i>
+                            <span class="mainNav_tit">Stream</span>
+                        </a>
+                    </li>
+                    <li class="mainNav_item">
+                        <a class="mainNav_button" href="#/favorites">
+                            <i class="fa fa-heart"></i>
+                            <span class="mainNav_tit">Favorites</span>
+                        </a>
+                    </li>
+                    <li class="mainNav_item">
+                        <a class="mainNav_button" href="#/tracks">
+                            <i class="fa fa-tags"></i>
+                            <span class="mainNav_tit">Tracks</span>
+                        </a>
+                    </li>
+                    <li class="mainNav_item">
+                        <a class="mainNav_button" href="#/playlists">
+                            <i class="fa fa-bookmark"></i>
+                            <span class="mainNav_tit">Playlists</span>
+                        </a>
+                    </li>
+                    <li class="mainNav_item">
+                        <a class="mainNav_button" href="#/following">
+                            <i class="fa fa-users"></i>
+                            <span class="mainNav_tit">Following</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- main nav / end -->
+
+            <!-- now playing -->
+            <div class="nowPlaying" ng-controller="playingController">
+                <div class="nowPlaying_inner">
+                    <img src="{{ imgPath }}" alt="{{ title }}">
+                </div>
+            </div>
+            <!-- now playing / end -->
+        </aside>
+        <!-- aside / end -->
+        
+        <!-- main view -->
+        <div class="mainView" ng-view></div>
+        <!-- main view / end -->
+
+    </div>
+    <!-- UI App / end -->
+
+    <!-- vendor -->
+    <script src="public/js/vendor/jquery.min.js"></script>
+    <script src="public/js/vendor/angular.js"></script>
+    <script src="public/js/vendor/angular-route.js"></script>
 
     <!-- app -->
-    <script src="app.js"></script>
-    <script src="home/home.js"></script>
+    <script src="public/js/api.js"></script>
+    <script src="public/js/app.js"></script>
+
+    <!-- controllers -->
+    <script src="public/js/controllers/stream.js"></script>
+    <script src="public/js/controllers/user.js"></script>
+    <script src="public/js/controllers/playing.js"></script>
+    <script src="public/js/controllers/favorites.js"></script>
+    <script src="public/js/controllers/tracks.js"></script>
+    <script src="public/js/controllers/playlists.js"></script>
+    <script src="public/js/controllers/following.js"></script>
 
 </body>
 </html>
