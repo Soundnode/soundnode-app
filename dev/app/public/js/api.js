@@ -2,7 +2,7 @@
 var gui = require('nw.gui');
 
 /**
- * API SOUNDCLOUD 
+ * Exposed Soundcloud API
  */
 
 /**
