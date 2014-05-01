@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('favoritesController', ['$scope', '$http', function ($scope, $http) {
+app.controller('favoritesCtrl', ['$scope', '$http', function ($scope, $http) {
     // $http({method: 'GET', url: 'stream/url'}).
     //     success(function(data, status, headers, config) {
           

@@ -26,7 +26,7 @@
             <!-- header -->
             <header class="header">
                 <!-- user -->
-                <div class="user" ng-controller="userController">
+                <div class="user" ng-controller="userCtrl">
                     <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb" style="width: {{ userThumbWidth }}; height: {{ userThumbHeight }};">
                     <span class="user_name">{{ name }}</span>
                 </div>
@@ -79,7 +79,7 @@
             <!-- main nav / end -->
 
             <!-- now playing -->
-            <div class="nowPlaying" ng-controller="playingController">
+            <div class="nowPlaying" ng-controller="playingCtrl">
                 <div class="nowPlaying_inner">
                     <img src="{{ imgPath }}" alt="{{ title }}">
                 </div>

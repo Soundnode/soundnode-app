@@ -25,6 +25,7 @@ $defaultColor: #fff;
 $separatorCleanColor: #3e3e40;
 $separatorDarkColor: #000;
 $scColor: #f50;
+$transitionValue: all 0.5s ease;
 
 /* ==========================================================================
 @Default
@@ -48,6 +49,7 @@ body {
 a {
     color: $linkColor;
     text-decoration: none;
+    transition: $transitionValue;
 }
 a:hover {
     color: $defaultColor;
@@ -154,6 +156,7 @@ li {
     outline: none;
     color: #fff;
     font-size: 12px;
+    transition: $transitionValue;
 
     &:focus {
         box-shadow: 0 0 5px $scColor;
@@ -164,6 +167,12 @@ li {
 @NowPlaying
 ========================================================================== */
 .nowPlaying {}
+
+.nowPlaying_inner {
+    & > img {
+        width: 100%;
+    }
+}
 
 
 /* ==========================================================================

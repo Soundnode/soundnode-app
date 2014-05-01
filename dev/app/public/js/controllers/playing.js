@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('playingController', ['$scope', '$http', function ($scope, $http) {
+app.controller('playingCtrl', ['$scope', '$http', function ($scope, $http) {
     // $http({method: 'GET', url: 'stream/url'}).
     //     success(function(data, status, headers, config) {
           

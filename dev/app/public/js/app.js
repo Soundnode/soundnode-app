@@ -6,23 +6,23 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '../app/views/stream.html', 
-            controller: 'streamController'
+            controller: 'streamCtrl'
         })
         .when('/favorites', {
             templateUrl: '../app/views/favorites.html', 
-            controller: 'favoritesController'
+            controller: 'favoritesCtrl'
         })
         .when('/tracks', {
             templateUrl: '../app/views/tracks.html', 
-            controller: 'tracksController'
+            controller: 'tracksCtrl'
         })
         .when('/playlists', {
             templateUrl: '../app/views/playlists.html', 
-            controller: 'playlistsController'
+            controller: 'playlistsCtrl'
         })
         .when('/following', {
             templateUrl: '../app/views/following.html', 
-            controller: 'followingController'
+            controller: 'followingCtrl'
         })
         .otherwise({  redirectTo: '/' });
 });
