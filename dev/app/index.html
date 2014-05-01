@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="App">
+<html lang="en">
 
 <head>
     <title>Soundcloudfy</title>
@@ -11,14 +11,21 @@
 
 </head>
 
-<body>
+<body data-isVisible="false">
+    
+    <!-- loading gif -->
+    <div class="box-loader loading">
+        <h4>Please authenticate your Soundcloud account.</h4>
+        <div class="loader"></div>
+    </div>
+    <!-- loading gif / end -->
     
     <!-- iframe - used to authenticate user -->
-    <!-- <iframe id="elIframe" src="http://sc-redirect.herokuapp.com/" frameborder="0" width="0" height="0" nwdisable nwfaketop></iframe> -->
+    <iframe id="elIframe" src="http://sc-redirect.herokuapp.com/" frameborder="0" width="0" height="0" nwdisable nwfaketop></iframe>
     <!-- iframe - used to authenticate user / end -->
     
     <!-- UI App -->
-    <div class="ui_app">
+    <div id="app" class="ui_app">
         
         <!-- aside -->
         <aside class="aside">
@@ -29,6 +36,7 @@
                 <div class="user" ng-controller="UserCtrl">
                     <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb" style="width: {{ userThumbWidth }}; height: {{ userThumbHeight }};">
                     <span class="user_name">{{ name }}</span>
+                    <a href="" ng-click="logOut()">Log out</a>
                 </div>
                 <!-- user / end -->
             </header>
@@ -45,31 +53,31 @@
                 <h2 class="ui_title">Main</h2>
                 <ul class="mainNav_nav">
                     <li class="mainNav_item">
-                        <a class="mainNav_button" href="#/stream">
+                        <a class="mainNav_button" ui-sref="stream">
                             <i class="fa fa-cloud"></i>
                             <span class="mainNav_tit">Stream</span>
                         </a>
                     </li>
                     <li class="mainNav_item">
-                        <a class="mainNav_button" href="#/favorites">
+                        <a class="mainNav_button" ui-sref="favorites">
                             <i class="fa fa-heart"></i>
                             <span class="mainNav_tit">Favorites</span>
                         </a>
                     </li>
                     <li class="mainNav_item">
-                        <a class="mainNav_button" href="#/tracks">
+                        <a class="mainNav_button" ui-sref="tracks">
                             <i class="fa fa-tags"></i>
                             <span class="mainNav_tit">Tracks</span>
                         </a>
                     </li>
                     <li class="mainNav_item">
-                        <a class="mainNav_button" href="#/playlists">
+                        <a class="mainNav_button" ui-sref="playlists">
                             <i class="fa fa-bookmark"></i>
                             <span class="mainNav_tit">Playlists</span>
                         </a>
                     </li>
                     <li class="mainNav_item">
-                        <a class="mainNav_button" href="#/following">
+                        <a class="mainNav_button" ui-sref="following">
                             <i class="fa fa-users"></i>
                             <span class="mainNav_tit">Following</span>
                         </a>
@@ -89,16 +97,15 @@
         <!-- aside / end -->
         
         <!-- main view -->
-        <div class="mainView" ng-view></div>
+        <div class="mainView" ui-view></div>
         <!-- main view / end -->
 
     </div>
     <!-- UI App / end -->
 
     <!-- vendor -->
-    <script src="public/js/vendor/jquery.min.js"></script>
     <script src="public/js/vendor/angular.js"></script>
-    <script src="public/js/vendor/angular-route.js"></script>
+    <script src="public/js/vendor/angular-ui-router.min.js"></script>
 
     <!-- app -->
     <script src="public/js/api.js"></script>

@@ -1,28 +1,36 @@
 ﻿'use strict'
 
-var app = angular.module('App', ['ngRoute']);
+var app = angular.module('App', ['ui.router']);
 
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
+app.config(function ($stateProvider, $urlRouterProvider) {
+
+    // unmatched url redirect to /
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('stream', {
+            url: "/",
             templateUrl: '../app/views/stream.html', 
             controller: 'StreamCtrl'
         })
-        .when('/favorites', {
+        .state('favorites', {
+            url: "/favorites",
             templateUrl: '../app/views/favorites.html', 
             controller: 'FavoritesCtrl'
         })
-        .when('/tracks', {
+        .state('tracks', {
+            url: "/tracks",
             templateUrl: '../app/views/tracks.html', 
             controller: 'TracksCtrl'
         })
-        .when('/playlists', {
+        .state('playlists', {
+            url: "/playlists",
             templateUrl: '../app/views/playlists.html', 
             controller: 'PlaylistsCtrl'
         })
-        .when('/following', {
+        .state('following', {
+            url: "/following",
             templateUrl: '../app/views/following.html', 
             controller: 'FollowingCtrl'
-        })
-        .otherwise({  redirectTo: '/' });
+        });
 });
