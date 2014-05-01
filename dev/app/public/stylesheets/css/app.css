@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* ==========================================================================
+#   Application style structure guide
+#   @Default
+========================================================================== */
+/*
+* Color Palette
+* separator/fill-color: #3e3e40;
+*/
+/* ==========================================================================
+@Config
+* Color Palette
+========================================================================== */
+/* ==========================================================================
+@Default
+========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  border-top: 2px solid #ff5500;
+  background: #121314;
+  font: 62.5% helvetica, sans-serif, arial !important;
+  color: white;
+  height: 100%;
+}
+
+a {
+  color: #949599;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+@Iframe
+========================================================================== */
+#elIframe {
+  border: none;
+  background: transparent;
+  visibility: hidden;
+}
+
+/* ==========================================================================
+@App wrapper
+========================================================================== */
+.ui_app {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: stretch;
+}
+
+/* ==========================================================================
+@Aside
+========================================================================== */
+.aside {
+  flex: 1 0 0;
+  background: #222326;
+  border-right: 1px solid black;
+}
+
+/* ==========================================================================
+@Header
+========================================================================== */
+.header {
+  padding: 10px;
+}
+
+/* ==========================================================================
+@MainNav
+========================================================================== */
+.mainNav {
+  padding: 10px 15px;
+  margin: 0 0 30px 0;
+}
+
+.ui_title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: normal;
+  color: #949599;
+  margin: 0 0 10px;
+}
+
+.mainNav_item {
+  margin: 0 0 10px 0;
+}
+.mainNav_item:last-child {
+  margin: 0;
+}
+
+.mainNav_button {
+  font-size: 14px;
+  display: block;
+}
+.mainNav_button .fa {
+  color: #fff;
+  display: inline-block;
+  width: 25px;
+}
+
+.mainNav_tit {
+  display: inline-block;
+}
+
+/* ==========================================================================
+@Search
+========================================================================== */
+.search {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search_field {
+  border: 1px solid #000;
+  background: #121314;
+  width: 80%;
+  display: inline-block;
+  height: 25px;
+  padding: 0 0 0 5px;
+  outline: none;
+  color: #fff;
+  font-size: 12px;
+}
+.search_field:focus {
+  box-shadow: 0 0 5px #ff5500;
+}
+
+/* ==========================================================================
+@NowPlaying
+========================================================================== */
+/* ==========================================================================
+@MainView - wrapper
+========================================================================== */
+.mainView {
+  flex: 5 0 0;
+  padding: 10px 20px;
+}
