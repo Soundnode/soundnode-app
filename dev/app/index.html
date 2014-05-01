@@ -34,9 +34,9 @@
             <header class="header">
                 <!-- user -->
                 <div class="user" ng-controller="UserCtrl">
-                    <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb" style="width: {{ userThumbWidth }}; height: {{ userThumbHeight }};">
+                    <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb">
                     <span class="user_name">{{ name }}</span>
-                    <a href="" ng-click="logOut()">Log out</a>
+                    <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
                 </div>
                 <!-- user / end -->
             </header>

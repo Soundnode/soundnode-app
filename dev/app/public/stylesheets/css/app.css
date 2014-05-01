@@ -103,7 +103,38 @@ body[data-isVisible="true"] .box-loader {
 @Header
 ========================================================================== */
 .header {
-  padding: 10px;
+  padding: 15px 10px 10px;
+}
+
+.user {
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+
+.user_thumb {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50px;
+  float: left;
+}
+
+.user_name,
+.user_logOut {
+  font-weight: normal;
+  display: block;
+  float: right;
+}
+
+.user_name {
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+  float: right;
+}
+
+.user_logOut {
+  font-size: 10px;
 }
 
 /* ==========================================================================
@@ -163,6 +194,7 @@ body[data-isVisible="true"] .box-loader {
   color: #fff;
   font-size: 12px;
   transition: all 0.5s ease;
+  border-radius: 5px;
 }
 .search_field:focus {
   box-shadow: 0 0 5px #ff5500;

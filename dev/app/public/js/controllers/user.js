@@ -1,14 +1,14 @@
 'use strict'
 
 app.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
-    var getUserURL = 'https://api.soundcloud.com/me.json?oauth_token=' + window.scAccessToken;
+    var userURL = 'https://api.soundcloud.com/me.json?oauth_token=' + window.scAccessToken;
 
     $scope.name = '';
     $scope.userThumb = '';
     $scope.userThumbWidth = '50px';
     $scope.userThumbHeight = '50px';
 
-    $http({method: 'GET', url: getUserURL})
+    $http({method: 'GET', url: userURL})
         .success(function(data, status, headers, config) {
             console.log('user', data.username)
             $scope.name = data.username;
