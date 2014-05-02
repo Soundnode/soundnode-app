@@ -4,9 +4,9 @@
     <!-- Song list wrapper -->
     <div class="streamView_inner">
         <ul class="songList">
-            <li class="songList_item">
+            <li class="songList_item" ng-repeat="data in data">
                 
-                <img src="" alt="" class="songList_item_artwork">
+                <img src="{{ data.origin.artwork_url }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
 
                 <section class="songList_item_song">
                     <header>
@@ -14,16 +14,16 @@
                             <i class="fa fa-play-circle-o"></i>
                             <i class="fa fa-pause"></i>
                         </span>
-                        <h4 class="songList_item_song_user"></h4>
-                        <h2 class="songList_item_song_tit"></h2>
+                        <h4 class="songList_item_song_user">{{ data.origin.user.username }}</h4>
+                        <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
                     </header>
-                    <img src="" alt="" class="songList_item_song_waveForm">
-                    <details class="songList_item_song_details">
-                        download url
-                        genre
-                        license
-                        permalink url
-                    </details>
+                    <img src="{{ data.origin.waveform_url }}" alt="{{ data.origin.title }}" class="songList_item_song_waveForm">
+                    <div class="songList_item_song_details">
+                        <a href="{{ data.origin.download_url }}">download song</a>
+                        <span>{{ data.origin.genre }}</span>
+                        <span>{{ data.origin.license }}</span>
+                        <a href="{{ data.origin.permalink_url }}">permalink</a>
+                    </div>
                 </section>
 
             </li>
