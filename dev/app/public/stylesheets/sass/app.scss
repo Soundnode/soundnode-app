@@ -21,7 +21,7 @@
 $bodyBackground: #121314;
 $sectionBackground: #222326;
 $linkColor: #949599;
-$defaultColor: #fff;
+$defaultColor: #949599;
 $separatorCleanColor: #3e3e40;
 $separatorDarkColor: #000;
 $scColor: #f50;
@@ -52,7 +52,7 @@ a {
     transition: $transitionValue;
 }
 a:hover {
-    color: $defaultColor;
+    color: #fff;
 }
 
 ul, 
@@ -61,6 +61,20 @@ li {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    color: #fff;
+}
+
+.fa {
+    color: #fff;
 }
 
 /* ==========================================================================
@@ -77,7 +91,7 @@ body[data-isVisible="false"] {
 
 body[data-isVisible="true"] {
     & .ui_app { 
-        display: flex;
+        display: block;
     }
     & .box-loader {
         display: none;
@@ -98,19 +112,24 @@ body[data-isVisible="true"] {
 @App wrapper
 ========================================================================== */
 .ui_app {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    -webkit-box-align: stretch;
+    // height: 100%;
+    // display: flex;
+    // flex-direction: row;
+    // -webkit-box-align: stretch;
 }
 
 /* ==========================================================================
 @Aside
 ========================================================================== */
 .aside {
-    flex: 1 0 0;
+    // flex: 1 0 0;
     background: $sectionBackground;
     border-right: 1px solid $separatorDarkColor;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
 }
 
 /* ==========================================================================
@@ -133,18 +152,20 @@ body[data-isVisible="true"] {
     float: left;
 }
 
+.user_inner {
+    float: left;
+    margin: 0 0 0 20px;
+}
+
 .user_name, 
 .user_logOut {
     font-weight: normal;
     display: block;
-    float: right;
 }
 
 .user_name {
     font-size: 12px;
-    font-weight: normal;
-    display: block;
-    float: right;
+    color: #fff;
 }
 
 .user_logOut {
@@ -233,8 +254,106 @@ body[data-isVisible="true"] {
 @MainView - wrapper
 ========================================================================== */
 .mainView {
-    flex: 5 0 0;
+    // flex: 5 0 0;
     padding: 10px 20px;
+    margin-left: 200px;
+
+    & > div {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    & > div > h1 {
+        margin: 10px 0 30px;
+    }
+}
+
+/* ==========================================================================
+@SongList
+========================================================================== */
+
+.songList {
+    -webkit-transform: translate(0, 0); // Tentative of improve scrolling performance
+}
+
+.songList_item {
+    overflow: hidden;
+    margin: 0 0 80px 0;
+
+    & .songList_item_box:first-child {
+        margin-bottom: 20px;
+    }
+
+    & .songList_item_box:last-child {
+        margin: 10px 0 0 0;
+    }
+}
+
+.songList_item_box {
+    overflow: hidden;
+}
+
+.songList_item_artwork {
+    display: block;
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+.songList_item_song_button {
+    font-size: 30px;
+    width: 30px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    display: block;
+    float: left;
+    cursor: pointer;
+
+    & .hidden {
+        display: none;
+    }
+}
+
+.songList_item_song_user {
+    display: inline-block;
+    color: $defaultColor;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.songList_item_song_tit {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.songList_item_song_waveForm {
+    background: #222326;
+    width: 100%;
+    height: 62px;
+    border-radius: 10px;
+}
+
+.songList_item_song_details {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: right;
+
+    & > span {
+        display: inline-block;
+        margin: 0 7px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    & a {
+
+        & > .fa {
+            color: #fff;
+            display: inline-block;
+            margin: 0 5px 0 0;
+        }
+    }
 }
 
 

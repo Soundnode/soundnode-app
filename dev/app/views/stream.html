@@ -5,26 +5,30 @@
     <div class="streamView_inner">
         <ul class="songList">
             <li class="songList_item" ng-repeat="data in data">
-                
                 <img src="{{ data.origin.artwork_url }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
+                
+                <header class="songList_item_box">
+                    <span class="songList_item_song_button">
+                        <i class="fa fa-play-circle-o"></i>
+                        <i class="fa fa-pause hidden"></i>
+                    </span>
+                    <h4 class="songList_item_song_user">{{ data.origin.user.username }}</h4>
+                    <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
+                </header>
 
-                <section class="songList_item_song">
-                    <header>
-                        <span class="songList_item_song_button">
-                            <i class="fa fa-play-circle-o"></i>
-                            <i class="fa fa-pause"></i>
-                        </span>
-                        <h4 class="songList_item_song_user">{{ data.origin.user.username }}</h4>
-                        <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
-                    </header>
+                <footer class="songList_item_box">
                     <img src="{{ data.origin.waveform_url }}" alt="{{ data.origin.title }}" class="songList_item_song_waveForm">
                     <div class="songList_item_song_details">
-                        <a href="{{ data.origin.download_url }}">download song</a>
                         <span>{{ data.origin.genre }}</span>
+                        <span>
+                            <a href="{{ data.origin.download_url }}"> <i class="fa fa-cloud-download"></i> download song</a>
+                        </span>
+                        <span>
+                            <a href="{{ data.origin.permalink_url }}"> <i class="fa fa-external-link-square"></i> permalink</a>
+                        </span>
                         <span>{{ data.origin.license }}</span>
-                        <a href="{{ data.origin.permalink_url }}">permalink</a>
                     </div>
-                </section>
+                </footer>
 
             </li>
         </ul>
