@@ -92,6 +92,9 @@
             <div class="nowPlaying" ng-controller="PlayingCtrl">
                 <div class="nowPlaying_inner">
                     <img src="{{ imgPath }}" alt="{{ title }}">
+                    <div id="playerBox">
+                        
+                    </div>
                 </div>
             </div>
             <!-- now playing / end -->
@@ -121,9 +124,10 @@
     <script src="public/js/controllers/tracks.js"></script>
     <script src="public/js/controllers/playlists.js"></script>
     <script src="public/js/controllers/following.js"></script>
+    
+    <!-- directives -->
+    <script src="public/js/directives/playSong.js"></script>
 
-    <!-- filters -->
-    <script src="public/js/filters/isEmpty.js"></script>
 
 </body>
 </html>

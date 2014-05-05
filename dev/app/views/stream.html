@@ -8,7 +8,7 @@
                 <img src="{{ data.origin.artwork_url }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
                 
                 <header class="songList_item_box">
-                    <span class="songList_item_song_button">
+                    <span class="songList_item_song_button" play-song data-url="{{ data.origin.stream_url }}">
                         <i class="fa fa-play-circle-o"></i>
                         <i class="fa fa-pause hidden"></i>
                     </span>

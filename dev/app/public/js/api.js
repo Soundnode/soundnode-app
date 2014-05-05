@@ -19,8 +19,9 @@ var exposeSoundCloudAPI = (function () {
 
         if ( isOAuthDone === 'true' ) {
             // Expose Soundcloud API to node-webkit object window
-            window.scAPI = elIframe.contentWindow.SC;
-            window.scAccessToken = elIframe.contentWindow.SC.accessToken();
+            window.SC = elIframe.contentWindow.SC;
+            window.scAccessToken = window.SC.accessToken();
+            window.scClientId = window.SC.options.client_id;
             // stop verification
             window.clearInterval(OAuthVerification)
 

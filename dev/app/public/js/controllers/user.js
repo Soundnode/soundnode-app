@@ -19,8 +19,8 @@ app.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
         });
 
     $scope.logOut = function() {
-        scAPI.disconnect();
-        console.log( scAPI.isConnected() );
+        SC.disconnect();
+        console.log( SC.isConnected() );
     }
     
 }]);
