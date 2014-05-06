@@ -10,20 +10,21 @@ gui.Window.get().showDevTools();
 var exposeSoundCloudAPI = (function () {
     var elIframe = document.getElementById('elIframe');
 
-    var verification = function () {
+    var verification;
+    verification = function () {
         var iframeDocument = elIframe.contentDocument
             , elIframeBody = iframeDocument.body
             , isOAuthDone = elIframeBody.getAttribute('data-isOAuth-done');
 
-        console.log('verification called')
+        console.log('verification called');
 
-        if ( isOAuthDone === 'true' ) {
+        if (isOAuthDone === 'true') {
             // Expose Soundcloud API to node-webkit object window
             window.SC = elIframe.contentWindow.SC;
             window.scAccessToken = window.SC.accessToken();
             window.scClientId = window.SC.options.client_id;
             // stop verification
-            window.clearInterval(OAuthVerification)
+            window.clearInterval(OAuthVerification);
 
             // Start the App
             document.body.setAttribute('data-isVisible', 'true');
@@ -31,7 +32,7 @@ var exposeSoundCloudAPI = (function () {
 
             console.log('verification done')
         }
-    }
+    };
 
     return {
         verification: verification

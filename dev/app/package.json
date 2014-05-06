@@ -14,6 +14,8 @@
     "frame": true,
     "width": 1024,
     "height": 768,
+    "min-width": 900,
+    "min-height": 520,
     "position": "center",
     "single-instance": true,
     "node-remote": "localhost"
@@ -22,5 +24,9 @@
     "soundclouder": "0.7.10",
     "request": "^2.34.0",
     "serve-static": "^1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-node-webkit-builder": "^0.1.21"
   }
 }
