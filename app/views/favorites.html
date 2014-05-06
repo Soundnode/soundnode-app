@@ -1,3 +1,37 @@
 <div class="favoritesView">
     <h1> {{ title }}</h1>
+
+    <!-- Song list wrapper -->
+    <div class="favoritesView_inner">
+        <ul class="songList">
+            <li class="songList_item" ng-repeat="data in data">
+                <img src="{{ data.artwork_url }}" alt="{{ data.title }}" class="songList_item_artwork">
+
+                <header class="songList_item_box">
+                    <span class="songList_item_song_button" play-song data-url="{{ data.stream_url }}">
+                        <i class="fa fa-play-circle-o"></i>
+                        <i class="fa fa-pause hidden"></i>
+                    </span>
+                    <h4 class="songList_item_song_user">by: {{ data.user.username }}</h4>
+                    <h2 class="songList_item_song_tit">{{ data.title }}</h2>
+                </header>
+
+                <footer class="songList_item_box">
+                    <img src="{{ data.waveform_url }}" alt="{{ data.title }}" class="songList_item_song_waveForm">
+                    <div class="songList_item_song_details">
+                        <span>{{ data.genre }}</span>
+                        <span>
+                            <a href="{{ data.download_url }}" download-song> <i class="fa fa-cloud-download"></i> download song</a>
+                        </span>
+                        <span>
+                            <a href="{{ data.permalink_url }}"> <i class="fa fa-external-link-square"></i> permalink</a>
+                        </span>
+                        <span>{{ data.license }}</span>
+                    </div>
+                </footer>
+
+            </li>
+        </ul>
+    </div>
+
 </div>

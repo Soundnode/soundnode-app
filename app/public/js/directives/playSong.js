@@ -13,14 +13,23 @@ app.directive('playSong', function () {
             };
 
             $scope.goToNextSong = function () {
-                console.log('Song played', player );
+                var parent;
+
+                console.log(elem)
+
+                parent = elem.parentNode.parentNode;
+                console.log(parent)
             }
 
             elem.bind('click', function () {
                 url = this.getAttribute('data-url') + '?client_id=' + window.scClientId;
                 $scope.playSong(url);
                 player = document.getElementById('player');
-                player.addEventListener('ended', $scope.goToNextSong() );
+                player.addEventListener('ended', function() {
+                    if ( player.currentTime === player.played.end(0) ) {
+                        $scope.goToNextSong();
+                    }
+                });
             });
         }
     }
