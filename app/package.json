@@ -10,13 +10,14 @@
   "license": "MIT",
   "window": {
     "title": "Soundcloudfy",
-    "toolbar": false,
+    "toolbar": true,
     "frame": true,
     "width": 1024,
     "height": 768,
-    "min-width": 900,
-    "min-height": 520,
-    "position": "center",
+    "min_width": 900,
+    "min_height": 520,
+    "resizable": true,
+    "position": "mouse",
     "single-instance": true,
     "node-remote": "localhost"
   },

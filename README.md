@@ -1,4 +1,4 @@
-Soåundcloudfy
+Soundcloudfy
 ============
 
 Soundcloudfy is the Soundcloud for desktop. <br>

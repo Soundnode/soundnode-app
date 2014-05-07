@@ -244,9 +244,37 @@ body[data-isVisible="true"] {
 .nowPlaying {}
 
 .nowPlaying_inner {
-    & > img {
-        width: 100%;
-    }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+}
+
+.nowPlaying_thumb {
+  width: 100%;
+  height: 200px;
+  margin: 0 0 10px 0;
+}
+
+.nowPlaying_title {
+  padding: 0 15px 5px;
+  font-size: 14px;
+  overflow: hidden;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+}
+
+.nowPlaying_user {
+  display: inline-block;
+  color: #949599;
+  font-size: 11px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding: 0 15px 5px;
+}
+
+.nowPlaying_player {
+  margin: 10px 0 0;
 }
 
 
@@ -272,9 +300,7 @@ body[data-isVisible="true"] {
 @SongList
 ========================================================================== */
 
-.songList {
-    -webkit-transform: translate(0, 0); // Tentative of improve scrolling performance
-}
+.songList {}
 
 .songList_item {
     overflow: hidden;
