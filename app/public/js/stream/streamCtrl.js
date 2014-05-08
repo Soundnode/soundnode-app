@@ -14,4 +14,10 @@ app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
         .error(function(data, status, headers, config) {
             console.log('Error getting stream', status)
         });
+
+    $scope.updateArtwork = function (img) {
+        var newArtwork = img.replace('large', 't300x300');
+        return newArtwork;
+    }
+
 }])
