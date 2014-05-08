@@ -10,10 +10,10 @@
   "license": "MIT",
   "window": {
     "title": "Soundcloudfy",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "width": 1024,
-    "height": 768,
+    "height": 600,
     "min_width": 900,
     "min_height": 520,
     "resizable": true,

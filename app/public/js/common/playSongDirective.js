@@ -23,15 +23,16 @@ app.directive('playSong', function () {
                 document.getElementById('playerThumb').setAttribute('src', thumbnail);
                 document.getElementById('playerThumb').setAttribute('alt', title);
                 document.getElementById('playerTitle').innerHTML = title;
+                document.getElementById('playerTitle').setAttribute('title', title);
                 document.getElementById('playerUser').innerHTML = user;
                 player.play();
             };
 
             $scope.goToNextSong = function () {
-                var parent;
-                console.dir( elem )
-//                parent = elem.parentElement.parentElement;
-//                parent.nextElementSibling.children[1].children[0].click();
+                var elParent;
+
+                elParent = elem.parent().parent().next().children()[1];
+                elParent.children[0].click()
             }
         }
     }
