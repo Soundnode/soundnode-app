@@ -45,8 +45,9 @@
             <!-- header / end -->
 
             <!-- search -->
-            <div class="search">
-                <input type="search" placeholder="Search" id="search" class="search_field">
+            <div class="search" ng-controller="searchCtrl">
+                <input type="search" placeholder="Search" id="search" class="search_field" ng-submit="onSearch()">
+                <input type="submit" id="submit" value="Submit" class="searchButton" />
             </div>
             <!-- search / end -->
 
@@ -118,6 +119,7 @@
 
     <!-- controllers -->
     <script src="public/js/common/appCtrl.js"></script>
+    <script src="public/js/search/searchCtrl.js"></script>
     <script src="public/js/stream/streamCtrl.js"></script>
     <script src="public/js/user/userCtrl.js"></script>
     <script src="public/js/playing/playingCtrl.js"></script>
