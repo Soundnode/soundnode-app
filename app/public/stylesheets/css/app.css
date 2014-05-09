@@ -63,8 +63,16 @@ h6 {
   color: #fff;
 }
 
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 .fa {
   color: #fff;
+}
+
+.searchButton {
+  display: none;
 }
 
 /* ==========================================================================
