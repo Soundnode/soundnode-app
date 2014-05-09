@@ -32,7 +32,10 @@ app.directive('playSong', function () {
                 var elParent;
 
                 elParent = elem.parent().parent().next().children()[1];
-                elParent.children[0].click()
+
+                if ( elParent !== undefined ) {
+                    elParent.children[0].click();
+                }
             }
         }
     }

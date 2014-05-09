@@ -4,8 +4,11 @@
     <!-- Song list wrapper -->
     <div class="streamView_inner">
         <ul class="songList">
-            <li class="songList_item" ng-repeat="data in data">
-                <img src="{{ updateArtwork(data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
+            <li class="songList_item" ng-repeat="data in data"
+                    ng-class="{ active: hover }"
+                    ng-mouseover="hover = true"
+                    ng-mouseleave="hover = false" >
+                <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
                 
                 <section class="songList_item_inner">
                     <span class="songList_item_song_button" play-song
@@ -23,14 +26,18 @@
 
                     <!--<img src="{{ data.origin.waveform_url }}" alt="{{ data.origin.title }}" class="songList_item_song_waveForm">-->
                     <div class="songList_item_song_details">
-                        <span>{{ data.origin.genre }}</span>
-                        <span>
-                            <a href="{{ data.origin.download_url }}" download-song> <i class="fa fa-cloud-download"></i> download song</a>
-                        </span>
-                        <span>
-                            <a href="{{ data.origin.permalink_url }}"> <i class="fa fa-external-link-square"></i> permalink</a>
-                        </span>
-                        <span>{{ data.origin.license }}</span>
+                        <div>
+                            <span>
+                                <a href="{{ data.origin.download_url }}" download-song> <i class="fa fa-cloud-download"></i> download song</a>
+                            </span>
+                            <span>
+                                <a href="{{ data.origin.permalink_url }}"> <i class="fa fa-external-link-square"></i> permalink</a>
+                            </span>
+                        </div>
+                        <div>
+                            <span>{{ data.origin.genre }}</span>
+                            <span>{{ data.origin.license }}</span>
+                        </div>
                     </div>
                 </section>
 

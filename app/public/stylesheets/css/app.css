@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* ==========================================================================
 #   Application style structure guide
 #   @Default
@@ -259,7 +260,8 @@ body[data-isVisible="true"] .box-loader {
   margin-left: 200px;
 }
 .mainView > div {
-  max-width: 900px;
+  max-width: 930px;
+  min-width: 930px;
   margin: 0 auto;
 }
 .mainView > div > h1 {
@@ -270,10 +272,16 @@ body[data-isVisible="true"] .box-loader {
 @SongList
 ========================================================================== */
 .songList_item {
+  display: inline-block;
+  position: relative;
   overflow: hidden;
-  margin: 0 0 80px 0;
+  margin: 0 5px 80px 5px;
   width: 300px;
-  height: 400px;
+  height: 450px;
+}
+.songList_item.active .songList_item_song_button {
+  -webkit-transform: scale(1);
+  opacity: 1;
 }
 .songList_item .songList_item_box:first-child {
   margin-bottom: 20px;
@@ -290,10 +298,11 @@ body[data-isVisible="true"] .box-loader {
 .songList_item_artwork {
   display: block;
   width: 100%;
+  margin: 0 0 10px 0;
 }
 
 .songList_item_song_button {
-  display: none;
+  display: block;
   font-size: 50px;
   width: 100%;
   cursor: pointer;
@@ -301,6 +310,11 @@ body[data-isVisible="true"] .box-loader {
   top: 0;
   height: 300px;
   background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding-top: 135px;
+  transition: all 200ms linear;
+  -webkit-transform: scale(0);
+  opacity: 0;
 }
 .songList_item_song_button .hidden {
   display: none;
@@ -316,24 +330,22 @@ body[data-isVisible="true"] .box-loader {
 .songList_item_song_tit {
   font-size: 20px;
   margin: 5px 0;
-}
-
-.songList_item_song_waveForm {
-  background: #222326;
-  width: 100%;
-  height: 62px;
-  border-radius: 10px;
+  height: 50px;
+  overflow: hidden;
 }
 
 .songList_item_song_details {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 12px;
 }
-.songList_item_song_details > span {
-  display: inline-block;
-  margin: 0 7px;
+.songList_item_song_details div {
+  margin: 0 0 5px 0;
 }
-.songList_item_song_details > span:last-child {
+.songList_item_song_details span {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+.songList_item_song_details span:last-child {
   margin-right: 0;
 }
 .songList_item_song_details a > .fa {

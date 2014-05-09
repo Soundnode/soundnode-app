@@ -1,7 +1,7 @@
 'use strict'
 
 app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
-    var streamURL = 'https://api.soundcloud.com/me/activities?limit=10&oauth_token=' + window.scAccessToken;
+    var streamURL = 'https://api.soundcloud.com/me/activities?limit=32&oauth_token=' + window.scAccessToken;
 
     $scope.title = 'Stream';
     $scope.data = '';
@@ -15,9 +15,4 @@ app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
             console.log('Error getting stream', status)
         });
 
-    $scope.updateArtwork = function (img) {
-        var newArtwork = img.replace('large', 't300x300');
-        return newArtwork;
-    }
-
-}])
+}]);
