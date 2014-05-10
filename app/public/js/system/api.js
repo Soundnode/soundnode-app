@@ -1,5 +1,6 @@
-// GUI setup
 var gui = require('nw.gui');
+var OAuthVerification;
+var elemIframe = document.getElementById('elIframe');
 
 // open devtools
 gui.Window.get().showDevTools();
@@ -8,11 +9,10 @@ gui.Window.get().showDevTools();
  * Expose Soundcloud API
  */
 var exposeSoundCloudAPI = (function () {
-    var elIframe = document.getElementById('elIframe');
 
     var verification;
     verification = function () {
-        var iframeDocument = elIframe.contentDocument
+        var iframeDocument = elemIframe.contentDocument
             , elIframeBody = iframeDocument.body
             , isOAuthDone = elIframeBody.getAttribute('data-isOAuth-done');
 
@@ -20,7 +20,7 @@ var exposeSoundCloudAPI = (function () {
 
         if (isOAuthDone === 'true') {
             // Expose Soundcloud API to node-webkit object window
-            window.SC = elIframe.contentWindow.SC;
+            window.SC = elemIframe.contentWindow.SC;
             window.scAccessToken = window.SC.accessToken();
             window.scClientId = window.SC.options.client_id;
             // stop verification
@@ -39,7 +39,10 @@ var exposeSoundCloudAPI = (function () {
     }
 })();
 
-var OAuthVerification = window.setInterval( exposeSoundCloudAPI.verification, 1500);
+elemIframe.onload = function() {
+    console.log('called');
+    OAuthVerification = window.setInterval( exposeSoundCloudAPI.verification, 1500);
+}
 
 /**
  * API SOUNDCLOUD ENDPOINTS
