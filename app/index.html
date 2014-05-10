@@ -46,8 +46,10 @@
 
             <!-- search -->
             <div class="search" ng-controller="searchCtrl">
-                <input type="search" placeholder="Search" id="search" class="search_field" ng-submit="onSearch()">
-                <input type="submit" id="submit" value="Submit" class="searchButton" />
+                <form ng-submit="onSubmit(keyword)">
+                    <input type="search" placeholder="Search" id="search" class="search_field" ng-model="keyword">
+                    <input type="submit" id="submit" value="Submit" class="searchButton" />
+                </form>
             </div>
             <!-- search / end -->
 
@@ -114,7 +116,7 @@
     <script src="public/js/vendor/angular-ui-router.min.js"></script>
 
     <!-- app -->
-    <script src="public/js/api.js"></script>
+    <script src="public/js/system/api.js"></script>
     <script src="public/js/app.js"></script>
 
     <!-- controllers -->
