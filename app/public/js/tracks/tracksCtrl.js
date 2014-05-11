@@ -1,13 +1,21 @@
 'use strict'
 
 app.controller('TracksCtrl', ['$scope', '$http', function ($scope, $http) {
-    // $http({method: 'GET', url: 'stream/url'}).
-    //     success(function(data, status, headers, config) {
-          
-    //     }).
-    //     error(function(data, status, headers, config) {
-          
-    //     });
-    
-    $scope.title = 'Tracks view'
+    var trackUrl = 'https://api.soundcloud.com/me/tracks?limit=32&oauth_token=' + window.scAccessToken;
+
+    $scope.title = 'Tracks view';
+    $scope.display = '';
+
+    $http({method: 'GET', url: trackUrl})
+        .success(function(data, status, headers, config) {
+            console.log('tracks', data.length)
+            if ( data.length === 0 ) {
+                $scope.display = false;
+            } else {
+                $scope.display = true;
+            }
+        })
+        .error(function(data, status, headers, config) {
+            console.log('Error getting tracks', status)
+        });
 }])
