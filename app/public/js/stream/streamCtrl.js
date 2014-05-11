@@ -9,7 +9,7 @@ app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
     $http({method: 'GET', url: streamURL})
         .success(function(data, status, headers, config) {
             console.log('stream', data)
-            $scope.data = data.collection
+            $scope.data = data.collection;
         })
         .error(function(data, status, headers, config) {
             console.log('Error getting stream', status)

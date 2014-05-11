@@ -342,6 +342,11 @@ body[data-isVisible="true"] {
 
 .songList_item_inner {}
 
+.songList_item_container_artwork {
+  width: 100%;
+  height: 300px;
+}
+
 .songList_item_artwork {
     display: block;
     width: 100%;

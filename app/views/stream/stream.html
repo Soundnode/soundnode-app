@@ -8,7 +8,11 @@
                     ng-class="{ active: hover }"
                     ng-mouseover="hover = true"
                     ng-mouseleave="hover = false" >
-                <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
+
+                <div class="songList_item_container_artwork">
+                    <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
+                </div>
+
                 
                 <section class="songList_item_inner">
                     <span class="songList_item_song_button" play-song

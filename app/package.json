@@ -1,7 +1,7 @@
 {
-  "name": "Soundcloudfy",
+  "name": "Soundnode App",
   "version": "0.0.1",
-  "description": "Soundcloudfy is a native Application that uses Soundcloud API to play songs",
+  "description": "Soundnode App is a native Application that uses Soundcloud API to play songs",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "window": {
-    "title": "Soundcloudfy",
+    "title": "Soundnode App",
     "toolbar": false,
     "frame": true,
     "width": 1152,
