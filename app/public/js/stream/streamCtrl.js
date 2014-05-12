@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('StreamCtrl', function ($scope, $http) {
     var streamURL = 'https://api.soundcloud.com/me/activities?limit=32&oauth_token=' + window.scAccessToken;
 
     $scope.title = 'Stream';
@@ -15,4 +15,4 @@ app.controller('StreamCtrl', ['$scope', '$http', function ($scope, $http) {
             console.log('Error getting stream', status)
         });
 
-}]);
+});

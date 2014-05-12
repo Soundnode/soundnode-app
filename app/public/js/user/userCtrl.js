@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('UserCtrl', function ($scope, $http) {
     var userURL = 'https://api.soundcloud.com/me.json?oauth_token=' + window.scAccessToken;
 
     $scope.name = '';
@@ -23,4 +23,4 @@ app.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
         console.log( SC.isConnected() );
     }
     
-}]);
+});
