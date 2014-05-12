@@ -1,5 +1,5 @@
 {
-  "name": "Soundnode App",
+  "name": "Soundnode-App",
   "version": "0.0.1",
   "description": "Soundnode App is a native Application that uses Soundcloud API to play songs",
   "main": "index.html",
