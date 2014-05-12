@@ -1,18 +1,18 @@
 'use strict';
 
-app.controller('searchCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.title = 'Search result';
+app.controller('searchCtrl', function ($scope, $http, $stateParams) {
+    $scope.title = 'Search results';
 
-    $scope.onSubmit = function (keyword) {
-        var searchUrl = 'http://api.soundcloud.com/tracks?limit=32&q=' + keyword + '&client_id=' + window.scClientId;
+    $scope.data = '';
 
-        $http({method: 'GET', url: searchUrl})
-            .success(function(data, status, headers, config) {
-                console.log('search', data)
+    var searchUrl = 'http://api.soundcloud.com/tracks?limit=32&q=' + $stateParams.q + '&client_id=' + window.scClientId;
 
-            })
-            .error(function(data, status, headers, config) {
-                console.log('Error getting stream', status)
-            });
-    }
-}]);
+    $http({method: 'GET', url: searchUrl})
+        .success(function(data, status, headers, config) {
+            console.log('search', data)
+            $scope.data = data;
+        })
+        .error(function(data, status, headers, config) {
+            console.log('Error getting stream', status)
+        });
+});

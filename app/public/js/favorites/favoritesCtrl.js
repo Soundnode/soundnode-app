@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('FavoritesCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('FavoritesCtrl', function ($scope, $http) {
     var streamURL = 'https://api.soundcloud.com/me/favorites.json?oauth_token=' + window.scAccessToken;
 
     $scope.title = 'Favorites'
@@ -15,4 +15,4 @@ app.controller('FavoritesCtrl', ['$scope', '$http', function ($scope, $http) {
             console.log('Error getting stream', status)
         });
 
-}])
+});

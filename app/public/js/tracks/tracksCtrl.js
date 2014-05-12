@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('TracksCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('TracksCtrl', function ($scope, $http) {
     var trackUrl = 'https://api.soundcloud.com/me/tracks?limit=32&oauth_token=' + window.scAccessToken;
 
     $scope.title = 'Tracks view';
@@ -18,4 +18,4 @@ app.controller('TracksCtrl', ['$scope', '$http', function ($scope, $http) {
         .error(function(data, status, headers, config) {
             console.log('Error getting tracks', status)
         });
-}])
+});
