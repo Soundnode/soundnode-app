@@ -8,8 +8,9 @@ app.controller('FavoritesCtrl', function ($scope, $http) {
 
     $http({method: 'GET', url: streamURL})
         .success(function(data, status, headers, config) {
-            console.log('stream', data)
+            console.log('Likes', data)
             $scope.data = data
+
         })
         .error(function(data, status, headers, config) {
             console.log('Error getting stream', status)

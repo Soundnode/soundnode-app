@@ -12,8 +12,4 @@ app.controller('AppCtrl', function ($scope) {
         }
     }
 
-    $scope.isEmptyArtwork = function (img) {
-
-    }
-
 });

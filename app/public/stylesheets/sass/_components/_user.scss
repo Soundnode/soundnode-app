@@ -1,0 +1,32 @@
+.user {
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+
+.user_thumb {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50px;
+  float: left;
+}
+
+.user_inner {
+  float: left;
+  margin: 0 0 0 20px;
+}
+
+.user_name,
+.user_logOut {
+  font-weight: normal;
+  display: block;
+}
+
+.user_name {
+  font-size: 12px;
+  color: #fff;
+}
+
+.user_logOut {
+  font-size: 10px;
+}
