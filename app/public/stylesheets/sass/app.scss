@@ -1,523 +1,78 @@
 @charset "utf-8";
 
 /* ==========================================================================
-#   Application style structure guide
-#   @Default
-#   @Config
-#   @Iframe
-#   @App
-#   @Aside
-#   @Header
-#   @MainNav
-#   @Search
-#   @NowPlaying
-#   @MainView - wrapper
-========================================================================== */
-
-/* ==========================================================================
 @Config
-* Color Palette
 ========================================================================== */
-$bodyBackground: #121314;
-$sectionBackground: #222326;
-$linkColor: #949599;
-$defaultColor: #949599;
-$separatorCleanColor: #3e3e40;
-$separatorDarkColor: #000;
-$scColor: #f50;
-$transitionValue: all 0.5s ease;
+@import "_components/_config";
 
 /* ==========================================================================
 @Default
 ========================================================================== */
-* {
-    box-sizing: border-box;
-}
-
-html {
-    height: 100%;
-}
-
-body {
-    border-top: 2px solid $scColor;
-    background: $bodyBackground;
-    font: 62.5% helvetica, sans-serif, arial !important;
-    color: $defaultColor;
-    height: 100%;
-}
-
-a {
-    color: $linkColor;
-    text-decoration: none;
-    transition: $transitionValue;
-}
-a:hover {
-    color: #fff;
-}
-
-ul, 
-ol,
-li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-    color: #fff;
-}
-
-::-webkit-scrollbar { width: 0 !important }
-
-.fa {
-    color: #fff;
-}
-
-.searchButton {
-  display: none;
-}
+@import "_components/_default.scss";
 
 /* ==========================================================================
 @App state
 ========================================================================== */
-body[data-isVisible="false"] {
-    & .ui_app { 
-        display: none;
-    }
-    & .box-loader {
-        display: block;
-    }
-}
-
-body[data-isVisible="true"] {
-    & .ui_app { 
-        display: block;
-    }
-    & .box-loader {
-        display: none;
-    }
-}
+@import "_components/_appState";
 
 /* ==========================================================================
 @Iframe
 ========================================================================== */
-#elIframe {
-    position: absolute;
-    left: -9999px;
-    border: none;
-    background: transparent;
-}
+@import "_components/_elIframe";
 
 /* ==========================================================================
-@App wrapper
+@App container
 ========================================================================== */
-.ui_app {
-    // height: 100%;
-    // display: flex;
-    // flex-direction: row;
-    // -webkit-box-align: stretch;
-}
+@import "_components/_appContainer";
 
 /* ==========================================================================
 @Aside
 ========================================================================== */
-.aside {
-    // flex: 1 0 0;
-    background: $sectionBackground;
-    border-right: 1px solid $separatorDarkColor;
-    width: 200px;
-    position: fixed;
-    top: 2px;
-    bottom: 0;
-    left: 0;
-}
+@import "_components/_aside";
 
 /* ==========================================================================
 @Header
 ========================================================================== */
-.header {
-    padding: 15px 10px 10px;
-}
+@import "_components/_header";
 
-.user {
-    padding: 10px 0 0;
-    overflow: hidden;
-}
-
-.user_thumb {
-    width: 30px;
-    height: 30px;
-    display: block;
-    border-radius: 50px;
-    float: left;
-}
-
-.user_inner {
-    float: left;
-    margin: 0 0 0 20px;
-}
-
-.user_name, 
-.user_logOut {
-    font-weight: normal;
-    display: block;
-}
-
-.user_name {
-    font-size: 12px;
-    color: #fff;
-}
-
-.user_logOut {
-    font-size: 10px;
-}
+/* ==========================================================================
+@User
+========================================================================== */
+@import "_components/_user";
 
 /* ==========================================================================
 @MainNav
 ========================================================================== */
-.mainNav {
-    padding: 10px 15px;
-    margin: 0 0 30px 0;
-}
-
-.ui_title {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: normal;
-    color: $linkColor;
-    margin: 0 0 10px;
-}
-
-.mainNav_item {
-    margin: 0 0 10px 0;
-
-    &:last-child {
-        margin: 0;
-    }
-}
-
-.mainNav_button {
-    font-size: 14px;
-    display: block;
-
-    & .fa {
-        color: #fff;
-        display: inline-block;
-        width: 25px;
-    }
-}
-
-.mainNav_tit {
-    display: inline-block;
-}
+@import "_components/_mainNav";
 
 /* ==========================================================================
 @Search
 ========================================================================== */
-.search {
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.search_field {
-    border: 1px solid #000;
-    background: $bodyBackground;
-    width: 80%;
-    display: inline-block;
-    height: 25px;
-    padding: 0 0 0 5px;
-    outline: none;
-    color: #fff;
-    font-size: 12px;
-    transition: $transitionValue;
-    border-radius: 5px;
-
-    &:focus {
-        box-shadow: 0 0 5px $scColor;
-    }
-}
+@import "_components/_search";
 
 /* ==========================================================================
 @NowPlaying
 ========================================================================== */
-.nowPlaying {}
-
-.nowPlaying_inner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 200px;
-  border-right: 1px solid $separatorDarkColor;
-}
-
-.nowPlaying_thumb {
-  width: 100%;
-  height: 200px;
-  margin: 0 0 10px 0;
-  display: block;
-}
-
-.nowPlaying_title {
-  padding: 0 15px 5px;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.nowPlaying_user {
-  display: inline-block;
-  color: #949599;
-  font-size: 11px;
-  white-space: nowrap;
-  text-transform: uppercase;
-  padding: 0 15px 5px;
-}
-
-.nowPlaying_player {
-  margin: 10px 0 0;
-}
+@import "_components/_nowPlaying";
 
 
 /* ==========================================================================
 @MainView - wrapper
 ========================================================================== */
-.mainView {
-    // flex: 5 0 0;
-    padding: 10px 20px;
-    margin-left: 200px;
-
-    & > div {
-        max-width: 930px;
-        min-width: 930px;
-        margin: 0 auto;
-    }
-
-    & > div > h1 {
-        margin: 10px 0 30px;
-    }
-}
+@import "_components/_view-container";
 
 /* ==========================================================================
 @SongList
 ========================================================================== */
 
-.songList {}
+@import "_components/_songlist";
 
-.songList_item {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    margin: 0 5px 80px 5px;
-    width: 300px;
-    height: 450px;
-
-    &.active {
-       & .songList_item_song_button {
-         -webkit-transform: scale(1);
-         opacity: 1;
-       }
-    }
-
-    & .songList_item_box:first-child {
-        margin-bottom: 20px;
-    }
-
-    & .songList_item_box:last-child {
-        margin: 10px 0 0 0;
-    }
-}
-
-.songList_item_box {
-    width: 300px;
-    height: 300px;
-}
-
-.songList_item_inner {}
-
-.songList_item_container_artwork {
-  width: 100%;
-  height: 300px;
-}
-
-.songList_item_artwork {
-    display: block;
-    width: 100%;
-    margin: 0 0 10px 0;
-}
-
-.songList_item_song_button {
-    display: block;
-    font-size: 50px;
-    width: 100%;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    height: 300px;
-    background: rgba(0, 0, 0, 0.8);
-    text-align: center;
-    padding-top: 135px;
-    transition: all 200ms linear;
-    -webkit-transform: scale(0);
-    opacity: 0;
-
-    & .hidden {
-        display: none;
-    }
-}
-
-.songList_item_song_user {
-    display: inline-block;
-    color: $defaultColor;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-
-.songList_item_song_tit {
-    font-size: 20px;
-    margin: 5px 0;
-    height: 50px;
-    overflow: hidden;
-}
-
-//.songList_item_song_waveForm {
-//    background: #222326;
-//    width: 100%;
-//    height: 62px;
-//    border-radius: 10px;
-//}
-
-.songList_item_song_details {
-    margin-top: 15px;
-    font-size: 12px;
-
-    & div {
-       margin: 0 0 5px 0;
-    }
-
-    & span {
-        display: inline-block;
-        margin: 0 5px 0 0;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-
-    & a {
-
-        & > .fa {
-            color: #fff;
-            display: inline-block;
-            margin: 0 5px 0 0;
-        }
-    }
-}
-
+/* ==========================================================================
+@Playlist songList
+========================================================================== */
+@import "_components/_playlist-songs";
 
 /* ==========================================================================
 @Loader
 ========================================================================== */
-.box-loader {
-    display: block;
-    height: 35px;
-    width: 250px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -125px;
-    margin-top: -17px;
-
-    & > h4 {
-        font-size: 12px;
-        font-weight: normal;
-    }
-}
-
-.loader:before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: -25px;
-    height: 12px;
-    width: 12px;
-    border-radius: 12px;
-    -webkit-animation: loaderB 3s ease-in-out infinite;
-            animation: loaderB 3s ease-in-out infinite;
-}
-
-.loader {
-    position: relative;
-    width: 12px;
-    height: 12px;
-    top: 46%;
-    left: 46%;
-    border-radius: 12px;
-    -webkit-animation: loaderM 3s ease-in-out infinite;
-            animation: loaderM 3s ease-in-out infinite;
-}
-
-
-.loader:after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 25px;
-    height: 12px;
-    width: 12px;
-    border-radius: 10px;
-    -webkit-animation: loaderA 3s ease-in-out infinite;
-            animation: loaderA 3s ease-in-out infinite;
-}
-
-@-webkit-keyframes loaderB{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, 1);}
-    50%{background-color: rgba(255, 85, 0, .2);}
-    75%{background-color: rgba(255, 85, 0, .2);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
-@keyframes loaderB{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, 1);}
-    50%{background-color: rgba(255, 85, 0, .2);}
-    75%{background-color: rgba(255, 85, 0, .2);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
-
-@-webkit-keyframes loaderM{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, .2);}
-    50%{background-color: rgba(255, 85, 0, 1);}
-    75%{background-color: rgba(255, 85, 0, .2);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
-@keyframes loaderM{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, .2);}
-    50%{background-color: rgba(255, 85, 0, 1);}
-    75%{background-color: rgba(255, 85, 0, .2);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
-
-@-webkit-keyframes loaderA{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, .2);}
-    50%{background-color: rgba(255, 85, 0, .2);}
-    75%{background-color: rgba(255, 85, 0, 1);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
-@keyframes loaderA{
-    0%{background-color: rgba(255, 85, 0, .2);}
-    25%{background-color: rgba(255, 85, 0, .2);}
-    50%{background-color: rgba(255, 85, 0, .2);}
-    75%{background-color: rgba(255, 85, 0, 1);}
-    100%{background-color: rgba(255, 85, 0, .2);}
-}
+@import "_components/_loader";

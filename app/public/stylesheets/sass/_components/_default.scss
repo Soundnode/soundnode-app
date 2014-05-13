@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  border-top: 2px solid $scColor;
+  background: $bodyBackground;
+  font: 62.5% helvetica, sans-serif, arial !important;
+  color: $defaultColor;
+  height: 100%;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+  transition: $transitionValue;
+}
+a:hover {
+  color: #fff;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 0 !important }
+
+.fa {
+  color: #fff;
+}
+
+.searchButton {
+  display: none;
+}

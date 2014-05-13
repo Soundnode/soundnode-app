@@ -1,0 +1,96 @@
+.box-loader {
+  display: block;
+  height: 35px;
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: -17px;
+
+  & > h4 {
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -25px;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  -webkit-animation: loaderB 3s ease-in-out infinite;
+  animation: loaderB 3s ease-in-out infinite;
+}
+
+.loader {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 46%;
+  left: 46%;
+  border-radius: 12px;
+  -webkit-animation: loaderM 3s ease-in-out infinite;
+  animation: loaderM 3s ease-in-out infinite;
+}
+
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+  -webkit-animation: loaderA 3s ease-in-out infinite;
+  animation: loaderA 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes loaderB{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, 1);}
+  50%{background-color: rgba(255, 85, 0, .2);}
+  75%{background-color: rgba(255, 85, 0, .2);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}
+@keyframes loaderB{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, 1);}
+  50%{background-color: rgba(255, 85, 0, .2);}
+  75%{background-color: rgba(255, 85, 0, .2);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}
+
+@-webkit-keyframes loaderM{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, .2);}
+  50%{background-color: rgba(255, 85, 0, 1);}
+  75%{background-color: rgba(255, 85, 0, .2);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}
+@keyframes loaderM{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, .2);}
+  50%{background-color: rgba(255, 85, 0, 1);}
+  75%{background-color: rgba(255, 85, 0, .2);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}
+
+@-webkit-keyframes loaderA{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, .2);}
+  50%{background-color: rgba(255, 85, 0, .2);}
+  75%{background-color: rgba(255, 85, 0, 1);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}
+@keyframes loaderA{
+  0%{background-color: rgba(255, 85, 0, .2);}
+  25%{background-color: rgba(255, 85, 0, .2);}
+  50%{background-color: rgba(255, 85, 0, .2);}
+  75%{background-color: rgba(255, 85, 0, 1);}
+  100%{background-color: rgba(255, 85, 0, .2);}
+}

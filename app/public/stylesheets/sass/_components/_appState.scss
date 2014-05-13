@@ -1,0 +1,17 @@
+body[data-isVisible="false"] {
+  & .ui_app {
+    display: none;
+  }
+  & .box-loader {
+    display: block;
+  }
+}
+
+body[data-isVisible="true"] {
+  & .ui_app {
+    display: block;
+  }
+  & .box-loader {
+    display: none;
+  }
+}

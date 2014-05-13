@@ -1,0 +1,10 @@
+.aside {
+  // flex: 1 0 0;
+  background: $sectionBackground;
+  border-right: 1px solid $separatorDarkColor;
+  width: 200px;
+  position: fixed;
+  top: 2px;
+  bottom: 0;
+  left: 0;
+}

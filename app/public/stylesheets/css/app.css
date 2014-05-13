@@ -1,19 +1,5 @@
 /* ==========================================================================
-#   Application style structure guide
-#   @Default
-#   @Config
-#   @Iframe
-#   @App
-#   @Aside
-#   @Header
-#   @MainNav
-#   @Search
-#   @NowPlaying
-#   @MainView - wrapper
-========================================================================== */
-/* ==========================================================================
 @Config
-* Color Palette
 ========================================================================== */
 /* ==========================================================================
 @Default
@@ -102,7 +88,7 @@ body[data-isVisible="true"] .box-loader {
 }
 
 /* ==========================================================================
-@App wrapper
+@App container
 ========================================================================== */
 /* ==========================================================================
 @Aside
@@ -124,6 +110,9 @@ body[data-isVisible="true"] .box-loader {
   padding: 15px 10px 10px;
 }
 
+/* ==========================================================================
+@User
+========================================================================== */
 .user {
   padding: 10px 0 0;
   overflow: hidden;
@@ -364,6 +353,36 @@ body[data-isVisible="true"] .box-loader {
   color: #fff;
   display: inline-block;
   margin: 0 5px 0 0;
+}
+
+/* ==========================================================================
+@Playlist songList
+========================================================================== */
+.songList_item.playlist {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 80px 0;
+}
+.songList_item.playlist .songList_item_song_user {
+  display: block;
+  margin: 0 0 10px 0;
+}
+.songList_item.playlist .songList_item_songs_list_item {
+  overflow: hidden;
+  margin: 0 0 5px 0;
+}
+.songList_item.playlist .songList_item_container_artwork {
+  width: 47px;
+  height: 47px;
+  float: left;
+}
+.songList_item.playlist .songList_item_container_info {
+  float: left;
+  margin: 0 0 0 10px;
+}
+.songList_item.playlist .songList_item_song_tit {
+  height: auto;
 }
 
 /* ==========================================================================
