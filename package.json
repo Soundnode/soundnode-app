@@ -1,0 +1,18 @@
+{
+  "name": "Grunt-builder",
+  "version": "0.0.1",
+  "description": "Soundnode App is the Soundcloud for desktop",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GNU",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-node-webkit-builder": "^0.1.21",
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
