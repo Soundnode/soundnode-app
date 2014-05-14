@@ -12,7 +12,7 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 Since the core is done I figured release a beta version just for devs/community to receive feedback/contributions.
 
-### How to contribute
+## How to contribute
 
 First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report.
 
