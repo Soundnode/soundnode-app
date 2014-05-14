@@ -4,14 +4,17 @@
 /* ==========================================================================
 @Default
 ========================================================================== */
+/* line 1, ../sass/_components/_default.scss */
 * {
   box-sizing: border-box;
 }
 
+/* line 5, ../sass/_components/_default.scss */
 html {
   height: 100%;
 }
 
+/* line 9, ../sass/_components/_default.scss */
 body {
   border-top: 2px solid #ff5500;
   background: #121314;
@@ -20,16 +23,19 @@ body {
   height: 100%;
 }
 
+/* line 17, ../sass/_components/_default.scss */
 a {
   color: #949599;
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
+/* line 22, ../sass/_components/_default.scss */
 a:hover {
   color: #fff;
 }
 
+/* line 28, ../sass/_components/_default.scss */
 ul,
 ol,
 li {
@@ -38,6 +44,7 @@ li {
   padding: 0;
 }
 
+/* line 39, ../sass/_components/_default.scss */
 h1,
 h2,
 h3,
@@ -48,14 +55,17 @@ h6 {
   color: #fff;
 }
 
+/* line 44, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 0 !important;
 }
 
+/* line 46, ../sass/_components/_default.scss */
 .fa {
   color: #fff;
 }
 
+/* line 50, ../sass/_components/_default.scss */
 .searchButton {
   display: none;
 }
@@ -63,16 +73,20 @@ h6 {
 /* ==========================================================================
 @App state
 ========================================================================== */
+/* line 2, ../sass/_components/_appState.scss */
 body[data-isVisible="false"] .ui_app {
   display: none;
 }
+/* line 5, ../sass/_components/_appState.scss */
 body[data-isVisible="false"] .box-loader {
   display: block;
 }
 
+/* line 11, ../sass/_components/_appState.scss */
 body[data-isVisible="true"] .ui_app {
   display: block;
 }
+/* line 14, ../sass/_components/_appState.scss */
 body[data-isVisible="true"] .box-loader {
   display: none;
 }
@@ -80,6 +94,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Iframe
 ========================================================================== */
+/* line 1, ../sass/_components/_elIframe.scss */
 #elIframe {
   position: absolute;
   left: -9999px;
@@ -93,6 +108,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Aside
 ========================================================================== */
+/* line 1, ../sass/_components/_aside.scss */
 .aside {
   background: #222326;
   border-right: 1px solid black;
@@ -106,6 +122,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Header
 ========================================================================== */
+/* line 1, ../sass/_components/_header.scss */
 .header {
   padding: 15px 10px 10px;
 }
@@ -113,11 +130,13 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @User
 ========================================================================== */
+/* line 1, ../sass/_components/_user.scss */
 .user {
   padding: 10px 0 0;
   overflow: hidden;
 }
 
+/* line 6, ../sass/_components/_user.scss */
 .user_thumb {
   width: 30px;
   height: 30px;
@@ -126,22 +145,26 @@ body[data-isVisible="true"] .box-loader {
   float: left;
 }
 
+/* line 14, ../sass/_components/_user.scss */
 .user_inner {
   float: left;
   margin: 0 0 0 20px;
 }
 
+/* line 20, ../sass/_components/_user.scss */
 .user_name,
 .user_logOut {
   font-weight: normal;
   display: block;
 }
 
+/* line 25, ../sass/_components/_user.scss */
 .user_name {
   font-size: 12px;
   color: #fff;
 }
 
+/* line 30, ../sass/_components/_user.scss */
 .user_logOut {
   font-size: 10px;
 }
@@ -149,11 +172,13 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @MainNav
 ========================================================================== */
+/* line 1, ../sass/_components/_mainNav.scss */
 .mainNav {
   padding: 10px 15px;
   margin: 0 0 30px 0;
 }
 
+/* line 6, ../sass/_components/_mainNav.scss */
 .ui_title {
   text-transform: uppercase;
   font-size: 14px;
@@ -162,23 +187,28 @@ body[data-isVisible="true"] .box-loader {
   margin: 0 0 10px;
 }
 
+/* line 14, ../sass/_components/_mainNav.scss */
 .mainNav_item {
   margin: 0 0 10px 0;
 }
+/* line 17, ../sass/_components/_mainNav.scss */
 .mainNav_item:last-child {
   margin: 0;
 }
 
+/* line 22, ../sass/_components/_mainNav.scss */
 .mainNav_button {
   font-size: 14px;
   display: block;
 }
+/* line 26, ../sass/_components/_mainNav.scss */
 .mainNav_button .fa {
   color: #fff;
   display: inline-block;
   width: 25px;
 }
 
+/* line 33, ../sass/_components/_mainNav.scss */
 .mainNav_tit {
   display: inline-block;
 }
@@ -186,12 +216,14 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Search
 ========================================================================== */
+/* line 1, ../sass/_components/_search.scss */
 .search {
   width: 100%;
   text-align: center;
   margin: 20px 0;
 }
 
+/* line 7, ../sass/_components/_search.scss */
 .search_field {
   border: 1px solid #000;
   background: #121314;
@@ -205,6 +237,7 @@ body[data-isVisible="true"] .box-loader {
   transition: all 0.5s ease;
   border-radius: 5px;
 }
+/* line 20, ../sass/_components/_search.scss */
 .search_field:focus {
   box-shadow: 0 0 5px #ff5500;
 }
@@ -212,6 +245,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @NowPlaying
 ========================================================================== */
+/* line 3, ../sass/_components/_nowPlaying.scss */
 .nowPlaying_inner {
   position: fixed;
   bottom: 0;
@@ -220,6 +254,7 @@ body[data-isVisible="true"] .box-loader {
   border-right: 1px solid black;
 }
 
+/* line 11, ../sass/_components/_nowPlaying.scss */
 .nowPlaying_thumb {
   width: 100%;
   height: 200px;
@@ -227,6 +262,7 @@ body[data-isVisible="true"] .box-loader {
   display: block;
 }
 
+/* line 18, ../sass/_components/_nowPlaying.scss */
 .nowPlaying_title {
   padding: 0 15px 5px;
   font-size: 14px;
@@ -235,6 +271,7 @@ body[data-isVisible="true"] .box-loader {
   text-overflow: ellipsis;
 }
 
+/* line 26, ../sass/_components/_nowPlaying.scss */
 .nowPlaying_user {
   display: inline-block;
   color: #949599;
@@ -244,6 +281,7 @@ body[data-isVisible="true"] .box-loader {
   padding: 0 15px 5px;
 }
 
+/* line 35, ../sass/_components/_nowPlaying.scss */
 .nowPlaying_player {
   margin: 10px 0 0;
 }
@@ -251,15 +289,18 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @MainView - wrapper
 ========================================================================== */
+/* line 1, ../sass/_components/_view-container.scss */
 .mainView {
   padding: 10px 20px;
   margin-left: 200px;
 }
+/* line 6, ../sass/_components/_view-container.scss */
 .mainView > div {
   max-width: 930px;
   min-width: 930px;
   margin: 0 auto;
 }
+/* line 12, ../sass/_components/_view-container.scss */
 .mainView > div > h1 {
   margin: 10px 0 30px;
 }
@@ -267,6 +308,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @SongList
 ========================================================================== */
+/* line 3, ../sass/_components/_songlist.scss */
 .songList_item {
   display: inline-block;
   position: relative;
@@ -275,33 +317,40 @@ body[data-isVisible="true"] .box-loader {
   width: 300px;
   height: 450px;
 }
+/* line 12, ../sass/_components/_songlist.scss */
 .songList_item.active .songList_item_song_button {
   -webkit-transform: scale(1);
   opacity: 1;
 }
+/* line 18, ../sass/_components/_songlist.scss */
 .songList_item .songList_item_box:first-child {
   margin-bottom: 20px;
 }
+/* line 22, ../sass/_components/_songlist.scss */
 .songList_item .songList_item_box:last-child {
   margin: 10px 0 0 0;
 }
 
+/* line 27, ../sass/_components/_songlist.scss */
 .songList_item_box {
   width: 300px;
   height: 300px;
 }
 
+/* line 34, ../sass/_components/_songlist.scss */
 .songList_item_container_artwork {
   width: 100%;
   height: 300px;
 }
 
+/* line 39, ../sass/_components/_songlist.scss */
 .songList_item_artwork {
   display: block;
   width: 100%;
   margin: 0 0 10px 0;
 }
 
+/* line 45, ../sass/_components/_songlist.scss */
 .songList_item_song_button {
   display: block;
   font-size: 50px;
@@ -317,10 +366,12 @@ body[data-isVisible="true"] .box-loader {
   -webkit-transform: scale(0);
   opacity: 0;
 }
+/* line 60, ../sass/_components/_songlist.scss */
 .songList_item_song_button .hidden {
   display: none;
 }
 
+/* line 65, ../sass/_components/_songlist.scss */
 .songList_item_song_user {
   display: inline-block;
   color: #949599;
@@ -328,6 +379,7 @@ body[data-isVisible="true"] .box-loader {
   text-transform: uppercase;
 }
 
+/* line 72, ../sass/_components/_songlist.scss */
 .songList_item_song_tit {
   font-size: 20px;
   margin: 5px 0;
@@ -335,20 +387,25 @@ body[data-isVisible="true"] .box-loader {
   overflow: hidden;
 }
 
+/* line 79, ../sass/_components/_songlist.scss */
 .songList_item_song_details {
   margin-top: 15px;
   font-size: 12px;
 }
+/* line 83, ../sass/_components/_songlist.scss */
 .songList_item_song_details div {
   margin: 0 0 5px 0;
 }
+/* line 87, ../sass/_components/_songlist.scss */
 .songList_item_song_details span {
   display: inline-block;
   margin: 0 5px 0 0;
 }
+/* line 91, ../sass/_components/_songlist.scss */
 .songList_item_song_details span:last-child {
   margin-right: 0;
 }
+/* line 98, ../sass/_components/_songlist.scss */
 .songList_item_song_details a > .fa {
   color: #fff;
   display: inline-block;
@@ -358,29 +415,35 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Playlist songList
 ========================================================================== */
+/* line 1, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist {
   display: block;
   width: 100%;
   height: auto;
   margin: 0 0 80px 0;
 }
+/* line 7, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_user {
   display: block;
   margin: 0 0 10px 0;
 }
+/* line 12, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_songs_list_item {
   overflow: hidden;
   margin: 0 0 5px 0;
 }
+/* line 17, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_artwork {
   width: 47px;
   height: 47px;
   float: left;
 }
+/* line 23, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_info {
   float: left;
   margin: 0 0 0 10px;
 }
+/* line 28, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_tit {
   height: auto;
 }
@@ -388,6 +451,7 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @Loader
 ========================================================================== */
+/* line 1, ../sass/_components/_loader.scss */
 .box-loader {
   display: block;
   height: 35px;
@@ -398,11 +462,13 @@ body[data-isVisible="true"] .box-loader {
   margin-left: -125px;
   margin-top: -17px;
 }
+/* line 11, ../sass/_components/_loader.scss */
 .box-loader > h4 {
   font-size: 12px;
   font-weight: normal;
 }
 
+/* line 17, ../sass/_components/_loader.scss */
 .loader:before {
   content: "";
   position: absolute;
@@ -415,6 +481,7 @@ body[data-isVisible="true"] .box-loader {
   animation: loaderB 3s ease-in-out infinite;
 }
 
+/* line 29, ../sass/_components/_loader.scss */
 .loader {
   position: relative;
   width: 12px;
@@ -426,6 +493,7 @@ body[data-isVisible="true"] .box-loader {
   animation: loaderM 3s ease-in-out infinite;
 }
 
+/* line 41, ../sass/_components/_loader.scss */
 .loader:after {
   content: "";
   position: absolute;
@@ -439,132 +507,162 @@ body[data-isVisible="true"] .box-loader {
 }
 
 @-webkit-keyframes loaderB {
+  /* line 54, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 55, ../sass/_components/_loader.scss */
   25% {
     background-color: #ff5500;
   }
 
+  /* line 56, ../sass/_components/_loader.scss */
   50% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 57, ../sass/_components/_loader.scss */
   75% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 58, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 }
 
 @keyframes loaderB {
+  /* line 61, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 62, ../sass/_components/_loader.scss */
   25% {
     background-color: #ff5500;
   }
 
+  /* line 63, ../sass/_components/_loader.scss */
   50% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 64, ../sass/_components/_loader.scss */
   75% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 65, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 }
 
 @-webkit-keyframes loaderM {
+  /* line 69, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 70, ../sass/_components/_loader.scss */
   25% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 71, ../sass/_components/_loader.scss */
   50% {
     background-color: #ff5500;
   }
 
+  /* line 72, ../sass/_components/_loader.scss */
   75% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 73, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 }
 
 @keyframes loaderM {
+  /* line 76, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 77, ../sass/_components/_loader.scss */
   25% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 78, ../sass/_components/_loader.scss */
   50% {
     background-color: #ff5500;
   }
 
+  /* line 79, ../sass/_components/_loader.scss */
   75% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 80, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 }
 
 @-webkit-keyframes loaderA {
+  /* line 84, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 85, ../sass/_components/_loader.scss */
   25% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 86, ../sass/_components/_loader.scss */
   50% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 87, ../sass/_components/_loader.scss */
   75% {
     background-color: #ff5500;
   }
 
+  /* line 88, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 }
 
 @keyframes loaderA {
+  /* line 91, ../sass/_components/_loader.scss */
   0% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 92, ../sass/_components/_loader.scss */
   25% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 93, ../sass/_components/_loader.scss */
   50% {
     background-color: rgba(255, 85, 0, 0.2);
   }
 
+  /* line 94, ../sass/_components/_loader.scss */
   75% {
     background-color: #ff5500;
   }
 
+  /* line 95, ../sass/_components/_loader.scss */
   100% {
     background-color: rgba(255, 85, 0, 0.2);
   }
