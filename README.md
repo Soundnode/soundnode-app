@@ -12,12 +12,6 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 Since the core is done I figured release a beta version just for devs/community to receive feedback/contributions.
 
-## Development
-
-Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
-
-See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
-
 ### How to contribute
 
 First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report.
@@ -26,6 +20,16 @@ If you want to develop, you can look at the issues, specially the bugs and then 
 Here's a [list of feature](https://github.com/Soundnode/soundnode-app/issues?state=open).
 
 Please follow the [contributions guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
+
+## Development
+
+Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
+
+See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
+
+Node-Webkit don't support mp3 and h264 in video and audio tag by default because of patented media formats.
+<br>
+but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
 
 ## Supported Platforms
 
