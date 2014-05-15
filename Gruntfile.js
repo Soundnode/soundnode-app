@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                 './app/**/*',
                 '!./app/public/stylesheets/sass',
                 '!./app/public/stylesheets/config.rb',
-                '!./app/**/*.sass-cache',
+                '!./**/*.sass-cache',
                 '!./app/public/assets'
             ]
         },
@@ -22,14 +22,14 @@ module.exports = function (grunt) {
         compass: {
             dev: {
                 options: {
-                    sassDir: 'public/stylesheets/sass',
-                    cssDir: 'public/stylesheets/css'
+                    sassDir: 'app/public/stylesheets/sass',
+                    cssDir: 'app/public/stylesheets/css'
                 }
             },
             production: {
                 options: {
-                    sassDir: 'public/stylesheets/sass',
-                    cssDir: 'public/stylesheets/css',
+                    sassDir: 'app/public/stylesheets/sass',
+                    cssDir: 'app/public/stylesheets/css',
                     environment: 'production',
                     outputStyle: 'compressed',
                     force: true
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: [
-                    'public/stylesheets/sass/**/*.scss'
+                    'app/public/stylesheets/sass/**/*.scss'
                 ],
                 tasks: ['dev']
             }
@@ -54,8 +54,8 @@ module.exports = function (grunt) {
 
     // Build desktop
     grunt.registerTask('build', [
-        'nodewebkit'
-//        'compass'
+        'nodewebkit',
+        'compass:production'
     ]);
 
     // Dev
