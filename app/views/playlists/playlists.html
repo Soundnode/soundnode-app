@@ -7,17 +7,30 @@
     <div class="playlistsView_inner" ng-show="display">
         <ul class="songList">
             <li class="songList_item" ng-repeat="data in data"
-                ng-class="{ active: hover, playlist: data.kind  }"
-                ng-mouseover="hover = true"
-                ng-mouseleave="hover = false"
+                ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}">
 
                 <h4 class="songList_item_song_user">My <strong>{{ data.title }}</strong> playlist</h4>
 
                 <ul class="songList_item_songs_list">
-                    <li class="songList_item_songs_list_item" ng-repeat="tracks in data.tracks" play-song>
+                    <li class="songList_item_songs_list_item" 
+                        ng-repeat="tracks in data.tracks"
+                        ng-class="{ active: hover }"
+                        ng-mouseover="hover = true"
+                        ng-mouseleave="hover = false" >
 
                         <div class="songList_item_container_artwork">
+                            <span class="songList_item_song_button" 
+                            play-song
+                            data-playing-url="{{ tracks.stream_url }}"
+                            data-playing-thumbnail="{{ tracks.artwork_url }}"
+                            data-playing-title="{{ tracks.title }}"
+                            data-playing-user="{{ tracks.user.username }}"
+                            data-playList="true" >
+
+                            <i class="fa fa-play-circle-o"></i>
+                            <i class="fa fa-pause hidden"></i>
+                        </span>
                             <img src="{{ checkForPlaceholder(tracks.artwork_url) }}" alt="{{ tracks.title }}" class="songList_item_artwork">
                         </div>
 

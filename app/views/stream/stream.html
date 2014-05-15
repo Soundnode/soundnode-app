@@ -10,11 +10,6 @@
                     ng-mouseleave="hover = false" >
 
                 <div class="songList_item_container_artwork">
-                    <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
-                </div>
-
-                
-                <section class="songList_item_inner">
                     <span class="songList_item_song_button" 
                         play-song
                         data-playing-url="{{ data.origin.stream_url }}"
@@ -25,7 +20,11 @@
                         <i class="fa fa-play-circle-o"></i>
                         <i class="fa fa-pause hidden"></i>
                     </span>
+                    <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
+                </div>
 
+                
+                <section class="songList_item_inner">
                     <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
                     <h4 class="songList_item_song_user">by: {{ data.origin.user.username }}</h4>
 

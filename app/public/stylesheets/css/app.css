@@ -327,61 +327,67 @@ body[data-isVisible="true"] .box-loader {
   width: 300px;
   height: 450px;
 }
-/* line 12, ../sass/_components/_songlist.scss */
-.songList_item.active .songList_item_song_button {
-  -webkit-transform: scale(1);
-  opacity: 1;
-}
-/* line 18, ../sass/_components/_songlist.scss */
+/* line 11, ../sass/_components/_songlist.scss */
 .songList_item .songList_item_box:first-child {
   margin-bottom: 20px;
 }
-/* line 22, ../sass/_components/_songlist.scss */
+/* line 15, ../sass/_components/_songlist.scss */
 .songList_item .songList_item_box:last-child {
   margin: 10px 0 0 0;
 }
 
-/* line 27, ../sass/_components/_songlist.scss */
+/* line 20, ../sass/_components/_songlist.scss */
 .songList_item_box {
   width: 300px;
   height: 300px;
 }
 
-/* line 34, ../sass/_components/_songlist.scss */
+/* line 27, ../sass/_components/_songlist.scss */
 .songList_item_container_artwork {
+  position: relative;
   width: 100%;
   height: 300px;
 }
 
-/* line 39, ../sass/_components/_songlist.scss */
+/* line 33, ../sass/_components/_songlist.scss */
 .songList_item_artwork {
   display: block;
   width: 100%;
   margin: 0 0 10px 0;
 }
 
-/* line 45, ../sass/_components/_songlist.scss */
+/* line 39, ../sass/_components/_songlist.scss */
 .songList_item_song_button {
-  display: block;
+  display: table;
   font-size: 50px;
   width: 100%;
   cursor: pointer;
   position: absolute;
   top: 0;
-  height: 300px;
+  height: 100%;
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
-  padding-top: 135px;
   transition: all 200ms linear;
   -webkit-transform: scale(0);
   opacity: 0;
 }
-/* line 60, ../sass/_components/_songlist.scss */
+/* line 53, ../sass/_components/_songlist.scss */
+.songList_item_song_button .fa {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 58, ../sass/_components/_songlist.scss */
 .songList_item_song_button .hidden {
   display: none;
 }
 
-/* line 65, ../sass/_components/_songlist.scss */
+/* line 64, ../sass/_components/_songlist.scss */
+li.active .songList_item_song_button {
+  -webkit-transform: scale(1);
+  opacity: 1;
+}
+
+/* line 70, ../sass/_components/_songlist.scss */
 .songList_item_song_user {
   display: inline-block;
   color: #949599;
@@ -389,7 +395,7 @@ body[data-isVisible="true"] .box-loader {
   text-transform: uppercase;
 }
 
-/* line 72, ../sass/_components/_songlist.scss */
+/* line 77, ../sass/_components/_songlist.scss */
 .songList_item_song_tit {
   font-size: 20px;
   margin: 5px 0;
@@ -397,25 +403,25 @@ body[data-isVisible="true"] .box-loader {
   overflow: hidden;
 }
 
-/* line 79, ../sass/_components/_songlist.scss */
+/* line 84, ../sass/_components/_songlist.scss */
 .songList_item_song_details {
   margin-top: 15px;
   font-size: 12px;
 }
-/* line 83, ../sass/_components/_songlist.scss */
+/* line 88, ../sass/_components/_songlist.scss */
 .songList_item_song_details div {
   margin: 0 0 5px 0;
 }
-/* line 87, ../sass/_components/_songlist.scss */
+/* line 92, ../sass/_components/_songlist.scss */
 .songList_item_song_details span {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 91, ../sass/_components/_songlist.scss */
+/* line 96, ../sass/_components/_songlist.scss */
 .songList_item_song_details span:last-child {
   margin-right: 0;
 }
-/* line 98, ../sass/_components/_songlist.scss */
+/* line 103, ../sass/_components/_songlist.scss */
 .songList_item_song_details a > .fa {
   color: #fff;
   display: inline-block;
@@ -433,28 +439,35 @@ body[data-isVisible="true"] .box-loader {
   margin: 0 0 80px 0;
 }
 /* line 7, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_button {
+  height: 100%;
+  padding-top: 0;
+  font-size: 32px;
+}
+/* line 13, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_user {
   display: block;
   margin: 0 0 10px 0;
 }
-/* line 12, ../sass/_components/_playlist-songs.scss */
+/* line 18, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_songs_list_item {
   cursor: pointer;
   overflow: hidden;
   margin: 0 0 5px 0;
 }
-/* line 18, ../sass/_components/_playlist-songs.scss */
+/* line 24, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_artwork {
   width: 47px;
   height: 47px;
   float: left;
+  position: relative;
 }
-/* line 24, ../sass/_components/_playlist-songs.scss */
+/* line 31, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_info {
   float: left;
   margin: 0 0 0 10px;
 }
-/* line 29, ../sass/_components/_playlist-songs.scss */
+/* line 36, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_tit {
   height: auto;
 }
