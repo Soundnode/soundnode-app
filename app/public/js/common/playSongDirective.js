@@ -29,12 +29,11 @@ app.directive('playSong', function () {
             };
 
             $scope.goToNextSong = function () {
-                var elParent;
+                var $elParent = $(elem).closest('.songList_item')
+                    , $nextSong = $elParent.next('.songList_item').find('*[play-song]');
 
-                elParent = elem.parent().parent().next().children()[1];
-
-                if ( elParent !== undefined ) {
-                    elParent.children[0].click();
+                if ( $nextSong !== undefined ) {
+                    $nextSong.click();
                 }
             }
         }

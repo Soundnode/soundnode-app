@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -16,26 +17,25 @@ html {
 
 /* line 9, ../sass/_components/_default.scss */
 body {
-  border-top: 2px solid #ff5500;
   background: #121314;
   font: 62.5% helvetica, sans-serif, arial !important;
   color: #949599;
   height: 100%;
 }
 
-/* line 17, ../sass/_components/_default.scss */
+/* line 16, ../sass/_components/_default.scss */
 a {
   color: #949599;
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
-/* line 22, ../sass/_components/_default.scss */
+/* line 21, ../sass/_components/_default.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 28, ../sass/_components/_default.scss */
+/* line 27, ../sass/_components/_default.scss */
 ul,
 ol,
 li {
@@ -44,7 +44,7 @@ li {
   padding: 0;
 }
 
-/* line 39, ../sass/_components/_default.scss */
+/* line 38, ../sass/_components/_default.scss */
 h1,
 h2,
 h3,
@@ -55,19 +55,29 @@ h6 {
   color: #fff;
 }
 
-/* line 44, ../sass/_components/_default.scss */
+/* line 43, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 0 !important;
 }
 
-/* line 46, ../sass/_components/_default.scss */
+/* line 45, ../sass/_components/_default.scss */
 .fa {
   color: #fff;
 }
 
-/* line 50, ../sass/_components/_default.scss */
+/* line 49, ../sass/_components/_default.scss */
 .searchButton {
   display: none;
+}
+
+/* line 53, ../sass/_components/_default.scss */
+.topBorder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid #ff5500;
+  z-index: 100;
 }
 
 /* ==========================================================================
@@ -429,21 +439,22 @@ body[data-isVisible="true"] .box-loader {
 }
 /* line 12, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_songs_list_item {
+  cursor: pointer;
   overflow: hidden;
   margin: 0 0 5px 0;
 }
-/* line 17, ../sass/_components/_playlist-songs.scss */
+/* line 18, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_artwork {
   width: 47px;
   height: 47px;
   float: left;
 }
-/* line 23, ../sass/_components/_playlist-songs.scss */
+/* line 24, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_container_info {
   float: left;
   margin: 0 0 0 10px;
 }
-/* line 28, ../sass/_components/_playlist-songs.scss */
+/* line 29, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_tit {
   height: auto;
 }

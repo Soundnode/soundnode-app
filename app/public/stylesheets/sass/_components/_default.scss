@@ -7,7 +7,6 @@ html {
 }
 
 body {
-  border-top: 2px solid $scColor;
   background: $bodyBackground;
   font: 62.5% helvetica, sans-serif, arial !important;
   color: $defaultColor;
@@ -49,4 +48,13 @@ h6 {
 
 .searchButton {
   display: none;
+}
+
+.topBorder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid $scColor;
+  z-index: 100;
 }
