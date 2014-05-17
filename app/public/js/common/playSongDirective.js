@@ -3,38 +3,81 @@ app.directive('playSong', function () {
         restrict: 'A',
         link: function ($scope, elem, attrs ) {
             var url, thumbnail, title, user
-                , player = document.getElementById('player');
+                , currentEl
+                , player = document.getElementById('player')
+                , playerThumb = document.getElementById('playerThumb')
+                , playerTitle = document.getElementById('playerTitle')
+                , playerUser = document.getElementById('playerUser');
 
             elem.bind('click', function () {
+                currentEl = this;
                 url = attrs.playingUrl + '?client_id=' + window.scClientId;
                 thumbnail = attrs.playingThumbnail.replace('large',  'crop');
                 title = attrs.playingTitle;
-                user = attrs.playingUser;
+                user = attrs.playingUser;;
+
+                $(this).addClass('currentSong');
 
                 $scope.playSong(url, thumbnail, title, user);
-                player.addEventListener('ended', function() {
-                    console.log('song ended');
-                    $scope.goToNextSong();
-                });
+            });
+
+//            player.addEventListener('ended', function() {
+//                console.log('song ended');
+//                $scope.goToNextSong(currentEl);
+//            });
+
+            $(player).off().on('ended', function() {
+                console.log('song ended');
+                $scope.goToNextSong();
             });
 
             $scope.playSong = function (url, thumbnail, title, user) {
                 player.setAttribute('src', url);
-                document.getElementById('playerThumb').setAttribute('src', thumbnail);
-                document.getElementById('playerThumb').setAttribute('alt', title);
-                document.getElementById('playerTitle').innerHTML = title;
-                document.getElementById('playerTitle').setAttribute('title', title);
-                document.getElementById('playerUser').innerHTML = user;
+                playerThumb.setAttribute('src', thumbnail);
+                playerThumb.setAttribute('alt', title);
+                playerTitle.innerHTML = title;
+                playerTitle.setAttribute('title', title);
+                playerUser.innerHTML = user;
                 player.play();
             };
 
-            $scope.goToNextSong = function () {
-                var $elParent = $(elem).closest('.songList_item')
-                    , $nextSong = $elParent.next('.songList_item').find('*[play-song]');
+            $scope.removeCurrentSong = function() {
+                $('.currentSong').removeClass('currentSong');
+            };
 
-                if ( $nextSong !== undefined ) {
-                    $nextSong.click();
+            $scope.goToNextSong = function () {
+                var $elParent
+                    , $nextSong
+                    , $nextListSong
+                    , $currentSong = $('.currentSong')
+                    , $isLastChild = $currentSong.closest('li').is(':last-child');
+
+                if ( $currentSong.attr('data-play-list') === 'true' ) {
+
+                    $elParent = $currentSong.closest('.songList_item_songs_list_item');
+                    $nextSong = $currentSong.closest('.songList_item_songs_list_item').next().find('*[play-song]');
+
+                    if ( ! $isLastChild ) {
+                        $scope.removeCurrentSong();
+                        $nextSong.click();
+                    } else {
+                        $nextListSong = $currentSong.closest('.songList_item_songs_list').next().find('li:first-child').find('*[play-song]');
+
+                        if ( ! $isLastChild ) {
+                            $scope.removeCurrentSong();
+                            $nextListSong.click();
+                        }
+                    }
+                } else {
+                    $elParent = $('.currentSong').closest('.songList_item')
+                    $nextSong = $elParent.next().find('*[play-song]');
+
+                    if ( ! $isLastChild ) {
+                        $scope.removeCurrentSong();
+                        $nextSong.click();
+                    }
                 }
+
             }
         }
     }
