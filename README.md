@@ -27,11 +27,11 @@ Please follow the [contributions guidelines](https://github.com/Soundnode/soundn
 
 Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
 
+but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
+<br>
 See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
 
 Node-Webkit don't support mp3 and h264 in video and audio tag by default because of patented media formats.
-<br>
-but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
 
 ## Supported Platforms
 
