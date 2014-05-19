@@ -21,11 +21,6 @@ app.directive('playSong', function () {
                 $scope.playSong(url, thumbnail, title, user);
             });
 
-//            player.addEventListener('ended', function() {
-//                console.log('song ended');
-//                $scope.goToNextSong(currentEl);
-//            });
-
             $(player).off().on('ended', function() {
                 console.log('song ended');
                 $scope.goToNextSong();
