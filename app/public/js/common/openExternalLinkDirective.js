@@ -5,7 +5,7 @@ app.directive('openExternal', function () {
             var el;
 
             elem.bind('click', function (e) {
-                event.preventDefault();
+                e.preventDefault();
 
                 el = attrs.href + '?client_id=' + window.scClientId;
                 gui.Shell.openExternal( el );
