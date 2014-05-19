@@ -1,4 +1,3 @@
-@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -255,8 +254,8 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @NowPlaying
 ========================================================================== */
-/* line 3, ../sass/_components/_nowPlaying.scss */
-.nowPlaying_inner {
+/* line 1, ../sass/_components/_player.scss */
+.player_inner {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -264,16 +263,16 @@ body[data-isVisible="true"] .box-loader {
   border-right: 1px solid black;
 }
 
-/* line 11, ../sass/_components/_nowPlaying.scss */
-.nowPlaying_thumb {
+/* line 9, ../sass/_components/_player.scss */
+.player_thumb {
   width: 100%;
   height: 200px;
   margin: 0 0 10px 0;
   display: block;
 }
 
-/* line 18, ../sass/_components/_nowPlaying.scss */
-.nowPlaying_title {
+/* line 16, ../sass/_components/_player.scss */
+.player_title {
   padding: 0 15px 5px;
   font-size: 14px;
   white-space: nowrap;
@@ -281,19 +280,75 @@ body[data-isVisible="true"] .box-loader {
   text-overflow: ellipsis;
 }
 
-/* line 26, ../sass/_components/_nowPlaying.scss */
-.nowPlaying_user {
+/* line 24, ../sass/_components/_player.scss */
+.player_user {
   display: inline-block;
   color: #949599;
   font-size: 11px;
-  white-space: nowrap;
-  text-transform: uppercase;
   padding: 0 15px 5px;
 }
 
-/* line 35, ../sass/_components/_nowPlaying.scss */
-.nowPlaying_player {
+/* line 31, ../sass/_components/_player.scss */
+.player_currentSong {
   margin: 10px 0 0;
+}
+
+/* line 35, ../sass/_components/_player.scss */
+.player_controls {
+  padding: 0 10px;
+}
+/* line 38, ../sass/_components/_player.scss */
+.player_controls .fa {
+  font-size: 46px;
+  color: #121314;
+  text-shadow: 0 0 3px #888;
+}
+
+/* line 45, ../sass/_components/_player.scss */
+.player_progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  background: #121314;
+  border-radius: 5px;
+  overflow: hidden;
+  border-top: 1px solid #121314;
+  border-bottom: 1px solid #121314;
+  cursor: pointer;
+  margin: 0 0 15px 0;
+}
+/* line 57, ../sass/_components/_player.scss */
+.player_progress .player_progress_bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #ff5500;
+}
+
+/* line 67, ../sass/_components/_player.scss */
+.player_play-pause .fa-pause {
+  display: none;
+}
+/* line 72, ../sass/_components/_player.scss */
+.player_play-pause.playing .fa-play {
+  display: none;
+}
+/* line 75, ../sass/_components/_player.scss */
+.player_play-pause.playing .fa-pause {
+  display: block;
+}
+
+/* line 83, ../sass/_components/_player.scss */
+.player_prevSong,
+.player_play-pause,
+.player_nextSong {
+  display: block;
+  float: left;
+  width: 49px;
+  overflow: hidden;
+  margin: 0 5px;
+  text-align: center;
+  cursor: pointer;
 }
 
 /* ==========================================================================
