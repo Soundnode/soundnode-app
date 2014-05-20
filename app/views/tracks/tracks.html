@@ -12,10 +12,6 @@
                 ng-mouseleave="hover = false" >
 
                 <div class="songList_item_container_artwork">
-                    <img src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
-                </div>
-
-                <section class="songList_item_inner">
                     <span class="songList_item_song_button" play-song
                           data-playing-url="{{ data.stream_url }}"
                           data-playing-thumbnail="{{ data.artwork_url }}"
@@ -25,7 +21,10 @@
                         <i class="fa fa-play-circle-o"></i>
                         <i class="fa fa-pause hidden"></i>
                     </span>
+                    <img src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
+                </div>
 
+                <section class="songList_item_inner">
                     <h2 class="songList_item_song_tit">{{ data.title }}</h2>
                     <h4 class="songList_item_song_user">by: {{ data.user.username }}</h4>
 
@@ -33,10 +32,10 @@
                     <div class="songList_item_song_details">
                         <div>
                             <span>
-                                <a href="{{ data.download_url }}" download-song> <i class="fa fa-cloud-download"></i> download song</a>
+                                <a href="{{ data.download_url }}" open-external target="_blank"> <i class="fa fa-cloud-download"></i> download song</a>
                             </span>
                             <span>
-                                <a href="{{ data.permalink_url }}"> <i class="fa fa-external-link-square"></i> permalink</a>
+                                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
                             </span>
                         </div>
                         <div>

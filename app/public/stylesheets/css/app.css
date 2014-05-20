@@ -1,1 +1,749 @@
-@charset "utf-8";*{box-sizing:border-box}html{height:100%}body{background:#121314;font:62.5% helvetica, sans-serif, arial !important;color:#949599;height:100%}a{color:#949599;text-decoration:none;transition:all 0.5s ease}a:hover{color:#fff}ul,ol,li{list-style:none;margin:0;padding:0}h1,h2,h3,h4,h5,h6{margin:0;color:#fff}::-webkit-scrollbar{width:0 !important}.fa{color:#fff}.searchButton{display:none}.topBorder{position:fixed;top:0;left:0;right:0;border-top:2px solid #f50;z-index:100}body[data-isVisible="false"] .ui_app{display:none}body[data-isVisible="false"] .box-loader{display:block}body[data-isVisible="true"] .ui_app{display:block}body[data-isVisible="true"] .box-loader{display:none}#elIframe{position:absolute;left:-9999px;border:none;background:transparent}.aside{background:#222326;border-right:1px solid #000;width:200px;position:fixed;top:2px;bottom:0;left:0}.header{padding:15px 10px 10px}.user{padding:10px 0 0;overflow:hidden}.user_thumb{width:30px;height:30px;display:block;border-radius:50px;float:left}.user_inner{float:left;margin:0 0 0 20px}.user_name,.user_logOut{font-weight:normal;display:block}.user_name{font-size:12px;color:#fff}.user_logOut{font-size:10px}.mainNav{padding:10px 15px;margin:0 0 30px 0}.ui_title{text-transform:uppercase;font-size:14px;font-weight:normal;color:#949599;margin:0 0 10px}.mainNav_item{margin:0 0 10px 0}.mainNav_item:last-child{margin:0}.mainNav_button{font-size:14px;display:block}.mainNav_button .fa{color:#fff;display:inline-block;width:25px}.mainNav_tit{display:inline-block}.search{width:100%;text-align:center;margin:20px 0}.search_field{border:1px solid #000;background:#121314;width:80%;display:inline-block;height:25px;padding:0 0 0 5px;outline:none;color:#fff;font-size:12px;transition:all 0.5s ease;border-radius:5px}.search_field:focus{box-shadow:0 0 5px #f50}.nowPlaying_inner{position:fixed;bottom:0;left:0;width:200px;border-right:1px solid #000}.nowPlaying_thumb{width:100%;height:200px;margin:0 0 10px 0;display:block}.nowPlaying_title{padding:0 15px 5px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nowPlaying_user{display:inline-block;color:#949599;font-size:11px;white-space:nowrap;text-transform:uppercase;padding:0 15px 5px}.nowPlaying_player{margin:10px 0 0}.mainView{padding:10px 20px;margin-left:200px}.mainView>div{max-width:930px;min-width:930px;margin:0 auto}.mainView>div>h1{margin:10px 0 30px}.songList_item{display:inline-block;position:relative;overflow:hidden;margin:0 5px 80px 5px;width:300px;height:450px}.songList_item .songList_item_box:first-child{margin-bottom:20px}.songList_item .songList_item_box:last-child{margin:10px 0 0 0}.songList_item_box{width:300px;height:300px}.songList_item_container_artwork{position:relative;width:100%;height:300px}.songList_item_artwork{display:block;width:100%;margin:0 0 10px 0}.songList_item_song_button{display:table;font-size:50px;width:100%;cursor:pointer;position:absolute;top:0;height:100%;background:rgba(0,0,0,0.8);text-align:center;transition:all 200ms linear;-webkit-transform:scale(0);opacity:0}.songList_item_song_button .fa{display:table-cell;vertical-align:middle}.songList_item_song_button .hidden{display:none}li.active .songList_item_song_button{-webkit-transform:scale(1);opacity:1}.songList_item_song_user{display:inline-block;color:#949599;font-size:11px;text-transform:uppercase}.songList_item_song_tit{font-size:20px;margin:5px 0;height:50px;overflow:hidden}.songList_item_song_details{margin-top:15px;font-size:12px}.songList_item_song_details div{margin:0 0 5px 0}.songList_item_song_details span{display:inline-block;margin:0 5px 0 0}.songList_item_song_details span:last-child{margin-right:0}.songList_item_song_details a>.fa{color:#fff;display:inline-block;margin:0 5px 0 0}.songList_item.playlist{display:block;width:100%;height:auto;margin:0 0 80px 0}.songList_item.playlist .songList_item_song_button{height:100%;padding-top:0;font-size:32px}.songList_item.playlist .songList_item_song_user{display:block;margin:0 0 10px 0}.songList_item.playlist .songList_item_songs_list_item{cursor:pointer;overflow:hidden;margin:0 0 5px 0}.songList_item.playlist .songList_item_container_artwork{width:47px;height:47px;float:left;position:relative}.songList_item.playlist .songList_item_container_info{float:left;margin:0 0 0 10px}.songList_item.playlist .songList_item_song_tit{height:auto}.box-loader{display:block;height:35px;width:250px;position:absolute;top:50%;left:50%;margin-left:-125px;margin-top:-17px}.box-loader>h4{font-size:12px;font-weight:normal}.loader:before{content:"";position:absolute;top:0px;left:-25px;height:12px;width:12px;border-radius:12px;-webkit-animation:loaderB 3s ease-in-out infinite;animation:loaderB 3s ease-in-out infinite}.loader{position:relative;width:12px;height:12px;top:46%;left:46%;border-radius:12px;-webkit-animation:loaderM 3s ease-in-out infinite;animation:loaderM 3s ease-in-out infinite}.loader:after{content:"";position:absolute;top:0px;left:25px;height:12px;width:12px;border-radius:10px;-webkit-animation:loaderA 3s ease-in-out infinite;animation:loaderA 3s ease-in-out infinite}@-webkit-keyframes loaderB{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:#f50}50%{background-color:rgba(255,85,0,0.2)}75%{background-color:rgba(255,85,0,0.2)}100%{background-color:rgba(255,85,0,0.2)}}@keyframes loaderB{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:#f50}50%{background-color:rgba(255,85,0,0.2)}75%{background-color:rgba(255,85,0,0.2)}100%{background-color:rgba(255,85,0,0.2)}}@-webkit-keyframes loaderM{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:rgba(255,85,0,0.2)}50%{background-color:#f50}75%{background-color:rgba(255,85,0,0.2)}100%{background-color:rgba(255,85,0,0.2)}}@keyframes loaderM{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:rgba(255,85,0,0.2)}50%{background-color:#f50}75%{background-color:rgba(255,85,0,0.2)}100%{background-color:rgba(255,85,0,0.2)}}@-webkit-keyframes loaderA{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:rgba(255,85,0,0.2)}50%{background-color:rgba(255,85,0,0.2)}75%{background-color:#f50}100%{background-color:rgba(255,85,0,0.2)}}@keyframes loaderA{0%{background-color:rgba(255,85,0,0.2)}25%{background-color:rgba(255,85,0,0.2)}50%{background-color:rgba(255,85,0,0.2)}75%{background-color:#f50}100%{background-color:rgba(255,85,0,0.2)}}
+@charset "utf-8";
+/* ==========================================================================
+@Config
+========================================================================== */
+/* ==========================================================================
+@Default
+========================================================================== */
+/* line 1, ../sass/_components/_default.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 5, ../sass/_components/_default.scss */
+html {
+  height: 100%;
+}
+
+/* line 9, ../sass/_components/_default.scss */
+body {
+  background: #121314;
+  font: 62.5% helvetica, sans-serif, arial !important;
+  color: #949599;
+  height: 100%;
+}
+
+/* line 16, ../sass/_components/_default.scss */
+a {
+  color: #949599;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+/* line 21, ../sass/_components/_default.scss */
+a:hover {
+  color: #fff;
+}
+
+/* line 27, ../sass/_components/_default.scss */
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 38, ../sass/_components/_default.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: #fff;
+}
+
+/* line 43, ../sass/_components/_default.scss */
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+/* line 45, ../sass/_components/_default.scss */
+.fa {
+  color: #fff;
+}
+
+/* line 49, ../sass/_components/_default.scss */
+.searchButton {
+  display: none;
+}
+
+/* line 53, ../sass/_components/_default.scss */
+.topBorder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid #ff5500;
+  z-index: 100;
+}
+
+/* ==========================================================================
+@App state
+========================================================================== */
+/* line 2, ../sass/_components/_appState.scss */
+body[data-isVisible="false"] .ui_app {
+  display: none;
+}
+/* line 5, ../sass/_components/_appState.scss */
+body[data-isVisible="false"] .box-loader {
+  display: block;
+}
+
+/* line 11, ../sass/_components/_appState.scss */
+body[data-isVisible="true"] .ui_app {
+  display: block;
+}
+/* line 14, ../sass/_components/_appState.scss */
+body[data-isVisible="true"] .box-loader {
+  display: none;
+}
+
+/* ==========================================================================
+@Iframe
+========================================================================== */
+/* line 1, ../sass/_components/_elIframe.scss */
+#elIframe {
+  position: absolute;
+  left: -9999px;
+  border: none;
+  background: transparent;
+}
+
+/* ==========================================================================
+@App container
+========================================================================== */
+/* ==========================================================================
+@Aside
+========================================================================== */
+/* line 1, ../sass/_components/_aside.scss */
+.aside {
+  background: #222326;
+  border-right: 1px solid black;
+  width: 200px;
+  position: fixed;
+  top: 2px;
+  bottom: 0;
+  left: 0;
+}
+
+/* ==========================================================================
+@Header
+========================================================================== */
+/* line 1, ../sass/_components/_header.scss */
+.header {
+  padding: 15px 10px 10px;
+}
+
+/* ==========================================================================
+@User
+========================================================================== */
+/* line 1, ../sass/_components/_user.scss */
+.user {
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+
+/* line 6, ../sass/_components/_user.scss */
+.user_thumb {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50px;
+  float: left;
+}
+
+/* line 14, ../sass/_components/_user.scss */
+.user_inner {
+  float: left;
+  margin: 0 0 0 20px;
+}
+
+/* line 20, ../sass/_components/_user.scss */
+.user_name,
+.user_logOut {
+  font-weight: normal;
+  display: block;
+}
+
+/* line 25, ../sass/_components/_user.scss */
+.user_name {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* line 30, ../sass/_components/_user.scss */
+.user_logOut {
+  font-size: 10px;
+}
+
+/* ==========================================================================
+@MainNav
+========================================================================== */
+/* line 1, ../sass/_components/_mainNav.scss */
+.mainNav {
+  padding: 10px 15px;
+  margin: 0 0 30px 0;
+}
+
+/* line 6, ../sass/_components/_mainNav.scss */
+.ui_title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: normal;
+  color: #949599;
+  margin: 0 0 10px;
+}
+
+/* line 14, ../sass/_components/_mainNav.scss */
+.mainNav_item {
+  margin: 0 0 10px 0;
+}
+/* line 17, ../sass/_components/_mainNav.scss */
+.mainNav_item:last-child {
+  margin: 0;
+}
+
+/* line 22, ../sass/_components/_mainNav.scss */
+.mainNav_button {
+  font-size: 14px;
+  display: block;
+}
+/* line 26, ../sass/_components/_mainNav.scss */
+.mainNav_button .fa {
+  color: #fff;
+  display: inline-block;
+  width: 25px;
+}
+
+/* line 33, ../sass/_components/_mainNav.scss */
+.mainNav_tit {
+  display: inline-block;
+}
+
+/* ==========================================================================
+@Search
+========================================================================== */
+/* line 1, ../sass/_components/_search.scss */
+.search {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* line 7, ../sass/_components/_search.scss */
+.search_field {
+  border: 1px solid #000;
+  background: #121314;
+  width: 80%;
+  display: inline-block;
+  height: 25px;
+  padding: 0 0 0 5px;
+  outline: none;
+  color: #fff;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+/* line 20, ../sass/_components/_search.scss */
+.search_field:focus {
+  box-shadow: 0 0 5px #ff5500;
+}
+
+/* ==========================================================================
+@NowPlaying
+========================================================================== */
+/* line 1, ../sass/_components/_player.scss */
+.player_inner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+/* line 9, ../sass/_components/_player.scss */
+.player_thumb {
+  width: 100%;
+  height: 200px;
+  margin: 0 0 10px 0;
+  display: block;
+}
+
+/* line 16, ../sass/_components/_player.scss */
+.player_title {
+  padding: 0 15px 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 24, ../sass/_components/_player.scss */
+.player_user {
+  display: inline-block;
+  color: #949599;
+  font-size: 11px;
+  padding: 0 15px 5px;
+}
+
+/* line 31, ../sass/_components/_player.scss */
+.player_currentSong {
+  margin: 10px 0 0;
+}
+
+/* line 35, ../sass/_components/_player.scss */
+.player_controls {
+  padding: 0 10px;
+}
+/* line 38, ../sass/_components/_player.scss */
+.player_controls .fa {
+  font-size: 46px;
+  color: #121314;
+  text-shadow: 0 0 3px #888;
+}
+
+/* line 45, ../sass/_components/_player.scss */
+.player_progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  background: #121314;
+  border-radius: 5px;
+  overflow: hidden;
+  border-top: 1px solid #121314;
+  border-bottom: 1px solid #121314;
+  cursor: pointer;
+  margin: 0 0 15px 0;
+}
+/* line 57, ../sass/_components/_player.scss */
+.player_progress .player_progress_bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #ff5500;
+}
+
+/* line 67, ../sass/_components/_player.scss */
+.player_play-pause .fa-pause {
+  display: none;
+}
+/* line 72, ../sass/_components/_player.scss */
+.player_play-pause.playing .fa-play {
+  display: none;
+}
+/* line 75, ../sass/_components/_player.scss */
+.player_play-pause.playing .fa-pause {
+  display: block;
+}
+
+/* line 83, ../sass/_components/_player.scss */
+.player_prevSong,
+.player_play-pause,
+.player_nextSong {
+  display: block;
+  float: left;
+  width: 49px;
+  overflow: hidden;
+  margin: 0 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+@MainView - wrapper
+========================================================================== */
+/* line 1, ../sass/_components/_view-container.scss */
+.mainView {
+  padding: 10px 20px;
+  margin-left: 200px;
+}
+/* line 6, ../sass/_components/_view-container.scss */
+.mainView > div {
+  max-width: 930px;
+  min-width: 930px;
+  margin: 0 auto;
+}
+/* line 12, ../sass/_components/_view-container.scss */
+.mainView > div > h1 {
+  margin: 10px 0 30px;
+}
+
+/* ==========================================================================
+@SongList
+========================================================================== */
+/* line 3, ../sass/_components/_songlist.scss */
+.songList_item {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin: 0 5px 80px 5px;
+  width: 300px;
+  height: 450px;
+}
+/* line 11, ../sass/_components/_songlist.scss */
+.songList_item .songList_item_box:first-child {
+  margin-bottom: 20px;
+}
+/* line 15, ../sass/_components/_songlist.scss */
+.songList_item .songList_item_box:last-child {
+  margin: 10px 0 0 0;
+}
+
+/* line 20, ../sass/_components/_songlist.scss */
+.songList_item_box {
+  width: 300px;
+  height: 300px;
+}
+
+/* line 27, ../sass/_components/_songlist.scss */
+.songList_item_container_artwork {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+/* line 33, ../sass/_components/_songlist.scss */
+.songList_item_artwork {
+  display: block;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+/* line 39, ../sass/_components/_songlist.scss */
+.songList_item_song_button {
+  display: table;
+  font-size: 50px;
+  width: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  transition: all 200ms linear;
+  -webkit-transform: scale(0);
+  opacity: 0;
+}
+/* line 53, ../sass/_components/_songlist.scss */
+.songList_item_song_button .fa {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 58, ../sass/_components/_songlist.scss */
+.songList_item_song_button .hidden {
+  display: none;
+}
+
+/* line 64, ../sass/_components/_songlist.scss */
+li.active .songList_item_song_button {
+  -webkit-transform: scale(1);
+  opacity: 1;
+}
+
+/* line 70, ../sass/_components/_songlist.scss */
+.songList_item_song_user {
+  display: inline-block;
+  color: #949599;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* line 77, ../sass/_components/_songlist.scss */
+.songList_item_song_tit {
+  font-size: 20px;
+  margin: 5px 0;
+  height: 50px;
+  overflow: hidden;
+}
+
+/* line 84, ../sass/_components/_songlist.scss */
+.songList_item_song_details {
+  margin-top: 15px;
+  font-size: 12px;
+}
+/* line 88, ../sass/_components/_songlist.scss */
+.songList_item_song_details div {
+  margin: 0 0 5px 0;
+}
+/* line 92, ../sass/_components/_songlist.scss */
+.songList_item_song_details span {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+/* line 96, ../sass/_components/_songlist.scss */
+.songList_item_song_details span:last-child {
+  margin-right: 0;
+}
+/* line 103, ../sass/_components/_songlist.scss */
+.songList_item_song_details a > .fa {
+  color: #fff;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+/* ==========================================================================
+@Playlist songList
+========================================================================== */
+/* line 1, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 80px 0;
+}
+/* line 7, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_button {
+  height: 100%;
+  padding-top: 0;
+  font-size: 32px;
+}
+/* line 13, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_user {
+  display: block;
+  margin: 0 0 10px 0;
+}
+/* line 18, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_songs_list_item {
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 0 5px 0;
+}
+/* line 24, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_container_artwork {
+  width: 47px;
+  height: 47px;
+  float: left;
+  position: relative;
+}
+/* line 31, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_container_info {
+  float: left;
+  margin: 0 0 0 10px;
+}
+/* line 36, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_tit {
+  height: auto;
+}
+
+/* ==========================================================================
+@Loader
+========================================================================== */
+/* line 1, ../sass/_components/_loader.scss */
+.box-loader {
+  display: block;
+  height: 35px;
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: -17px;
+}
+/* line 11, ../sass/_components/_loader.scss */
+.box-loader > h4 {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/* line 17, ../sass/_components/_loader.scss */
+.loader:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -25px;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  -webkit-animation: loaderB 3s ease-in-out infinite;
+  animation: loaderB 3s ease-in-out infinite;
+}
+
+/* line 29, ../sass/_components/_loader.scss */
+.loader {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 46%;
+  left: 46%;
+  border-radius: 12px;
+  -webkit-animation: loaderM 3s ease-in-out infinite;
+  animation: loaderM 3s ease-in-out infinite;
+}
+
+/* line 41, ../sass/_components/_loader.scss */
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+  -webkit-animation: loaderA 3s ease-in-out infinite;
+  animation: loaderA 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes loaderB {
+  /* line 54, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 55, ../sass/_components/_loader.scss */
+  25% {
+    background-color: #ff5500;
+  }
+
+  /* line 56, ../sass/_components/_loader.scss */
+  50% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 57, ../sass/_components/_loader.scss */
+  75% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 58, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
+
+@keyframes loaderB {
+  /* line 61, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 62, ../sass/_components/_loader.scss */
+  25% {
+    background-color: #ff5500;
+  }
+
+  /* line 63, ../sass/_components/_loader.scss */
+  50% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 64, ../sass/_components/_loader.scss */
+  75% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 65, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
+
+@-webkit-keyframes loaderM {
+  /* line 69, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 70, ../sass/_components/_loader.scss */
+  25% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 71, ../sass/_components/_loader.scss */
+  50% {
+    background-color: #ff5500;
+  }
+
+  /* line 72, ../sass/_components/_loader.scss */
+  75% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 73, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
+
+@keyframes loaderM {
+  /* line 76, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 77, ../sass/_components/_loader.scss */
+  25% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 78, ../sass/_components/_loader.scss */
+  50% {
+    background-color: #ff5500;
+  }
+
+  /* line 79, ../sass/_components/_loader.scss */
+  75% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 80, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
+
+@-webkit-keyframes loaderA {
+  /* line 84, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 85, ../sass/_components/_loader.scss */
+  25% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 86, ../sass/_components/_loader.scss */
+  50% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 87, ../sass/_components/_loader.scss */
+  75% {
+    background-color: #ff5500;
+  }
+
+  /* line 88, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
+
+@keyframes loaderA {
+  /* line 91, ../sass/_components/_loader.scss */
+  0% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 92, ../sass/_components/_loader.scss */
+  25% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 93, ../sass/_components/_loader.scss */
+  50% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+
+  /* line 94, ../sass/_components/_loader.scss */
+  75% {
+    background-color: #ff5500;
+  }
+
+  /* line 95, ../sass/_components/_loader.scss */
+  100% {
+    background-color: rgba(255, 85, 0, 0.2);
+  }
+}
