@@ -1,10 +1,8 @@
 <div class="playlistsView">
     <h1> {{ title }}</h1>
 
-    <p ng-hide="display" class="noData"><strong>No Playlists on your user account.</strong></p>
-
     <!-- Song list wrapper -->
-    <div class="playlistsView_inner" ng-show="display">
+    <div class="playlistsView_inner">
         <ul class="songList">
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ playlist: data.kind  }"

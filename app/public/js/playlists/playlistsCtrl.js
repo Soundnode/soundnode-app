@@ -1,26 +1,18 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, $http) {
-    var streamURL = 'https://api.soundcloud.com/me/playlists?limit=32&oauth_token=' + window.scAccessToken;
+app.controller('PlaylistsCtrl', function ($scope, SCapiService) {
+    var endpoint = 'playlists'
+        , params = '?limit=32';
 
     $scope.title = 'Playlists';
-    $scope.display = false;
     $scope.data = '';
 
-    $http({method: 'GET', url: streamURL})
-        .success(function(data, status, headers, config) {
-            console.log('Playlists', data);
-            $scope.data = data;
-
-            if ( data.length === 0 ) {
-                $scope.display = false;
-            } else {
-                $scope.display = true;
-            }
-        })
-        .error(function(data, status, headers, config) {
-            console.log('Error getting stream', status)
-        });
+    SCapiService.get(endpoint, params)
+                .then(function(data) {
+                    $scope.data = data;
+                }, function(error) {
+                    console.log('error', error);
+                });
 
     $scope.checkForPlaceholder = function (thumb) {
         var newSize;

@@ -1,21 +1,16 @@
 'use strict'
 
-app.controller('TracksCtrl', function ($scope, $http) {
-    var trackUrl = 'https://api.soundcloud.com/me/tracks?limit=32&oauth_token=' + window.scAccessToken;
+app.controller('TracksCtrl', function ($scope, SCapiService) {
+    var endpoint = 'tracks'
+        , params = '?limit=32';
 
-    $scope.title = 'Tracks view';
-    $scope.display = '';
+    $scope.title = 'Tracks';
+    $scope.data = '';
 
-    $http({method: 'GET', url: trackUrl})
-        .success(function(data, status, headers, config) {
-            console.log('tracks', data.length)
-            if ( data.length === 0 ) {
-                $scope.display = false;
-            } else {
-                $scope.display = true;
-            }
-        })
-        .error(function(data, status, headers, config) {
-            console.log('Error getting tracks', status)
-        });
+    SCapiService.get(endpoint, params)
+                .then(function(data) {
+                    $scope.data = data;
+                }, function(error) {
+                    console.log('error', error);
+                });
 });

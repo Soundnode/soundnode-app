@@ -1,19 +1,17 @@
 'use strict'
 
-app.controller('FavoritesCtrl', function ($scope, $http) {
-    var streamURL = 'https://api.soundcloud.com/me/favorites.json?oauth_token=' + window.scAccessToken;
+app.controller('FavoritesCtrl', function ($scope, SCapiService) {
+    var endpoint = 'favorites'
+        , params = '?';
 
-    $scope.title = 'Favorites'
+    $scope.title = 'Favorites';
     $scope.data = '';
 
-    $http({method: 'GET', url: streamURL})
-        .success(function(data, status, headers, config) {
-            console.log('Likes', data)
-            $scope.data = data
-
-        })
-        .error(function(data, status, headers, config) {
-            console.log('Error getting stream', status)
-        });
+    SCapiService.get(endpoint, params)
+                .then(function(data) {
+                    $scope.data = data;
+                }, function(error) {
+                    console.log('error', error);
+                });
 
 });
