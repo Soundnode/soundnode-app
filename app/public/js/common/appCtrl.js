@@ -11,5 +11,4 @@ app.controller('AppCtrl', function ($scope) {
             return img;
         }
     }
-
 });

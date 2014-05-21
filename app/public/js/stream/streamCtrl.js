@@ -1,18 +1,17 @@
 'use strict'
 
-app.controller('StreamCtrl', function ($scope, $http) {
-    var streamURL = 'https://api.soundcloud.com/me/activities?limit=32&oauth_token=' + window.scAccessToken;
+app.controller('StreamCtrl', function ($scope, SCapiService) {
+    var endpoint = 'activities'
+        , params = '?limit=32';
 
     $scope.title = 'Stream';
     $scope.data = '';
 
-    $http({method: 'GET', url: streamURL})
-        .success(function(data, status, headers, config) {
-            console.log('stream', data)
-            $scope.data = data.collection;
-        })
-        .error(function(data, status, headers, config) {
-            console.log('Error getting stream', status)
-        });
+    SCapiService.get(endpoint, params)
+                .then(function(data) {
+                    $scope.data = data.collection;
+                }, function(error) {
+                    console.log('error', error);
+                });
 
 });

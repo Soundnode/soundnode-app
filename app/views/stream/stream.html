@@ -11,14 +11,14 @@
 
                 <div class="songList_item_container_artwork">
                     <span class="songList_item_song_button" 
-                        play-song
-                        data-playing-url="{{ data.origin.stream_url }}"
-                        data-playing-thumbnail="{{ data.origin.artwork_url }}"
-                        data-playing-title="{{ data.origin.title }}"
-                        data-playing-user="{{ data.origin.user.username }}" >
+                        song
+                        data-song-url="{{ data.origin.stream_url }}"
+                        data-song-thumbnail="{{ data.origin.artwork_url }}"
+                        data-song-title="{{ data.origin.title }}"
+                        data-song-user="{{ data.origin.user.username }}" >
 
-                        <i class="fa fa-play-circle-o"></i>
-                        <i class="fa fa-pause hidden"></i>
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
                     </span>
                     <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
                 </div>

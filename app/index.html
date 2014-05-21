@@ -27,7 +27,7 @@
     <!-- iframe - used to authenticate user / end -->
     
     <!-- UI App -->
-    <div id="app" class="ui_app">
+    <div id="app" class="ui_app" ng-class="{ isSongPlaying: isSongPlaying }">
         
         <!-- aside -->
         <aside class="aside">
@@ -93,16 +93,33 @@
             </nav>
             <!-- main nav / end -->
 
-            <!-- now playing -->
-            <div class="nowPlaying" ng-controller="PlayingCtrl">
-                <div class="nowPlaying_inner">
-                    <img id="playerThumb" src="" alt="" class="nowPlaying_thumb">
-                    <h2 id="playerTitle" class="nowPlaying_title"></h2>
-                    <h4 id="playerUser" class="nowPlaying_user"></h4>
-                    <audio id="player" controls src="" class="nowPlaying_player"></audio>
+            <!-- now player -->
+            <div class="player" ng-controller="playerCtrl">
+                <div class="player_inner">
+                    <img id="playerThumb" src="" alt="" class="player_thumb">
+                    <h2 id="playerTitle" class="player_title"></h2>
+                    <h4 id="playerUser" class="player_user"></h4>
+                    <div class="player_controls">
+                        <span class="player_progress">
+                          <span class="player_progress_bar"></span>
+                        </span>
+                        <!-- player buttons -->
+                        <span class="player_prevSong" ng-click="prevSong($event)">
+                            <i class="fa fa-fast-backward"></i>
+                        </span>
+                        <span class="player_play-pause" ng-click="playPause($event)">
+                            <i class="fa fa-play"></i>
+                            <i class="fa fa-pause" ></i>
+                        </span>
+                        <span class="player_nextSong" ng-click="nextSong($event)">
+                            <i class="fa fa-fast-forward"></i>
+                        </span>
+                    </div>
+                    <audio id="player" controls src="" class="player_currentSong"></audio>
                 </div>
             </div>
-            <!-- now playing / end -->
+            <!-- now player / end -->
+
         </aside>
         <!-- aside / end -->
         
@@ -122,13 +139,17 @@
     <script src="public/js/system/api.js"></script>
     <script src="public/js/app.js"></script>
 
+    <!-- services/factories -->
+    <script src="public/js/common/SCapiService.js"></script>
+    <script src="public/js/common/playerService.js"></script>
+
     <!-- controllers -->
     <script src="public/js/common/appCtrl.js"></script>
     <script src="public/js/search/searchInputCtrl.js"></script>
     <script src="public/js/search/searchCtrl.js"></script>
     <script src="public/js/stream/streamCtrl.js"></script>
     <script src="public/js/user/userCtrl.js"></script>
-    <script src="public/js/playing/playingCtrl.js"></script>
+    <script src="public/js/player/playerCtrl.js"></script>
     <script src="public/js/favorites/favoritesCtrl.js"></script>
     <script src="public/js/tracks/tracksCtrl.js"></script>
     <script src="public/js/playlists/playlistsCtrl.js"></script>

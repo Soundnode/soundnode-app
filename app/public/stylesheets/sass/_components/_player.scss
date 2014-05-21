@@ -1,0 +1,76 @@
+.player_inner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  border-right: 1px solid $separatorDarkColor;
+}
+
+.player_thumb {
+  width: 100%;
+  height: 200px;
+  margin: 0 0 10px 0;
+  display: block;
+}
+
+.player_title {
+  padding: 0 15px 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player_user {
+  display: inline-block;
+  color: #949599;
+  font-size: 11px;
+  padding: 0 15px 5px;
+}
+
+.player_currentSong {
+  margin: 10px 0 0;
+}
+
+.player_controls {
+  padding: 0 10px;
+  overflow: hidden;
+
+  & .fa {
+    font-size: 46px;
+    color: #121314;
+    text-shadow: 0 0 3px #888;
+  }
+}
+
+.player_progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  background: $bodyBackground;
+  border-radius: 5px;
+  overflow: hidden;
+  border-top: 1px solid $bodyBackground;
+  border-bottom: 1px solid $bodyBackground;
+  cursor: pointer;
+  margin: 15px 0 10px 0;
+
+  & .player_progress_bar {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: $scColor;
+  }
+}
+
+.player_prevSong,
+.player_play-pause,
+.player_nextSong{
+  display: block;
+  float: left;
+  width: 49px;
+  overflow: hidden;
+  margin: 0 5px;
+  text-align: center;
+  cursor: pointer;
+}

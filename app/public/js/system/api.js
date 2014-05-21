@@ -41,7 +41,6 @@ var exposeSoundCloudAPI = (function () {
 
 // Start OAuth verification after iframe fully loaded
 elemIframe.onload = function() {
-    console.log('called');
     OAuthVerification = window.setInterval( exposeSoundCloudAPI.verification, 1500);
 }
 
