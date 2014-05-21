@@ -1,4 +1,4 @@
-app.directive('playSong', function () {
+app.directive('playSong', function ($rootScope) {
     return {
         restrict: 'A',
         link: function ($scope, elem, attrs ) {
@@ -19,6 +19,8 @@ app.directive('playSong', function () {
                 $(this).addClass('currentSong');
 
                 $scope.playSong(url, thumbnail, title, user);
+
+                $rootScope.$broadcast('songClicked');
             });
 
             $(player).off().on('ended', function() {

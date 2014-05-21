@@ -297,15 +297,16 @@ body[data-isVisible="true"] .box-loader {
 /* line 35, ../sass/_components/_player.scss */
 .player_controls {
   padding: 0 10px;
+  overflow: hidden;
 }
-/* line 38, ../sass/_components/_player.scss */
+/* line 39, ../sass/_components/_player.scss */
 .player_controls .fa {
   font-size: 46px;
   color: #121314;
   text-shadow: 0 0 3px #888;
 }
 
-/* line 45, ../sass/_components/_player.scss */
+/* line 46, ../sass/_components/_player.scss */
 .player_progress {
   display: block;
   width: 100%;
@@ -318,7 +319,7 @@ body[data-isVisible="true"] .box-loader {
   cursor: pointer;
   margin: 0 0 15px 0;
 }
-/* line 57, ../sass/_components/_player.scss */
+/* line 58, ../sass/_components/_player.scss */
 .player_progress .player_progress_bar {
   display: block;
   width: 0;
@@ -326,20 +327,20 @@ body[data-isVisible="true"] .box-loader {
   background: #ff5500;
 }
 
-/* line 67, ../sass/_components/_player.scss */
+/* line 68, ../sass/_components/_player.scss */
 .player_play-pause .fa-pause {
   display: none;
 }
-/* line 72, ../sass/_components/_player.scss */
+/* line 73, ../sass/_components/_player.scss */
 .player_play-pause.playing .fa-play {
   display: none;
 }
-/* line 75, ../sass/_components/_player.scss */
+/* line 76, ../sass/_components/_player.scss */
 .player_play-pause.playing .fa-pause {
   display: block;
 }
 
-/* line 83, ../sass/_components/_player.scss */
+/* line 84, ../sass/_components/_player.scss */
 .player_prevSong,
 .player_play-pause,
 .player_nextSong {

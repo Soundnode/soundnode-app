@@ -22,8 +22,6 @@ app.service('SCapiService', function($http, $window, $q) {
     this.getUser = function() {
         var url = 'https://api.soundcloud.com/me.json?oauth_token=' + $window.scAccessToken;
 
-        console.log('url', url)
-
         return $http.get(url)
                     .then(function(response) {
                         if (typeof response.data === 'object') {

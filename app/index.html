@@ -107,7 +107,7 @@
                         <span class="player_prevSong">
                             <i class="fa fa-fast-backward"></i>
                         </span>
-                        <span class="player_play-pause" ng-click="playPause($event)">
+                        <span class="player_play-pause" ng-class="{ playing: playingSong }" ng-click="playPause($event)">
                             <i class="fa fa-play"></i>
                             <i class="fa fa-pause" ></i>
                         </span>
