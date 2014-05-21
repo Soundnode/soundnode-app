@@ -1,7 +1,6 @@
 'use strict'
 
-app.controller('AppCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-    $rootScope.playing = false;
+app.controller('AppCtrl', function ($scope) {
 
     $scope.showBigArtwork = function (img) {
         var newArtwork;
@@ -12,5 +11,4 @@ app.controller('AppCtrl', ['$scope', '$rootScope', function ($scope, $rootScope)
             return img;
         }
     }
-
-}]);
+});

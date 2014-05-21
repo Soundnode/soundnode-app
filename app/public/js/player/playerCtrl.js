@@ -1,26 +1,26 @@
 'use strict'
 
-app.controller('playerCtrl', function ($scope, $rootScope) {
-    var elPlayer = document.getElementById('player')
+app.controller('playerCtrl', function ($scope, $rootScope, playerService) {
     $scope.imgPath = 'public/img/temp-playing.png';
-    $scope.playingSong = '';
-
-    $rootScope.$on('songClicked', function() {
-        console.log('current time', elPlayer.currentTime)
-        console.log('is paused', elPlayer.paused)
-
-        if ( elPlayer.currentTime !== 0 && !elPlayer.paused ) {
-            $scope.playingSong = true;
-        } else if ( elPlayer.currentTime === 0 && elPlayer.paused ) {
-            $scope.playingSong = false;
-        }
-    });
-
-    $scope.$watch('playingSong', function() {
-        console.log('playingSong changed')
-    });
-
+    
     $scope.playPause = function($event) {
-
+        if ( $rootScope.isSongPlaying ) {
+            playerService.pauseSong();
+        } else {
+            playerService.playSong();
+        }
     };
+
+    $scope.prevSong = function($event) {
+        if ( $rootScope.isSongPlaying ) {
+             playerService.playPrevSong();
+        }
+    };
+
+    $scope.nextSong = function($event) {
+        if ( $rootScope.isSongPlaying ) {
+             playerService.playNextSong();
+        }
+    };
+
 });

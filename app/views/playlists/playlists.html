@@ -19,15 +19,15 @@
 
                         <div class="songList_item_container_artwork">
                             <span class="songList_item_song_button" 
-                            play-song
-                            data-playing-url="{{ tracks.stream_url }}"
-                            data-playing-thumbnail="{{ tracks.artwork_url }}"
-                            data-playing-title="{{ tracks.title }}"
-                            data-playing-user="{{ tracks.user.username }}"
-                            data-play-list="true" >
+                                song
+                                data-song-url="{{ tracks.stream_url }}"
+                                data-song-thumbnail="{{ tracks.artwork_url }}"
+                                data-song-title="{{ tracks.title }}"
+                                data-song-user="{{ tracks.user.username }}"
+                                data-play-list="true" >
 
-                            <i class="fa fa-play-circle-o"></i>
-                            <i class="fa fa-pause hidden"></i>
+                            <i class="fa fa-play"></i>
+                            <i class="fa fa-pause"></i>
                         </span>
                             <img src="{{ checkForPlaceholder(tracks.artwork_url) }}" alt="{{ tracks.title }}" class="songList_item_artwork">
                         </div>

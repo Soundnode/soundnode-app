@@ -27,7 +27,7 @@
     <!-- iframe - used to authenticate user / end -->
     
     <!-- UI App -->
-    <div id="app" class="ui_app">
+    <div id="app" class="ui_app" ng-class="{ isSongPlaying: isSongPlaying }">
         
         <!-- aside -->
         <aside class="aside">
@@ -104,14 +104,14 @@
                           <span class="player_progress_bar"></span>
                         </span>
                         <!-- player buttons -->
-                        <span class="player_prevSong">
+                        <span class="player_prevSong" ng-click="prevSong($event)">
                             <i class="fa fa-fast-backward"></i>
                         </span>
-                        <span class="player_play-pause" ng-class="{ playing: playingSong }" ng-click="playPause($event)">
+                        <span class="player_play-pause" ng-click="playPause($event)">
                             <i class="fa fa-play"></i>
                             <i class="fa fa-pause" ></i>
                         </span>
-                        <span class="player_nextSong">
+                        <span class="player_nextSong" ng-click="nextSong($event)">
                             <i class="fa fa-fast-forward"></i>
                         </span>
                     </div>
@@ -141,6 +141,7 @@
 
     <!-- services/factories -->
     <script src="public/js/common/SCapiService.js"></script>
+    <script src="public/js/common/playerService.js"></script>
 
     <!-- controllers -->
     <script src="public/js/common/appCtrl.js"></script>

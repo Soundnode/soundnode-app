@@ -1,4 +1,3 @@
-@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -99,6 +98,30 @@ body[data-isVisible="true"] .ui_app {
 /* line 14, ../sass/_components/_appState.scss */
 body[data-isVisible="true"] .box-loader {
   display: none;
+}
+
+/* playing/ not playing state */
+/* line 21, ../sass/_components/_appState.scss */
+.ui_app .fa-pause {
+  display: none;
+}
+
+/* line 28, ../sass/_components/_appState.scss */
+.isSongPlaying .currentSong .fa:first-child {
+  display: none;
+}
+/* line 32, ../sass/_components/_appState.scss */
+.isSongPlaying .currentSong .fa:last-child {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 38, ../sass/_components/_appState.scss */
+.isSongPlaying .fa-play {
+  display: none;
+}
+/* line 41, ../sass/_components/_appState.scss */
+.isSongPlaying .fa-pause {
+  display: block;
 }
 
 /* ==========================================================================
@@ -317,7 +340,7 @@ body[data-isVisible="true"] .box-loader {
   border-top: 1px solid #121314;
   border-bottom: 1px solid #121314;
   cursor: pointer;
-  margin: 0 0 15px 0;
+  margin: 15px 0 10px 0;
 }
 /* line 58, ../sass/_components/_player.scss */
 .player_progress .player_progress_bar {
@@ -328,19 +351,6 @@ body[data-isVisible="true"] .box-loader {
 }
 
 /* line 68, ../sass/_components/_player.scss */
-.player_play-pause .fa-pause {
-  display: none;
-}
-/* line 73, ../sass/_components/_player.scss */
-.player_play-pause.playing .fa-play {
-  display: none;
-}
-/* line 76, ../sass/_components/_player.scss */
-.player_play-pause.playing .fa-pause {
-  display: block;
-}
-
-/* line 84, ../sass/_components/_player.scss */
 .player_prevSong,
 .player_play-pause,
 .player_nextSong {
@@ -434,7 +444,7 @@ body[data-isVisible="true"] .box-loader {
   vertical-align: middle;
 }
 /* line 58, ../sass/_components/_songlist.scss */
-.songList_item_song_button .hidden {
+.songList_item_song_button .fa:last-child {
   display: none;
 }
 

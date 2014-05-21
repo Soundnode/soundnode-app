@@ -53,29 +53,13 @@
   border-top: 1px solid $bodyBackground;
   border-bottom: 1px solid $bodyBackground;
   cursor: pointer;
-  margin: 0 0 15px 0;
+  margin: 15px 0 10px 0;
 
   & .player_progress_bar {
     display: block;
     width: 0;
     height: 100%;
     background: $scColor;
-  }
-}
-
-.player_play-pause {
-
-  & .fa-pause {
-    display: none;
-  }
-
-  &.playing {
-    .fa-play {
-      display: none;
-    }
-    .fa-pause {
-      display: block;
-    }
   }
 }
 

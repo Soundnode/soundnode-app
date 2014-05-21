@@ -15,3 +15,30 @@ body[data-isVisible="true"] {
     display: none;
   }
 }
+
+/* playing/ not playing state */
+.ui_app {
+  & .fa-pause {
+    display: none;
+  }
+}
+
+.isSongPlaying {
+  & .currentSong {
+    & .fa:first-child {
+      display: none;
+    }
+
+    & .fa:last-child {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  & .fa-play {
+      display: none;
+    }
+  & .fa-pause {
+    display: block;
+  }
+}
