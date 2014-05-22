@@ -37,6 +37,8 @@ app.factory('playerService', function($rootScope) {
      * Player element
      */
     player.elPlayer = document.getElementById('player');
+    player.elPlayerProgress = document.getElementById('player-progress');
+    player.elPlayerTimeLeft = document.getElementById('player-timeleft');
     player.elThumb = document.getElementById('playerThumb');
     player.elTitle = document.getElementById('playerTitle');
     player.elUser = document.getElementById('playerUser');
@@ -187,6 +189,21 @@ app.factory('playerService', function($rootScope) {
      */
     $(player.elPlayer).off().on('ended', function() {
         player.playNextSong();
+    });
+
+    $(player.elPlayer).bind('timeupdate', function() {
+
+        var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10),
+            pos = (player.elPlayer.currentTime / player.elPlayer.duration) * 100,
+            mins = Math.floor(rem / 60,10),
+            secs = rem - mins * 60;
+
+        $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+
+        $(player.elPlayerProgress).css({
+            width: pos + '%'
+        });
+
     });
 
     return player;
