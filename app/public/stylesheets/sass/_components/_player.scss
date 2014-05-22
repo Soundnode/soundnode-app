@@ -29,10 +29,12 @@
 }
 
 .player_currentSong {
+  display: none;
   margin: 10px 0 0;
 }
 
 .player_controls {
+  margin: 0 0 30px 0;
   padding: 0 10px;
   overflow: hidden;
 
@@ -41,6 +43,13 @@
     color: #121314;
     text-shadow: 0 0 3px #888;
   }
+}
+
+.player_timeLeft {
+  display: block;
+  float: right;
+  font-size: 13px;
+  margin: 15px 0 5px 0;
 }
 
 .player_progress {
