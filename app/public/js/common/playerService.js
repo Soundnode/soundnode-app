@@ -97,8 +97,15 @@ app.factory('playerService', function($rootScope) {
      * @method playSong
      */
     player.playSong = function() {
-        this.elPlayer.play();
-        $rootScope.isSongPlaying = true;
+        if ( document.querySelector('.currentSong') === null ) {
+            var $els = $('*[song]')
+                , index = Math.floor(Math.random() * $els.length);
+
+            $els[index].click();
+        } else {
+            this.elPlayer.play();
+            $rootScope.isSongPlaying = true;
+        }
     };
 
     /**
@@ -198,7 +205,9 @@ app.factory('playerService', function($rootScope) {
             mins = Math.floor(rem / 60,10),
             secs = rem - mins * 60;
 
-        $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+        if ( !isNaN(mins) || !isNaN(secs) ) {
+            $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+        }
 
         $(player.elPlayerProgress).css({
             width: pos + '%'
