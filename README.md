@@ -10,6 +10,13 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 ![alt tag](https://raw.githubusercontent.com/Soundnode/soundnode-app/master/Soundnode-app.png)
 
+## Features
+
+- Free
+- Your Stream/Likes/Tracks/Playlists
+- Simple main features (play-pause/prev-next song)
+- No Ads (no noise on the UI)
+
 ## beta Developer release
 
 Since the core is done I figured release a beta version just for devs/community to receive feedback/contributions.

@@ -195,6 +195,7 @@ app.factory('playerService', function($rootScope) {
      * Add event listener "on ended" to player
      */
     $(player.elPlayer).off().on('ended', function() {
+        $rootScope.isSongPlaying = false;
         player.playNextSong();
     });
 
