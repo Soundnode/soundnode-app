@@ -37,5 +37,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/search?q',
             templateUrl: 'views/search/search.html',
             controller: 'searchCtrl'
+        })
+        .state('about', {
+            url: '/about',
+            templateUrl: 'views/about/about.html',
+            controller: 'AboutCtrl'
         });
 });

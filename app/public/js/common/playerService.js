@@ -195,9 +195,14 @@ app.factory('playerService', function($rootScope) {
      * Add event listener "on ended" to player
      */
     $(player.elPlayer).off().on('ended', function() {
+        $rootScope.isSongPlaying = false;
         player.playNextSong();
     });
 
+    /**
+     * Add event listener "time update" to song bar progress
+     * and song timer progress
+     */
     $(player.elPlayer).bind('timeupdate', function() {
 
         var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10),
