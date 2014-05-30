@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  cursor: default;
 }
 
 html {
@@ -41,20 +42,3 @@ h6 {
 }
 
 ::-webkit-scrollbar { width: 0 !important }
-
-.fa {
-  color: #fff;
-}
-
-.searchButton {
-  display: none;
-}
-
-.topBorder {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-top: 2px solid $scColor;
-  z-index: 100;
-}

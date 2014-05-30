@@ -1,0 +1,82 @@
+.topFrame {
+  background: $bodyBackground;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  border-top: 2px solid $scColor;
+  border-bottom: 1px solid $separatorDarkColor;
+  box-shadow: 0 0 7px 0px #000;
+  z-index: 100;
+  -webkit-app-region: drag;
+}
+
+.topFrame_title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 13px 0 0 0;
+  letter-spacing: 1px;
+}
+
+.windowAction,
+.appInfo {
+  overflow: hidden;
+}
+
+.windowAction {
+  float: left;
+  margin: 15px 0 0 0;
+}
+.windowAction_item {
+  float: left;
+  margin: 0 10px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 2px 4px;
+
+  &:nth-child(1) {
+    background: #D96C76;
+
+    & .fa {
+      position: relative;
+      top: -1px;
+    }
+  }
+  &:nth-child(2) {
+    background: #FDF9C6;
+  }
+  &:nth-child(3) {
+    background: #96E1C7;
+  }
+
+  & .fa {
+    cursor: pointer;
+    color: #222326;
+  }
+}
+
+.appInfo {
+  float: right;
+  margin: 15px 0 0 0;
+}
+.appInfo_item {
+  margin: 0 10px;
+  float: left;
+
+  & a {
+    font-size: 14px;
+    color: $linkColor;
+    cursor: pointer;
+  }
+
+  &:last-child a {
+    display: none;
+    color: $scColor;
+    &.active {
+      display: block;
+    }
+  }
+}

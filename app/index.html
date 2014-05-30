@@ -12,8 +12,31 @@
 </head>
 
 <body data-isVisible="false" ng-controller="AppCtrl">
-    
-    <div class="topBorder"></div>
+
+    <header class="topFrame">
+        <ul class="windowAction">
+            <li class="windowAction_item " id="closeApp">
+                <i class="fa fa-times"></i>
+            </li>
+            <li class="windowAction_item " id="minimizeApp">
+                <i class="fa fa-minus"></i>
+            </li>
+            <li class="windowAction_item " id="expandApp">
+                <i class="fa fa-plus"></i>
+            </li>
+        </ul>
+
+        <ul class="appInfo">
+            <li class="appInfo_item ">
+                <a ui-sref="about">about</a>
+            </li>
+            <li class="appInfo_item updateAvailable">
+                <a href=""> update available! </a>
+            </li>
+        </ul>
+
+        <h1 class="topFrame_title">Soundnode App</h1>
+    </header>
     
     <!-- loading gif -->
     <div class="box-loader loading">
@@ -155,6 +178,7 @@
     <script src="public/js/tracks/tracksCtrl.js"></script>
     <script src="public/js/playlists/playlistsCtrl.js"></script>
     <script src="public/js/following/followingCtrl.js"></script>
+    <script src="public/js/about/aboutCtrl.js"></script>
     
     <!-- directives -->
     <script src="public/js/common/songDirective.js"></script>

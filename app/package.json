@@ -11,7 +11,7 @@
   "window": {
     "title": "Soundnode App",
     "toolbar": false,
-    "frame": true,
+    "frame": false,
     "width": 1152,
     "height": 585,
     "min_width": 1152,

@@ -198,6 +198,10 @@ app.factory('playerService', function($rootScope) {
         player.playNextSong();
     });
 
+    /**
+     * Add event listener "time update" to song bar progress
+     * and song timer progress
+     */
     $(player.elPlayer).bind('timeupdate', function() {
 
         var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10),

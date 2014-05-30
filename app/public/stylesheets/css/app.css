@@ -7,14 +7,15 @@
 /* line 1, ../sass/_components/_default.scss */
 * {
   box-sizing: border-box;
+  cursor: default;
 }
 
-/* line 5, ../sass/_components/_default.scss */
+/* line 6, ../sass/_components/_default.scss */
 html {
   height: 100%;
 }
 
-/* line 9, ../sass/_components/_default.scss */
+/* line 10, ../sass/_components/_default.scss */
 body {
   background: #121314;
   font: 62.5% helvetica, sans-serif, arial !important;
@@ -22,19 +23,19 @@ body {
   height: 100%;
 }
 
-/* line 16, ../sass/_components/_default.scss */
+/* line 17, ../sass/_components/_default.scss */
 a {
   color: #949599;
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
-/* line 21, ../sass/_components/_default.scss */
+/* line 22, ../sass/_components/_default.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 27, ../sass/_components/_default.scss */
+/* line 28, ../sass/_components/_default.scss */
 ul,
 ol,
 li {
@@ -43,7 +44,7 @@ li {
   padding: 0;
 }
 
-/* line 38, ../sass/_components/_default.scss */
+/* line 39, ../sass/_components/_default.scss */
 h1,
 h2,
 h3,
@@ -54,29 +55,9 @@ h6 {
   color: #fff;
 }
 
-/* line 43, ../sass/_components/_default.scss */
+/* line 44, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 0 !important;
-}
-
-/* line 45, ../sass/_components/_default.scss */
-.fa {
-  color: #fff;
-}
-
-/* line 49, ../sass/_components/_default.scss */
-.searchButton {
-  display: none;
-}
-
-/* line 53, ../sass/_components/_default.scss */
-.topBorder {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-top: 2px solid #ff5500;
-  z-index: 100;
 }
 
 /* ==========================================================================
@@ -125,6 +106,104 @@ body[data-isVisible="true"] .box-loader {
 }
 
 /* ==========================================================================
+@App header - top Frame
+========================================================================== */
+/* line 1, ../sass/_components/_topFrame.scss */
+.topFrame {
+  background: #121314;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  border-top: 2px solid #ff5500;
+  border-bottom: 1px solid black;
+  box-shadow: 0 0 7px 0px #000;
+  z-index: 100;
+  -webkit-app-region: drag;
+}
+
+/* line 15, ../sass/_components/_topFrame.scss */
+.topFrame_title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 13px 0 0 0;
+  letter-spacing: 1px;
+}
+
+/* line 24, ../sass/_components/_topFrame.scss */
+.windowAction,
+.appInfo {
+  overflow: hidden;
+}
+
+/* line 28, ../sass/_components/_topFrame.scss */
+.windowAction {
+  float: left;
+  margin: 15px 0 0 0;
+}
+
+/* line 32, ../sass/_components/_topFrame.scss */
+.windowAction_item {
+  float: left;
+  margin: 0 10px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 2px 4px;
+}
+/* line 40, ../sass/_components/_topFrame.scss */
+.windowAction_item:nth-child(1) {
+  background: #D96C76;
+}
+/* line 43, ../sass/_components/_topFrame.scss */
+.windowAction_item:nth-child(1) .fa {
+  position: relative;
+  top: -1px;
+}
+/* line 48, ../sass/_components/_topFrame.scss */
+.windowAction_item:nth-child(2) {
+  background: #FDF9C6;
+}
+/* line 51, ../sass/_components/_topFrame.scss */
+.windowAction_item:nth-child(3) {
+  background: #96E1C7;
+}
+/* line 55, ../sass/_components/_topFrame.scss */
+.windowAction_item .fa {
+  cursor: pointer;
+  color: #222326;
+}
+
+/* line 61, ../sass/_components/_topFrame.scss */
+.appInfo {
+  float: right;
+  margin: 15px 0 0 0;
+}
+
+/* line 65, ../sass/_components/_topFrame.scss */
+.appInfo_item {
+  margin: 0 10px;
+  float: left;
+}
+/* line 69, ../sass/_components/_topFrame.scss */
+.appInfo_item a {
+  font-size: 14px;
+  color: #949599;
+  cursor: pointer;
+}
+/* line 75, ../sass/_components/_topFrame.scss */
+.appInfo_item:last-child a {
+  display: none;
+  color: #ff5500;
+}
+/* line 78, ../sass/_components/_topFrame.scss */
+.appInfo_item:last-child a.active {
+  display: block;
+}
+
+/* ==========================================================================
 @Iframe
 ========================================================================== */
 /* line 1, ../sass/_components/_elIframe.scss */
@@ -138,6 +217,16 @@ body[data-isVisible="true"] .box-loader {
 /* ==========================================================================
 @App container
 ========================================================================== */
+/* line 1, ../sass/_components/_appContainer.scss */
+.ui_app {
+  padding-top: 50px;
+}
+
+/* line 5, ../sass/_components/_appContainer.scss */
+.fa {
+  color: #fff;
+}
+
 /* ==========================================================================
 @Aside
 ========================================================================== */
@@ -147,29 +236,19 @@ body[data-isVisible="true"] .box-loader {
   border-right: 1px solid black;
   width: 200px;
   position: fixed;
-  top: 2px;
+  top: 50px;
   bottom: 0;
   left: 0;
 }
 
-/* ==========================================================================
-@Header
-========================================================================== */
-/* line 1, ../sass/_components/_header.scss */
-.header {
-  padding: 15px 10px 10px;
-}
-
-/* ==========================================================================
-@User
-========================================================================== */
-/* line 1, ../sass/_components/_user.scss */
+/* user info */
+/* line 13, ../sass/_components/_aside.scss */
 .user {
   padding: 10px 0 0;
   overflow: hidden;
 }
 
-/* line 6, ../sass/_components/_user.scss */
+/* line 18, ../sass/_components/_aside.scss */
 .user_thumb {
   width: 30px;
   height: 30px;
@@ -178,40 +257,38 @@ body[data-isVisible="true"] .box-loader {
   float: left;
 }
 
-/* line 14, ../sass/_components/_user.scss */
+/* line 26, ../sass/_components/_aside.scss */
 .user_inner {
   float: left;
   margin: 0 0 0 20px;
 }
 
-/* line 20, ../sass/_components/_user.scss */
+/* line 32, ../sass/_components/_aside.scss */
 .user_name,
 .user_logOut {
   font-weight: normal;
   display: block;
 }
 
-/* line 25, ../sass/_components/_user.scss */
+/* line 37, ../sass/_components/_aside.scss */
 .user_name {
   font-size: 12px;
   color: #fff;
 }
 
-/* line 30, ../sass/_components/_user.scss */
+/* line 42, ../sass/_components/_aside.scss */
 .user_logOut {
   font-size: 10px;
 }
 
-/* ==========================================================================
-@MainNav
-========================================================================== */
-/* line 1, ../sass/_components/_mainNav.scss */
+/* main navigation */
+/* line 47, ../sass/_components/_aside.scss */
 .mainNav {
   padding: 10px 15px;
   margin: 0 0 30px 0;
 }
 
-/* line 6, ../sass/_components/_mainNav.scss */
+/* line 52, ../sass/_components/_aside.scss */
 .ui_title {
   text-transform: uppercase;
   font-size: 14px;
@@ -220,30 +297,38 @@ body[data-isVisible="true"] .box-loader {
   margin: 0 0 10px;
 }
 
-/* line 14, ../sass/_components/_mainNav.scss */
+/* line 60, ../sass/_components/_aside.scss */
 .mainNav_item {
   margin: 0 0 10px 0;
 }
-/* line 17, ../sass/_components/_mainNav.scss */
+/* line 63, ../sass/_components/_aside.scss */
 .mainNav_item:last-child {
   margin: 0;
 }
 
-/* line 22, ../sass/_components/_mainNav.scss */
+/* line 68, ../sass/_components/_aside.scss */
 .mainNav_button {
   font-size: 14px;
   display: block;
 }
-/* line 26, ../sass/_components/_mainNav.scss */
+/* line 72, ../sass/_components/_aside.scss */
 .mainNav_button .fa {
   color: #fff;
   display: inline-block;
   width: 25px;
 }
 
-/* line 33, ../sass/_components/_mainNav.scss */
+/* line 79, ../sass/_components/_aside.scss */
 .mainNav_tit {
   display: inline-block;
+}
+
+/* ==========================================================================
+@Header
+========================================================================== */
+/* line 1, ../sass/_components/_header.scss */
+.header {
+  padding: 15px 10px 10px;
 }
 
 /* ==========================================================================
@@ -273,6 +358,11 @@ body[data-isVisible="true"] .box-loader {
 /* line 20, ../sass/_components/_search.scss */
 .search_field:focus {
   box-shadow: 0 0 5px #ff5500;
+}
+
+/* line 25, ../sass/_components/_search.scss */
+.searchButton {
+  display: none;
 }
 
 /* ==========================================================================

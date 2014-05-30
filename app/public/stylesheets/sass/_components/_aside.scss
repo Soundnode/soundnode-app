@@ -4,7 +4,78 @@
   border-right: 1px solid $separatorDarkColor;
   width: 200px;
   position: fixed;
-  top: 2px;
+  top: 50px;
   bottom: 0;
   left: 0;
+}
+
+/* user info */
+.user {
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+
+.user_thumb {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50px;
+  float: left;
+}
+
+.user_inner {
+  float: left;
+  margin: 0 0 0 20px;
+}
+
+.user_name,
+.user_logOut {
+  font-weight: normal;
+  display: block;
+}
+
+.user_name {
+  font-size: 12px;
+  color: #fff;
+}
+
+.user_logOut {
+  font-size: 10px;
+}
+
+/* main navigation */
+.mainNav {
+  padding: 10px 15px;
+  margin: 0 0 30px 0;
+}
+
+.ui_title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: normal;
+  color: $linkColor;
+  margin: 0 0 10px;
+}
+
+.mainNav_item {
+  margin: 0 0 10px 0;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.mainNav_button {
+  font-size: 14px;
+  display: block;
+
+  & .fa {
+    color: #fff;
+    display: inline-block;
+    width: 25px;
+  }
+}
+
+.mainNav_tit {
+  display: inline-block;
 }
