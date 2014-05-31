@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('playerCtrl', function ($scope, $rootScope, playerService) {
+app.controller('PlayerCtrl', function ($scope, $rootScope, playerService) {
     $scope.imgPath = 'public/img/temp-playing.png';
     
     $scope.playPause = function($event) {

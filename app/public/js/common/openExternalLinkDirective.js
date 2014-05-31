@@ -7,7 +7,11 @@ app.directive('openExternal', function () {
             elem.bind('click', function (e) {
                 e.preventDefault();
 
-                el = attrs.href + '?client_id=' + window.scClientId;
+                if ( this.hasAttribute('data-link') ) {
+                    el = attrs.href;
+                } else {
+                    el = attrs.href + '?client_id=' + window.scClientId;
+                }
                 gui.Shell.openExternal( el );
             });
 

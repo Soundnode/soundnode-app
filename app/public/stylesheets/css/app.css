@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -199,7 +200,7 @@ body[data-isVisible="true"] .box-loader {
   color: #ff5500;
 }
 /* line 78, ../sass/_components/_topFrame.scss */
-.appInfo_item:last-child a.active {
+.appInfo_item:last-child a.updateAvailable {
   display: block;
 }
 
@@ -241,14 +242,19 @@ body[data-isVisible="true"] .box-loader {
   left: 0;
 }
 
+/* line 12, ../sass/_components/_aside.scss */
+.header {
+  padding: 15px 10px 10px;
+}
+
 /* user info */
-/* line 13, ../sass/_components/_aside.scss */
+/* line 17, ../sass/_components/_aside.scss */
 .user {
   padding: 10px 0 0;
   overflow: hidden;
 }
 
-/* line 18, ../sass/_components/_aside.scss */
+/* line 22, ../sass/_components/_aside.scss */
 .user_thumb {
   width: 30px;
   height: 30px;
@@ -257,38 +263,38 @@ body[data-isVisible="true"] .box-loader {
   float: left;
 }
 
-/* line 26, ../sass/_components/_aside.scss */
+/* line 30, ../sass/_components/_aside.scss */
 .user_inner {
   float: left;
   margin: 0 0 0 20px;
 }
 
-/* line 32, ../sass/_components/_aside.scss */
+/* line 36, ../sass/_components/_aside.scss */
 .user_name,
 .user_logOut {
   font-weight: normal;
   display: block;
 }
 
-/* line 37, ../sass/_components/_aside.scss */
+/* line 41, ../sass/_components/_aside.scss */
 .user_name {
   font-size: 12px;
   color: #fff;
 }
 
-/* line 42, ../sass/_components/_aside.scss */
+/* line 46, ../sass/_components/_aside.scss */
 .user_logOut {
   font-size: 10px;
 }
 
 /* main navigation */
-/* line 47, ../sass/_components/_aside.scss */
+/* line 51, ../sass/_components/_aside.scss */
 .mainNav {
   padding: 10px 15px;
   margin: 0 0 30px 0;
 }
 
-/* line 52, ../sass/_components/_aside.scss */
+/* line 56, ../sass/_components/_aside.scss */
 .ui_title {
   text-transform: uppercase;
   font-size: 14px;
@@ -297,38 +303,30 @@ body[data-isVisible="true"] .box-loader {
   margin: 0 0 10px;
 }
 
-/* line 60, ../sass/_components/_aside.scss */
+/* line 64, ../sass/_components/_aside.scss */
 .mainNav_item {
   margin: 0 0 10px 0;
 }
-/* line 63, ../sass/_components/_aside.scss */
+/* line 67, ../sass/_components/_aside.scss */
 .mainNav_item:last-child {
   margin: 0;
 }
 
-/* line 68, ../sass/_components/_aside.scss */
+/* line 72, ../sass/_components/_aside.scss */
 .mainNav_button {
   font-size: 14px;
   display: block;
 }
-/* line 72, ../sass/_components/_aside.scss */
+/* line 76, ../sass/_components/_aside.scss */
 .mainNav_button .fa {
   color: #fff;
   display: inline-block;
   width: 25px;
 }
 
-/* line 79, ../sass/_components/_aside.scss */
+/* line 83, ../sass/_components/_aside.scss */
 .mainNav_tit {
   display: inline-block;
-}
-
-/* ==========================================================================
-@Header
-========================================================================== */
-/* line 1, ../sass/_components/_header.scss */
-.header {
-  padding: 15px 10px 10px;
 }
 
 /* ==========================================================================

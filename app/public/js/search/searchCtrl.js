@@ -9,7 +9,6 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams) {
 
     $http({method: 'GET', url: searchUrl})
         .success(function(data, status, headers, config) {
-            console.log('search', data)
             $scope.data = data;
         })
         .error(function(data, status, headers, config) {
