@@ -1,6 +1,6 @@
 ﻿'use strict'
 
-var app = angular.module('App', ['ui.router']);
+var app = angular.module('App', ['ui.router', 'cfp.hotkeys']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
