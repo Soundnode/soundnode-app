@@ -75,7 +75,7 @@
   &:last-child a {
     display: none;
     color: $scColor;
-    &.active {
+    &.updateAvailable {
       display: block;
     }
   }
