@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService) {
+app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys) {
     $scope.imgPath = 'public/img/temp-playing.png';
     
     $scope.playPause = function($event) {
@@ -24,8 +24,8 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService) {
     };
 
     hotkeys.add({
-        combo: 'ctrl+right',
-        description: 'This one goes to 11',
+        combo: 'command+right',
+        description: 'Next song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
                 playerService.playNextSong();
@@ -34,13 +34,26 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService) {
     });
 
     hotkeys.add({
-        combo: 'ctrl+left',
-        description: 'This one goes to 11',
+        combo: 'command+left',
+        description: 'Prev song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
                 playerService.playPrevSong();
             }
         }
     });
+
+    hotkeys.add({
+        combo: 'command+return',
+        description: 'Play song',
+        callback: function() {
+            if ( $rootScope.isSongPlaying ) {
+                playerService.pauseSong();
+            } else {
+                playerService.playSong();
+            }
+        }
+    });
+
 
 });
