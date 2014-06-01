@@ -13,8 +13,8 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 ## Features
 
 - Free
-- Your Stream/Likes/Tracks/Playlists
-- Simple main features (play-pause/prev-next song)
+- Keyboard shortcuts (not native at start)
+- Your Streams/Likes/Tracks/Playlists
 - No Ads (no noise on the UI)
 
 ## beta Developer release
