@@ -128,7 +128,7 @@ app.factory('playerService', function($rootScope) {
             , $prevSong
             , $prevListSong
             , $currentSong = $( getCurrentSong() )
-            , $isLastChild = $($currentSong).closest('li').is(':last-child');
+            , $isFirstChild = $($currentSong).closest('li').is(':first-child');
 
         if ( $currentSong.attr('data-play-list') === 'true' ) {
 
@@ -140,7 +140,7 @@ app.factory('playerService', function($rootScope) {
             } else {
                 $prevListSong = $currentSong.closest('.songList_item_songs_list').prev().find('li:first-child').find('*[song]');
 
-                if ( ! $isLastChild ) {
+                if ( ! $isFirstChild ) {
                     $prevListSong.click();
                 }
             }
@@ -148,7 +148,7 @@ app.factory('playerService', function($rootScope) {
             $elParent = $currentSong.closest('.songList_item')
             $prevSong = $elParent.prev().find('*[song]');
 
-            if ( ! $isLastChild ) {
+            if ( ! $isFirstChild ) {
                 $prevSong.click();
             }
         }
@@ -190,6 +190,26 @@ app.factory('playerService', function($rootScope) {
             }
         }
     };
+
+    /**
+     * Responsible to turn the volume up
+     * @method volumeUp
+     */
+    player.volumeUp = function() {
+        if ( this.elPlayer.volume < 1 ) {
+            this.elPlayer.volume += .1;
+        }
+    }
+
+    /**
+     * Responsible to turn the volume down
+     * @method volumeDown
+     */
+    player.volumeDown = function() {
+        if ( this.elPlayer.volume > 0 ) {
+            this.elPlayer.volume -= .1;
+        }
+    }
 
     /**
      * Add event listener "on ended" to player

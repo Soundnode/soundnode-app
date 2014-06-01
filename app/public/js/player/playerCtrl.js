@@ -55,5 +55,23 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         }
     });
 
+    hotkeys.add({
+        combo: 'command+up',
+        description: 'Volume up',
+        callback: function(event) {
+            event.preventDefault();
+            playerService.volumeUp();
+        }
+    });
+
+    hotkeys.add({
+        combo: 'command+down',
+        description: 'Volume down',
+        callback: function(event) {
+            event.preventDefault();
+            playerService.volumeDown();
+        }
+    });
+
 
 });
