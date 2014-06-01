@@ -221,9 +221,10 @@ body[data-isVisible="true"] .box-loader {
 /* line 1, ../sass/_components/_appContainer.scss */
 .ui_app {
   padding-top: 50px;
+  background: #121314;
 }
 
-/* line 5, ../sass/_components/_appContainer.scss */
+/* line 6, ../sass/_components/_appContainer.scss */
 .fa {
   color: #fff;
 }
