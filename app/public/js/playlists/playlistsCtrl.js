@@ -1,13 +1,13 @@
 'use strict';
 
 app.controller('PlaylistsCtrl', function ($scope, SCapiService) {
-    var endpoint = 'playlists'
-        , params = 'limit=32';
+    var endpoint = 'me/playlists'
+        , params = 'limit=33';
 
     $scope.title = 'Playlists';
     $scope.data = '';
 
-    SCapiService.get(endpoint, params)
+    SCapiService.get(endpoint)
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {
