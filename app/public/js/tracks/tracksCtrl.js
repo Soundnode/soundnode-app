@@ -2,7 +2,7 @@
 
 app.controller('TracksCtrl', function ($scope, SCapiService) {
     var endpoint = 'tracks'
-        , params = '?limit=32';
+        , params = 'limit=32';
 
     $scope.title = 'Tracks';
     $scope.data = '';
