@@ -1,17 +1,18 @@
 'use strict';
 
-app.controller('searchCtrl', function ($scope, $http, $stateParams) {
+app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService) {
+    var endpoint = 'tracks'
+        , params = 'limit=51&q=' + $stateParams.q;
+
     $scope.title = 'Results for: ' + $stateParams.q;
-
     $scope.data = '';
+    $scope.busy = false;
 
-    var searchUrl = 'http://api.soundcloud.com/tracks?limit=32&q=' + $stateParams.q + '&client_id=' + window.scClientId;
-
-    $http({method: 'GET', url: searchUrl})
-        .success(function(data, status, headers, config) {
+    SCapiService.get(endpoint, params)
+        .then(function(data) {
             $scope.data = data;
-        })
-        .error(function(data, status, headers, config) {
-            console.log('Error getting stream', status)
+        }, function(error) {
+            console.log('error', error);
         });
+
 });

@@ -3,7 +3,12 @@
 
     <!-- Song list wrapper -->
     <div class="favoritesView_inner">
-        <ul class="songList">
+        <ul class="songList"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-disabled='{{ busy }}'
+            infinite-scroll-immediate-check='false' >
+
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ active: hover }"
                 ng-mouseover="hover = true"
