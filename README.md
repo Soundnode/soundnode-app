@@ -14,6 +14,7 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 - Free
 - Keyboard shortcuts (not native at start)
+-- Play/Pause `command+return`, Prev `command+left`, Next `command+right`, Volume down `command+down`, Volume up `command+up` (ps: Use ctrl for Windows/PC user)
 - Your Streams/Likes/Tracks/Playlists
 - No Ads (no noise on the UI)
 
