@@ -12,6 +12,8 @@ body {
   font: 62.5% helvetica, sans-serif, arial !important;
   color: $defaultColor;
   height: 100%;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
 }
 
 a {

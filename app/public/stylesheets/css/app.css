@@ -1,4 +1,3 @@
-@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -22,21 +21,23 @@ body {
   font: 62.5% helvetica, sans-serif, arial !important;
   color: #949599;
   height: 100%;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
 }
 
-/* line 17, ../sass/_components/_default.scss */
+/* line 19, ../sass/_components/_default.scss */
 a {
   color: #949599;
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
-/* line 22, ../sass/_components/_default.scss */
+/* line 24, ../sass/_components/_default.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 28, ../sass/_components/_default.scss */
+/* line 30, ../sass/_components/_default.scss */
 ul,
 ol,
 li {
@@ -45,7 +46,7 @@ li {
   padding: 0;
 }
 
-/* line 39, ../sass/_components/_default.scss */
+/* line 41, ../sass/_components/_default.scss */
 h1,
 h2,
 h3,
@@ -56,7 +57,7 @@ h6 {
   color: #fff;
 }
 
-/* line 44, ../sass/_components/_default.scss */
+/* line 46, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -153,53 +154,54 @@ body[data-isVisible="true"] .box-loader {
   cursor: pointer;
   border-radius: 15px;
   padding: 2px 4px;
+  letter-spacing: 0;
 }
-/* line 40, ../sass/_components/_topFrame.scss */
+/* line 41, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) {
   background: #D96C76;
 }
-/* line 43, ../sass/_components/_topFrame.scss */
+/* line 44, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) .fa {
   position: relative;
   top: -1px;
 }
-/* line 48, ../sass/_components/_topFrame.scss */
+/* line 49, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(2) {
   background: #FDF9C6;
 }
-/* line 51, ../sass/_components/_topFrame.scss */
+/* line 52, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(3) {
   background: #96E1C7;
 }
-/* line 55, ../sass/_components/_topFrame.scss */
+/* line 56, ../sass/_components/_topFrame.scss */
 .windowAction_item .fa {
   cursor: pointer;
   color: #222326;
 }
 
-/* line 61, ../sass/_components/_topFrame.scss */
+/* line 62, ../sass/_components/_topFrame.scss */
 .appInfo {
   float: right;
   margin: 15px 0 0 0;
 }
 
-/* line 65, ../sass/_components/_topFrame.scss */
+/* line 66, ../sass/_components/_topFrame.scss */
 .appInfo_item {
   margin: 0 10px;
   float: left;
 }
-/* line 69, ../sass/_components/_topFrame.scss */
+/* line 70, ../sass/_components/_topFrame.scss */
 .appInfo_item a {
   font-size: 14px;
   color: #949599;
   cursor: pointer;
 }
-/* line 75, ../sass/_components/_topFrame.scss */
+/* line 76, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a {
   display: none;
   color: #ff5500;
 }
-/* line 78, ../sass/_components/_topFrame.scss */
+/* line 79, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a.updateAvailable {
   display: block;
 }
@@ -513,16 +515,18 @@ body[data-isVisible="true"] .box-loader {
   position: relative;
   width: 100%;
   height: 300px;
+  background: #222326;
+  border: 1px solid black;
 }
 
-/* line 33, ../sass/_components/_songlist.scss */
+/* line 35, ../sass/_components/_songlist.scss */
 .songList_item_artwork {
   display: block;
   width: 100%;
   margin: 0 0 10px 0;
 }
 
-/* line 39, ../sass/_components/_songlist.scss */
+/* line 41, ../sass/_components/_songlist.scss */
 .songList_item_song_button {
   display: table;
   font-size: 50px;
@@ -537,23 +541,23 @@ body[data-isVisible="true"] .box-loader {
   -webkit-transform: scale(0);
   opacity: 0;
 }
-/* line 53, ../sass/_components/_songlist.scss */
+/* line 55, ../sass/_components/_songlist.scss */
 .songList_item_song_button .fa {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 58, ../sass/_components/_songlist.scss */
+/* line 60, ../sass/_components/_songlist.scss */
 .songList_item_song_button .fa:last-child {
   display: none;
 }
 
-/* line 64, ../sass/_components/_songlist.scss */
+/* line 66, ../sass/_components/_songlist.scss */
 li.active .songList_item_song_button {
   -webkit-transform: scale(1);
   opacity: 1;
 }
 
-/* line 70, ../sass/_components/_songlist.scss */
+/* line 72, ../sass/_components/_songlist.scss */
 .songList_item_song_user {
   display: inline-block;
   color: #949599;
@@ -561,33 +565,35 @@ li.active .songList_item_song_button {
   text-transform: uppercase;
 }
 
-/* line 77, ../sass/_components/_songlist.scss */
+/* line 79, ../sass/_components/_songlist.scss */
 .songList_item_song_tit {
   font-size: 20px;
   margin: 5px 0;
-  height: 50px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* line 84, ../sass/_components/_songlist.scss */
+/* line 88, ../sass/_components/_songlist.scss */
 .songList_item_song_details {
   margin-top: 15px;
   font-size: 12px;
 }
-/* line 88, ../sass/_components/_songlist.scss */
+/* line 92, ../sass/_components/_songlist.scss */
 .songList_item_song_details div {
   margin: 0 0 5px 0;
 }
-/* line 92, ../sass/_components/_songlist.scss */
+/* line 96, ../sass/_components/_songlist.scss */
 .songList_item_song_details span {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 96, ../sass/_components/_songlist.scss */
+/* line 100, ../sass/_components/_songlist.scss */
 .songList_item_song_details span:last-child {
   margin-right: 0;
 }
-/* line 103, ../sass/_components/_songlist.scss */
+/* line 107, ../sass/_components/_songlist.scss */
 .songList_item_song_details a > .fa {
   color: #fff;
   display: inline-block;
