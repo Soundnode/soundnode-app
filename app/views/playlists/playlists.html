@@ -6,7 +6,8 @@
         <ul class="songList">
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ playlist: data.kind  }"
-                data-kind="{{ data.kind }}">
+                data-kind="{{ data.kind }}"
+                ng-if="data.kind == 'playlist' " >
 
                 <h4 class="songList_item_song_user">My <strong>{{ data.title }}</strong> playlist</h4>
 

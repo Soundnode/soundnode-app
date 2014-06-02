@@ -44,8 +44,21 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     });
 
     hotkeys.add({
+        combo: 'space',
+        description: 'Play/Pause song',
+        callback: function(event) {
+            event.preventDefault();
+            if ( $rootScope.isSongPlaying ) {
+                playerService.pauseSong();
+            } else {
+                playerService.playSong();
+            }
+        }
+    });
+
+    hotkeys.add({
         combo: 'command+return',
-        description: 'Play song',
+        description: 'Play/Pause song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
                 playerService.pauseSong();
