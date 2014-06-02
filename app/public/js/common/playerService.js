@@ -199,7 +199,7 @@ app.factory('playerService', function($rootScope) {
         if ( this.elPlayer.volume < 1 ) {
             this.elPlayer.volume += .1;
         }
-    }
+    };
 
     /**
      * Responsible to turn the volume down
@@ -209,7 +209,7 @@ app.factory('playerService', function($rootScope) {
         if ( this.elPlayer.volume > 0 ) {
             this.elPlayer.volume -= .1;
         }
-    }
+    };
 
     /**
      * Add event listener "on ended" to player

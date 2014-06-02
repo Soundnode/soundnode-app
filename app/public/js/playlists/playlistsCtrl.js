@@ -2,12 +2,12 @@
 
 app.controller('PlaylistsCtrl', function ($scope, SCapiService) {
     var endpoint = 'me/playlists'
-        , params = 'limit=33';
+        , params = '';
 
     $scope.title = 'Playlists';
     $scope.data = '';
 
-    SCapiService.get(endpoint)
+    SCapiService.get(endpoint, params)
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {

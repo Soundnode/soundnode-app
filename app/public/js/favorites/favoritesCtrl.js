@@ -1,13 +1,14 @@
 'use strict'
 
 app.controller('FavoritesCtrl', function ($scope, SCapiService) {
-    var endpoint = 'me/favorites';
+    var endpoint = 'me/favorites'
+        , params = '';
 
     $scope.title = 'Favorites';
     $scope.data = '';
     $scope.busy = false;
 
-    SCapiService.get(endpoint)
+    SCapiService.get(endpoint, params)
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {
