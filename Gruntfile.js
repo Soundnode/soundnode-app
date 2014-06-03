@@ -54,8 +54,8 @@ module.exports = function (grunt) {
 
     // Build desktop
     grunt.registerTask('build', [
-        'nodewebkit',
-        'compass:production'
+        'compass:production',
+        'nodewebkit'
     ]);
 
     // Dev

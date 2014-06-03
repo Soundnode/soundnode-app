@@ -9,7 +9,7 @@ var elemIframe = document.getElementById('elIframe');
  * Responsible to enable all UI frame actions
  */
 uiFrame.init = function() {
-    this.OpenDevTools();
+    // this.OpenDevTools();
     this.addGUIeventHandlers();
 }
 
