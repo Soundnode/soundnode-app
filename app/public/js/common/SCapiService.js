@@ -1,4 +1,4 @@
-app.service('SCapiService', function($http, $window, $q) {
+app.service('SCapiService', function($http, $window, $q, $rootScope) {
 
     /**
      * Responsible to store next url for pagination request
@@ -16,7 +16,10 @@ app.service('SCapiService', function($http, $window, $q) {
                         if (typeof response.data === 'object') {
                             if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
                                 that.next_page = response.data.next_href;
+                            } else {
+                                that.next_page = '';
                             }
+                            console.log( that.next_page )
                             return response.data;
                         } else {
                             // invalid response
