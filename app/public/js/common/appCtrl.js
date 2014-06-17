@@ -8,7 +8,8 @@ app.controller('AppCtrl', function ($scope) {
             newArtwork = img.replace('large', 't300x300');
             return newArtwork;
         } else {
-            return img;
+            newArtwork = 'public/img/logo-short.png';
+            return newArtwork;
         }
     }
 });
