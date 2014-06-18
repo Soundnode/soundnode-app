@@ -483,6 +483,25 @@ body[data-isVisible="true"] .box-loader {
   margin: 10px 0 30px;
 }
 
+/* line 17, ../sass/_components/_view-container.scss */
+.aboutView_content {
+  font-size: 16px;
+}
+/* line 20, ../sass/_components/_view-container.scss */
+.aboutView_content strong {
+  font-weight: bold;
+  display: block;
+  margin: 20px 0 10px 0;
+}
+/* line 26, ../sass/_components/_view-container.scss */
+.aboutView_content ul {
+  margin: 10px 0 20px 0;
+}
+/* line 29, ../sass/_components/_view-container.scss */
+.aboutView_content li {
+  margin: 5px 0;
+}
+
 /* ==========================================================================
 @SongList
 ========================================================================== */
