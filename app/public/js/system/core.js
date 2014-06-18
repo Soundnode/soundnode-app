@@ -1,9 +1,43 @@
 var gui = require('nw.gui')
     , uiFrame = {}
-    , OAuthVerification = {};
+    , OAuthVerification = {}
+    , appGUI = {};
 
 // Iframe hosting the OAuth
 var elemIframe = document.getElementById('elIframe');
+
+/**
+ * Responsible to add GUI events
+ */
+
+// Store the GUI window
+appGUI.getGUI = gui.Window.get();
+
+// close the App
+appGUI.close = function() {
+  var guiWin = this.getGUI;
+  guiWin.close(true);
+}
+
+// minimize the App
+appGUI.minimize = function() {
+  var guiWin = this.getGUI;
+  guiWin.minimize();
+}
+
+// maximize the App
+appGUI.maximize = function() {
+  var guiWin = this.getGUI;
+  guiWin.maximize();
+}
+
+// open dev tools
+appGUI.openDevTools = function() {
+    var guiWin = gui.Window.get();
+    guiWin.showDevTools();
+}
+
+// appGUI.openDevTools();
 
 /**
  * Responsible to enable all UI frame actions
@@ -13,31 +47,25 @@ uiFrame.init = function() {
     this.addGUIeventHandlers();
 }
 
-uiFrame.OpenDevTools = function() {
-    var guiWin = gui.Window.get();
-    guiWin.showDevTools();
-}
-
 uiFrame.addGUIeventHandlers = function() {
     // Get the current window
-    var guiWin = gui.Window.get()
-        , elCloseApp = document.getElementById('closeApp')
+    var elCloseApp = document.getElementById('closeApp')
         , elMinimizeApp = document.getElementById('minimizeApp')
         , elExpandApp = document.getElementById('expandApp');
 
     // Close App
     $(elCloseApp).on('click', function() {
-        guiWin.close(true);
+        appGUI.close();
     });
 
     // Minimize App
     $(elMinimizeApp).on('click', function() {
-        guiWin.minimize();
+        appGUI.minimize();
     });
 
     // Expand App
     $(elExpandApp).on('click', function() {
-        guiWin.maximize()
+        appGUI.maximize();
     });
 
 }

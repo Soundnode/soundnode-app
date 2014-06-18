@@ -20,6 +20,7 @@ app.controller('UserCtrl', function ($scope, SCapiService) {
     $scope.logOut = function() {
         SC.disconnect();
         console.log('User connected:', SC.isConnected() );
+        appGUI.close();
     }
-    
+
 });
