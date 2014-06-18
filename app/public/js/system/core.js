@@ -37,7 +37,7 @@ appGUI.openDevTools = function() {
     guiWin.showDevTools();
 }
 
-// appGUI.openDevTools();
+//appGUI.openDevTools();
 
 /**
  * Responsible to enable all UI frame actions

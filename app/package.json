@@ -10,6 +10,7 @@
   "license": "GNU",
   "window": {
     "title": "Soundnode App",
+    "icon": "icon.png",
     "toolbar": false,
     "frame": false,
     "width": 1152,
