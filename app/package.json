@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Michael Lancaster",
   "license": "GNU",
   "window": {
     "title": "Soundnode App",
-    "icon": "icon.png",
+    "icon": "./soundnode.png",
     "toolbar": false,
     "frame": false,
     "width": 1152,
