@@ -9,6 +9,7 @@
   border-bottom: 1px solid $separatorDarkColor;
   box-shadow: 0 0 7px 0px #000;
   z-index: 100;
+  -webkit-app-region: drag;
 }
 
 .topFrame_title {
@@ -17,6 +18,7 @@
   font-weight: normal;
   margin: 8px 0 0 0;
   letter-spacing: 1px;
+  -webkit-app-region: no-drag;
 }
 
 .windowAction,
@@ -27,6 +29,7 @@
 .windowAction {
   float: left;
   margin: 15px 0 0 0;
+  -webkit-app-region: no-drag;
 }
 .windowAction_item {
   float: left;
@@ -61,6 +64,7 @@
 .appInfo {
   float: right;
   margin: 15px 0 0 0;
+  -webkit-app-region: no-drag;
 }
 .appInfo_item {
   margin: 0 10px;

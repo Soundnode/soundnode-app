@@ -13,10 +13,9 @@
 /* line 6, ../sass/_components/_default.scss */
 html {
   height: 100%;
-  -webkit-app-region: drag;
 }
 
-/* line 11, ../sass/_components/_default.scss */
+/* line 10, ../sass/_components/_default.scss */
 body {
   background: #121314;
   font: 62.5% helvetica, sans-serif, arial !important;
@@ -26,19 +25,19 @@ body {
   letter-spacing: 1px;
 }
 
-/* line 20, ../sass/_components/_default.scss */
+/* line 19, ../sass/_components/_default.scss */
 a {
   color: #949599;
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
-/* line 25, ../sass/_components/_default.scss */
+/* line 24, ../sass/_components/_default.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 31, ../sass/_components/_default.scss */
+/* line 30, ../sass/_components/_default.scss */
 ul,
 ol,
 li {
@@ -47,7 +46,7 @@ li {
   padding: 0;
 }
 
-/* line 42, ../sass/_components/_default.scss */
+/* line 41, ../sass/_components/_default.scss */
 h1,
 h2,
 h3,
@@ -58,7 +57,7 @@ h6 {
   color: #fff;
 }
 
-/* line 47, ../sass/_components/_default.scss */
+/* line 46, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -123,30 +122,33 @@ body[data-isVisible="true"] .box-loader {
   border-bottom: 1px solid black;
   box-shadow: 0 0 7px 0px #000;
   z-index: 100;
+  -webkit-app-region: drag;
 }
 
-/* line 14, ../sass/_components/_topFrame.scss */
+/* line 15, ../sass/_components/_topFrame.scss */
 .topFrame_title {
   text-align: center;
   font-size: 18px;
   font-weight: normal;
   margin: 8px 0 0 0;
   letter-spacing: 1px;
+  -webkit-app-region: no-drag;
 }
 
-/* line 23, ../sass/_components/_topFrame.scss */
+/* line 25, ../sass/_components/_topFrame.scss */
 .windowAction,
 .appInfo {
   overflow: hidden;
 }
 
-/* line 27, ../sass/_components/_topFrame.scss */
+/* line 29, ../sass/_components/_topFrame.scss */
 .windowAction {
   float: left;
   margin: 15px 0 0 0;
+  -webkit-app-region: no-drag;
 }
 
-/* line 31, ../sass/_components/_topFrame.scss */
+/* line 34, ../sass/_components/_topFrame.scss */
 .windowAction_item {
   float: left;
   margin: 0 10px;
@@ -156,52 +158,53 @@ body[data-isVisible="true"] .box-loader {
   padding: 2px 4px;
   letter-spacing: 0;
 }
-/* line 40, ../sass/_components/_topFrame.scss */
+/* line 43, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) {
   background: #D96C76;
 }
-/* line 43, ../sass/_components/_topFrame.scss */
+/* line 46, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) .fa {
   position: relative;
   top: -1px;
 }
-/* line 48, ../sass/_components/_topFrame.scss */
+/* line 51, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(2) {
   background: #FDF9C6;
 }
-/* line 51, ../sass/_components/_topFrame.scss */
+/* line 54, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(3) {
   background: #96E1C7;
 }
-/* line 55, ../sass/_components/_topFrame.scss */
+/* line 58, ../sass/_components/_topFrame.scss */
 .windowAction_item .fa {
   cursor: pointer;
   color: #222326;
 }
 
-/* line 61, ../sass/_components/_topFrame.scss */
+/* line 64, ../sass/_components/_topFrame.scss */
 .appInfo {
   float: right;
   margin: 15px 0 0 0;
+  -webkit-app-region: no-drag;
 }
 
-/* line 65, ../sass/_components/_topFrame.scss */
+/* line 69, ../sass/_components/_topFrame.scss */
 .appInfo_item {
   margin: 0 10px;
   float: left;
 }
-/* line 69, ../sass/_components/_topFrame.scss */
+/* line 73, ../sass/_components/_topFrame.scss */
 .appInfo_item a {
   font-size: 14px;
   color: #949599;
   cursor: pointer;
 }
-/* line 75, ../sass/_components/_topFrame.scss */
+/* line 79, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a {
   display: none;
   color: #ff5500;
 }
-/* line 78, ../sass/_components/_topFrame.scss */
+/* line 82, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a.updateAvailable {
   display: block;
 }
