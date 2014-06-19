@@ -8,7 +8,10 @@ module.exports = function (grunt) {
                 mac: true, // We want to build it for mac
                 win: true, // We want to build it for win
                 linux32: false, // We don't need linux32
-                linux64: false // We don't need linux64
+                linux64: false, // We don't need linux64
+                download_url: 'http://www.soundnodeapp.com/build/',
+                mac_icns: './app/soundnode.icns',
+                version: '0.9.2'
             },
             src: [
                 './app/**/*',
