@@ -122,6 +122,7 @@ body[data-isVisible="true"] .box-loader {
   border-bottom: 1px solid black;
   box-shadow: 0 0 7px 0px #000;
   z-index: 100;
+  -webkit-app-region: drag;
 }
 
 /* line 15, ../sass/_components/_topFrame.scss */
@@ -131,21 +132,23 @@ body[data-isVisible="true"] .box-loader {
   font-weight: normal;
   margin: 8px 0 0 0;
   letter-spacing: 1px;
+  -webkit-app-region: none;
 }
 
-/* line 24, ../sass/_components/_topFrame.scss */
+/* line 25, ../sass/_components/_topFrame.scss */
 .windowAction,
 .appInfo {
   overflow: hidden;
 }
 
-/* line 28, ../sass/_components/_topFrame.scss */
+/* line 29, ../sass/_components/_topFrame.scss */
 .windowAction {
   float: left;
   margin: 15px 0 0 0;
+  -webkit-app-region: none;
 }
 
-/* line 32, ../sass/_components/_topFrame.scss */
+/* line 34, ../sass/_components/_topFrame.scss */
 .windowAction_item {
   float: left;
   margin: 0 10px;
@@ -155,52 +158,53 @@ body[data-isVisible="true"] .box-loader {
   padding: 2px 4px;
   letter-spacing: 0;
 }
-/* line 41, ../sass/_components/_topFrame.scss */
+/* line 43, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) {
   background: #D96C76;
 }
-/* line 44, ../sass/_components/_topFrame.scss */
+/* line 46, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(1) .fa {
   position: relative;
   top: -1px;
 }
-/* line 49, ../sass/_components/_topFrame.scss */
+/* line 51, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(2) {
   background: #FDF9C6;
 }
-/* line 52, ../sass/_components/_topFrame.scss */
+/* line 54, ../sass/_components/_topFrame.scss */
 .windowAction_item:nth-child(3) {
   background: #96E1C7;
 }
-/* line 56, ../sass/_components/_topFrame.scss */
+/* line 58, ../sass/_components/_topFrame.scss */
 .windowAction_item .fa {
   cursor: pointer;
   color: #222326;
 }
 
-/* line 62, ../sass/_components/_topFrame.scss */
+/* line 64, ../sass/_components/_topFrame.scss */
 .appInfo {
   float: right;
   margin: 15px 0 0 0;
+  -webkit-app-region: none;
 }
 
-/* line 66, ../sass/_components/_topFrame.scss */
+/* line 69, ../sass/_components/_topFrame.scss */
 .appInfo_item {
   margin: 0 10px;
   float: left;
 }
-/* line 70, ../sass/_components/_topFrame.scss */
+/* line 73, ../sass/_components/_topFrame.scss */
 .appInfo_item a {
   font-size: 14px;
   color: #949599;
   cursor: pointer;
 }
-/* line 76, ../sass/_components/_topFrame.scss */
+/* line 79, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a {
   display: none;
   color: #ff5500;
 }
-/* line 79, ../sass/_components/_topFrame.scss */
+/* line 82, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a.updateAvailable {
   display: block;
 }
