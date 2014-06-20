@@ -69,6 +69,13 @@ li.active {
   }
 }
 
+.isSongPlaying {
+  & .songList_item_song_button.currentSong {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .songList_item_song_user {
   display: inline-block;
   color: $defaultColor;
