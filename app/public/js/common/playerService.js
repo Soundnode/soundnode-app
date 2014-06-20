@@ -81,6 +81,11 @@ app.factory('playerService', function($rootScope) {
      * @method playNewSong
      */
     player.playNewSong = function(currentEl, url, thumbnail, title, user) {
+
+        if ( thumbnail === '' || thumbnail === null ) {
+            thumbnail = 'public/img/logo-short.png';
+        }
+
         this.elPlayer.setAttribute('src', url);
         this.elThumb.setAttribute('src', thumbnail);
         this.elThumb.setAttribute('alt', title);
