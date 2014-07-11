@@ -12,7 +12,7 @@ app.factory('playerService', function($rootScope) {
         if ( el !== undefined || el !== null ) {
             return el;
         } else {
-            console.warn('Something went wrong trying to get current song');
+            return false;
         }
     }
 
@@ -102,7 +102,7 @@ app.factory('playerService', function($rootScope) {
      * @method playSong
      */
     player.playSong = function() {
-        if ( document.querySelector('.currentSong') === null ) {
+        if ( ! getCurrentSong() ) {
             var $els = $('*[song]')
                 , index = Math.floor(Math.random() * $els.length);
 
@@ -172,26 +172,30 @@ app.factory('playerService', function($rootScope) {
             , $currentSong = $( getCurrentSong() )
             , $isLastChild = $($currentSong).closest('li').is(':last-child');
 
-        if ( $currentSong.attr('data-play-list') === 'true' ) {
+        if ( ! getCurrentSong() ) {
+            this.playSong();
+        } else {
+            if ( $currentSong.attr('data-play-list') === 'true' ) {
 
-            $elParent = $currentSong.closest('.songList_item_songs_list_item');
-            $nextSong = $currentSong.closest('.songList_item_songs_list_item').next().find('*[song]');
-
-            if ( ! $isLastChild ) {
-                $nextSong.click();
-            } else {
-                $nextListSong = $currentSong.closest('.songList_item_songs_list').next().find('li:first-child').find('*[song]');
+                $elParent = $currentSong.closest('.songList_item_songs_list_item');
+                $nextSong = $currentSong.closest('.songList_item_songs_list_item').next().find('*[song]');
 
                 if ( ! $isLastChild ) {
-                    $nextListSong.click();
-                }
-            }
-        } else {
-            $elParent = $currentSong.closest('.songList_item')
-            $nextSong = $elParent.next().find('*[song]');
+                    $nextSong.click();
+                } else {
+                    $nextListSong = $currentSong.closest('.songList_item_songs_list').next().find('li:first-child').find('*[song]');
 
-            if ( ! $isLastChild ) {
-                $nextSong.click();
+                    if ( ! $isLastChild ) {
+                        $nextListSong.click();
+                    }
+                }
+            } else {
+                $elParent = $currentSong.closest('.songList_item')
+                $nextSong = $elParent.next().find('*[song]');
+
+                if ( ! $isLastChild ) {
+                    $nextSong.click();
+                }
             }
         }
     };
