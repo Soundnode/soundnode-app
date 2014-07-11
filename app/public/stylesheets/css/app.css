@@ -1,4 +1,3 @@
-@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -589,13 +588,18 @@ li.active .songList_item_song_button {
 
 /* line 79, ../sass/_components/_songlist.scss */
 .songList_item_song_user {
-  display: inline-block;
+  display: block;
   color: #949599;
   font-size: 11px;
   text-transform: uppercase;
 }
 
 /* line 86, ../sass/_components/_songlist.scss */
+.songList_item_song_length {
+  float: right;
+}
+
+/* line 90, ../sass/_components/_songlist.scss */
 .songList_item_song_tit {
   font-size: 20px;
   margin: 5px 0;
@@ -605,25 +609,25 @@ li.active .songList_item_song_button {
   overflow: hidden;
 }
 
-/* line 95, ../sass/_components/_songlist.scss */
+/* line 99, ../sass/_components/_songlist.scss */
 .songList_item_song_details {
   margin-top: 15px;
   font-size: 12px;
 }
-/* line 99, ../sass/_components/_songlist.scss */
+/* line 103, ../sass/_components/_songlist.scss */
 .songList_item_song_details div {
   margin: 0 0 5px 0;
 }
-/* line 103, ../sass/_components/_songlist.scss */
+/* line 107, ../sass/_components/_songlist.scss */
 .songList_item_song_details span {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 107, ../sass/_components/_songlist.scss */
+/* line 111, ../sass/_components/_songlist.scss */
 .songList_item_song_details span:last-child {
   margin-right: 0;
 }
-/* line 114, ../sass/_components/_songlist.scss */
+/* line 118, ../sass/_components/_songlist.scss */
 .songList_item_song_details a > .fa {
   color: #fff;
   display: inline-block;

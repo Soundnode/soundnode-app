@@ -9,7 +9,7 @@
                 data-kind="{{ data.kind }}"
                 ng-if="data.kind == 'playlist' " >
 
-                <h4 class="songList_item_song_user">My <strong>{{ data.title }}</strong> playlist</h4>
+                <h4 class="songList_item_song_user">{{ data.title }} playlist</h4>
 
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item" 
@@ -35,7 +35,7 @@
 
                         <div class="songList_item_container_info">
                             <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
-                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }}</h4>
+                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span></h4>
                         </div>
 
                     </li>

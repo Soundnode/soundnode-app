@@ -77,10 +77,14 @@ li.active {
 }
 
 .songList_item_song_user {
-  display: inline-block;
+  display: block;
   color: $defaultColor;
   font-size: 11px;
   text-transform: uppercase;
+}
+
+.songList_item_song_length {
+  float: right;
 }
 
 .songList_item_song_tit {
