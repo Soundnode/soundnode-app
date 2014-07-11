@@ -32,7 +32,7 @@
                 
                 <section class="songList_item_inner">
                     <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
-                    <h4 class="songList_item_song_user">by: {{ data.origin.user.username }}</h4>
+                    <h4 class="songList_item_song_user">by: {{ data.origin.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (data.origin.duration) }}</span></h4>
 
                     <!--<img src="{{ data.origin.waveform_url }}" alt="{{ data.origin.title }}" class="songList_item_song_waveForm">-->
                     <div class="songList_item_song_details">
