@@ -29,7 +29,7 @@
 
 .windowAction {
   float: left;
-  margin: 15px 0 0 0;
+  margin: 5px 0 0 0;
   -webkit-app-region: no-drag;
 }
 .windowAction_item {
@@ -59,6 +59,24 @@
   & .fa {
     cursor: pointer;
     color: #222326;
+  }
+}
+
+.navigationButton {
+  font-size: 14px;
+  margin-top: 5px;
+
+  & .fa {
+    color: #464647;
+  }
+
+  &.goBack {
+    clear: both;
+    margin-left: 7px
+  }
+
+  &.goForward {
+    
   }
 }
 

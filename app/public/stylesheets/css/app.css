@@ -158,7 +158,7 @@ body[data-isVisible="true"] .box-loader {
 /* line 30, ../sass/_components/_topFrame.scss */
 .windowAction {
   float: left;
-  margin: 15px 0 0 0;
+  margin: 5px 0 0 0;
   -webkit-app-region: no-drag;
 }
 
@@ -196,29 +196,44 @@ body[data-isVisible="true"] .box-loader {
 }
 
 /* line 65, ../sass/_components/_topFrame.scss */
+.navigationButton {
+  font-size: 14px;
+  margin-top: 5px;
+}
+/* line 69, ../sass/_components/_topFrame.scss */
+.navigationButton .fa {
+  color: #464647;
+}
+/* line 73, ../sass/_components/_topFrame.scss */
+.navigationButton.goBack {
+  clear: both;
+  margin-left: 7px;
+}
+
+/* line 83, ../sass/_components/_topFrame.scss */
 .appInfo {
   float: right;
   margin: 15px 0 0 0;
   -webkit-app-region: no-drag;
 }
 
-/* line 70, ../sass/_components/_topFrame.scss */
+/* line 88, ../sass/_components/_topFrame.scss */
 .appInfo_item {
   margin: 0 10px;
   float: left;
 }
-/* line 74, ../sass/_components/_topFrame.scss */
+/* line 92, ../sass/_components/_topFrame.scss */
 .appInfo_item a {
   font-size: 14px;
   color: #949599;
   cursor: pointer;
 }
-/* line 80, ../sass/_components/_topFrame.scss */
+/* line 98, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a {
   display: none;
   color: #ff5500;
 }
-/* line 83, ../sass/_components/_topFrame.scss */
+/* line 101, ../sass/_components/_topFrame.scss */
 .appInfo_item:last-child a.updateAvailable {
   display: block;
 }
