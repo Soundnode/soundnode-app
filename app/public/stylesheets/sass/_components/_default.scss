@@ -43,4 +43,19 @@ h6 {
   color: #fff;
 }
 
-::-webkit-scrollbar { width: 0 !important }
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #222326;
+}
+
+::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #222326;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #333;
+}
