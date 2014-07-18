@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AppCtrl', function ($scope) {
+app.controller('AppCtrl', function ($scope, $window, $log) {
 
     $scope.showBigArtwork = function (img) {
         var newArtwork;
@@ -18,5 +18,13 @@ app.controller('AppCtrl', function ($scope) {
             , seconds = ((duration % 60000) / 1000).toFixed(0);
         
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    $scope.goBack = function() {
+        $window.history.back();
+    }
+
+    $scope.goForward = function() {
+        $window.history.forward();
     }
 });
