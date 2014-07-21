@@ -1,3 +1,5 @@
+'use strict'
+
 app.directive('openExternal', function () {
     return {
         restrict: 'A',

@@ -74,12 +74,15 @@
 
 .player_prevSong,
 .player_play-pause,
-.player_nextSong{
+.player_nextSong {
   display: block;
   float: left;
   width: 49px;
   overflow: hidden;
   margin: 0 5px;
   text-align: center;
-  cursor: pointer;
+  
+  & .fa {
+    cursor: pointer;
+  }
 }
