@@ -115,10 +115,27 @@ li.active {
 
   & a {
 
+    &.clicked {
+      -webkit-animation: heartBeat .1s normal;
+    }
+
     & > .fa {
       color: #fff;
       display: inline-block;
       margin: 0 5px 0 0;
+      cursor: pointer;
     }
+  }
+}
+
+@-webkit-keyframes heartBeat {
+  0%   { 
+    font-size: 12px;
+  }
+  50% { 
+    font-size: 15px;
+  }
+  100% { 
+    font-size: 12px;
   }
 }

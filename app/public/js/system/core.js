@@ -11,7 +11,7 @@ var elemIframe = document.getElementById('elIframe');
  */
 
 // Store the GUI window
-appGUI.getGUI = gui.Window.get();
+// appGUI.getGUI = gui.Window.get();
 
 // close the App
 appGUI.close = function() {
@@ -37,7 +37,7 @@ appGUI.openDevTools = function() {
     guiWin.showDevTools();
 }
 
-// appGUI.openDevTools();
+appGUI.openDevTools();
 
 /**
  * Responsible to enable all UI frame actions

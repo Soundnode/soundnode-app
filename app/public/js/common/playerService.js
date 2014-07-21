@@ -1,3 +1,5 @@
+'use strict'
+
 app.factory('playerService', function($rootScope) {
 
     $rootScope.isSongPlaying = false;
