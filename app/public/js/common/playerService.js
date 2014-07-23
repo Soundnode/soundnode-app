@@ -251,5 +251,13 @@ app.factory('playerService', function($rootScope) {
 
     });
 
+    /**
+     * Responsible to attach event click on
+     * song progress bar
+     */
+    // $(player.elPlayerProgress).off().on('click', function() {
+    //     $(this).position().offset();
+    // });
+
     return player;
 });
