@@ -1,10 +1,12 @@
 <div class="tracksView">
     <h1> {{ title }}</h1>
+    
+    <p class="noData" ng-if="!isLoading"><strong>No tracks on your user account.</strong></p>
 
-    <p ng-hide="display" class="noData"><strong>No tracks on your user account.</strong></p>
+    <div ng-include="'views/partials/loading.html'"></div>
 
     <!-- Song list wrapper -->
-    <div class="tracksView_inner" ng-show="display">
+    <div class="tracksView_inner" >
         <ul class="songList"
             infinite-scroll='loadMore()'
             infinite-scroll-distance='0'

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AppCtrl', function ($scope, $window, $log) {
+app.controller('AppCtrl', function ($scope, $window, $log, $rootScope) {
 
     $scope.showBigArtwork = function (img) {
         var newArtwork;

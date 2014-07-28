@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('StreamCtrl', function ($scope, SCapiService) {
+app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/activities'
         , params = 'limit=33';
 
@@ -13,6 +13,8 @@ app.controller('StreamCtrl', function ($scope, SCapiService) {
                     $scope.data = data.collection;
                 }, function(error) {
                     console.log('error', error);
+                }).finally(function() {
+                    $rootScope.isLoading = false;
                 });
 
     $scope.loadMore = function() {
@@ -29,6 +31,8 @@ app.controller('StreamCtrl', function ($scope, SCapiService) {
                         $scope.busy = false;
                     }, function(error) {
                         console.log('error', error);
+                    }).finally(function(){
+                        $rootScope.isLoading = false;
                     });
     };
 

@@ -251,5 +251,19 @@ app.factory('playerService', function($rootScope) {
 
     });
 
+    /**
+     * Responsible to add scrubbing
+     * song progress bar
+     */
+    $(player.elPlayerProgress).parent().off().on('click', function(e) {
+        var percent = ( e.offsetX / $(this).width() )
+            , duration = player.elPlayer.duration
+            , seek = percent * duration;
+
+        if ( $rootScope.isSongPlaying ) {
+            player.elPlayer.currentTime = parseInt(seek, 10)
+        }
+    });
+
     return player;
 });
