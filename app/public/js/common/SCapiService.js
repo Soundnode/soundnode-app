@@ -1,6 +1,6 @@
 'use strict'
 
-app.service('SCapiService', function($http, $window, $q, $log, $state, $stateParams) {
+app.service('SCapiService', function($http, $window, $q, $log, $state, $stateParams, $rootScope) {
 
     /**
      * Responsible to store next url for pagination request
@@ -8,10 +8,21 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      */
     this.next_page = '';
 
+    /**
+     * Responsible to set loading component
+     * when a network method is happening
+     * @method isLoading
+     */
+    this.isLoading = function() {
+        $rootScope.isLoading = true;
+    };
+
     this.get = function(endpoint, params) {
 
         var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken
             , that = this;
+
+        this.isLoading();
 
         return $http.get(url)
                     .then(function(response) {
@@ -41,6 +52,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.next_page + '&oauth_token=' + $window.scAccessToken
             , that = this;
 
+        this.isLoading();
+
        return $http.get(url)
                     .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -67,6 +80,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
             , that = this;
 
+        this.isLoading();
+
        return $http.put(url)
                     .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -89,6 +104,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.deleteFavorite = function(userId, songId) {
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
             , that = this;
+
+        this.isLoading();
 
        return $http.delete(url)
                     .then(function(response) {

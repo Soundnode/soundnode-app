@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('FavoritesCtrl', function ($scope, SCapiService) {
+app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/favorites'
         , params = '';
 
@@ -13,6 +13,8 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService) {
                     $scope.data = data;
                 }, function(error) {
                     console.log('error', error);
+                }).finally(function() {
+                    $rootScope.isLoading = false;
                 });
 
     $scope.loadMore = function() {
@@ -29,6 +31,8 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService) {
                 $scope.busy = false;
             }, function(error) {
                 console.log('error', error);
+            }).finally(function(){
+                $rootScope.isLoading = false;
             });
     };
 

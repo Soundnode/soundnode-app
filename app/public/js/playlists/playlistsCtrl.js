@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService) {
+app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -12,6 +12,8 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService) {
                     $scope.data = data;
                 }, function(error) {
                     console.log('error', error);
+                }).finally(function(){
+                    $rootScope.isLoading = false;
                 });
 
     $scope.checkForPlaceholder = function (thumb) {
