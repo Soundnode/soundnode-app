@@ -252,12 +252,18 @@ app.factory('playerService', function($rootScope) {
     });
 
     /**
-     * Responsible to attach event click on
+     * Responsible to add scrubbing
      * song progress bar
      */
-    // $(player.elPlayerProgress).off().on('click', function() {
-    //     $(this).position().offset();
-    // });
+    $(player.elPlayerProgress).parent().off().on('click', function(e) {
+        var percent = ( e.offsetX / $(this).width() )
+            , duration = player.elPlayer.duration
+            , seek = percent * duration;
+
+        if ( $rootScope.isSongPlaying ) {
+            player.elPlayer.currentTime = parseInt(seek, 10)
+        }
+    });
 
     return player;
 });
