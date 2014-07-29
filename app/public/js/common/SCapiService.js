@@ -80,8 +80,6 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
             , that = this;
 
-        this.isLoading();
-
        return $http.put(url)
                     .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -104,8 +102,6 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.deleteFavorite = function(userId, songId) {
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
             , that = this;
-
-        this.isLoading();
 
        return $http.delete(url)
                     .then(function(response) {
