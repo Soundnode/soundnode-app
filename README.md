@@ -20,16 +20,21 @@ Play/Pause `command+return` or `space`, Prev `command+left`, Next `command+right
 - Back/Forward navigation
 - Automatic update available notification
 
+## Status
+[Status issue](https://github.com/Soundnode/soundnode-app/issues/97)
+
 ## How to contribute
 
-First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report.
+First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report if possible.
 
 If you want to develop, you can look at the issues, specially the bugs and then fix them.
-Here's a [list of feature](https://github.com/Soundnode/soundnode-app/issues?state=open).
+Here's a [list of issues](https://github.com/Soundnode/soundnode-app/issues?state=open).
 
 Please follow the [contributions guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
 
 ## Development
+
+If you started work on any fix/new feature please notify what you are working on [status issue](https://github.com/Soundnode/soundnode-app/issues/97)
 
 Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
 
