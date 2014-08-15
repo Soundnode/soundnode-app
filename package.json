@@ -7,12 +7,13 @@
   },
   "author": "",
   "license": "GNU",
-  "dependencies": {
-  },
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-node-webkit-builder": "^0.1.21",
     "grunt-contrib-compass": "^0.7.2",
     "grunt-contrib-watch": "^0.6.1"
+  },
+  "dependencies": {
+    "download": "^0.1.18"
   }
 }
