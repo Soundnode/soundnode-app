@@ -1,4 +1,3 @@
-@charset "utf-8";
 /* ==========================================================================
 @Config
 ========================================================================== */
@@ -672,19 +671,33 @@ li.active .songList_item_song_button {
   margin: 0 5px 0 0;
   cursor: pointer;
 }
+/* line 130, ../sass/_components/_songlist.scss */
+.songList_item_song_details .downloadSong {
+  position: relative;
+}
+/* line 133, ../sass/_components/_songlist.scss */
+.songList_item_song_details .downloadSong input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
 
 @-webkit-keyframes heartBeat {
-  /* line 132, ../sass/_components/_songlist.scss */
+  /* line 146, ../sass/_components/_songlist.scss */
   0% {
     font-size: 12px;
   }
 
-  /* line 135, ../sass/_components/_songlist.scss */
+  /* line 149, ../sass/_components/_songlist.scss */
   50% {
     font-size: 15px;
   }
 
-  /* line 138, ../sass/_components/_songlist.scss */
+  /* line 152, ../sass/_components/_songlist.scss */
   100% {
     font-size: 12px;
   }

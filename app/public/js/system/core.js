@@ -1,7 +1,9 @@
 var gui = require('nw.gui')
     , uiFrame = {}
     , OAuthVerification = {}
-    , appGUI = {};
+    , OAuthVerificationId
+    , appGUI = {}
+    , appSystem = {};
 
 // Iframe hosting the OAuth
 var elemIframe = document.getElementById('elIframe');
@@ -37,7 +39,7 @@ appGUI.openDevTools = function() {
     guiWin.showDevTools();
 }
 
-// appGUI.openDevTools();
+appGUI.openDevTools();
 
 /**
  * Responsible to enable all UI frame actions
@@ -75,33 +77,43 @@ uiFrame.addGUIeventHandlers = function() {
  */
 OAuthVerification.init = function() {
     var that = this;
+    var popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=100,height=100');
 
-    elemIframe.onload = function() {
-        OAuthVerification = window.setInterval( that.verification, 1500);
-    }
+    OAuthVerificationId = window.setInterval(function() {
+        that.verification(popUp);
+    }, 1500);
 }
 
-OAuthVerification.verification = function() {
-    var iframeDocument = elemIframe.contentDocument
-        , elIframeBody = iframeDocument.body
-        , isOAuthDone = elIframeBody.getAttribute('data-isOAuth-done');
+OAuthVerification.verification = function(popUp) {
+    var isOAuthDone = popUp.document.body.getAttribute('data-isOAuth-done');
 
     console.log('verification called');
 
     if (isOAuthDone === 'true') {
         // Expose Soundcloud API to node-webkit object window
-        window.SC = elemIframe.contentWindow.SC;
-        window.scAccessToken = window.SC.accessToken();
-        window.scClientId = window.SC.options.client_id;
+        window.SC = popUp.SC;
+        window.scAccessToken = popUp.SC.accessToken();
+        window.scClientId = popUp.SC.options.client_id;
+
+        // close popUp
+        popUp.close();
         // stop verification
-        window.clearInterval(OAuthVerification);
+        window.clearInterval(OAuthVerificationId);
 
         // Start the App
         angular.bootstrap(document, ['App']);
         document.body.setAttribute('data-isVisible', 'true');
 
-        console.log('verification done')
+        console.log('verification done');
     }
+}
+
+/**
+ * Responsible to system events
+ */
+appSystem.saveSong = function(songTitle, songUrl, folderPath) {
+    var url = songUrl + '?client_id=' + window.scClientId + + '&oauth_token=' + window.scAccessToken
+        , path = '.' + folderPath + '/' + songTitle;
 }
 
 // Initialize all

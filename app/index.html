@@ -24,12 +24,10 @@
     </div>
     <!-- loading gif / end -->
     
-    <!-- iframe - used to authenticate user -->
-    <iframe id="elIframe" src="http://sc-redirect.herokuapp.com/" frameborder="0" width="0" height="0" nwdisable nwfaketop></iframe>
-    <!-- iframe - used to authenticate user / end -->
-    
     <!-- UI App -->
     <div id="app" class="ui_app" ng-class="{ isSongPlaying: isSongPlaying }">
+
+        <audio controls src=""></audio>
 
         <header class="topFrame">
             <ul class="windowAction">
@@ -201,6 +199,7 @@
     <script src="public/js/common/songDirective.js"></script>
     <script src="public/js/common/openExternalLinkDirective.js"></script>
     <script src="public/js/common/favoriteSongDirective.js"></script>
+    <script src="public/js/common/downloadSongDirective.js"></script>
 
 
 </body>
