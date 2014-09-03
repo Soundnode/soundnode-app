@@ -44,6 +44,18 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         }
     });
 
+    var stop = new gui.Shortcut({
+        key: 'MediaStop',
+        active: function() {
+            if ( $rootScope.isSongPlaying ) {
+                playerService.pauseSong();
+            }
+        },
+        failed: function() {
+            // nothing here
+        }
+    });
+
     var prevTrack = new gui.Shortcut({
         key: 'MediaPrevTrack',
         active: function() {
@@ -68,7 +80,8 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         }
     });
 
-    gui.App.registerGlobalHotKey(playPause)
+    gui.App.registerGlobalHotKey(playPause);
+    gui.App.registerGlobalHotKey(stop);
     gui.App.registerGlobalHotKey(prevTrack);
     gui.App.registerGlobalHotKey(nextTrack);
 
