@@ -203,26 +203,6 @@ app.factory('playerService', function($rootScope) {
     };
 
     /**
-     * Responsible to turn the volume up
-     * @method volumeUp
-     */
-    player.volumeUp = function() {
-        if ( this.elPlayer.volume < 1 ) {
-            this.elPlayer.volume += .1;
-        }
-    };
-
-    /**
-     * Responsible to turn the volume down
-     * @method volumeDown
-     */
-    player.volumeDown = function() {
-        if ( this.elPlayer.volume > 0 ) {
-            this.elPlayer.volume -= .1;
-        }
-    };
-
-    /**
      * Add event listener "on ended" to player
      */
     $(player.elPlayer).off().on('ended', function() {

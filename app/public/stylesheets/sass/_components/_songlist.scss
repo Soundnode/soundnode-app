@@ -69,7 +69,7 @@ li.active {
   }
 }
 
-.isSongPlaying {
+.songPlaying {
   & .songList_item_song_button.currentSong {
     -webkit-transform: scale(1);
     opacity: 1;

@@ -23,7 +23,7 @@ body[data-isVisible="true"] {
   }
 }
 
-.isSongPlaying {
+.songPlaying {
   & .currentSong {
     & .fa:first-child {
       display: none;
