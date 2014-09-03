@@ -1,6 +1,6 @@
 "use strict";
 
-app.directive('favoriteSong', function($rootScope, $log, SCapiService) {
+app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout) {
     return {
         restrict: 'A',
         link: function($scope, elem, attrs) {
@@ -12,6 +12,10 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService) {
                 songId = attrs.songId;
 
                 this.classList.add('clicked');
+
+                $timeout(function() {
+                    this.classList.remove('clicked');
+                }, 1000);
 
                 if ( attrs.favoriteAction === 'save' ) {
                     SCapiService.saveFavorite(userId, songId);

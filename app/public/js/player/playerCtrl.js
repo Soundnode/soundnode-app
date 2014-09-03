@@ -2,7 +2,9 @@
 
 app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys) {
     $scope.imgPath = 'public/img/temp-playing.png';
-    
+
+    var gui = require('nw.gui');
+
     $scope.playPause = function($event) {
         if ( $rootScope.isSongPlaying ) {
             playerService.pauseSong();
@@ -13,35 +15,70 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
 
     $scope.prevSong = function($event) {
         if ( $rootScope.isSongPlaying ) {
-             playerService.playPrevSong();
+            playerService.playPrevSong();
         }
     };
 
     $scope.nextSong = function($event) {
         if ( $rootScope.isSongPlaying ) {
-             playerService.playNextSong();
+            playerService.playNextSong();
         }
     };
 
-    hotkeys.add({
-        combo: 'command+right',
-        description: 'Next song',
-        callback: function() {
+
+    //
+    // Add native media shortcuts
+    //
+
+    var playPause = new gui.Shortcut({
+        key: 'MediaPlayPause',
+        active: function() {
             if ( $rootScope.isSongPlaying ) {
-                playerService.playNextSong();
+                playerService.pauseSong();
+            } else {
+                playerService.playSong();
             }
+        },
+        failed: function() {
+            // nothing here
         }
     });
 
-    hotkeys.add({
-        combo: 'command+left',
-        description: 'Prev song',
-        callback: function() {
+    var prevTrack = new gui.Shortcut({
+        key: 'MediaPrevTrack',
+        active: function() {
             if ( $rootScope.isSongPlaying ) {
                 playerService.playPrevSong();
             }
+        },
+        failed: function() {
+            // nothing here
         }
     });
+
+    var nextTrack = new gui.Shortcut({
+        key: 'MediaNextTrack',
+        active: function() {
+            if ( $rootScope.isSongPlaying ) {
+                playerService.playNextSong();
+            }
+        },
+        failed: function() {
+            // nothing here
+        }
+    });
+
+    gui.App.registerGlobalHotKey(playPause)
+    gui.App.registerGlobalHotKey(prevTrack);
+    gui.App.registerGlobalHotKey(nextTrack);
+
+//    function unregister() {
+//        gui.App.unregisterGlobalHotKey(shortcut);
+//    }
+
+    //
+    // Add not native shortcuts
+    //
 
     hotkeys.add({
         combo: 'space',
@@ -69,20 +106,22 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     });
 
     hotkeys.add({
-        combo: 'command+up',
-        description: 'Volume up',
-        callback: function(event) {
-            event.preventDefault();
-            playerService.volumeUp();
+        combo: 'command+right',
+        description: 'Next song',
+        callback: function() {
+            if ( $rootScope.isSongPlaying ) {
+                playerService.playNextSong();
+            }
         }
     });
 
     hotkeys.add({
-        combo: 'command+down',
-        description: 'Volume down',
-        callback: function(event) {
-            event.preventDefault();
-            playerService.volumeDown();
+        combo: 'command+left',
+        description: 'Prev song',
+        callback: function() {
+            if ( $rootScope.isSongPlaying ) {
+                playerService.playPrevSong();
+            }
         }
     });
 
