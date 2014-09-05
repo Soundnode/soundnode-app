@@ -9,7 +9,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout)
 
             elem.bind('click', function() {
                 var that = this;
-                
+
                 userId = $rootScope.userId;
                 songId = attrs.songId;
 

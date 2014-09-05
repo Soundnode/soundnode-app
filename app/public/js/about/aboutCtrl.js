@@ -1,14 +1,22 @@
 'use strict';
 
-app.controller('AboutCtrl', function ($scope, $http) {
+app.controller('AboutCtrl', function ($scope, $http, $rootScope) {
     var url = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html'
         , config = { headers:  {
                 'Accept': 'application/vnd.github.v3.raw+json'
             }
         };
 
-    $scope.title = 'About';
+    $rootScope.isAboutVisible = false;
     $scope.content = '';
+
+    $scope.toggleAboutView = function() {
+        if ( $rootScope.isAboutVisible ) {
+            $rootScope.isAboutVisible = false;
+        } else {
+            $rootScope.isAboutVisible = true;
+        }
+    }
 
     $http.get(url, config)
         .success(function (data) {

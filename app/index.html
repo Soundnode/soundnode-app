@@ -27,137 +27,21 @@
     <!-- UI App -->
     <div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
 
-        <header class="topFrame">
-            <ul class="windowAction">
-                <li class="windowAction_item " id="closeApp">
-                    <i class="fa fa-times"></i>
-                </li>
-                <li class="windowAction_item " id="minimizeApp">
-                    <i class="fa fa-minus"></i>
-                </li>
-                <li class="windowAction_item " id="expandApp">
-                    <i class="fa fa-plus"></i>
-                </li>
-                <li class="windowAction_item navigationButton goBack" ng-click="goBack()">
-                    <i class="fa fa-chevron-left"></i>
-                </li>
-                <li class="windowAction_item navigationButton goForward" ng-click="goForward()">
-                    <i class="fa fa-chevron-right"></i>
-                </li>
-            </ul>
-
-            <ul class="appInfo" ng-controller="UpdaterCtrl">
-                <li class="appInfo_item ">
-                    <a ui-sref="about">about</a>
-                </li>
-                <li class="appInfo_item">
-                    <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
-                </li>
-            </ul>
-
-            <h1 class="topFrame_title">
-                <img src="public/img/logo.70.png">
-            </h1>
-        </header>
+        <!-- header -->
+        <div ng-include="'includes/header.html'"></div>
+        <!-- header / end -->
         
         <!-- aside -->
-        <aside class="aside">
-
-            <!-- header -->
-            <header class="header">
-                <!-- user -->
-                <div class="user" ng-controller="UserCtrl">
-                    <img src="{{ userThumb }}" alt="{{ name }}" class="user_thumb">
-                    <div class="user_inner">
-                        <span class="user_name">{{ name }}</span>
-                        <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
-                    </div>
-                </div>
-                <!-- user / end -->
-            </header>
-            <!-- header / end -->
-
-            <!-- search -->
-            <div class="search" ng-controller="SearchInputCtrl">
-                <form ng-submit="onSubmit(keyword)">
-                    <input type="search" placeholder="Search" id="search" class="search_field" ng-model="keyword">
-                    <input type="submit" id="submit" value="Submit" class="searchButton" />
-                </form>
-            </div>
-            <!-- search / end -->
-
-            <!-- main nav -->
-            <nav class="mainNav">
-                <h2 class="ui_title">Main</h2>
-                <ul class="mainNav_nav">
-                    <li class="mainNav_item">
-                        <a class="mainNav_button" ui-sref="stream">
-                            <i class="fa fa-cloud"></i>
-                            <span class="mainNav_tit">Stream</span>
-                        </a>
-                    </li>
-                    <li class="mainNav_item">
-                        <a class="mainNav_button" ui-sref="favorites">
-                            <i class="fa fa-heart"></i>
-                            <span class="mainNav_tit">Likes</span>
-                        </a>
-                    </li>
-                    <li class="mainNav_item">
-                        <a class="mainNav_button" ui-sref="tracks">
-                            <i class="fa fa-tags"></i>
-                            <span class="mainNav_tit">Tracks</span>
-                        </a>
-                    </li>
-                    <li class="mainNav_item">
-                        <a class="mainNav_button" ui-sref="playlists">
-                            <i class="fa fa-bookmark"></i>
-                            <span class="mainNav_tit">Playlists</span>
-                        </a>
-                    </li>
-                    <!--<li class="mainNav_item">-->
-                        <!--<a class="mainNav_button" ui-sref="following">-->
-                            <!--<i class="fa fa-users"></i>-->
-                            <!--<span class="mainNav_tit">Following</span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                </ul>
-            </nav>
-            <!-- main nav / end -->
-
-            <!-- now player -->
-            <div class="player" ng-controller="PlayerCtrl">
-                <div class="player_inner">
-                    <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb">
-                    <h2 id="playerTitle" class="player_title"></h2>
-                    <h4 id="playerUser" class="player_user"></h4>
-                    <div class="player_controls">
-                        <span class="player_timeLeft" id="player-timeleft">0</span>
-                        <span class="player_progress">
-                          <span class="player_progress_bar" id="player-progress"></span>
-                        </span>
-                        <!-- player buttons -->
-                        <span class="player_prevSong" ng-click="prevSong($event)">
-                            <i class="fa fa-fast-backward"></i>
-                        </span>
-                        <span class="player_play-pause" ng-click="playPause($event)">
-                            <i class="fa fa-play"></i>
-                            <i class="fa fa-pause" ></i>
-                        </span>
-                        <span class="player_nextSong" ng-click="nextSong($event)">
-                            <i class="fa fa-fast-forward"></i>
-                        </span>
-                    </div>
-                    <audio id="player" controls src="" class="player_currentSong"></audio>
-                </div>
-            </div>
-            <!-- now player / end -->
-
-        </aside>
+        <div ng-include="'includes/aside.html'"></div>
         <!-- aside / end -->
         
         <!-- main view -->
         <div class="mainView" ui-view></div>
         <!-- main view / end -->
+
+        <!-- about overlay -->
+        <div id="aboutView" ng-include="'views/about/about.html'" ng-show="isAboutVisible" ng-controller="AboutCtrl"></div>
+        <!-- about overlay / end -->
 
     </div>
     <!-- UI App / end -->

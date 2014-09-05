@@ -1,5 +1,7 @@
 <div class="aboutView">
-    <h1> {{ title }}</h1>
+    <a ng-click="toggleAboutView()" class="aboutView_closeButton">
+        <i class="fa fa-times"></i>
+    </a>
     <div class="aboutView_content" ng-bind-html="content">
     </div>
 </div>

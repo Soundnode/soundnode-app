@@ -64,6 +64,21 @@ h6 {
   background-color: #333;
 }
 
+/*
+* About View
+*/
+#aboutView {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 500px;
+  margin-top: -250px;
+  margin-left: -400px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+}
+
 /* ==========================================================================
 @App state
 ========================================================================== */
@@ -217,6 +232,7 @@ body[data-isVisible="true"] .box-loader {
   padding-top: 50px;
   background: #121314;
   overflow-x: hidden;
+  position: relative;
 }
 
 .fa {
@@ -444,6 +460,15 @@ body[data-isVisible="true"] .box-loader {
 }
 .mainView > div > h1 {
   margin: 10px 0 30px;
+}
+
+.aboutView_closeButton {
+  display: block;
+  text-align: right;
+}
+.aboutView_closeButton .fa {
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .aboutView_content {

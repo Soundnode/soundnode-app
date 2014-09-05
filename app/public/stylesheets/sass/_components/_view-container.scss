@@ -14,6 +14,16 @@
   }
 }
 
+
+.aboutView_closeButton {
+  display: block;
+  text-align: right;
+
+  & .fa {
+    font-size: 22px;
+    cursor: pointer;
+  }
+}
 .aboutView_content {
   font-size: 16px;
 
