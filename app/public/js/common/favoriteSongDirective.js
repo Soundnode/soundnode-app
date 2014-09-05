@@ -8,18 +8,20 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout)
                 , songId;
 
             elem.bind('click', function() {
+                var that = this;
+                
                 userId = $rootScope.userId;
                 songId = attrs.songId;
 
                 this.classList.add('clicked');
 
                 $timeout(function() {
-                    this.classList.remove('clicked');
+                    that.classList.remove('clicked');
                 }, 1000);
 
                 if ( attrs.favoriteAction === 'save' ) {
                     SCapiService.saveFavorite(userId, songId);
-                } 
+                }
 
                 if ( attrs.favoriteAction === 'delete' ) {
                     SCapiService.deleteFavorite(userId, songId);
