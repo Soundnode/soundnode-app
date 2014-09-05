@@ -83,6 +83,7 @@ app.factory('playerService', function($rootScope) {
      * @method playNewSong
      */
     player.playNewSong = function(currentEl, url, thumbnail, title, user) {
+        var songNotification;
 
         if ( thumbnail === '' || thumbnail === null ) {
             thumbnail = 'public/img/logo-short.png';
@@ -95,6 +96,11 @@ app.factory('playerService', function($rootScope) {
         this.elTitle.setAttribute('title', title);
         this.elUser.innerHTML = user;
         this.elPlayer.play();
+
+        songNotification = new Notification(title, {
+            body: user,
+            icon: thumbnail
+        });
 
         $rootScope.isSongPlaying = true;
     };
