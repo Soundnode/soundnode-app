@@ -9,9 +9,10 @@
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}"
-                ng-if="data.kind == 'playlist' " >
+                ng-if="data.kind == 'playlist' " 
+                data-playlist-hidden="true" >
 
-                <h4 class="songList_item_song_user">{{ data.title }} playlist</h4>
+                <h4 class="songList_item_song_user" collapsible>{{ data.title }} playlist - <span>show</span></h4>
 
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item" 

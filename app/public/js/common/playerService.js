@@ -145,17 +145,14 @@ app.factory('playerService', function($rootScope) {
 
         if ( $currentSong.attr('data-play-list') === 'true' ) {
 
-            $elParent = $currentSong.closest('.songList_item_songs_list_item');
+            $elParent = $currentSong.closest('.songList_item');
             $prevSong = $currentSong.closest('.songList_item_songs_list_item').prev().find('*[song]');
 
-            if ( ! $isLastChild ) {
+            if ( ! $isFirstChild ) {
                 $prevSong.click();
             } else {
-                $prevListSong = $currentSong.closest('.songList_item_songs_list').prev().find('li:first-child').find('*[song]');
-
-                if ( ! $isFirstChild ) {
-                    $prevListSong.click();
-                }
+                $prevListSong = $elParent.prev().find('li:first-child').find('*[song]');
+                $prevListSong.click();
             }
         } else {
             $elParent = $currentSong.closest('.songList_item')
@@ -185,17 +182,14 @@ app.factory('playerService', function($rootScope) {
         } else {
             if ( $currentSong.attr('data-play-list') === 'true' ) {
 
-                $elParent = $currentSong.closest('.songList_item_songs_list_item');
+                $elParent = $currentSong.closest('.songList_item');
                 $nextSong = $currentSong.closest('.songList_item_songs_list_item').next().find('*[song]');
 
                 if ( ! $isLastChild ) {
                     $nextSong.click();
                 } else {
-                    $nextListSong = $currentSong.closest('.songList_item_songs_list').next().find('li:first-child').find('*[song]');
-
-                    if ( ! $isLastChild ) {
-                        $nextListSong.click();
-                    }
+                    $nextListSong = $elParent.next().find('li:first-child').find('*[song]');
+                    $nextListSong.click();
                 }
             } else {
                 $elParent = $currentSong.closest('.songList_item')
