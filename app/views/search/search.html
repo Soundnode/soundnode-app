@@ -10,7 +10,7 @@
                 ng-class="{ active: hover }"
                 ng-mouseover="hover = true"
                 ng-mouseleave="hover = false"
-                ng-if="data.kind == 'track' " >
+                ng-if="data.kind == 'track' && data.streamable" >
 
                 <div class="songList_item_container_artwork">
                     <span class="songList_item_song_button" 
