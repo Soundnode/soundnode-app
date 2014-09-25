@@ -12,13 +12,14 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 ## Features
 
-- Search
-- Keyboard shortcuts (not native for this release)
-Play/Pause `command+return` or `space`, Prev `command+left`, Next `command+right`, Volume down `command+down`, Volume up `command+up`, Cheat-sheet `shift+?` (ps: use ctrl for Windows/PC user)
-- Listen to songs from your Streams, Likes, Tracks or Playlists
-- Like songs to your "like list"
+- No need to install
+- Native media keyboard shortcuts
+- Desktop song notification
 - Back/Forward navigation
-- Automatic update available notification
+- Listen to songs from your Streams, Likes, Tracks or Playlists
+- Save songs to your Like playlist
+- Search for songs
+- Automatic notification for update
 
 ## Status
 [Status issue](https://github.com/Soundnode/soundnode-app/issues/97)
