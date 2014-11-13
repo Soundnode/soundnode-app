@@ -48,7 +48,6 @@ See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Dev
 
 - Windows
 - Mac
-- 
 
 ## Author
 
