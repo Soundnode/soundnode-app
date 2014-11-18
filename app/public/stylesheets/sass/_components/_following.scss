@@ -1,0 +1,18 @@
+.following {}
+
+.following_item {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin: 0 5px 60px 5px;
+  width: 300px;
+  height: 350px;
+
+  & .songList_item_box:first-child {
+    margin-bottom: 20px;
+  }
+
+  & .songList_item_box:last-child {
+    margin: 10px 0 0 0;
+  }
+}

@@ -49,6 +49,10 @@ See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Dev
 - Windows
 - Mac
 
+## Author
+
+- [Michael Lancaster](https://github.com/weblancaster)
+
 ## License
 
 GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 [license](https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md).

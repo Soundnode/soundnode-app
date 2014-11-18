@@ -1,3 +1,42 @@
 <div class="followingView">
     <h1> {{ title }}</h1>
+
+
+
+    <!-- Song list wrapper -->
+    <div class="favoritesView_inner">
+        <ul class="following"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-disabled='{{ busy }}'
+            infinite-scroll-immediate-check='false' >
+
+            <li class="following_item" ng-repeat="data in data"
+                ng-class="{ active: hover }"
+                ng-mouseover="hover = true"
+                ng-mouseleave="hover = false">
+
+                <div class="songList_item_container_artwork">
+                    <a ui-sref="profile({id: {{data.id}}})">
+                    <span class="songList_item_song_button"
+                          >
+
+                        <i class="fa fa-arrow-circle-o-right"></i>
+                        <i class="fa fa-arrow-circle-o-right"></i>
+                    </span>
+                    <img src="{{ showBigArtwork (data.avatar_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
+                    </a>
+                </div>
+
+                <section class="songList_item_inner">
+                    <h3 class="songList_item_song_tit">{{ data.username }}</h3>
+                    <h4 class="songList_item_song_user">Tracks: {{ data.track_count }}</h4>
+                </section>
+
+            </li>
+        </ul>
+    </div>
+
+    <div ng-include="'views/partials/loading.html'"></div>
+
 </div>

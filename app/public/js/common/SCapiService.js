@@ -73,6 +73,120 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
     /**
+     * Responsible to request next page data and save new next_page url
+     * @returns {Object} data
+     */
+    this.newGetNextPage = function(next_url) {
+        var url = next_url + '&oauth_token=' + $window.scAccessToken + '&linked_partitioning=1', that = this;
+
+        this.isLoading();
+
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    //great success response
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong;
+                return $q.reject(response.data);
+            });
+    };
+
+
+    /**
+     * Responsible to get the followed users.
+     * @return {[object]} data response
+     */
+    this.getFollowing = function () {
+        this.isLoading();
+
+        var url = 'https://api.soundcloud.com/' + 'me/followings' + '.json?' + 'limit=200' + '&oauth_token=' + $window.scAccessToken
+            + '&linked_partitioning=1', that = this;
+
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        console.log("response.data.next_href", response.data.next_href);
+                        that.next_page = response.data.next_href;
+                        console.log("next page setter", that.next_page);
+                    } else {
+                        that.next_page = '';
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    }
+
+    /**
+     * Responsible to get profile data, i.e, user name, description etc.
+     * @return {[object]} data response
+     */
+    this.getProfile = function(userId) {
+        var url = 'https://api.soundcloud.com/users/' + userId + '.json?&oauth_token=' + $window.scAccessToken,
+            that = this;
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    }
+                    console.log("profile response data", response.data);
+                    return response.data;
+                } else {
+                    // invalid response
+                    console.log("profile invalid response data", response.data);
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong
+                console.log("profile wrong response data", response.data);
+                return $q.reject(response.data);
+            });
+    };
+
+    /**
+     * Responsible to get profile tracks.
+     * @return {[object]} data response
+     */
+    this.getProfileTracks = function(userId) {
+        var url = 'https://api.soundcloud.com/users/' + userId  + '/tracks.json?' + 'limit=15' + '&oauth_token=' + $window.scAccessToken
+            + '&linked_partitioning=1', that = this;
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    }
+                    console.log("profile tracks data", response.data);
+                    return response.data;
+                } else {
+                    // invalid response
+                    console.log("profile invalid response data", response.data);
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong
+                console.log("profile wrong response data", response.data);
+                return $q.reject(response.data);
+            });
+    };
+
+    /**
      * Responsible to save song to SC favorites
      * @return {[object]} data response
      */

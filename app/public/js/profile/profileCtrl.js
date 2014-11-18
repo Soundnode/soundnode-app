@@ -1,15 +1,36 @@
-'use strict';
+/**
+ * Created by Johannes Sjöberg on 11/11/2014.
+ */
+'use strict'
 
-app.controller('FollowingCtrl', function ($scope, SCapiService, $rootScope) {
+app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $stateParams) {
+
+    //ctrl variables
+    var userId = $stateParams.id;
     var next_url = '';
 
-    $scope.title = 'Following:';
-    $scope.data = '';
+    //scope variables
+    $scope.profileData = '';
+    $scope.followers_count = '';
+    $scope.userData = '';
     $scope.busy = false;
+    //tracks
+    $scope.data = '';
 
-    SCapiService.getFollowing()
+
+    SCapiService.getProfile(userId)
         .then(function(data) {
-            $scope.data = data.collection.sort( sortBy("username") );
+            $scope.profileData = data;
+            $scope.followers_count = numberWithCommas(data.followers_count);
+        }, function(error) {
+            console.log('error', error);
+        }).finally(function() {
+            $rootScope.isLoading = false;
+        });
+
+    SCapiService.getProfileTracks(userId)
+        .then(function(data) {
+            $scope.data = data.collection;
             next_url = data.next_href;
         }, function(error) {
             console.log('error', error);
@@ -37,16 +58,8 @@ app.controller('FollowingCtrl', function ($scope, SCapiService, $rootScope) {
             });
     };
 
-    function sortBy(prop){
-        return function(a,b){
-            if( a[prop] > b[prop]){
-                return 1;
-            }else if( a[prop] < b[prop] ){
-                return -1;
-            }
-            return 0;
-        }
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
 
 });

@@ -1,6 +1,7 @@
 {
   "name": "Grunt-builder",
   "version": "0.0.1",
+  "main": "app/index.html",
   "description": "Soundnode App is the Soundcloud for desktop",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
