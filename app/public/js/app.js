@@ -28,16 +28,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'views/playlists/playlists.html',
             controller: 'PlaylistsCtrl'
         })
+        .state('search', {
+            url: '/search?q',
+            templateUrl: 'views/search/search.html',
+            controller: 'searchCtrl'
+        })
         .state('following', {
             url: '/following',
             templateUrl: 'views/following/following.html',
             controller: 'FollowingCtrl'
         })
-        .state('search', {
-            url: '/search?q',
-            templateUrl: 'views/search/search.html',
-            controller: 'searchCtrl'
-        });
+        .state('profile', {
+            url: '/profile/:id',
+            templateUrl: 'views/profile/profile.html',
+            controller: 'ProfileCtrl'
+    });
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1000);
