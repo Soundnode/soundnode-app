@@ -76,7 +76,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * Responsible to request next page data and save new next_page url
      * @returns {Object} data
      */
-    this.newGetNextPage = function() {
+    this.newGetNextPage = function(next_url) {
         var url = next_url + '&oauth_token=' + $window.scAccessToken + '&linked_partitioning=1', that = this;
 
         this.isLoading();
@@ -84,20 +84,15 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         return $http.get(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    }
-                    console.log("next page response data", response.data);
+                    //great success response
                     return response.data;
                 } else {
                     // invalid response
-                    console.log("next page invalid response data", response.data);
                     return $q.reject(response.data);
                 }
 
             }, function(response) {
-                // something went wrong
-                console.log("next page wrong response data", response.data);
+                // something went wrong;
                 return $q.reject(response.data);
             });
     };
