@@ -237,4 +237,21 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     });
     }
 
+    this.searchTracks = function(limit, query) {
+        var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken;
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    //invalid response
+                    return $g.reject(response.data);
+                }
+            }, function(response) {
+                //something went wrong
+                return $g.reject(response.data);
+            });
+    }
+
+
 });
