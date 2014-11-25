@@ -28,10 +28,10 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
                 for ( var i = 0; i < data.length; i++ ) {
                     $scope.data.push( data[i] )
                 }
-                $scope.busy = false;
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){
+                $scope.busy = false;
                 $rootScope.isLoading = false;
             });
     };

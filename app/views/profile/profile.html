@@ -1,20 +1,31 @@
-<div class="searchView">
-    <h1> {{ title }} {{ keyword }}</h1>
+<div class="profileView">
+
+    <div class="profile">
+        <div class="profile_box">
+            <h1>{{profileData.username}}</h1>
+            <h3>Followers: {{followers_count}}</h3>
+            <p class="profile_description" dd-text-collapse dd-text-collapse-max-length="1300" dd-text-collapse-text="{{profileData.description}}"></p>
+        </div>
+        <div class="profile_pic">
+            <img src="{{ showBigArtwork (profileData.avatar_url) }}" alt="{{ profileData.username }}" class="songList_item_artwork">
+        </div>
+    </div>
 
     <!-- Song list wrapper -->
-    <div class="searchView_inner">
+    <div class="favoritesView_inner">
+        <h2>Tracks:</h2><br>
 
         <ul class="songList"
             infinite-scroll='loadMore()'
             infinite-scroll-distance='0'
             infinite-scroll-disabled='{{ busy }}'
-            infinite-scroll-immediate-check='false'>
+            infinite-scroll-immediate-check='false' >
 
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ active: hover }"
                 ng-mouseover="hover = true"
                 ng-mouseleave="hover = false"
-                ng-if="data.kind == 'track' && data.streamable" >
+                ng-if="data.kind == 'track' && data.streamable">
 
                 <div class="songList_item_container_artwork">
                     <span class="songList_item_song_button"
@@ -34,7 +45,6 @@
                     <h2 class="songList_item_song_tit">{{ data.title }}</h2>
                     <h4 class="songList_item_song_user">by: {{ data.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h4>
 
-                    <!--<img src="{{ data.waveform_url }}" alt="{{ data.title }}" class="songList_item_song_waveForm">-->
                     <div class="songList_item_song_details">
                         <div>
                             <!--<span class="downloadSong" ng-if="data.downloadable">-->
@@ -45,7 +55,7 @@
                                 <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
                             </span>
                             <span>
-                                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
+                                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="delete"> <i class="fa fa-heart"></i> dislike</a>
                             </span>
                         </div>
                         <div>
