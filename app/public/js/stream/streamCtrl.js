@@ -24,16 +24,16 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
         $scope.busy = true;
 
         SCapiService.getNextPage()
-                    .then(function(data) {
-                        for ( var i = 0; i < data.collection.length; i++ ) {
-                            $scope.data.push( data.collection[i] )
-                        }
-                        $scope.busy = false;
-                    }, function(error) {
-                        console.log('error', error);
-                    }).finally(function(){
-                        $rootScope.isLoading = false;
-                    });
+            .then(function(data) {
+                for ( var i = 0; i < data.collection.length; i++ ) {
+                    $scope.data.push( data.collection[i] )
+                }
+            }, function(error) {
+                console.log('error', error);
+            }).finally(function(){
+                $scope.busy = false;
+                $rootScope.isLoading = false;
+            });
     };
 
 });

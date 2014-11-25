@@ -4,13 +4,11 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService
 
     $scope.title = 'Results for: ' + $stateParams.q;
     $scope.data = '';
-    var next_url = '';
-    var limit = 51;
+    var limit = 20;
 
     SCapiService.searchTracks(limit, $stateParams.q)
         .then(function(data) {
             $scope.data = data.collection;
-            next_url = data.next_href;
         }, function(error) {
             console.log('error', error);
         }).finally(function(){
@@ -22,15 +20,15 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService
             return;
         }
         $scope.busy = true;
-        SCapiService.newGetNextPage(next_url)
+
+        SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
                     $scope.data.push( data.collection[i] )
                 }
-                next_url = data.next_href;
             }, function(error) {
                 console.log('error', error);
-            }).finally(function() {
+            }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
             });

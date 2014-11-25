@@ -7,7 +7,6 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
 
     //ctrl variables
     var userId = $stateParams.id;
-    var next_url = '';
 
     //scope variables
     $scope.profileData = '';
@@ -31,7 +30,6 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
     SCapiService.getProfileTracks(userId)
         .then(function(data) {
             $scope.data = data.collection;
-            next_url = data.next_href;
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
@@ -44,12 +42,11 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
         }
         $scope.busy = true;
 
-        SCapiService.newGetNextPage(next_url)
+        SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
                     $scope.data.push( data.collection[i] )
                 }
-                next_url = data.next_href;
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){

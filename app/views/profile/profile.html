@@ -1,6 +1,5 @@
 <div class="profileView">
 
-    <div ng-include="'views/partials/loading.html'"></div>
     <div class="profile">
         <div class="profile_box">
             <h1>{{profileData.username}}</h1>
@@ -11,6 +10,7 @@
             <img src="{{ showBigArtwork (profileData.avatar_url) }}" alt="{{ profileData.username }}" class="songList_item_artwork">
         </div>
     </div>
+
     <!-- Song list wrapper -->
     <div class="favoritesView_inner">
         <h2>Tracks:</h2><br>
@@ -68,5 +68,8 @@
             </li>
         </ul>
     </div>
+    <!-- Song list wrapper / end -->
+
+    <div ng-include="'views/partials/loading.html'"></div>
 
 </div>

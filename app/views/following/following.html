@@ -1,8 +1,6 @@
 <div class="followingView">
     <h1> {{ title }}</h1>
 
-
-
     <!-- Song list wrapper -->
     <div class="favoritesView_inner">
         <ul class="following"
@@ -18,13 +16,10 @@
 
                 <div class="songList_item_container_artwork">
                     <a ui-sref="profile({id: {{data.id}}})">
-                    <span class="songList_item_song_button"
-                          >
-
-                        <i class="fa fa-arrow-circle-o-right"></i>
-                        <i class="fa fa-arrow-circle-o-right"></i>
-                    </span>
-                    <img src="{{ showBigArtwork (data.avatar_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
+                        <span class="songList_item_song_button">
+                            <i class="fa fa-arrow-circle-o-right"></i>
+                        </span>
+                        <img src="{{ showBigArtwork (data.avatar_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
                     </a>
                 </div>
 
@@ -36,6 +31,7 @@
             </li>
         </ul>
     </div>
+    <!-- Song list wrapper / end -->
 
     <div ng-include="'views/partials/loading.html'"></div>
 

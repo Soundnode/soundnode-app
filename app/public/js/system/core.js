@@ -39,7 +39,7 @@ appGUI.openDevTools = function() {
     guiWin.showDevTools();
 }
 
-// appGUI.openDevTools();
+//appGUI.openDevTools();
 
 /**
  * Responsible to enable all UI frame actions
@@ -85,7 +85,13 @@ OAuthVerification.init = function() {
 }
 
 OAuthVerification.verification = function(popUp) {
-    var isOAuthDone = popUp.document.body.getAttribute('data-isOAuth-done');
+    var isOAuthDone;
+
+    if ( popUp.document.body !== null ) {
+        isOAuthDone = popUp.document.body.getAttribute('data-isOAuth-done');
+    } else {
+        return;
+    }
 
     console.log('verification called');
 

@@ -15,4 +15,9 @@
   & .songList_item_box:last-child {
     margin: 10px 0 0 0;
   }
+
+  & .fa:last-child {
+    display: table-cell;
+  }
+
 }

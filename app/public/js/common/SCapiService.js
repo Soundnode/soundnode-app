@@ -49,7 +49,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * @returns {Object} data
      */
     this.getNextPage = function() {
-        var url = this.next_page + '&oauth_token=' + $window.scAccessToken
+        var url = this.next_page + '&oauth_token=' + $window.scAccessToken + '&linked_partitioning=1'
             , that = this;
 
         this.isLoading();
@@ -73,32 +73,6 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
     /**
-     * Responsible to request next page data and save new next_page url
-     * @returns {Object} data
-     */
-    this.newGetNextPage = function(next_url) {
-        var url = next_url + '&oauth_token=' + $window.scAccessToken + '&linked_partitioning=1', that = this;
-
-        this.isLoading();
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    //great success response
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-
-            }, function(response) {
-                // something went wrong;
-                return $q.reject(response.data);
-            });
-    };
-
-
-    /**
      * Responsible to get the followed users.
      * @return {[object]} data response
      */
@@ -106,15 +80,14 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         this.isLoading();
 
         var url = 'https://api.soundcloud.com/' + 'me/followings' + '.json?' + 'limit=200' + '&oauth_token=' + $window.scAccessToken
-            + '&linked_partitioning=1', that = this;
+            + '&linked_partitioning=1'
+            , that = this;
 
         return $http.get(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
                     if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        console.log("response.data.next_href", response.data.next_href);
                         that.next_page = response.data.next_href;
-                        console.log("next page setter", that.next_page);
                     } else {
                         that.next_page = '';
                     }
@@ -143,17 +116,14 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
                         that.next_page = response.data.next_href;
                     }
-                    console.log("profile response data", response.data);
                     return response.data;
                 } else {
                     // invalid response
-                    console.log("profile invalid response data", response.data);
                     return $q.reject(response.data);
                 }
 
             }, function(response) {
                 // something went wrong
-                console.log("profile wrong response data", response.data);
                 return $q.reject(response.data);
             });
     };
@@ -164,24 +134,23 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      */
     this.getProfileTracks = function(userId) {
         var url = 'https://api.soundcloud.com/users/' + userId  + '/tracks.json?' + 'limit=15' + '&oauth_token=' + $window.scAccessToken
-            + '&linked_partitioning=1', that = this;
+            + '&linked_partitioning=1'
+            , that = this;
+
         return $http.get(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
                     if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
                         that.next_page = response.data.next_href;
                     }
-                    console.log("profile tracks data", response.data);
                     return response.data;
                 } else {
                     // invalid response
-                    console.log("profile invalid response data", response.data);
                     return $q.reject(response.data);
                 }
 
             }, function(response) {
                 // something went wrong
-                console.log("profile wrong response data", response.data);
                 return $q.reject(response.data);
             });
     };
@@ -238,10 +207,13 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     }
 
     this.searchTracks = function(limit, query) {
-        var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken;
+        var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
+            , that = this;
+
         return $http.get(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
+                    that.next_page = response.data.next_href;
                     return response.data;
                 } else {
                     //invalid response
