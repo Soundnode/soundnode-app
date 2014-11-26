@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('playerService', function($rootScope) {
+app.factory('playerService', function($rootScope, $log) {
 
     $rootScope.isSongPlaying = false;
 
@@ -114,7 +114,10 @@ app.factory('playerService', function($rootScope) {
             var $els = $('*[song]')
                 , index = Math.floor(Math.random() * $els.length);
 
-            $els[index].click();
+            if ( $els[index] !== undefined ) {
+                $els[index].click();
+            }
+
         } else {
             this.elPlayer.play();
             $rootScope.isSongPlaying = true;
