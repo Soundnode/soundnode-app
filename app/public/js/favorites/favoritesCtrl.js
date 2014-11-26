@@ -9,13 +9,13 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     $scope.busy = false;
 
     SCapiService.get(endpoint, params)
-                .then(function(data) {
-                    $scope.data = data;
-                }, function(error) {
-                    console.log('error', error);
-                }).finally(function() {
-                    $rootScope.isLoading = false;
-                });
+        .then(function(data) {
+            $scope.data = data;
+        }, function(error) {
+            console.log('error', error);
+        }).finally(function() {
+            $rootScope.isLoading = false;
+        });
 
     $scope.loadMore = function() {
         if ( $scope.busy ) {

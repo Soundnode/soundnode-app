@@ -79,7 +79,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.getFollowing = function () {
         this.isLoading();
 
-        var url = 'https://api.soundcloud.com/' + 'me/followings' + '.json?' + 'limit=200' + '&oauth_token=' + $window.scAccessToken
+        var url = 'https://api.soundcloud.com/' + 'me/followings' + '.json?' + '&oauth_token=' + $window.scAccessToken
             + '&linked_partitioning=1'
             , that = this;
 
