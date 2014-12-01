@@ -1,19 +1,19 @@
 <div class="playlistsView">
     <h1> {{ title }}</h1>
 
-    <div  class="plform" ng-controller="CreatePlCtrl">
+    <div  class="plform" ng-controller="CreatePlaylistCtrl">
       <p class="newpl_butt" >
-        <button  ng-click="createPlView()">
+        <button  ng-click="createPlaylistView()">
           <h3 class="button_text"> Create a new playlist</h3>
         </button>
       </p>
-      <p class="plTit" ng-show="isCreatePlVisible"> playlist title: </p>
-      <p class="newpl_input" ng-show="isCreatePlVisible">
+      <p class="plTit" ng-show="isCreatePlaylistVisible"> playlist title: </p>
+      <p class="newpl_input" ng-show="isCreatePlaylistVisible">
         <input type="text"  ng-model="addedPlaylist"> </input>
       </p>
-      <p class="save_cancel" ng-show="isCreatePlVisible">
-        <button class="save_butt" ng-click="savePl()"> Save </button>
-        <button class="cancel_butt" ng-click="cancelPl()"> Cancel </button>
+      <p class="save_cancel" ng-show="isCreatePlaylistVisible">
+        <button class="save_butt" ng-click="savePlaylist()"> Save </button>
+        <button class="cancel_butt" ng-click="cancelPlaylist()"> Cancel </button>
       </p>
     </div>
 

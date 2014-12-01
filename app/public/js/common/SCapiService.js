@@ -291,7 +291,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     /**
      * Responsible to add song to a playlist
      */
-    this.saveToPl = function(userId, playlist1, songId) {
+    this.saveToPlaylist = function(userId, playlist1, songId) {
         var track = { "id": Number.parseInt(songId) };
         var url = 'https://api.soundcloud.com/users/'+  userId + '/playlists/'+ playlist1+ '.json?&oauth_token=' + $window.scAccessToken 
             , that = this;
@@ -324,7 +324,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     /**
      * Responsible to make new a playlist
      */
-    this.savePl = function(plTitle) {
+    this.savePlaylist = function(plTitle) {
         var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
             , that = this;
         var tracks = [].map(function(id) { return { id: id };});

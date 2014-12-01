@@ -13,7 +13,7 @@ app.directive('saveSong', function ($rootScope, SCapiService, $timeout, Song) {
                 $timeout(function() {
                     that.classList.remove('clicked');
                 }, 1000);
-                if ( attrs.favoriteAction === 'saveToPl') {
+                if ( attrs.favoriteAction === 'saveToPlaylist') {
 
                     userId = $rootScope.userId;
                     $scope.song.songid = attrs.songId;

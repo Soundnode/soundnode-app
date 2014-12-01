@@ -43,10 +43,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'views/profile/profile.html',
             controller: 'ProfileCtrl'
         })
- 		.state('addToPl', {
+ 	.state('addToPlaylist', {
             url: '/sets',
-            templateUrl: 'views/addToPl/addToPl.html',
-            controller: 'AddToPlCtrl'
+            templateUrl: 'views/addToPlaylist/addToPlaylist.html',
+            controller: 'AddToPlaylistCtrl'
         });
 });
 

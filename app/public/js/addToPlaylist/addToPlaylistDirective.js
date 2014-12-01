@@ -1,6 +1,6 @@
 'use strict'
 
-app.directive('addToPl', function ($rootScope, SCapiService, Song) {
+app.directive('addToPlaylist', function ($rootScope, SCapiService, Song) {
      return {
          restrict: 'A',
          link: function($scope, elem, attrs) {
@@ -13,7 +13,7 @@ app.directive('addToPl', function ($rootScope, SCapiService, Song) {
                  var that = this;
                  songId = song.songid;
                  playlist = $scope.data.id;
-                 SCapiService.saveToPl(userId , playlist, songId);
+                 SCapiService.saveToPlaylist(userId , playlist, songId);
             });
         }
     }

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AddToPlCtrl', function ($scope, SCapiService, $rootScope, Song) {
+app.controller('AddToPlaylistCtrl', function ($scope, SCapiService, $rootScope, Song) {
     $scope.song = Song;
     $scope.title = 'Add to playlist';
     $scope.data = '';
