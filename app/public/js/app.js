@@ -42,7 +42,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/profile/:id',
             templateUrl: 'views/profile/profile.html',
             controller: 'ProfileCtrl'
-    });
+        })
+ 	.state('addToPlaylist', {
+            url: '/sets',
+            templateUrl: 'views/addToPlaylist/addToPlaylist.html',
+            controller: 'AddToPlaylistCtrl'
+        });
+});
+
+
+app.factory('Song', function() {
+    return {songid: ""}
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1500);
