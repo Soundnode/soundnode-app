@@ -1,8 +1,8 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
-
-    $scope.title = 'Playlists';
+app.controller('AddToPlCtrl', function ($scope, SCapiService, $rootScope, Song) {
+    $scope.song = Song;
+    $scope.title = 'Add to playlist';
     $scope.data = '';
 
     SCapiService.getPlaylists()
@@ -16,7 +16,6 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
 
     $scope.checkForPlaceholder = function (thumb) {
         var newSize;
-
         if ( thumb === null ) {
             return 'public/img/temp-playing.png';
         } else {
@@ -24,4 +23,5 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
             return newSize;
         }
     }
+
 });
