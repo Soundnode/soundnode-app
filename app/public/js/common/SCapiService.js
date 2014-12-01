@@ -224,7 +224,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $g.reject(response.data);
             });
     }
-    
+
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
             , that = this;
@@ -242,5 +242,48 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $g.reject(response.data);
             });
     }
+
+    this.unfollowUser = function(id) {
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
+            , that = this;
+
+        return $http.delete(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    //invalid response
+                    return $g.reject(response.data);
+                }
+            }, function(response) {
+                //something went wrong
+                return $g.reject(response.data);
+            });
+    }
+
+    /*
+     * Soundcloud API is behaving strangely. If "me" is following "id"
+     * the api sends a "303 - See other" but in the Location header it doesn't append the authentication
+     * information so the redirect fails with a 401 - Unauthorized. If "me" isn't following "id"
+     * the API returns a 404 Not Found error.
+     */
+    this.isFollowing = function(id) {
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
+            , that = this;
+
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    //invalid response
+                    return $g.reject(response.data);
+                }
+            }, function(response) {
+                //something went wrong which is good
+                return response.status;
+            });
+    }
+
 
 });

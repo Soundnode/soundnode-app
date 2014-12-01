@@ -15,12 +15,22 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
     $scope.busy = false;
     //tracks
     $scope.data = '';
+    $scope.isFollowing = false;
 
 
     SCapiService.getProfile(userId)
         .then(function(data) {
             $scope.profileData = data;
             $scope.followers_count = numberWithCommas(data.followers_count);
+        }, function(error) {
+            console.log('error', error);
+        }).finally(function() {
+            $rootScope.isLoading = false;
+        });
+
+    SCapiService.isFollowing(userId)
+        .then(function(data) {
+            $scope.isFollowing = data != 404
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
