@@ -11,12 +11,12 @@
             infinite-scroll-immediate-check='false'>
 
             <li class="songList_item" ng-repeat="data in data"
-                ng-class="{ active: hover }"
-                ng-mouseover="hover = true"
-                ng-mouseleave="hover = false"
                 ng-if="data.kind == 'track' && data.streamable" >
 
-                <div class="songList_item_container_artwork">
+                <div class="songList_item_container_artwork"
+                     ng-class="{ active: hover }"
+                     ng-mouseover="hover = true"
+                     ng-mouseleave="hover = false">
                     <span class="songList_item_song_button"
                           song
                           data-song-url="{{ data.stream_url }}"
@@ -31,8 +31,10 @@
                 </div>
 
                 <section class="songList_item_inner">
-                    <h2 class="songList_item_song_tit">{{ data.title }}</h2>
-                    <h4 class="songList_item_song_user">by: {{ data.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h4>
+                    <h3 class="songList_item_song_tit">{{ data.title }}</h2>
+                        <a ui-sref="profile({id: {{data.user.id}}})">
+                            <h3 class="songList_item_song_user">by: {{ data.user.username }}
+                                </a><span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h3>
 
                     <!--<img src="{{ data.waveform_url }}" alt="{{ data.title }}" class="songList_item_song_waveForm">-->
                     <div class="songList_item_song_details">
