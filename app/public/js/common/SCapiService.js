@@ -224,6 +224,23 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $g.reject(response.data);
             });
     }
+    
+    this.followUser = function(id) {
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
+            , that = this;
 
+        return $http.put(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    //invalid response
+                    return $g.reject(response.data);
+                }
+            }, function(response) {
+                //something went wrong
+                return $g.reject(response.data);
+            });
+    }
 
 });
