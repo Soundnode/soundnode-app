@@ -226,4 +226,25 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     }
 
 
+
+    this.savePl = function(plTitle) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+            , that = this;
+        var tracks = [].map(function(id) { return { id: id };});
+        return $http.post(url, {
+            playlist: { title: plTitle, tracks: tracks }})
+                    .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            return response.data;
+                        } else {
+                            // invalid response
+                            return $q.reject(response.data);
+                        }
+
+                    }, function(response) {
+                        // something went wrong
+                        return $q.reject(response.data);
+                    });
+    };
+
 });
