@@ -3,7 +3,6 @@
 app.controller('CreatePlCtrl', function ($scope, $http, $rootScope, SCapiService) {
 
     $rootScope.isCreatePlVisible = false;
-    $scope.content = 'Tesing... content will be reset later on!';
 
     $scope.createPlView = function() {
         if ( !$rootScope.isCreatePlVisible ) {
@@ -23,7 +22,6 @@ app.controller('CreatePlCtrl', function ($scope, $http, $rootScope, SCapiService
         $scope.addedPlaylist = '';
         $rootScope.isCreatePlVisible = false; 
         SCapiService.savePl(plTitle);
-        console.log('after making the pl...................');
     }
 
 });
