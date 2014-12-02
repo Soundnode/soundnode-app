@@ -4,7 +4,7 @@ app.controller('AppCtrl', function ($scope, $window, $log, $rootScope) {
 
     $scope.showBigArtwork = function (img) {
         var newArtwork;
-        if ( ! angular.isUndefined(img) ) {
+        if ( ! (angular.isUndefined(img) || img === null) ) {
             newArtwork = img.replace('large', 't300x300');
             return newArtwork;
         } else {

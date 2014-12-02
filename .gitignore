@@ -3,3 +3,4 @@ node_modules
 .DS_Store
 .sass-cache
 dist/
+npm-debug.log
