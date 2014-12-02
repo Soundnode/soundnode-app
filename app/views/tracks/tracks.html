@@ -10,54 +10,9 @@
             infinite-scroll-immediate-check='false' >
 
             <li class="songList_item" ng-repeat="data in data"
-                ng-class="{ active: hover }"
-                ng-mouseover="hover = true"
-                ng-mouseleave="hover = false" >
+                ng-if="data.kind == 'track' && data.streamable" >
 
-                <div class="songList_item_container_artwork">
-                    <span class="songList_item_song_button" 
-                            song
-                            data-song-url="{{ data.stream_url }}"
-                            data-song-thumbnail="{{ data.artwork_url }}"
-                            data-song-title="{{ data.title }}"
-                            data-song-user="{{ data.user.username }}" >
-
-                        <i class="fa fa-play"></i>
-                        <i class="fa fa-pause"></i>
-                    </span>
-                    <img src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
-                </div>
-
-                <section class="songList_item_inner">
-                    <h2 class="songList_item_song_tit">{{ data.title }}</h2>
-                    <h4 class="songList_item_song_user">by: {{ data.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h4>
-
-                    <div class="songList_item_song_details">
-                        <div>
-                            <!--<span class="downloadSong" ng-if="data.downloadable">-->
-                                <!--<a href="{{ data.download_url }}" data-title="{{ data.title }}" download-song nwsaveas > <i class="fa fa-cloud-download"></i> download</a>-->
-                                <!--<input type="file" nwdirectory>-->
-                            <!--</span>-->
-                            <span>
-                                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
-                            </span>
-                            <span>
-                                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
-                            </span>
-                        </div>
-                        <div>
-                          <span>
-                            <a save-song data-song-id="{{ data.id }}" data-favorite-action="saveToPlaylist">
-                              <i class="fa fa-plus"> </i> Add to playlist
-                            </a>
-                          </span>
-                        </div>
-                        <div>
-                            <span>{{ data.genre }}</span>
-                            <span>{{ data.license }}</span>
-                        </div>
-                    </div>
-                </section>
+                <tracks data="data"/>
 
             </li>
         </ul>

@@ -10,57 +10,9 @@
             infinite-scroll-immediate-check='false' >
 
             <li class="songList_item" ng-repeat="data in data"
-                    ng-class="{ active: hover }"
-                    ng-mouseover="hover = true"
-                    ng-mouseleave="hover = false"
-                    ng-if="data.type == 'track' && data.origin.streamable" >
+                ng-if="data.type == 'track' && data.origin.streamable" >
 
-                <div class="songList_item_container_artwork">
-                    <span class="songList_item_song_button" 
-                        song
-                        data-song-url="{{ data.origin.stream_url }}"
-                        data-song-thumbnail="{{ data.origin.artwork_url }}"
-                        data-song-title="{{ data.origin.title }}"
-                        data-song-user="{{ data.origin.user.username }}" >
-
-                        <i class="fa fa-play"></i>
-                        <i class="fa fa-pause"></i>
-                    </span>
-                    <img src="{{ showBigArtwork (data.origin.artwork_url) }}" alt="{{ data.origin.title }}" class="songList_item_artwork">
-                </div>
-
-                
-                <section class="songList_item_inner">
-                    <h2 class="songList_item_song_tit">{{ data.origin.title }}</h2>
-                    <h4 class="songList_item_song_user">by: {{ data.origin.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (data.origin.duration) }}</span></h4>
-
-                    <!--<img src="{{ data.origin.waveform_url }}" alt="{{ data.origin.title }}" class="songList_item_song_waveForm">-->
-                    <div class="songList_item_song_details">
-                        <div>
-                            <!--<span class="downloadSong" ng-if="data.origin.downloadable">-->
-                                <!--<a href="{{ data.origin.download_url }}" data-title="{{ data.origin.title }}" download-song nwsaveas > <i class="fa fa-cloud-download"></i> download</a>-->
-                                <!--<input type="file" nwdirectory>-->
-                            <!--</span>-->
-                            <span>
-                                <a href="{{ data.origin.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
-                            </span>
-                            <span>
-                                <a favorite-song data-song-id="{{ data.origin.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
-                            </span>
-                        </div>
-                        <div>
-                          <span>
-                            <a save-song data-song-id="{{ data.id }}" data-favorite-action="saveToPlaylist">
-                              <i class="fa fa-plus"> </i> Add to playlist
-                            </a>
-                          </span>
-                        </div>
-                        <div>
-                            <span>{{ data.origin.genre }}</span>
-                            <span>{{ data.origin.license }}</span>
-                        </div>
-                    </div>
-                </section>
+                <tracks data="data.origin"/>
 
             </li>
         </ul>
