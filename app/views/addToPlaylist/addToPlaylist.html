@@ -1,5 +1,4 @@
 <div class="addToPlaylistView">
-    <h1> {{ title }}</h1>
 
     <script src="http://connect.soundcloud.com/sdk.js"></script>
     <div ng-include="'views/partials/loading.html'"></div>
@@ -7,7 +6,7 @@
     <!-- Song list wrapper -->
     <div class="addToPlaylistView_inner">
         <ul class="songList">
-            <li class="songList_item" ng-repeat="data in data"
+            <li class="songList_item" ng-repeat="data in playlistsdata"
                 ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}"
                 ng-if="data.kind == 'playlist'"

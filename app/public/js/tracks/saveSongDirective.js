@@ -1,7 +1,7 @@
 'use strict'
 
 app.directive('saveSong', function ($rootScope, SCapiService, $timeout, Song) {
-   
+
     return {
         restrict: 'A',
         link: function($scope, elem, attrs) {
@@ -14,7 +14,7 @@ app.directive('saveSong', function ($rootScope, SCapiService, $timeout, Song) {
                     that.classList.remove('clicked');
                 }, 1000);
                 if ( attrs.favoriteAction === 'saveToPlaylist') {
-
+                    $rootScope.showpopup = true;
                     userId = $rootScope.userId;
                     $scope.song.songid = attrs.songId;
                 }

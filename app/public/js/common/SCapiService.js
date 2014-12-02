@@ -104,6 +104,67 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
 
 
     /**
+     * Responsible to make get request to get the streams
+     * @method getStreams
+     */
+
+    this.getStreams = function() {
+        var endpoint = 'me/activities' , params = 'limit=33';
+        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken
+        , that = this;
+        this.isLoading();
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    } else {
+                        that.next_page = '';
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
+
+    /**
+     * Responsible to make get request to get the tracks
+     * @method getTracks
+     */
+
+    this.getTracks = function() {
+        var endpoint = 'me/tracks', params = 'limit=33';
+        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken
+        , that = this;
+        this.isLoading();
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    } else {
+                        that.next_page = '';
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
+
+
+    /**
      * Responsible to get the followed users.
      * @return {[object]} data response
      */
