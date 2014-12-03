@@ -6,59 +6,11 @@
   height: 15px;
 }
 
-.newpl_butt {
-     position: absolute;
-     top: 90px;
-     left: 850px;
-     width: 190px;
-     height: 30px;
-     color: #696969;
-     font-size: 12px;
-    & .button_text {
-         color: #696969;
-    }
-  }
-
-.plTit {
-     position: absolute;
-     top: 120px;
-     left: 850px;
-}
-
-.newpl_input {
-     position: absolute;
-     top: 130px;
-     left: 850px;
-     width: 190px;
-     height: 25px;
-     font-size: 12px;
-}
-
-.save_butt {
-     position: absolute;
-     top: 170px;
-     left: 850px;
-     color: #696969;
-     font-size: 12px;
-     width: 50px;
-     height: 25px;
- }
-
-.cancel_butt {
-     position: absolute;
-     top: 170px;
-     left: 905px;
-     color: #ff0000;
-     font-size: 12px;
-     width: 55px;
-     height: 25px;
- }
-
 
 .songList_item.playlist {
   display: block;
   width: 100%;
-  margin: 0px 0 15px 0;
+  margin: 0 0 15px 0;
   position: relative;
 
   & .songList_item_song_button {
@@ -94,6 +46,7 @@
   & .songList_item_container_info {
     float: left;
     margin: 0 0 0 10px;
+    width: 400px;
   }
 
   & .songList_item_song_tit {
