@@ -69,6 +69,13 @@ li.active {
   }
 }
 
+div.active {
+  & .songList_item_song_button {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .songPlaying {
   & .songList_item_song_button.currentSong {
     -webkit-transform: scale(1);

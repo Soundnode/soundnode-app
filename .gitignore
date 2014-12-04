@@ -4,3 +4,5 @@ node_modules
 .sass-cache
 dist/
 report/
+npm-debug.log
+app/public/stylesheets/css/app.css
