@@ -226,8 +226,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     }
 
     this.followUser = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
 
         return $http.put(url)
             .then(function(response) {
@@ -238,14 +237,16 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return $g.reject(response.data);
                 }
             }, function(response) {
-                //something went wrong
-                return $g.reject(response.data);
+                //something went wrong, need to create a new error because returning the response object doesn't work. Get an unreferenced error when handling the reject.
+                var errorResponse = new Object();
+                errorResponse.status = response.status;
+                errorResponse.data = response.data;
+                return $q.reject(errorResponse);
             });
     }
 
     this.unfollowUser = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
 
         return $http.delete(url)
             .then(function(response) {
@@ -256,8 +257,11 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return $g.reject(response.data);
                 }
             }, function(response) {
-                //something went wrong
-                return $g.reject(response.data);
+                //something went wrong, need to create a new error because returning the response object doesn't work. Get an unreferenced error when handling the reject.
+                var errorResponse = new Object();
+                errorResponse.status = response.status;
+                errorResponse.data = response.data;
+                return $q.reject(errorResponse);
             });
     }
 
