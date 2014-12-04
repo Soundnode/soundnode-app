@@ -3,4 +3,6 @@ node_modules
 .DS_Store
 .sass-cache
 dist/
+report/
 npm-debug.log
+app/public/stylesheets/css/app.css
