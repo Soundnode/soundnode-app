@@ -1,0 +1,39 @@
+.displaylists {
+     position: fixed;
+     display: block;
+
+     top: 90px;
+     left: 200px;
+
+     width: 60%;
+     height: 60%;
+
+     font-size: 12px;
+
+     opacity: 0.8;
+     background: black;
+     border-color: gray;
+     border-style: solid;
+     border-width: 3px;
+
+    overflow: scroll;
+}
+
+
+.playlistCloseButton {
+     position: absolute;
+     display: block;
+
+     top: 10px;
+     left: 840px;
+     font-size: 14px;
+     color: #696969;
+}
+
+.playlistTitle {
+     text-decoration: underline;
+     margin-top: 30px;
+     margin-bottom: 10px;
+     margin-left: 100px;
+
+}

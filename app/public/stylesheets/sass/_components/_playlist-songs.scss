@@ -1,14 +1,17 @@
 .songList_item.playlist[data-playlist-hidden="false"] {
   height: auto;
 }
+
 .songList_item.playlist[data-playlist-hidden="true"] {
   height: 15px;
 }
+
 
 .songList_item.playlist {
   display: block;
   width: 100%;
   margin: 0 0 15px 0;
+  position: relative;
 
   & .songList_item_song_button {
     height: 100%;
@@ -20,7 +23,8 @@
     display: block;
     margin: 0 0 10px 0;
     cursor: pointer;
-
+    position: relative;
+   
     & span {
       cursor: pointer;
     }
@@ -42,6 +46,7 @@
   & .songList_item_container_info {
     float: left;
     margin: 0 0 0 10px;
+    width: 400px;
   }
 
   & .songList_item_song_tit {

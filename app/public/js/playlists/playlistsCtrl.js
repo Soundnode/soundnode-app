@@ -1,13 +1,11 @@
 'use strict';
 
 app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
-    var endpoint = 'me/playlists'
-        , params = '';
 
     $scope.title = 'Playlists';
     $scope.data = '';
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getPlaylists()
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {

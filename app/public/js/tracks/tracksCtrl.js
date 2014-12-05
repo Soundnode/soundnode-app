@@ -1,14 +1,14 @@
 'use strict'
 
-app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
-    var endpoint = 'me/tracks'
-        , params = 'limit=33';
+app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope, Song) {
 
     $scope.title = 'Tracks';
     $scope.data = '';
     $scope.busy = false;
+    $rootScope.showpopup = false;
+    $rootScope.displayplaylists = false;
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getTracks()
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {
@@ -35,5 +35,37 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
                 $rootScope.isLoading = false;
             });
     };
+
+    $scope.showplaylists = function() {
+        $scope.song = Song;
+        $scope.playlistsdata = '';
+        $rootScope.displayplaylists = true;
+
+        SCapiService.getPlaylists()
+            .then(function(data) {
+                $scope.playlistsdata = data;
+            }, function(error) {
+                console.log('error', error);
+            }).finally(function(){
+                $rootScope.isLoading = false;
+            });
+
+        $scope.checkForPlaceholder = function (thumb) {
+            var newSize;
+            if ( thumb === null ) {
+                return 'public/img/temp-playing.png';
+            } else {
+                newSize = thumb.replace('large', 'badge');
+                return newSize;
+            }
+        };
+    };
+
+
+ $scope.closeOverlay = function() {
+     $rootScope.showpopup = false;
+     $rootScope.displayplaylists = false;
+ };
+
 
 });

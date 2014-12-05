@@ -22,3 +22,17 @@
     <div ng-include="'views/partials/loading.html'"></div>
 
 </div>
+
+<div class="displaylists" ng-show="showpopup">
+  <div ng-click="showplaylists()">
+    <a class="playlistTitle">
+      <h1> Playlists </h1>
+    </a>
+    <a class="playlistCloseButton" ng-click="closeOverlay()">
+        <i class="fa fa-times">Close</i>
+    </a>
+  </div>
+  <div ng-include="'views/addToPlaylist/addToPlaylist.html'" ng-show="displayplaylists">
+    
+  </div>
+</div>

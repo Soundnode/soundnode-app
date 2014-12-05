@@ -1,0 +1,54 @@
+<div class="addToPlaylistView">
+
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <div ng-include="'views/partials/loading.html'"></div>
+
+    <!-- Song list wrapper -->
+    <div class="addToPlaylistView_inner">
+        <ul class="songList">
+            <li class="songList_item" ng-repeat="data in playlistsdata"
+                ng-class="{ playlist: data.kind  }"
+                data-kind="{{ data.kind }}"
+                ng-if="data.kind == 'playlist'"
+                data-playlist-hidden="true" >
+              
+                <div>
+                  <h4 class="songList_item_song_user" >
+                    {{ data.title }} playlist &nbsp &nbsp <span addcollapsible> <i class="fa fa-folder-open-o"> Show </i> &nbsp &nbsp  </span> <span add-to-playlist>   <i class="fa fa-plus"> Add to playlist </i> </span>
+                  </h4>
+                </div>
+ 
+                <ul class="songList_item_songs_list">
+                    <li class="songList_item_songs_list_item" 
+                        ng-repeat="tracks in data.tracks"
+                        ng-class="{ active: hover }"
+                        ng-mouseover="hover = true"
+                        ng-mouseleave="hover = false" >
+                        <div class="songList_item_container_artwork">
+                            <span class="songList_item_song_button" 
+                                song
+                                data-song-url="{{ tracks.stream_url }}"
+                                data-song-thumbnail="{{ tracks.artwork_url }}"
+                                data-song-title="{{ tracks.title }}"
+                                data-song-user="{{ tracks.user.username }}"
+                                data-play-list="true" >
+
+                            <i class="fa fa-play"></i>
+                            <i class="fa fa-pause"></i>
+                        </span>
+                            <img src="{{ checkForPlaceholder(tracks.artwork_url) }}" alt="{{ tracks.title }}" class="songList_item_artwork">
+                        </div>
+
+                        <div class="songList_item_container_info">
+                            <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
+                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span></h4>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+
+</div>
