@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AboutCtrl', function ($scope, $http, $rootScope) {
+app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog) {
     var url = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html'
         , config = { headers:  {
                 'Accept': 'application/vnd.github.v3.raw+json'
@@ -10,13 +10,13 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope) {
     $rootScope.isAboutVisible = false;
     $scope.content = '';
 
-    $scope.toggleAboutView = function() {
-        if ( $rootScope.isAboutVisible ) {
-            $rootScope.isAboutVisible = false;
-        } else {
-            $rootScope.isAboutVisible = true;
-        }
-    }
+    $scope.openModal = function() {
+        ngDialog.open({
+            showClose: false,
+            template: 'views/about/about.html',
+            scope: $scope
+        });
+    };
 
     $http.get(url, config)
         .success(function (data) {

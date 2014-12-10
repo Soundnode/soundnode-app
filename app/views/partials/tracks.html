@@ -21,19 +21,17 @@
             <h3 class="songList_item_song_user">{{ data.user.username }}
         </a><span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h3>
 
-    <!--<img src="{{ data.waveform_url }}" alt="{{ data.title }}" class="songList_item_song_waveForm">-->
     <div class="songList_item_song_details">
         <div>
-            <!--<span class="downloadSong" ng-if="data.downloadable">-->
-            <!--<a href="{{ data.download_url }}" data-title="{{ data.title }}" download-song nwsaveas > <i class="fa fa-cloud-download"></i> download</a>-->
-            <!--<input type="file" nwdirectory>-->
-            <!--</span>-->
-                            <span>
-                                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
-                            </span>
-                            <span>
-                                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
-                            </span>
+            <span>
+                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
+            </span>
+            <span>
+                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
+            </span>
+            <span>
+                <a data-song-id="{{ data.id }}"> <i class="fa fa-bookmark"></i> Add to playlist</a>
+            </span>
         </div>
         <div>
             <span>{{ data.genre }}</span>
