@@ -1,6 +1,6 @@
 ﻿'use strict'
 
-var app = angular.module('App', ['ui.router', 'ngSanitize', 'cfp.hotkeys', 'infinite-scroll']);
+var app = angular.module('App', ['ui.router', 'ngSanitize', 'cfp.hotkeys', 'infinite-scroll', 'ngDialog']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 

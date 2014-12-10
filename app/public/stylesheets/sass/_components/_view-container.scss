@@ -13,30 +13,3 @@
     margin: 10px 0 30px;
   }
 }
-
-
-.aboutView_closeButton {
-  display: block;
-  text-align: right;
-
-  & .fa {
-    font-size: 22px;
-    cursor: pointer;
-  }
-}
-.aboutView_content {
-  font-size: 16px;
-
-  & strong {
-    font-weight: bold;
-    display: block;
-    margin: 20px 0 10px 0;
-  }
-
-  & ul {
-    margin: 10px 0 20px 0;
-  }
-  & li {
-    margin: 5px 0;
-  }
-}
