@@ -3,7 +3,8 @@ var gui = require('nw.gui')
     , OAuthVerification = {}
     , OAuthVerificationId
     , appGUI = {}
-    , appSystem = {};
+    , appSystem = {}
+    , appEvents = new (require('events')).EventEmitter();
 
 // Iframe hosting the OAuth
 var elemIframe = document.getElementById('elIframe');
@@ -25,18 +26,21 @@ appGUI.close = function() {
 appGUI.minimize = function() {
   var guiWin = this.getGUI;
   guiWin.minimize();
+  appEvents.emit('app:minimize');
 }
 
 // maximize the App
 appGUI.maximize = function() {
   var guiWin = this.getGUI;
   guiWin.maximize();
+  appEvents.emit('app:maximize');
 }
 
 // open dev tools
 appGUI.openDevTools = function() {
     var guiWin = gui.Window.get();
     guiWin.showDevTools();
+    appEvents.emit('app:dev-tools');
 }
 
 //appGUI.openDevTools();
@@ -111,6 +115,7 @@ OAuthVerification.verification = function(popUp) {
         document.body.setAttribute('data-isVisible', 'true');
 
         console.log('verification done');
+        appEvents.emit('app:initialized');
     }
 }
 
