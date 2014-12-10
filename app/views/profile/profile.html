@@ -7,7 +7,7 @@
             <p class="profile_description" dd-text-collapse dd-text-collapse-max-length="1300" dd-text-collapse-text="{{profileData.description}}"></p>
         </div>
         <div class="profile_pic">
-            <img src="{{ showBigArtwork (profileData.avatar_url) }}" alt="{{ profileData.username }}" class="songList_item_artwork">
+            <img ng-src="{{ showBigArtwork (profileData.avatar_url) }}" alt="{{ profileData.username }}" class="songList_item_artwork">
         </div>
     </div>
 
