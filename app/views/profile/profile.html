@@ -2,9 +2,10 @@
 
     <div class="profile">
         <div class="profile_box">
-            <h1>{{profileData.username}}</h1>
+            <button ng-click="changeFollowing()" ng-mouseover="hoverIn()" ng-mouseleave="setFollowButtonText()" class="follow_button">{{follow_button_text}}</button>
+            <h1>{{profile_data.username}}</h1>
             <h3>Followers: {{followers_count}}</h3>
-            <p class="profile_description" dd-text-collapse dd-text-collapse-max-length="1300" dd-text-collapse-text="{{profileData.description}}"></p>
+            <p class="profile_description" dd-text-collapse dd-text-collapse-max-length="1300" dd-text-collapse-text="{{profile_data.description}}"></p>
         </div>
         <div class="profile_pic">
             <img ng-src="{{ showBigArtwork (profileData.avatar_url) }}" alt="{{ profileData.username }}" class="songList_item_artwork">
