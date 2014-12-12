@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AppCtrl', function ($scope, $window, $log, ngDialog) {
+app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
     $scope.showBigArtwork = function (img) {
         var newArtwork;
         if ( ! (angular.isUndefined(img) || img === null) ) {
@@ -30,5 +30,14 @@ app.controller('AppCtrl', function ($scope, $window, $log, ngDialog) {
     $scope.closeModal = function() {
         ngDialog.closeAll();
     };
+
+    // shortcut to open devtools
+    hotkeys.add({
+        combo: 'command+/',
+        description: 'Open devtools',
+        callback: function() {
+            appGUI.openDevTools();
+        }
+    });
 
 });
