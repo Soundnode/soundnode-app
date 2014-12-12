@@ -90,8 +90,15 @@ div.active {
   text-transform: uppercase;
 }
 
+
+.remove_song {
+  float: right;
+  margin-right: 5px;
+}
+
 .songList_item_song_length {
   float: right;
+  margin-right: 40px;    
 }
 
 .songList_item_song_tit {

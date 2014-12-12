@@ -35,8 +35,12 @@
                         </div>
 
                         <div class="songList_item_container_info">
-                            <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
-                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span></h4>
+                          <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
+                          <h4 class="songList_item_song_user">by: {{ tracks.user.username }}
+                            <span class="remove_song" remove-from-playlist data-song-id="{{ tracks.id }}" > <i class="fa fa-trash-o"> </i> Remove </span>
+                            <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span>
+                          </h4>
+
                         </div>
 
                     </li>

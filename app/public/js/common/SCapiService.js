@@ -292,6 +292,44 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
 
+    /**
+     * Responsible to remove a song from a playlist
+     */
+    this.removeSongFromPlaylist = function(userId, playlistId, songId) {
+        var url = 'https://api.soundcloud.com/users/'+ userId + '/playlists/'+ playlistId+ '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        $http.get(url).then(function(response) {
+            var uri = response.data.uri + '.json?&oauth_token=' + $window.scAccessToken;
+            var tracks = response.data.tracks;
+            var songIndex;
+            var i;
+            // finding the track index
+            for ( i=0 ; i<tracks.length ; i++){
+                if (songId == tracks[i].id) {
+                    songIndex = i;
+                }
+            }
+            // Removing the track from the tracks list
+            tracks.splice(songIndex, 1);
+            return $http.put(uri, { "playlist": { "tracks": tracks } })
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    console.log(response);
+                    return $q.reject(response.data);
+                });
+        });
+    };
+
+
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
 
