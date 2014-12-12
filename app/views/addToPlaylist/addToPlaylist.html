@@ -1,0 +1,20 @@
+<div class="addToPlaylistView" id="displaylists">
+
+  <div>
+    <div>
+      <div style="position: relative;">
+        <a class="playlistCloseButton">
+          <i class="fa fa-times" ng-click="closeModal()"></i>
+        </a>
+        <h1>
+          <a class="playlistTitle" ng-click="showplaylists()">
+            Playlists
+          </a>
+        </h1>
+      </div>
+      <div class="showlist" ng-include="'views/addToPlaylist/playlists.html'" >
+      </div>
+    </div>
+  </div>
+
+</div> <!--addToPlaylistView -->

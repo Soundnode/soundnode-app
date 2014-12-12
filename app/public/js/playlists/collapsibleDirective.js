@@ -18,3 +18,20 @@ app.directive('collapsible', function ($rootScope) {
         }
     }
 });
+
+app.directive('addcollapsible', function ($rootScope) {
+    return {
+        restrict: 'A',
+        link: function ($scope, elem, attrs ) {
+
+            elem.bind('click', function () {
+                if ( elem.parent().parent().parent().attr('data-playlist-hidden') === 'true' ) {
+                    elem.parent().parent().parent().attr('data-playlist-hidden', 'false');
+                } else {
+                    elem.parent().parent().parent().attr('data-playlist-hidden', 'true');
+                }
+            });
+
+        }
+    }
+});

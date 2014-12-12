@@ -29,9 +29,14 @@
             <span>
                 <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
             </span>
-            <span>
-                <a data-song-id="{{ data.id }}"> <i class="fa fa-bookmark"></i> Add to playlist</a>
-            </span>
+            <div>
+              <span>
+                <a save-song data-song-id="{{ data.id }}" data-favorite-action="saveToPlaylist">
+                  <i class="fa fa-bookmark"> </i> Add to playlist
+                </a>
+              </span>
+            </div>
+
         </div>
         <div>
             <span>{{ data.genre }}</span>

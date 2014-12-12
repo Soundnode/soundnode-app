@@ -45,4 +45,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
+app.factory('Song', function() {
+    return {songid: ""}
+});
+
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1500);

@@ -36,4 +36,10 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
             });
     };
 
+
+ $scope.closeOverlay = function() {
+     $rootScope.showpopup = false;
+     $rootScope.displayplaylists = false;
+ };
+
 });
