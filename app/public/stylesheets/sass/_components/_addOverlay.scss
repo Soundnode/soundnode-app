@@ -16,15 +16,14 @@
      border-color: gray;
      border-style: solid;
      border-width: 1px;
-
      overflow: scroll;
 }
 
 
 .playlistCloseButton {
      display: block;             
-     margin-top: 25px;
-     margin-left: 730px; 
+     margin-top: 20px;
+     margin-left: 738px; 
      font-size: 15px;
      color: #696969;
 }
@@ -33,12 +32,72 @@
      display: block;
      margin-top: 5px;
      margin-bottom: 10px;
-     margin-left: 5px;
+     margin-left: 10px;
+     width: 150px;
 }
-
 
 .showlist {
      position: absolute;
      margin-top: 10px;
      margin-left: 5px;
 }
+
+.line {
+     position: fixed;
+     display:block;
+     margin-left: 620px;
+     top: 140px;
+     left: 100px;
+     background: red;
+     height: 400px;
+     width: 2px;
+}
+
+.newPlaylist {
+     position: fixed;
+     top: 150px;
+     left: 20px;
+     display:block;
+     margin-left: 750px;
+     height: 350px;
+     width: 200px;
+}
+
+.create_butt {
+     position: relative;
+     top: 10px;
+     display:block;
+     margin-left: 15px;
+     color: balck;
+     height: 22px;
+     width: 165px;
+
+}
+
+.button_text {
+     color: black;    
+}
+
+.title {
+     margin-top: 0.5cm;
+     margin-left: 15px;     
+}
+
+.title_input {
+     margin-top: -0.2cm;
+     margin-left: 15px;     
+}
+
+.save_cancel {
+     margin-left: 15px;     
+}
+
+.savetext {
+     color: green;     
+}
+
+.canceltext {
+     color: red;     
+}
+
+

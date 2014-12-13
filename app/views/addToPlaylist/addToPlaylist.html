@@ -2,18 +2,42 @@
 
   <div>
     <div>
-      <div style="position: relative;">
+      <div>
         <a class="playlistCloseButton">
           <i class="fa fa-times" ng-click="closeModal()"></i>
         </a>
-        <h1>
-          <a class="playlistTitle" ng-click="showplaylists()">
+        <h1 class="playlistTitle">
+          <a ng-click="showplaylists()">
             Playlists
           </a>
         </h1>
       </div>
       <div class="showlist" ng-include="'views/addToPlaylist/playlists.html'" >
       </div>
+    </div>
+  </div>
+
+  <div class="line">  </div>
+
+  <div class="newPlaylist">   
+    <div class="form" >
+      <p class="create_butt" >
+        <button ng-click="createButt()">
+          <h3 class="button_text"> Create a new playlist</h3>
+        </button>
+      </p>
+      <p class="title" ng-show="isCreatePlaylistVisible"> playlist title: </p>
+      <p class="title_input" ng-show="isCreatePlaylistVisible">
+        <input type="text" ng-model="addedPlaylist"> </input>
+      </p>
+      <p class="save_cancel" ng-show="isCreatePlaylistVisible">
+        <button class="save_butt" ng-click="savePlaylist()">
+          <h3 class="savetext"> Save </h3> 
+        </button>
+        <button class="cancel_butt" ng-click="cancelPlaylist()"> 
+          <h3 class="canceltext"> Cancel </h3> 
+        </button>
+      </p>
     </div>
   </div>
 

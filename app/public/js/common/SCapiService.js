@@ -330,6 +330,30 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
 
+    /**
+     * Responsible to add a playlist
+     */
+    this.savePlaylist = function(playlisttitle) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        var tracks = [].map(function(id) { return { id: id };});
+        return $http.post(url, {
+            playlist: { title: playlisttitle, tracks: tracks }})
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
+
+
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
 

@@ -4,6 +4,7 @@ app.controller('overlayCtrl', function ($scope, SCapiService, $rootScope, Song, 
 
     $scope.song = Song;
     $scope.playlistsdata = '';
+    $rootScope.isCreatePlaylistVisible = false;
 
     SCapiService.getPlaylists()
         .then(function(data) {
@@ -24,9 +25,28 @@ app.controller('overlayCtrl', function ($scope, SCapiService, $rootScope, Song, 
         }
     };
 
-    
     $scope.closeModal = function() {
         ngDialog.closeAll();
     };
+
+    $scope.createButt = function() {
+        if ( !$rootScope.isCreatePlaylistVisible ) {
+            $rootScope.isCreatePlaylistVisible = true;
+        }
+    }
+
+    $scope.cancelPlaylist = function() {
+        if ( $rootScope.isCreatePlaylistVisible ) {
+            $scope.addedPlaylist = '';
+            $rootScope.isCreatePlaylistVisible = false;
+        }
+    }
+
+    $scope.savePlaylist = function() {
+        var playlistTitle = $scope.addedPlaylist;
+        $scope.addedPlaylist = '';
+        $rootScope.isCreatePlVisible = false;
+        SCapiService.savePlaylist(playlistTitle);
+    }
 
 });
