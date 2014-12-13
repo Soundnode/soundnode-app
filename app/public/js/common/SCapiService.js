@@ -323,11 +323,51 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 }, function(response) {
                     console.log('something went wrong response');
                     // something went wrong
-                    console.log(response);
                     return $q.reject(response.data);
                 });
         });
     };
+
+
+
+
+    /**
+     * Responsible to remove a playlist
+     */
+    this.removePlaylist = function(playlistId) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        $http.get(url).then(function(response) {
+            var playlists = response.data;
+            var uri;
+            var i;
+
+            // finding the uri       
+            for ( i=0 ; i<response.data.length ; i++){
+                if (playlistId == playlists[i].id) {
+                    uri = response.data[i].uri + '.json?&oauth_token=' + $window.scAccessToken;
+                }
+            }
+
+            // Removing the playlist from the playlists list
+            return $http.delete(uri)
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    return $q.reject(response.data);
+                });
+        });
+    };
+
+
 
 
     /**

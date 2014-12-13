@@ -90,6 +90,23 @@ div.active {
   text-transform: uppercase;
 }
 
+.add_song {
+  position: relative;
+  float: right;
+  margin-right: 40px;
+  margin-top: 5px;
+  top: -25px;   
+  height: 30px;
+}
+
+.remove_playlist {
+  position: relative;
+  float: right;
+  margin-right: 250px;
+  margin-top: 5px;
+  top: -25px;   
+  height: 30px;
+}
 
 .remove_song {
   float: right;

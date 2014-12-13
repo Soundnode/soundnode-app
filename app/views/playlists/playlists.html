@@ -10,8 +10,15 @@
                 ng-if="data.kind == 'playlist'"
                 data-playlist-hidden="true" >
 
-                <h4 class="songList_item_song_user" collapsible>{{ data.title }} playlist - <span>show</span></h4>
-
+              <div>
+                <h4 class="songList_item_song_user" collapsible> {{ data.title }} playlist -
+                  <span class="show"> show</span>
+                </h4>
+                <h4 class="songList_item_song_user">
+                  <span class="remove_playlist" remove-playlist > <i class="fa fa-trash-o"> </i> Remove
+                  </span>
+                </h4>
+              </div>
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item" 
                         ng-repeat="tracks in data.tracks"
