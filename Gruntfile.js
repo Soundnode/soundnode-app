@@ -47,6 +47,13 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['dev']
             }
+        },
+
+        jslint: {
+            app: {
+                src: ['app/public/js/**/*.js'],
+                directives: { browser: true, node: true }
+            }
         }
 
     });
@@ -54,6 +61,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-node-webkit-builder');
+    grunt.loadNpmTasks('grunt-jslint');
 
     // Build desktop
     grunt.registerTask('build', [
