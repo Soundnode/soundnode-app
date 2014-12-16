@@ -5,4 +5,4 @@ node_modules
 dist/
 report/
 npm-debug.log
-app/public/stylesheets/css/app.css
+app.css
