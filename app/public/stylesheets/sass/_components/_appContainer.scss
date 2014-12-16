@@ -8,3 +8,32 @@
 .fa {
   color: #fff;
 }
+
+/*
+* About
+*/
+.aboutView {
+  font-size: 15px;
+}
+.aboutView_content {
+
+  p,
+  strong {
+    margin: 10px 0;
+  }
+  ul {
+    margin: 10px 0;
+  }
+
+}
+.aboutView_closeButton {
+  text-align: right;
+  display: block;
+  font-size: 25px;
+  margin: 0 0 20px 0;
+
+  i {
+    cursor: pointer;
+  }
+
+}

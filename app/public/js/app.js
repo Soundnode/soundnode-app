@@ -2,7 +2,10 @@
 
 var app = angular.module('App', ['ui.router', 'ngSanitize', 'cfp.hotkeys', 'infinite-scroll', 'ngDialog']);
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
+
+    // Hotkeys config
+    hotkeysProvider.includeCheatSheet = false;
 
     // unmatched url redirect to /
     $urlRouterProvider.otherwise('/');
