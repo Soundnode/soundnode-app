@@ -8,7 +8,7 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
     $scope.data = '';
     $scope.busy = false;
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getTracks(endpoint, params)
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {

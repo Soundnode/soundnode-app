@@ -8,7 +8,7 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     $scope.data = '';
     $scope.busy = false;
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getFavorites(endpoint, params)
         .then(function(data) {
             $scope.data = data;
         }, function(error) {
