@@ -10,7 +10,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, SCapiService) {
     $scope.userThumbWidth = '50px';
     $scope.userThumbHeight = '50px';
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getUser(endpoint, params)
                 .then(function(data) {
                     $rootScope.userId = data.id;
                     $scope.name = data.username;
