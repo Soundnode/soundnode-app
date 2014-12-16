@@ -42,3 +42,40 @@ body[data-isVisible="true"] {
     display: block;
   }
 }
+
+/* sub navigation states */
+.subNav_nav[data-isVisible="false"] {
+  display: none;
+}
+.subNav_nav[data-isVisible="true"] {
+  display: block;
+}
+.subNav {
+  position: relative;
+}
+.subNav .subNav_button {
+  display: block;
+
+  & i {
+    display: block;
+    color: $defaultColor;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  &:hover i {
+    color: #fff;
+  }
+}
+.subNav_nav {
+  background: $sectionBackground;
+  border-right: 1px solid $separatorDarkColor;
+  box-shadow: 0 0 7px 0px #000;
+  padding: 5px 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 25px;
+  right: 0;
+}
+.subNav_nav_item {
+  margin: 5px 0;
+}

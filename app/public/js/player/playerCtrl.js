@@ -26,9 +26,9 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
 
-    //
-    // Add native media shortcuts
-    //
+    /*
+    * Add native media shortcuts
+    */
 
     var playPause = new gui.Shortcut({
         key: 'MediaPlayPause',

@@ -1,6 +1,20 @@
 'use strict'
 
 app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
+
+    // Settings sub nav (dropdown)
+    $scope.isSettingsVisible = false;
+    
+    $scope.toggleSettings = function() {
+        if ( $scope.isSettingsVisible ) {
+            $scope.isSettingsVisible = false;
+        } else {
+            $scope.isSettingsVisible = true;
+        }
+    }
+    
+    // check if track has Art work
+    // otherwise replace to Soundnode App logo
     $scope.showBigArtwork = function (img) {
         var newArtwork;
         if ( ! (angular.isUndefined(img) || img === null) ) {
@@ -12,12 +26,18 @@ app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
         }
     };
 
+    // Format song duration on tracks
+    // for human reading
     $scope.formatSongDuration = function(duration) {
         var minutes = Math.floor(duration / 60000)
             , seconds = ((duration % 60000) / 1000).toFixed(0);
         
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     };
+
+    /*
+    * Navigation back and forward
+    */
 
     $scope.goBack = function() {
         $window.history.back();
@@ -27,6 +47,7 @@ app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
         $window.history.forward();
     };
 
+    // Close all open modals
     $scope.closeModal = function() {
         ngDialog.closeAll();
     };
