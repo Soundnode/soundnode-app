@@ -72,6 +72,38 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     });
     };
 
+
+
+    /**
+     * Responsible to make get request to get the playlists
+     * @method getPlaylists
+     */
+
+    this.getPlaylists = function() {
+        var endpoint = 'me/playlists';
+        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + '&oauth_token=' + $window.scAccessToken
+        , that = this;
+        this.isLoading();
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    } else {
+                        that.next_page = '';
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
+
     /**
      * Responsible to get the followed users.
      * @return {[object]} data response
@@ -224,6 +256,143 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $g.reject(response.data);
             });
     }
+
+
+
+    /**
+     * Responsible to add song to a playlist
+     */
+    this.saveToPlaylist = function(userId, playlistId, songId) {
+        var track = { "id": Number.parseInt(songId) };
+        var url = 'https://api.soundcloud.com/users/'+  userId + '/playlists/'+ playlistId+ '.json?&oauth_token=' + $window.scAccessToken 
+            , that = this;
+        $http.get(url).then(function(response) {
+            var uri = response.data.uri + '.json?&oauth_token=' + $window.scAccessToken;
+            var tracks = response.data.tracks;
+            tracks.push(track);
+
+            return $http.put(uri, { "playlist": { "tracks": tracks } })
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    console.log(response);
+                    return $q.reject(response.data);
+                });
+
+        });
+    };
+
+
+    /**
+     * Responsible to remove a song from a playlist
+     */
+    this.removeSongFromPlaylist = function(userId, playlistId, songId) {
+        var url = 'https://api.soundcloud.com/users/'+ userId + '/playlists/'+ playlistId+ '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        $http.get(url).then(function(response) {
+            var uri = response.data.uri + '.json?&oauth_token=' + $window.scAccessToken;
+            var tracks = response.data.tracks;
+            var songIndex;
+            var i;
+            // finding the track index
+            for ( i=0 ; i<tracks.length ; i++){
+                if (songId == tracks[i].id) {
+                    songIndex = i;
+                }
+            }
+            // Removing the track from the tracks list
+            tracks.splice(songIndex, 1);
+            return $http.put(uri, { "playlist": { "tracks": tracks } })
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    return $q.reject(response.data);
+                });
+        });
+    };
+
+
+
+
+    /**
+     * Responsible to remove a playlist
+     */
+    this.removePlaylist = function(playlistId) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        $http.get(url).then(function(response) {
+            var playlists = response.data;
+            var uri;
+            var i;
+
+            // finding the uri       
+            for ( i=0 ; i<response.data.length ; i++){
+                if (playlistId == playlists[i].id) {
+                    uri = response.data[i].uri + '.json?&oauth_token=' + $window.scAccessToken;
+                }
+            }
+
+            // Removing the playlist from the playlists list
+            return $http.delete(uri)
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    return $q.reject(response.data);
+                });
+        });
+    };
+
+
+
+
+    /**
+     * Responsible to add a playlist
+     */
+    this.savePlaylist = function(playlisttitle) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+        , that = this;
+        var tracks = [].map(function(id) { return { id: id };});
+        return $http.post(url, {
+            playlist: { title: playlisttitle, tracks: tracks }})
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
+
 
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;

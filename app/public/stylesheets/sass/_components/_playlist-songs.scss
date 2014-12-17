@@ -13,7 +13,7 @@
   & .songList_item_song_button {
     height: 100%;
     padding-top: 0;
-    font-size: 32px;
+    font-size: 10px;
   }
 
   & .songList_item_song_user {
@@ -37,15 +37,18 @@
     height: 47px;
     float: left;
     position: relative;
+
   }
 
   & .songList_item_container_info {
     float: left;
     margin: 0 0 0 10px;
+    width: 400px;
   }
 
   & .songList_item_song_tit {
     height: auto;
+    font-size: 15px;
   }
 
 }

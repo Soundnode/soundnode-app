@@ -1,31 +1,34 @@
 <div class="playlistsView">
-    <h1> {{ title }}</h1>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <div ng-include="'views/partials/loading.html'"></div>
 
     <!-- Song list wrapper -->
-    <div class="playlistsView_inner">
+    <div class="addToPlaylistView_inner" ng-controller="overlayCtrl">
         <ul class="songList">
-            <li class="songList_item" ng-repeat="data in data"
+            <li class="songList_item" ng-repeat="data in playlistsdata"
                 ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}"
                 ng-if="data.kind == 'playlist'"
                 data-playlist-hidden="true" >
-
-              <div>
-                <h4 class="songList_item_song_user" collapsible> {{ data.title }} playlist -
-                  <span class="show"> show</span>
-                </h4>
-                <h4 class="songList_item_song_user">
-                  <span class="remove_playlist" remove-playlist > <i class="fa fa-trash-o"> </i> Remove
-                  </span>
-                </h4>
-              </div>
+              
+                <div>
+                  <h4 class="songList_item_song_user" collapsible >
+                    {{ data.title }} playlist &nbsp &nbsp 
+                    <span>  Show  &nbsp &nbsp 
+                    </span>
+                  </h4>
+                  <h4>
+                    <span class="add_song" add-to-playlist>   <i class="fa fa-plus">  </i> Add to playlist
+                    </span>
+                  </h4>
+                </div>
+ 
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item" 
                         ng-repeat="tracks in data.tracks"
                         ng-class="{ active: hover }"
                         ng-mouseover="hover = true"
                         ng-mouseleave="hover = false" >
-
                         <div class="songList_item_container_artwork">
                             <span class="songList_item_song_button" 
                                 song
@@ -38,16 +41,12 @@
                             <i class="fa fa-play"></i>
                             <i class="fa fa-pause"></i>
                         </span>
-                            <img ng-src="{{ checkForPlaceholder(tracks.artwork_url) }}" alt="{{ tracks.title }}" class="songList_item_artwork">
+                            <img src="{{ checkForPlaceholder(tracks.artwork_url) }}" alt="{{ tracks.title }}" class="songList_item_artwork">
                         </div>
 
                         <div class="songList_item_container_info">
-                          <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
-                          <h4 class="songList_item_song_user">by: {{ tracks.user.username }}
-                            <span class="remove_song" remove-from-playlist data-song-id="{{ tracks.id }}" > <i class="fa fa-trash-o"> </i> Remove </span>
-                            <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span>
-                          </h4>
-
+                            <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
+                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span></h4>
                         </div>
 
                     </li>
@@ -56,8 +55,5 @@
             </li>
         </ul>
     </div>
-    <!-- Song list wrapper / end -->
-
-    <div ng-include="'views/partials/loading.html'"></div>
 
 </div>
