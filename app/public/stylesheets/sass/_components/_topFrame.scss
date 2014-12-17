@@ -22,8 +22,7 @@
   -webkit-app-region: no-drag;
 }
 
-.windowAction,
-.appInfo {
+.windowAction {
   overflow: hidden;
 }
 
@@ -93,6 +92,10 @@
     font-size: 14px;
     color: $linkColor;
     cursor: pointer;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
   &:last-child a {
