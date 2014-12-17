@@ -1,8 +1,5 @@
 "use strict";
 
-// Avoid JSLint warning: "'$' was used before it was defined."
-/*global $, angular*/
-
 var gui = require('nw.gui'),
     uiFrame = {},
     OAuthVerification = {},

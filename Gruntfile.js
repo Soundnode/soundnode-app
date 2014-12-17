@@ -43,16 +43,20 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: [
+                    'app/public/js/**/*.js',
                     'app/public/stylesheets/sass/**/*.scss'
                 ],
-                tasks: ['dev']
+                tasks: ['dev', 'jshint']
             }
         },
 
-        jslint: {
-            app: {
-                src: ['app/public/js/**/*.js'],
-                directives: { browser: true, node: true }
+        jshint: {
+            all: [
+                'app/public/js/**/*.js',
+                '!app/public/js/vendor/**/*.js',
+            ],
+            options: {
+                jshintrc: '.jshintrc'
             }
         }
 
@@ -61,7 +65,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-node-webkit-builder');
-    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Build desktop
     grunt.registerTask('build', [
