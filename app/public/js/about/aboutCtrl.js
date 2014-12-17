@@ -7,7 +7,6 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog) {
             }
         };
 
-    $rootScope.isAboutVisible = false;
     $scope.content = '';
 
     $scope.openModal = function() {
