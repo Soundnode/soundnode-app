@@ -10,8 +10,9 @@
   "license": "GNU",
   "devDependencies": {
     "grunt": "^0.4.4",
-    "grunt-node-webkit-builder": "*",
     "grunt-contrib-compass": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "*",
+    "grunt-node-webkit-builder": "*"
   }
 }

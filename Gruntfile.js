@@ -43,10 +43,11 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: [
+                    '!app/public/js/vendor/**/*.js',
                     'app/public/js/**/*.js',
                     'app/public/stylesheets/sass/**/*.scss'
                 ],
-                tasks: ['dev', 'jshint']
+                tasks: ['dev']
             }
         },
 
@@ -75,7 +76,13 @@ module.exports = function (grunt) {
 
     // Dev
     grunt.registerTask('dev', [
-        'compass:dev'
+        'compass:dev',
+        'jshint'
+    ]);
+
+    // Dev
+    grunt.registerTask('test', [
+        'jshint'
     ]);
 
     grunt.event.on('watch', function(action, filepath, target) {
