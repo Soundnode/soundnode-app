@@ -27,6 +27,26 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         return '&oauth_token=' + $window.scAccessToken;
     }
 
+
+    this.getRequest = function (url , that) {
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    }
+
     /**
      * Responsible to request next page data and save new next_page url
      * @returns {Object} data
@@ -34,25 +54,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.getNextPage = function() {
         var url = this.next_page + this.authorize() + '&linked_partitioning=1'
             , that = this;
-
         this.isLoading();
-
-       return $http.get(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                                that.next_page = response.data.next_href;
-                            }
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
+        return  this.getRequest(url , that);
     };
 
     /**
@@ -66,25 +69,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
             + '&linked_partitioning=1'
             , that = this;
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     }
 
 
@@ -96,22 +81,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var endpoint = 'users/' + userId;
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize(),
             that = this;
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
     /**
@@ -123,14 +93,21 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var param = 'limit=15';
         var url = this.getStaticAddress() + endpoint + '.json?' + param + this.authorize()
             + '&linked_partitioning=1'
-            , that = this;
+        , that = this;
+        return this.getRequest(url , that);
+    };
 
-        return $http.get(url)
+    /**
+     * Responsible to save song to SC favorites
+     * @return {[object]} data response
+     */
+    this.saveFavorite = function(userId, songId) {
+        var endpoint = 'users/' + userId + '/favorites/' + songId;
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
+       return $http.put(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    }
                     return response.data;
                 } else {
                     // invalid response
@@ -144,56 +121,32 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
     /**
-     * Responsible to save song to SC favorites
-     * @return {[object]} data response
-     */
-    this.saveFavorite = function(userId, songId) {
-        var endpoint = 'users/' + userId + '/favorites/' + songId;
-        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
-            , that = this;
-
-       return $http.put(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
-    };
-
-    /**
      * Responsible to delete song from SC favorites
      * @return {[object]} data response
      */
     this.deleteFavorite = function(userId, songId) {
         var endpoint = 'users/' + userId + '/favorites/' + songId;
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
-            , that = this;
+        , that = this;
 
-       return $http.delete(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            $state.transitionTo($state.current, $stateParams, {
-                                reload: true,
-                                inherit: false,
-                                notify: true
-                            });
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
+        return $http.delete(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
                     });
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
     }
 
 
@@ -201,20 +154,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var endpoint = 'tracks';
         var url = this.getStaticAddress() + endpoint + '.json?linked_partitioning=1&limit=' + limit + '&q=' + query + this.authorize()
             , that = this;
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    that.next_page = response.data.next_href;
-                    return response.data;
-                } else {
-                    //invalid response
-                    return $g.reject(response.data);
-                }
-            }, function(response) {
-                //something went wrong
-                return $g.reject(response.data);
-            });
+        return this.getRequest(url , that);
     }
 
     this.followUser = function(id) {
@@ -269,19 +209,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var endpoint = 'me/followings/' + id;
         var url = this.getStaticAddress() + endpoint + '?oauth_token=' + $window.scAccessToken
             , that = this;
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    return response.data;
-                } else {
-                    //invalid response
-                    return $g.reject(response.data);
-                }
-            }, function(response) {
-                //something went wrong which is good
-                return response.status;
-            });
+        return this.getRequest(url , that);
     }
 
 
@@ -294,23 +222,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
         , that = this;
         this.isLoading();
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
 
@@ -323,23 +235,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + params + this.authorize()
         , that = this;
         this.isLoading();
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
 
@@ -353,23 +249,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + params + this.authorize()
         , that = this;
         this.isLoading();
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url, that);
     };
 
 
@@ -383,23 +263,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
         , that = this;
         this.isLoading();
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
 
@@ -412,24 +276,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
         , that = this;
         this.isLoading();
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
 });
-
