@@ -76,8 +76,7 @@ module.exports = function (grunt) {
 
     // Dev
     grunt.registerTask('dev', [
-        'compass:dev',
-        'jshint'
+        'compass:dev'
     ]);
 
     // Dev
