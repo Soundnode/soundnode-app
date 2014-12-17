@@ -17,59 +17,45 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         $rootScope.isLoading = true;
     };
 
-    this.get = function(endpoint, params) {
 
-        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken
-            , that = this;
+    this.getStaticAddress = function () {
+        return 'https://api.soundcloud.com/' ;
+    }
 
-        this.isLoading();
 
+    this.authorize = function () {
+        return '&oauth_token=' + $window.scAccessToken;
+    }
+
+
+    this.getRequest = function (url , that) {
         return $http.get(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                                that.next_page = response.data.next_href;
-                            } else {
-                                that.next_page = '';
-                            }
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
+                        that.next_page = response.data.next_href;
+                    }
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
 
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
-    };
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    }
 
     /**
      * Responsible to request next page data and save new next_page url
      * @returns {Object} data
      */
     this.getNextPage = function() {
-        var url = this.next_page + '&oauth_token=' + $window.scAccessToken + '&linked_partitioning=1'
+        var url = this.next_page + this.authorize() + '&linked_partitioning=1'
             , that = this;
-
         this.isLoading();
-
-       return $http.get(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                                that.next_page = response.data.next_href;
-                            }
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
+        return  this.getRequest(url , that);
     };
 
     /**
@@ -79,53 +65,23 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.getFollowing = function () {
         this.isLoading();
 
-        var url = 'https://api.soundcloud.com/' + 'me/followings' + '.json?' + '&oauth_token=' + $window.scAccessToken
+        var endpoint = 'me/followings';
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
             + '&linked_partitioning=1'
             , that = this;
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    } else {
-                        that.next_page = '';
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     }
+
 
     /**
      * Responsible to get profile data, i.e, user name, description etc.
      * @return {[object]} data response
      */
     this.getProfile = function(userId) {
-        var url = 'https://api.soundcloud.com/users/' + userId + '.json?&oauth_token=' + $window.scAccessToken,
+        var endpoint = 'users/' + userId;
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize(),
             that = this;
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    }
-                    return response.data;
-                } else {
-                    // invalid response
-                    return $q.reject(response.data);
-                }
-
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
-            });
+        return this.getRequest(url , that);
     };
 
     /**
@@ -133,16 +89,25 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * @return {[object]} data response
      */
     this.getProfileTracks = function(userId) {
-        var url = 'https://api.soundcloud.com/users/' + userId  + '/tracks.json?' + 'limit=15' + '&oauth_token=' + $window.scAccessToken
+        var endpoint = 'users/' + userId + '/tracks';
+        var param = 'limit=15';
+        var url = this.getStaticAddress() + endpoint + '.json?' + param + this.authorize()
             + '&linked_partitioning=1'
-            , that = this;
+        , that = this;
+        return this.getRequest(url , that);
+    };
 
-        return $http.get(url)
+    /**
+     * Responsible to save song to SC favorites
+     * @return {[object]} data response
+     */
+    this.saveFavorite = function(userId, songId) {
+        var endpoint = 'users/' + userId + '/favorites/' + songId;
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
+       return $http.put(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
-                    if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
-                        that.next_page = response.data.next_href;
-                    }
                     return response.data;
                 } else {
                     // invalid response
@@ -156,77 +121,45 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
     /**
-     * Responsible to save song to SC favorites
-     * @return {[object]} data response
-     */
-    this.saveFavorite = function(userId, songId) {
-        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
-            , that = this;
-
-       return $http.put(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
-    };
-
-    /**
      * Responsible to delete song from SC favorites
      * @return {[object]} data response
      */
     this.deleteFavorite = function(userId, songId) {
-        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
-            , that = this;
+        var endpoint = 'users/' + userId + '/favorites/' + songId;
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
 
-       return $http.delete(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
-                            $state.transitionTo($state.current, $stateParams, {
-                                reload: true,
-                                inherit: false,
-                                notify: true
-                            });
-                            return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
-                        }
-
-                    }, function(response) {
-                        // something went wrong
-                        return $q.reject(response.data);
-                    });
-    }
-
-    this.searchTracks = function(limit, query) {
-        var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
-            , that = this;
-
-        return $http.get(url)
+        return $http.delete(url)
             .then(function(response) {
                 if (typeof response.data === 'object') {
-                    that.next_page = response.data.next_href;
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
+                    });
                     return response.data;
                 } else {
-                    //invalid response
-                    return $g.reject(response.data);
+                    // invalid response
+                    return $q.reject(response.data);
                 }
+
             }, function(response) {
-                //something went wrong
-                return $g.reject(response.data);
+                // something went wrong
+                return $q.reject(response.data);
             });
     }
 
+
+    this.searchTracks = function(limit, query) {
+        var endpoint = 'tracks';
+        var url = this.getStaticAddress() + endpoint + '.json?linked_partitioning=1&limit=' + limit + '&q=' + query + this.authorize()
+            , that = this;
+        return this.getRequest(url , that);
+    }
+
     this.followUser = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
+        var endpoint = 'me/followings/' + id;
+        var url = this.getStaticAddress() + endpoint + '?oauth_token=' + $window.scAccessToken;
 
         return $http.put(url)
             .then(function(response) {
@@ -246,7 +179,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     }
 
     this.unfollowUser = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
+        var endpoint = 'me/followings/' + id;
+        var url = this.getStaticAddress() + endpoint + '?oauth_token=' + $window.scAccessToken;
 
         return $http.delete(url)
             .then(function(response) {
@@ -272,22 +206,77 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * the API returns a 404 Not Found error.
      */
     this.isFollowing = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
+        var endpoint = 'me/followings/' + id;
+        var url = this.getStaticAddress() + endpoint + '?oauth_token=' + $window.scAccessToken
             , that = this;
-
-        return $http.get(url)
-            .then(function(response) {
-                if (typeof response.data === 'object') {
-                    return response.data;
-                } else {
-                    //invalid response
-                    return $g.reject(response.data);
-                }
-            }, function(response) {
-                //something went wrong which is good
-                return response.status;
-            });
+        return this.getRequest(url , that);
     }
 
+
+    /**
+     * Responsible to make get request to get the favorites
+     * @method getFavorites
+     */
+    this.getFavorites = function() {
+        var endpoint = 'me/favorites';
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
+        this.isLoading();
+        return this.getRequest(url , that);
+    };
+
+
+    /**
+     * Responsible to make get request to get the streams
+     * @method getStreams
+     */
+    this.getStreams = function() {
+        var endpoint = 'me/activities' , params = 'limit=33';
+        var url = this.getStaticAddress() + endpoint + '.json?' + params + this.authorize()
+        , that = this;
+        this.isLoading();
+        return this.getRequest(url , that);
+    };
+
+
+
+    /**
+     * Responsible to make get request to get the tracks
+     * @method getTracks
+     */
+    this.getTracks = function() {
+        var endpoint = 'me/tracks', params = 'limit=33';
+        var url = this.getStaticAddress() + endpoint + '.json?' + params + this.authorize()
+        , that = this;
+        this.isLoading();
+        return this.getRequest(url, that);
+    };
+
+
+
+    /**
+     * Responsible to make get request to get the playlists
+     * @method getPlaylists
+     */
+    this.getPlaylists = function() {
+        var endpoint = 'me/playlists';
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
+        this.isLoading();
+        return this.getRequest(url , that);
+    };
+
+
+    /**
+     * Responsible to make get request
+     * @method getUser
+     */
+    this.getUser = function() {
+        var endpoint = 'me';
+        var url = this.getStaticAddress() + endpoint + '.json?' + this.authorize()
+        , that = this;
+        this.isLoading();
+        return this.getRequest(url , that);
+    };
 
 });

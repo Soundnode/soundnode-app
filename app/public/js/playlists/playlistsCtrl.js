@@ -7,7 +7,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
     $scope.title = 'Playlists';
     $scope.data = '';
 
-    SCapiService.get(endpoint, params)
+    SCapiService.getPlaylists(endpoint, params)
                 .then(function(data) {
                     $scope.data = data;
                 }, function(error) {
