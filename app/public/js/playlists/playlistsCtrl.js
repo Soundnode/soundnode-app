@@ -20,7 +20,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope) {
         var newSize;
 
         if ( thumb === null ) {
-            return 'public/img/temp-playing.png';
+            return 'public/img/logo-badge.png';
         } else {
             newSize = thumb.replace('large', 'badge');
             return newSize;

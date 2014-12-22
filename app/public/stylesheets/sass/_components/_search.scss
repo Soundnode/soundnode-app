@@ -5,21 +5,7 @@
 }
 
 .search_field {
-  border: 1px solid #000;
-  background: $bodyBackground;
   width: 80%;
-  display: inline-block;
-  height: 25px;
-  padding: 0 0 0 5px;
-  outline: none;
-  color: #fff;
-  font-size: 12px;
-  transition: $transitionValue;
-  border-radius: 5px;
-
-  &:focus {
-    box-shadow: 0 0 5px $scColor;
-  }
 }
 
 .searchButton {

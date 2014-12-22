@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
+app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog, hotkeys) {
 
     // Settings sub nav (dropdown)
     $scope.isSettingsVisible = false;
@@ -51,14 +51,5 @@ app.controller('AppCtrl', function ($scope, $window, $log, ngDialog, hotkeys) {
     $scope.closeModal = function() {
         ngDialog.closeAll();
     };
-
-    // shortcut to open devtools
-    hotkeys.add({
-        combo: 'command+/',
-        description: 'Open devtools',
-        callback: function() {
-            appGUI.openDevTools();
-        }
-    });
 
 });

@@ -49,3 +49,30 @@
   }
 
 }
+
+/*
+* Playlist modal
+*/
+.playlistDashboard_list {
+  margin: 20px 0;
+}
+.playlistDashboard_list_item {
+  overflow: hidden;
+  padding: 10px 0;
+
+  &:hover {
+    background: $sectionBackground;
+    cursor: pointer;
+  }
+}
+
+.playlistDashboard_selectedSong {
+  color: #fff;
+}
+
+
+
+
+
+
+

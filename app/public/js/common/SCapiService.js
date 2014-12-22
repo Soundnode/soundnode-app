@@ -289,5 +289,31 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
             });
     }
 
+    /**
+     * Responsible to save song to SC specific playlist
+     */
+    this.saveToPlaylist = function(userId, playlistId, songId) {
+        var track = { "id": Number.parseInt(songId) };
+        var url = 'https://api.soundcloud.com/users/'+  userId + '/playlists/'+ playlistId+ '.json?&oauth_token=' + $window.scAccessToken 
+            , that = this;
+
+        return $http.put(uri, { "playlist": { "tracks": tracks } })
+                .then(function(response) {
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        console.log('invalid response');
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+
+                }, function(response) {
+                    console.log('something went wrong response');
+                    // something went wrong
+                    console.log(response);
+                    return $q.reject(response.data);
+                });
+    };
+
 
 });

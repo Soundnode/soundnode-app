@@ -48,4 +48,17 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
     });
 });
 
+app.run(function($rootScope, $log, SCapiService, hotkeys) {
+
+    // shortcut to open devtools
+    hotkeys.add({
+        combo: 'command+/',
+        description: 'Open devtools',
+        callback: function() {
+            appGUI.openDevTools();
+        }
+    });
+
+});
+
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1500);

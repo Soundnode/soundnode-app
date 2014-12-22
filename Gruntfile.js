@@ -43,8 +43,6 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: [
-                    '!app/public/js/vendor/**/*.js',
-                    'app/public/js/**/*.js',
                     'app/public/stylesheets/sass/**/*.scss'
                 ],
                 tasks: ['dev']

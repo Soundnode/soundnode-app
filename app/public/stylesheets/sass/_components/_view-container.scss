@@ -13,3 +13,25 @@
     margin: 10px 0 30px;
   }
 }
+
+/*
+* Modal UI components
+*/
+.mediaBox_wrapper {
+  float: left;
+  margin: 0 5px;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+}
+
+.mediaBox_item_info {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+}
