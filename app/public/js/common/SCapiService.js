@@ -204,7 +204,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                         // something went wrong
                         return $q.reject(response.data);
                     });
-    }
+    };
 
     this.searchTracks = function(limit, query) {
         var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
@@ -223,7 +223,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 //something went wrong
                 return $g.reject(response.data);
             });
-    }
+    };
 
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
@@ -243,7 +243,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 errorResponse.data = response.data;
                 return $q.reject(errorResponse);
             });
-    }
+    };
 
     this.unfollowUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
@@ -263,7 +263,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 errorResponse.data = response.data;
                 return $q.reject(errorResponse);
             });
-    }
+    };
 
     /*
      * Soundcloud API is behaving strangely. If "me" is following "id"
@@ -287,33 +287,6 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 //something went wrong which is good
                 return response.status;
             });
-    }
-
-    /**
-     * Responsible to save song to SC specific playlist
-     */
-    this.saveToPlaylist = function(userId, playlistId, songId) {
-        var track = { "id": Number.parseInt(songId) };
-        var url = 'https://api.soundcloud.com/users/'+  userId + '/playlists/'+ playlistId+ '.json?&oauth_token=' + $window.scAccessToken 
-            , that = this;
-
-        return $http.put(uri, { "playlist": { "tracks": tracks } })
-                .then(function(response) {
-                    if (typeof response.data === 'object') {
-                        return response.data;
-                    } else {
-                        console.log('invalid response');
-                        // invalid response
-                        return $q.reject(response.data);
-                    }
-
-                }, function(response) {
-                    console.log('something went wrong response');
-                    // something went wrong
-                    console.log(response);
-                    return $q.reject(response.data);
-                });
     };
-
 
 });
