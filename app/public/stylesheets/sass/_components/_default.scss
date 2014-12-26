@@ -43,6 +43,23 @@ h6 {
   color: #fff;
 }
 
+input {
+  border: 1px solid #000;
+  background: $bodyBackground;
+  display: inline-block;
+  height: 25px;
+  padding: 0 0 0 5px;
+  outline: none;
+  color: #fff;
+  font-size: 12px;
+  transition: $transitionValue;
+  border-radius: 5px;
+
+  &:focus {
+    box-shadow: 0 0 5px $scColor;
+  }
+}
+
 ::-webkit-scrollbar-track
 {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

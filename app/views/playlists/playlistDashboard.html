@@ -1,0 +1,34 @@
+<div class="playlistDashboard">
+    <a ng-click="closeModal()" class="aboutView_closeButton">
+        <i class="fa fa-times"></i>
+    </a>
+    
+    <!-- create new playlist -->
+    <header class="playlistDashboard_title">
+        <p>Where do you want to add: <span class="playlistDashboard_selectedSong">{{ playlistSongName }}</span></p>
+        <form ng-submit="createPlaylist()">
+            <input type="text" name="new_playlist" id="newPlaylist" placeholder="Create new playlist" ng-submit="" ng-model="playlistName">
+        </form>
+    </header>
+    <!-- create new playlist /  -->
+
+    <ul class="playlistDashboard_list">
+        <li class="playlistDashboard_list_item" ng-repeat="data in data" ng-click="saveToPlaylist(data.id)">
+            <div class="mediaBox_wrapper">
+                <img ng-src="{{ checkForPlaceholder(data.artwork_url) }}" alt="{{ data.title }}" class="playlistDashboard_list_item_artwork">
+            </div>
+            <div class="mediaBox_wrapper">
+                <h4 class="mediaBox_item_title">{{ data.title }}</h4>
+                <span class="mediaBox_item_info">
+                    <i class="fa fa-list"></i> {{ data.track_count }}
+                </span>
+                <span class="mediaBox_item_info">
+                    <i class="fa fa-clock-o"></i> {{ data.duration }}
+                </span>
+                <span class="mediaBox_item_info">
+                    <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>

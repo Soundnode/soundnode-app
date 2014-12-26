@@ -46,6 +46,43 @@
 
   & .songList_item_song_tit {
     height: auto;
+    max-width: 800px;
+  }
+
+  & .songList_item_song_info {
+    display: inline-block;
+    margin: 0 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
 }
+
+/*
+* Playlist modal
+*/
+.playlistDashboard_list {
+  margin: 20px 0;
+}
+.playlistDashboard_list_item {
+  overflow: hidden;
+  padding: 10px 0;
+
+  &:hover {
+    background: $sectionBackground;
+    cursor: pointer;
+  }
+}
+
+.playlistDashboard_selectedSong {
+  color: #fff;
+}
+
+
+
+
+
+
+

@@ -76,6 +76,7 @@
     margin-left: -400px;
     background: rgba(0, 0, 0, 0.9);
     padding: 20px;
+    font-size: 20px;
 
     -webkit-backface-visibility: hidden;
     -webkit-animation: ngdialog-fadein 0.5s;
