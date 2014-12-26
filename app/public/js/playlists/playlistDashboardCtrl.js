@@ -1,6 +1,6 @@
 "use strict"
 
-app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiService, $log, $window, $http, ngDialog) {
+app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiService, $log, $window, $http, ngDialog, $state, $stateParams) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -15,6 +15,11 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
             $rootScope.isLoading = false;
         });
 
+    /**
+     * Responsible to add track to a particular playlist
+     * @params playlistId [playlist id that contains the track]
+     * @method saveToPlaylist
+     */
     $scope.saveToPlaylist = function(playlistId) {
         var endpoint = 'users/'+  $rootScope.userId + '/playlists/'+ playlistId
             , params = '';
@@ -49,9 +54,33 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
                 console.log('error', error);
             });
 
-        $log.log('save to playlist', $scope.playlistSongId + ' ' + playlistId + ' ' + $rootScope.userId);
     };
 
+    /**
+     * Responsible to send and create
+     * a new playlist name
+     * @method createPlaylist
+     */
+    $scope.createPlaylist = function() {
+        SCapiService.createPlaylist($scope.playlistName)
+            .then(function(response) {
+                if ( typeof response.status === 200 ) {
+                    $log.log('New playlist created', $scope.playlistName);
+                }
+            }, function() {
+                // something went wrong
+                $log.log(response);
+            })
+            .finally(function() {
+                ngDialog.closeAll();
+            });
+    };
+
+    /**
+     * Responsible to check if there's a artwork
+     * otherwise replace with default badge
+     * @param thumb [ track artwork ]
+     */
     $scope.checkForPlaceholder = function (thumb) {
         var newSize;
 

@@ -46,6 +46,16 @@
 
   & .songList_item_song_tit {
     height: auto;
+    max-width: 800px;
+  }
+
+  & .songList_item_song_info {
+    display: inline-block;
+    margin: 0 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
 }

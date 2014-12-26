@@ -6,7 +6,9 @@
     <!-- create new playlist -->
     <header class="playlistDashboard_title">
         <p>Where do you want to add: <span class="playlistDashboard_selectedSong">{{ playlistSongName }}</span></p>
-        <input type="text" name="new_playlist" id="newPlaylist" placeholder="Create new playlist">
+        <form ng-submit="createPlaylist()">
+            <input type="text" name="new_playlist" id="newPlaylist" placeholder="Create new playlist" ng-submit="" ng-model="playlistName">
+        </form>
     </header>
     <!-- create new playlist /  -->
 

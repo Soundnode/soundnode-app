@@ -851,28 +851,38 @@ div.active .songList_item_song_button {
 /* line 47, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_tit {
   height: auto;
+  max-width: 800px;
+}
+/* line 52, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_info {
+  display: inline-block;
+  margin: 0 5px;
+}
+/* line 56, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_info:first-child {
+  margin-left: 0;
 }
 
 /*
 * Playlist modal
 */
-/* line 56, ../sass/_components/_playlist-songs.scss */
+/* line 66, ../sass/_components/_playlist-songs.scss */
 .playlistDashboard_list {
   margin: 20px 0;
 }
 
-/* line 59, ../sass/_components/_playlist-songs.scss */
+/* line 69, ../sass/_components/_playlist-songs.scss */
 .playlistDashboard_list_item {
   overflow: hidden;
   padding: 10px 0;
 }
-/* line 63, ../sass/_components/_playlist-songs.scss */
+/* line 73, ../sass/_components/_playlist-songs.scss */
 .playlistDashboard_list_item:hover {
   background: #222326;
   cursor: pointer;
 }
 
-/* line 69, ../sass/_components/_playlist-songs.scss */
+/* line 79, ../sass/_components/_playlist-songs.scss */
 .playlistDashboard_selectedSong {
   color: #fff;
 }

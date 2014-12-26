@@ -36,7 +36,13 @@
 
                         <div class="songList_item_container_info">
                             <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
-                            <h4 class="songList_item_song_user">by: {{ tracks.user.username }} <span class="songList_item_song_length">{{ formatSongDuration (tracks.duration) }}</span></h4>
+                            <h4 class="songList_item_song_user">
+                                <span class="songList_item_song_info">by: {{ tracks.user.username }} </span>
+                                <span class="songList_item_song_info">{{ formatSongDuration (tracks.duration) }}</span>
+                                <span class="songList_item_song_info">
+                                    <a ng-click="removeFromPlaylist(tracks.id, data.id)"> <i class="fa fa-trash"></i> remove</a>
+                                </span>
+                            </h4>
                         </div>
 
                     </li>

@@ -181,6 +181,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     /**
      * Responsible to delete song from SC favorites
      * @return {[object]} data response
+     * @todo: the state reload func should not be be in the request (refactoring needed)
      */
     this.deleteFavorite = function(userId, songId) {
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
@@ -286,6 +287,25 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
             }, function(response) {
                 //something went wrong which is good
                 return response.status;
+            });
+    };
+
+    this.createPlaylist = function(playlistName) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+            , tracks = [].map(function(id) { return { id: id };});
+
+        return $http.post(url, {
+            playlist: { title: playlistName, tracks: tracks }})
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
             });
     };
 
