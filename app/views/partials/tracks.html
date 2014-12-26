@@ -18,8 +18,9 @@
 <section class="songList_item_inner">
     <h3 class="songList_item_song_tit">{{ data.title }}</h2>
         <a ui-sref="profile({id: {{data.user.id}}})">
-            <h3 class="songList_item_song_user">{{ data.user.username }}
-        </a><span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span></h3>
+            <h3 class="songList_item_song_user">{{ data.user.username }}</h3>
+        </a>
+        <span class="songList_item_song_length">{{ formatSongDuration (data.duration) }}</span>
 
     <div class="songList_item_song_details">
         <div>
@@ -30,7 +31,7 @@
                 <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="save"> <i class="fa fa-heart"></i> like</a>
             </span>
             <span>
-                <a data-song-id="{{ data.id }}"> <i class="fa fa-bookmark"></i> Add to playlist</a>
+                <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist> <i class="fa fa-bookmark"></i> Add to playlist</a>
             </span>
         </div>
         <div>

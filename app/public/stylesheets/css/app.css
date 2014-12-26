@@ -58,18 +58,36 @@ h6 {
 }
 
 /* line 46, ../sass/_components/_default.scss */
+input {
+  border: 1px solid #000;
+  background: #121314;
+  display: inline-block;
+  height: 25px;
+  padding: 0 0 0 5px;
+  outline: none;
+  color: #fff;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+/* line 58, ../sass/_components/_default.scss */
+input:focus {
+  box-shadow: 0 0 5px #f50;
+}
+
+/* line 63, ../sass/_components/_default.scss */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #222326;
 }
 
-/* line 52, ../sass/_components/_default.scss */
+/* line 69, ../sass/_components/_default.scss */
 ::-webkit-scrollbar {
   width: 6px;
   background-color: #222326;
 }
 
-/* line 58, ../sass/_components/_default.scss */
+/* line 75, ../sass/_components/_default.scss */
 ::-webkit-scrollbar-thumb {
   background-color: #333;
 }
@@ -459,24 +477,10 @@ body[data-isVisible="true"] .box-loader {
 
 /* line 7, ../sass/_components/_search.scss */
 .search_field {
-  border: 1px solid #000;
-  background: #121314;
   width: 80%;
-  display: inline-block;
-  height: 25px;
-  padding: 0 0 0 5px;
-  outline: none;
-  color: #fff;
-  font-size: 12px;
-  transition: all 0.5s ease;
-  border-radius: 5px;
-}
-/* line 20, ../sass/_components/_search.scss */
-.search_field:focus {
-  box-shadow: 0 0 5px #f50;
 }
 
-/* line 25, ../sass/_components/_search.scss */
+/* line 11, ../sass/_components/_search.scss */
 .searchButton {
   display: none;
 }
@@ -601,6 +605,30 @@ body[data-isVisible="true"] .box-loader {
 /* line 12, ../sass/_components/_view-container.scss */
 .mainView > div > h1 {
   margin: 10px 0 30px;
+}
+
+/*
+* Modal UI components
+*/
+/* line 20, ../sass/_components/_view-container.scss */
+.mediaBox_wrapper {
+  float: left;
+  margin: 0 5px;
+}
+/* line 24, ../sass/_components/_view-container.scss */
+.mediaBox_wrapper:first-child {
+  margin-left: 0px;
+}
+
+/* line 29, ../sass/_components/_view-container.scss */
+.mediaBox_item_info {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+/* line 34, ../sass/_components/_view-container.scss */
+.mediaBox_item_info:last-child {
+  margin-right: 0;
 }
 
 /* ==========================================================================
@@ -823,6 +851,40 @@ div.active .songList_item_song_button {
 /* line 47, ../sass/_components/_playlist-songs.scss */
 .songList_item.playlist .songList_item_song_tit {
   height: auto;
+  max-width: 800px;
+}
+/* line 52, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_info {
+  display: inline-block;
+  margin: 0 5px;
+}
+/* line 56, ../sass/_components/_playlist-songs.scss */
+.songList_item.playlist .songList_item_song_info:first-child {
+  margin-left: 0;
+}
+
+/*
+* Playlist modal
+*/
+/* line 66, ../sass/_components/_playlist-songs.scss */
+.playlistDashboard_list {
+  margin: 20px 0;
+}
+
+/* line 69, ../sass/_components/_playlist-songs.scss */
+.playlistDashboard_list_item {
+  overflow: hidden;
+  padding: 10px 0;
+}
+/* line 73, ../sass/_components/_playlist-songs.scss */
+.playlistDashboard_list_item:hover {
+  background: #222326;
+  cursor: pointer;
+}
+
+/* line 79, ../sass/_components/_playlist-songs.scss */
+.playlistDashboard_selectedSong {
+  color: #fff;
 }
 
 /* ==========================================================================

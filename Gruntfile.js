@@ -43,8 +43,6 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: [
-                    '!app/public/js/vendor/**/*.js',
-                    'app/public/js/**/*.js',
                     'app/public/stylesheets/sass/**/*.scss'
                 ],
                 tasks: ['dev']
@@ -76,8 +74,7 @@ module.exports = function (grunt) {
 
     // Dev
     grunt.registerTask('dev', [
-        'compass:dev',
-        'jshint'
+        'compass:dev'
     ]);
 
     // Dev

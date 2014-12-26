@@ -181,6 +181,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     /**
      * Responsible to delete song from SC favorites
      * @return {[object]} data response
+     * @todo: the state reload func should not be be in the request (refactoring needed)
      */
     this.deleteFavorite = function(userId, songId) {
         var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
@@ -204,7 +205,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                         // something went wrong
                         return $q.reject(response.data);
                     });
-    }
+    };
 
     this.searchTracks = function(limit, query) {
         var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
@@ -223,7 +224,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 //something went wrong
                 return $g.reject(response.data);
             });
-    }
+    };
 
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
@@ -243,7 +244,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 errorResponse.data = response.data;
                 return $q.reject(errorResponse);
             });
-    }
+    };
 
     this.unfollowUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
@@ -263,7 +264,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 errorResponse.data = response.data;
                 return $q.reject(errorResponse);
             });
-    }
+    };
 
     /*
      * Soundcloud API is behaving strangely. If "me" is following "id"
@@ -287,7 +288,25 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 //something went wrong which is good
                 return response.status;
             });
-    }
+    };
 
+    this.createPlaylist = function(playlistName) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
+            , tracks = [].map(function(id) { return { id: id };});
+
+        return $http.post(url, {
+            playlist: { title: playlistName, tracks: tracks }})
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
 
 });
