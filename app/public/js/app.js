@@ -49,6 +49,9 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
 });
 
 app.run(function($rootScope, $log, SCapiService, hotkeys) {
+    // toastr config override
+    toastr.options.positionClass = 'toast-bottom-right';
+    toastr.options.timeOut = 4000;
 
     // shortcut to open devtools
     hotkeys.add({

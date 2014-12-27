@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams) {
+app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams, notificationFactory) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -21,6 +21,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
      * @params songId [track id to be removed from the playlist
      * @params playlistId [playlist id that contains the track]
      * @method removeFromPlaylist
+     * @todo remove the put request from the controller. Add to SCapiService
      */
     $scope.removeFromPlaylist = function(songId, playlistId) {
         var endpoint = 'users/'+  $rootScope.userId + '/playlists/'+ playlistId
@@ -47,12 +48,9 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
                     "tracks": tracks
                 }
                 }).then(function(response) {
-                    if ( typeof response.status === 200 ) {
-                        // do something important
-                    }
+                    notificationFactory.success("Song removed from Playlist!");
                 }, function(response) {
-                    console.log('something went wrong response');
-                    // something went wrong
+                    notificationFactory.error("Something went wrong!");
                     $log.log(response);
                     return $q.reject(response.data);
                 }).finally(function() {
@@ -67,6 +65,29 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
                 console.log('error', error);
             });
         
+    };
+
+    /**
+     * Responsible to delete entire playlist
+     * @params playlistId [playlist id]
+     * @method removePlaylist
+     */
+    $scope.removePlaylist = function(playlistId) {
+
+        SCapiService.removePlaylist(playlistId)
+            .then(function(response) {
+                notificationFactory.success("Playlist removed!");
+            }, function(error) {
+                notificationFactory.success("Something went wrong");
+            })
+            .finally(function() {
+                $state.transitionTo($state.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                })
+            });
+
     };
 
     /**

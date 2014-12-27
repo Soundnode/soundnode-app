@@ -26,6 +26,10 @@
     }
   }
 
+  & .songList_item_songs_list {
+    margin: 20px 0 0 0;
+  }
+
   & .songList_item_songs_list_item {
     cursor: pointer;
     overflow: hidden;
@@ -61,8 +65,12 @@
 }
 
 /*
-* Playlist modal
+* Playlist dashboard
 */
+.playlistDashboard_field {
+  width: 300px;
+}
+
 .playlistDashboard_list {
   margin: 20px 0;
 }
