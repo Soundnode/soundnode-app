@@ -36,7 +36,7 @@ app.factory('playerService', function($rootScope, $log) {
     var player = {};
 
     /**
-     * Player element
+     * Player DOM element's
      */
     player.elPlayer = document.getElementById('player');
     player.elPlayerProgress = document.getElementById('player-progress');
@@ -44,6 +44,15 @@ app.factory('playerService', function($rootScope, $log) {
     player.elThumb = document.getElementById('playerThumb');
     player.elTitle = document.getElementById('playerTitle');
     player.elUser = document.getElementById('playerUser');
+
+    /**
+     * Adjust player volume
+     * @param value [volume level]
+     * @method volume
+     */
+    player.volume = function(value) {
+        player.elPlayer.volume = value;
+    };
 
     /**
      * Responsible to check if there's a song
