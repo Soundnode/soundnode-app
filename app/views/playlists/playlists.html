@@ -11,6 +11,15 @@
                 data-playlist-hidden="true" >
 
                 <h4 class="songList_item_song_user" collapsible>{{ data.title }} playlist - <span>show</span></h4>
+                <span class="mediaBox_item_info">
+                    <i class="fa fa-list"></i> {{ data.track_count }}
+                </span>
+                <span class="mediaBox_item_info">
+                    <i class="fa fa-clock-o"></i> {{ formatSongDuration (data.duration) }}
+                </span>
+                <span class="songList_item_song_info">
+                    <a ng-click="removePlaylist(data.id)"> <i class="fa fa-trash"></i> delete playlist</a>
+                </span>
 
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item" 

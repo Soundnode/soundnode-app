@@ -4,7 +4,7 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/favorites'
         , params = '';
 
-    $scope.title = 'Favorites';
+    $scope.title = 'Likes';
     $scope.data = '';
     $scope.busy = false;
 

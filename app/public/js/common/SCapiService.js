@@ -25,19 +25,15 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
         this.isLoading();
 
         return $http.get(url)
-                    .then(function(response) {
-                        if (typeof response.data === 'object') {
+                    .then(function(response, status) {
+                        if ( response.status === 200 ) {
                             if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
                                 that.next_page = response.data.next_href;
                             } else {
                                 that.next_page = '';
                             }
                             return response.data;
-                        } else {
-                            // invalid response
-                            return $q.reject(response.data);
                         }
-
                     }, function(response) {
                         // something went wrong
                         return $q.reject(response.data);
@@ -160,8 +156,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * @return {[object]} data response
      */
     this.saveFavorite = function(userId, songId) {
-        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken;
 
        return $http.put(url)
                     .then(function(response) {
@@ -179,22 +174,15 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     };
 
     /**
-     * Responsible to delete song from SC favorites
+     * Responsible to delete song from favorites
      * @return {[object]} data response
-     * @todo: the state reload func should not be be in the request (refactoring needed)
      */
     this.deleteFavorite = function(userId, songId) {
-        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/users/' + userId + '/favorites/' + songId + '.json?&oauth_token=' + $window.scAccessToken;
 
        return $http.delete(url)
                     .then(function(response) {
                         if (typeof response.data === 'object') {
-                            $state.transitionTo($state.current, $stateParams, {
-                                reload: true,
-                                inherit: false,
-                                notify: true
-                            });
                             return response.data;
                         } else {
                             // invalid response
@@ -273,8 +261,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
      * the API returns a 404 Not Found error.
      */
     this.isFollowing = function(id) {
-        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
 
         return $http.get(url)
             .then(function(response) {
@@ -290,6 +277,11 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
             });
     };
 
+    /**
+     * Responsible to create a new playlist and return the promise
+     * @param playlistName
+     * @returns { request response }
+     */
     this.createPlaylist = function(playlistName) {
         var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken
             , tracks = [].map(function(id) { return { id: id };});
@@ -308,5 +300,54 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $q.reject(response.data);
             });
     };
+
+    /**
+     * Responsible to remove playlist
+     * @param playlistId [playlist id to be removed]
+     * return { request response }
+     * todo: remove get from this method and re-use the get method
+     */
+    this.removePlaylist = function(playlistId) {
+        var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken;
+
+        $http.get(url)
+            .then(function(response) {
+                if ( typeof response.data === "object" ) {
+                    var playlists = response.data
+                        , uri
+                        , i = 0;
+
+                    // finding the uri
+                    for ( ; i < response.data.length; i++ ){
+                        if ( playlistId == playlists[i].id ) {
+                            uri = response.data[i].uri + '.json?&oauth_token=' + $window.scAccessToken;
+                        }
+                    }
+
+                    // remove playlist
+                    return $http.delete(uri)
+                        .then(function(response) {
+                            if (typeof response.data === 'object') {
+                                return response.data;
+                            } else {
+                                console.log('invalid response');
+                                // invalid response
+                                return $q.reject(response.data);
+                            }
+                        }, function(response) {
+                            console.log('something went wrong response');
+                            // something went wrong
+                            return $q.reject(response.data);
+                        });
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    };
+
 
 });

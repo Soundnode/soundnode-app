@@ -1,6 +1,6 @@
 "use strict"
 
-app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiService, $log, $window, $http, ngDialog, $state, $stateParams) {
+app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiService, $log, $window, $http, ngDialog, notificationFactory) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -19,6 +19,7 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
      * Responsible to add track to a particular playlist
      * @params playlistId [playlist id that contains the track]
      * @method saveToPlaylist
+     * @todo remove the put request from the controller. Add to SCapiService
      */
     $scope.saveToPlaylist = function(playlistId) {
         var endpoint = 'users/'+  $rootScope.userId + '/playlists/'+ playlistId
@@ -37,13 +38,10 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
                 $http.put(uri, { "playlist": {
                         "tracks": tracks
                     }
-                }).then(function(response) {
-                    if ( typeof response.status === 200 ) {
-                        // do something important or not
-                    }
-                }, function(response) {
-                    console.log('something went wrong response');
-                    // something went wrong
+                }).then(function(response, status) {
+                    notificationFactory.success("Song added to playlist!");
+                }, function(error) {
+                    notificationFactory.error("Something went wrong!");
                     $log.log(response);
                     return $q.reject(response.data);
                 }).finally(function() {
@@ -51,24 +49,23 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
                 })
 
             }, function(error) {
-                console.log('error', error);
+
             });
 
     };
 
     /**
-     * Responsible to send and create
-     * a new playlist name
-     * @method createPlaylist
+     * Responsible to create a new playlist
+     * and save the selected song
+     * @method createPlaylistAndSaveSong
      */
-    $scope.createPlaylist = function() {
+    $scope.createPlaylistAndSaveSong = function() {
         SCapiService.createPlaylist($scope.playlistName)
-            .then(function(response) {
-                if ( typeof response.status === 200 ) {
-                    $log.log('New playlist created', $scope.playlistName);
-                }
-            }, function() {
-                // something went wrong
+            .then(function(response, status) {
+                $scope.saveToPlaylist(response.id);
+                notificationFactory.success("New playlist created!");
+            }, function(response) {
+                notificationFactory.error("Something went wrong!");
                 $log.log(response);
             })
             .finally(function() {
