@@ -1,7 +1,31 @@
 'use strict'
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys) {
+app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log) {
     $scope.imgPath = 'public/img/temp-playing.png';
+
+    /**
+     * Show/Hide volume range
+     * @type {exports}
+     */
+    $scope.isVisible = false;
+    $scope.toggleRange = function() {
+        if ( $scope.isVisible ) {
+            $scope.isVisible = false;
+        } else {
+            $scope.isVisible = true;
+        }
+    };
+
+    /**
+     * Responsible to send a new volume
+     * value on range change
+     * @param volume [value of the volume]
+     * @method adjustVolume
+     */
+    $scope.adjustVolume = function(volume) {
+        $log.log('volume', volume);
+        playerService.volume(volume);
+    };
 
     var gui = require('nw.gui');
 
