@@ -6,8 +6,8 @@
     <!-- create new playlist -->
     <header class="playlistDashboard_title">
         <p>Where do you want to add: <span class="playlistDashboard_selectedSong">{{ playlistSongName }}</span></p>
-        <form ng-submit="createPlaylist()">
-            <input type="text" name="new_playlist" id="newPlaylist" placeholder="Create new playlist" ng-submit="" ng-model="playlistName">
+        <form ng-submit="createPlaylistAndSaveSong()">
+            <input type="text" name="new_playlist" id="newPlaylist" placeholder="Create a new playlist and add selected song..." class="playlistDashboard_field" ng-model="playlistName">
         </form>
     </header>
     <!-- create new playlist /  -->
@@ -23,10 +23,7 @@
                     <i class="fa fa-list"></i> {{ data.track_count }}
                 </span>
                 <span class="mediaBox_item_info">
-                    <i class="fa fa-clock-o"></i> {{ data.duration }}
-                </span>
-                <span class="mediaBox_item_info">
-                    <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
+                    <i class="fa fa-clock-o"></i> {{ formatSongDuration(data.duration) }}
                 </span>
             </div>
         </li>
