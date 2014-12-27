@@ -34,7 +34,7 @@
 }
 
 .player_controls {
-  margin: 0 0 30px 0;
+  margin: 20px 0 15px 0;
   padding: 0 10px;
   overflow: hidden;
 
@@ -45,11 +45,33 @@
   }
 }
 
+.player_volume {
+  float: left;
+
+  & .fa {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  & .player_volume_range {
+    width: 100px;
+    position: relative;
+    top: -4px;
+
+    &[data-isVisible="false"] {
+      display: none;
+    }
+
+    &[data-isVisible="true"] {
+      display: inline-block;
+    }
+  }
+
+}
+
 .player_timeLeft {
-  display: block;
   float: right;
   font-size: 13px;
-  margin: 15px 0 5px 0;
 }
 
 .player_progress {
