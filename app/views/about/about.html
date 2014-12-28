@@ -1,7 +1,6 @@
 <div class="aboutView">
-    <a ng-click="closeModal()" class="aboutView_closeButton">
-        <i class="fa fa-times"></i>
-    </a>
+    <div ng-include="'views/partials/closeModal.html'"></div>
+
     <div class="aboutView_content" ng-bind-html="content">
     </div>
 </div>
