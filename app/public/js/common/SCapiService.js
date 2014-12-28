@@ -310,7 +310,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
     this.removePlaylist = function(playlistId) {
         var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken;
 
-        $http.get(url)
+        return $http.get(url)
             .then(function(response) {
                 if ( typeof response.data === "object" ) {
                     var playlists = response.data
@@ -339,13 +339,11 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                             // something went wrong
                             return $q.reject(response.data);
                         });
+
                 } else {
                     // invalid response
                     return $q.reject(response.data);
                 }
-            }, function(response) {
-                // something went wrong
-                return $q.reject(response.data);
             });
     };
 

@@ -73,6 +73,20 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
             });
     };
 
+    // Format song duration on tracks
+    // for human reading
+    $scope.formatSongDuration = function(duration) {
+        var minutes = Math.floor(duration / 60000)
+            , seconds = ((duration % 60000) / 1000).toFixed(0);
+
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    };
+
+    // Close all open modals
+    $scope.closeModal = function() {
+        ngDialog.closeAll();
+    };
+
     /**
      * Responsible to check if there's a artwork
      * otherwise replace with default badge
