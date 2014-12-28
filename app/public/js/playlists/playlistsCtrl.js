@@ -76,16 +76,18 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
 
         SCapiService.removePlaylist(playlistId)
             .then(function(response) {
-                notificationFactory.success("Playlist removed!");
+                if ( typeof response === 'object' ) {
+                    notificationFactory.success("Playlist removed!");
+                }
             }, function(error) {
-                notificationFactory.success("Something went wrong");
+                notificationFactory.error("Something went wrong!");
             })
             .finally(function() {
                 $state.transitionTo($state.current, $stateParams, {
                     reload: true,
                     inherit: false,
                     notify: true
-                })
+                });
             });
 
     };
