@@ -16,12 +16,14 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 - No need to install
 - Native media keyboard shortcuts
-- Desktop song notification
-- Back/Forward navigation
-- Listen to songs from your Streams, Likes, Tracks or Playlists
-- Save songs to your Like playlist
-- Search for songs
-- Automatic notification for update
+- Search for new songs
+- Easy navigation
+- Listen to songs from your Stream, Likes, Tracks, Following or Playlists
+- Like songs and save to your liked playlist
+- Full playlist feature
+- Follow/Unfollow users
+
+And much more..
 
 ## Status
 [Status issue](https://github.com/Soundnode/soundnode-app/issues/97)
