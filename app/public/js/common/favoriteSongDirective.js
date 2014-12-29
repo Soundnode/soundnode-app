@@ -23,7 +23,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                     SCapiService.deleteFavorite(userId, songId)
                         .then(function(status) {
                             if ( typeof status == "object" ) {
-                                notificationFactory.success("Song removed to likes!");
+                                notificationFactory.success("Song removed from likes!");
                             }
                         }, function() {
                             notificationFactory.error("Something went wrong!");
@@ -39,7 +39,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                     SCapiService.saveFavorite(userId, songId)
                         .then(function(status) {
                             if ( typeof status == "object" ) {
-                                notificationFactory.success("Song added from likes!");
+                                notificationFactory.success("Song added to likes!");
                             }
                         }, function(status) {
                             notificationFactory.error("Something went wrong!");
