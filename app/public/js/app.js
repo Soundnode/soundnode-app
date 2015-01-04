@@ -72,8 +72,8 @@ var gui = require('nw.gui'),
     nativeMenuBar = new gui.Menu({ type: "menubar" });
 
 nativeMenuBar.createMacBuiltin("Soundnode-App", {
-  hideEdit: true,
-  hideWindow: false
+    hideEdit: true,
+    hideWindow: false
 });
 
 win.menu = nativeMenuBar;
