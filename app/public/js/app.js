@@ -66,14 +66,16 @@ app.run(function($rootScope, $log, SCapiService, hotkeys) {
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1500);
 
-// OS X Menu
-var gui = require('nw.gui'),
-    win = gui.Window.get(),
-    nativeMenuBar = new gui.Menu({ type: "menubar" });
+if (process.platform === "darwin") {
+    // OS X Menu
+    var gui = require('nw.gui'),
+        win = gui.Window.get(),
+        nativeMenuBar = new gui.Menu({ type: "menubar" });
 
-nativeMenuBar.createMacBuiltin("Soundnode-App", {
-    hideEdit: true,
-    hideWindow: false
-});
+    nativeMenuBar.createMacBuiltin("Soundnode-App", {
+        hideEdit: true,
+        hideWindow: false
+    });
 
-win.menu = nativeMenuBar;
+    win.menu = nativeMenuBar;
+}
