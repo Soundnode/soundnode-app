@@ -127,7 +127,11 @@ OAuthVerification.verification = function (popUp) {
 
 appSystem.AppMenu = function () {
     if (process.platform === "darwin") {
-        var nativeMenuBar = new gui.Menu({ type: "menubar" });
+        var nativeMenuBar = new gui.Menu({ type: "menubar" }),
+            file = new gui.Menu(),
+            playback = new gui.Menu(),
+            help = new gui.Menu();
+
 
         // OS X Menu
         nativeMenuBar = new gui.Menu({ type: "menubar" });
@@ -136,6 +140,191 @@ appSystem.AppMenu = function () {
             hideEdit: true,
             hideWindow: false
         });
+
+        // File Menu
+        nativeMenuBar.insert(
+            new gui.MenuItem({
+                    label: 'File',
+                    submenu: file
+                }), 1
+        );
+
+        // New Playlist
+        file.append(
+            new gui.MenuItem({
+                label: 'New Playlist',
+                click: function() {
+                    console.log("New Playlist");
+                },
+                key: "n",
+                modifiers: "cmd"
+            })
+        );
+
+        // Seperator
+        file.append (
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Logout
+        file.append(
+            new gui.MenuItem({
+                label: 'Logout',
+                click: function() {
+                    console.log("Logout");
+                },
+                key: "w",
+                modifiers: "cmd+shift"
+            })
+        );
+
+        // Playback Menu
+        nativeMenuBar.append(
+            new gui.MenuItem({
+                label: 'Playback',
+                submenu: playback
+            })
+        );
+
+        // Pause
+        playback.append(
+            new gui.MenuItem({
+                label: 'Pause',
+                click: function() {
+                    console.log("pause event");
+                }
+            })
+        );
+
+        // Seperator
+        playback.append(
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Next
+        playback.append(
+            new gui.MenuItem({
+                label: 'Next',
+                click: function() {
+                    console.log("Next Song");
+                },
+                key: String.fromCharCode(29),
+                modifiers: "cmd"
+            })
+        );
+
+        // Previous
+        playback.append(
+            new gui.MenuItem({
+                label: 'Previous',
+                click: function() {
+                    console.log("Previous Song");
+                },
+                key: String.fromCharCode(28),
+                modifiers: "cmd"
+            })
+        );
+
+        // Seperator
+        playback.append(
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Shuffle
+        playback.append(
+            new gui.MenuItem({
+                label: 'Shuffle',
+                click: function() {
+                    console.log("Shuffle Songs");
+                },
+                key: "s",
+                modifiers: "cmd"
+            })
+        );
+
+        // Repeat
+        playback.append(
+            new gui.MenuItem({
+                label: 'Repeat',
+                click: function() {
+                    console.log("Repeat Song");
+                },
+                key: "r",
+                modifiers: "cmd"
+            })
+        );
+
+        // Seperator
+        playback.append(
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Volume Up
+        playback.append(
+            new gui.MenuItem({
+                label: 'Volume Up',
+                click: function() {
+                    console.log("Volume Up");
+                },
+                key: String.fromCharCode(30),
+                modifiers: "cmd"
+            })
+        );
+
+        // Volume Down
+        playback.append(
+            new gui.MenuItem({
+                label: 'Volume Up',
+                click: function() {
+                    console.log("Volume Down");
+                },
+                key: String.fromCharCode(31),
+                modifiers: "cmd"
+            })
+        );
+
+        // Help Menu
+        nativeMenuBar.append(
+            new gui.MenuItem({
+                label: 'Help',
+                submenu: help
+            })
+        );
+
+        // Soundnode Help
+        help.append(
+            new gui.MenuItem({
+                label: 'Soundnode Help',
+                click: function() {
+                    gui.Shell.openExternal('https://github.com/Soundnode/soundnode-app');
+                }
+            })
+        );
+
+        // Seperator
+        help.append (
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Licenses
+        help.append(
+            new gui.MenuItem({
+                label: 'Licenses',
+                click: function() {
+                    gui.Shell.openExternal('https://github.com/Soundnode/soundnode-app');
+                }
+            })
+        );
 
         appGUI.getGUI.menu = nativeMenuBar;
     }
