@@ -124,6 +124,24 @@ OAuthVerification.verification = function (popUp) {
 //         path = '.' + folderPath + '/' + songTitle;
 // };
 
+
+appSystem.AppMenu = function () {
+    if (process.platform === "darwin") {
+        var nativeMenuBar = new gui.Menu({ type: "menubar" });
+
+        // OS X Menu
+        nativeMenuBar = new gui.Menu({ type: "menubar" });
+
+        nativeMenuBar.createMacBuiltin("Soundnode-App", {
+            hideEdit: true,
+            hideWindow: false
+        });
+
+        appGUI.getGUI.menu = nativeMenuBar;
+    }
+};
+
 // Initialize all
 uiFrame.init();
 OAuthVerification.init();
+appSystem.AppMenu();
