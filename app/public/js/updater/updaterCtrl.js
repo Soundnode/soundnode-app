@@ -37,6 +37,7 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
                 $scope.updateAvailableText = 'Update downloaded.';
                 var zip = new AdmZip('./temp.zip');
                 zip.extractAllTo('./', true);
+                fs.unlinkSync('./temp.zip');
                 $scope.updateAvailableText = 'Update finished, click here to restart.';
                 $scope.restartAvailable = true;
             });
