@@ -23,7 +23,7 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
             AdmZip = require(process.cwd() + '/deps/adm-zip'),
             OS = 'win';
 
-        if (~process.platform.indexOf("darwin")) {
+        if (process.platform === "darwin") {
             OS = 'mac';
         }
 
