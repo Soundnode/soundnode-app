@@ -9,6 +9,7 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
     $scope.updateAvailable = false;
     $scope.updateAvailableText = 'Update available!';
     $scope.isUpdating = false;
+    $scope.restartAvailable = false;
 
     $scope.launchUpdater = function() {
         if ($scope.isUpdating) {
@@ -19,9 +20,14 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
 
         var http = require('http'),
             fs = require('fs'),
-            AdmZip = require(process.cwd() + '/deps/adm-zip');
+            AdmZip = require(process.cwd() + '/deps/adm-zip'),
+            OS = 'win';
 
-        http.request('http://www.soundnodeapp.com/downloads/win/Soundnode-App.zip', function(response) {
+        if (~process.platform.indexOf("darwin")) {
+            OS = 'mac';
+        }
+
+        http.request('http://www.soundnodeapp.com/downloads/' + OS + '/Soundnode-App.zip', function(response) {
             var file = fs.createWriteStream('./temp.zip');
             $scope.updateAvailableText = 'Update downloading.';
             response.on('data', function(chunk) {
@@ -41,7 +47,9 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
     };
 
     $scope.restart = function() {
-        require("child_process").spawn(process.execPath, [], {detached: true}).unref();
+        require("child_process").spawn(process.execPath, [], {
+            detached: true
+        }).unref();
         appGUI.close();
     };
 
