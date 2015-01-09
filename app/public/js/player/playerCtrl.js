@@ -2,6 +2,7 @@
 
 app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log) {
     $scope.imgPath = 'public/img/temp-playing.png';
+    $scope.volume = 0.5;
 
     /**
      * Show/Hide volume range
@@ -131,7 +132,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     });
 
     hotkeys.add({
-        combo: 'command+return',
+        combo: ['command+return', 'ctrl+return'],
         description: 'Play/Pause song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
@@ -143,7 +144,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     });
 
     hotkeys.add({
-        combo: 'command+right',
+        combo: ['command+right', 'ctrl+right'],
         description: 'Next song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
@@ -153,12 +154,32 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     });
 
     hotkeys.add({
-        combo: 'command+left',
+        combo: ['command+left', 'ctrl+left'],
         description: 'Prev song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
                 playerService.playPrevSong();
             }
+        }
+    });
+
+    hotkeys.add({
+        combo: ['command+up', 'ctrl+up'],
+        description: 'Volume Up',
+        callback: function(e) {
+        	e.preventDefault();
+            playerService.volume(playerService.volume() + 0.1);
+            $scope.volume = playerService.volume();
+        }
+    });
+
+    hotkeys.add({
+        combo: ['command+down', 'ctrl+down'],
+        description: 'Volume Down',
+        callback: function(e) {
+        	e.preventDefault();
+            playerService.volume(playerService.volume() - 0.1);
+            $scope.volume = playerService.volume();
         }
     });
 

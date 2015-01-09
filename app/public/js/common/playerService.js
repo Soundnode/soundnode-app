@@ -51,7 +51,12 @@ app.factory('playerService', function($rootScope, $log) {
      * @method volume
      */
     player.volume = function(value) {
-        player.elPlayer.volume = value;
+        if (typeof value === "undefined") {
+            return player.elPlayer.volume;
+        }
+        if (value >= 0 && value <= 1) {
+            player.elPlayer.volume = parseFloat(value).toFixed(1);
+        }
     };
 
     /**
