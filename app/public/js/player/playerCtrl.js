@@ -1,8 +1,10 @@
 'use strict'
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log) {
+app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log, $timeout) {
     $scope.imgPath = 'public/img/temp-playing.png';
-    $scope.volume = 0.5;
+    $timeout(function() {
+        $scope.volume = 0.5;
+    });
 
     /**
      * Show/Hide volume range
