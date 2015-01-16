@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog, hotkeys) {
 
