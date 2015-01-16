@@ -19,7 +19,11 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                     that.classList.remove('clicked');
                 }, 1000);
 
-                if ( attrs.favoriteAction ) {
+                $log.log('favorite action', typeof attrs.favoriteAction);
+
+                if ( attrs.favoriteAction === 'true' ) {
+                    $log.log('inside true')
+
                     SCapiService.deleteFavorite(userId, songId)
                         .then(function(status) {
                             if ( typeof status == "object" ) {
@@ -35,7 +39,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                                 notify: true
                             });
                         });
-                } else {
+                } else if ( attrs.favoriteAction == 'false' ) {
                     SCapiService.saveFavorite(userId, songId)
                         .then(function(status) {
                             if ( typeof status == "object" ) {
