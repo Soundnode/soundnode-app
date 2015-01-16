@@ -55,7 +55,7 @@ app.run(function($rootScope, $log, SCapiService, hotkeys) {
 
     // shortcut to open devtools
     hotkeys.add({
-        combo: 'command+/',
+        combo: ['command+/', 'ctrl+/'],
         description: 'Open devtools',
         callback: function() {
             appGUI.openDevTools();
