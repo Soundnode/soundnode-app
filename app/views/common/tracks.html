@@ -20,7 +20,7 @@
     
     <h3 class="songList_item_song_user">
       <a ui-sref="profile({id: {{data.user.id}}})">{{ data.user.username }}</a>
-      <span class="songList_item_song_length"> {{ data.duration }} {{ formatSongDuration (data.duration) }}</span>
+      <span ng-controller="AppCtrl" class="songList_item_song_length"> {{ formatSongDuration (data.duration) }}</span>
     </h3>
 
     <div class="songList_item_song_details">
