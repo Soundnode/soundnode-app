@@ -62,7 +62,7 @@
 
                 </li>
                 <li class="appInfo_item" ng-controller="UpdaterCtrl">
-                    <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
+                    <a ng-click="restartAvailable ? restart() : launchUpdater()" ng-class="{ updateAvailable: updateAvailable }" data-link="true">{{updateAvailableText}}</a>
                 </li>
             </ul>
 
