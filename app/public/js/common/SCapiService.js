@@ -206,11 +206,11 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return response.data;
                 } else {
                     //invalid response
-                    return $g.reject(response.data);
+                    return $q.reject(response.data);
                 }
             }, function(response) {
                 //something went wrong
-                return $g.reject(response.data);
+                return $q.reject(response.data);
             });
     };
 
@@ -223,7 +223,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return response.data;
                 } else {
                     //invalid response
-                    return $g.reject(response.data);
+                    return $q.reject(response.data);
                 }
             }, function(response) {
                 //something went wrong, need to create a new error because returning the response object doesn't work. Get an unreferenced error when handling the reject.
@@ -243,7 +243,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return response.data;
                 } else {
                     //invalid response
-                    return $g.reject(response.data);
+                    return $q.reject(response.data);
                 }
             }, function(response) {
                 //something went wrong, need to create a new error because returning the response object doesn't work. Get an unreferenced error when handling the reject.
@@ -269,7 +269,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     return response.data;
                 } else {
                     //invalid response
-                    return $g.reject(response.data);
+                    return $q.reject(response.data);
                 }
             }, function(response) {
                 //something went wrong which is good

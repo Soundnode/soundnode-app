@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog, hotkeys) {
+app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog) {
 
     // Settings sub nav (dropdown)
     $scope.isSettingsVisible = false;
@@ -11,7 +11,7 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog,
         } else {
             $scope.isSettingsVisible = true;
         }
-    }
+    };
     
     // check if track has Art work
     // otherwise replace to Soundnode App logo
@@ -28,17 +28,16 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog,
 
     // Format song duration on tracks
     // for human reading
-    $scope.formatSongDuration = function(duration) {
+    $scope.formatSongDuration = function (duration) {
         var minutes = Math.floor(duration / 60000)
             , seconds = ((duration % 60000) / 1000).toFixed(0);
-        
+
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     };
 
     /*
     * Navigation back and forward
     */
-
     $scope.goBack = function() {
         $window.history.back();
     };

@@ -74,6 +74,253 @@ uiFrame.addGUIeventHandlers = function () {
 
 };
 
+appSystem.AppMenu = function (type) {
+    if (process.platform !== "darwin") {
+        return false;
+    }
+
+    // Optimize Loading by putting the least amount of code first.
+    if( !type ) {
+        var nativeMenuBar = new gui.Menu({ type: "menubar" });
+
+        // OS X Menu
+        nativeMenuBar = new gui.Menu({ type: "menubar" });
+
+        nativeMenuBar.createMacBuiltin("Soundnode", {
+            hideEdit: true,
+            hideWindow: false
+        });
+
+        appGUI.getGUI.menu = nativeMenuBar;
+
+    } else {
+        var nativeMenuBar = new gui.Menu({ type: "menubar" }),
+            file = new gui.Menu(),
+            playback = new gui.Menu(),
+            help = new gui.Menu(),
+            playerElement = document.querySelector('[ng-controller=PlayerCtrl]'),
+            playerScope = angular.element(playerElement).scope();
+
+        // For Volume
+        player.elPlayer = document.getElementById('player');
+
+        // OS X Menu
+        nativeMenuBar = new gui.Menu({ type: "menubar" });
+
+        nativeMenuBar.createMacBuiltin("Soundnode", {
+            hideEdit: true,
+            hideWindow: false
+        });
+
+        // File Menu
+        nativeMenuBar.insert(
+            new gui.MenuItem({
+                label: 'File',
+                submenu: file
+            }), 1
+        );
+
+        // Seperator
+        file.append (
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Logout
+        file.append(
+            new gui.MenuItem({
+                label: 'Logout',
+                click: function() {
+                    SC.disconnect();
+                    appGUI.close();
+                },
+                key: "w",
+                modifiers: "cmd+shift"
+            })
+        );
+
+        // Playback Menu
+        nativeMenuBar.append(
+            new gui.MenuItem({
+                label: 'Playback',
+                submenu: playback
+            })
+        );
+
+        // Play/Pause
+        playback.append(
+            new gui.MenuItem({
+                label: 'Play',
+                click: function() {
+                    if(this.label === "Play") {
+                        playerScope.playPause();
+                        this.label = "Pause";
+                    } else {
+                        playerScope.playPause();
+                        this.label = "Play";
+                    }
+                }
+            })
+        );
+
+        // Seperator
+        playback.append(
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Next
+        playback.append(
+            new gui.MenuItem({
+                label: 'Next',
+                click: function() {
+                    playerScope.nextSong();
+                },
+                key: String.fromCharCode(29),
+                modifiers: "cmd"
+            })
+        );
+
+        // Previous
+        playback.append(
+            new gui.MenuItem({
+                label: 'Previous',
+                click: function() {
+                    playerScope.prevSong();
+                },
+                key: String.fromCharCode(28),
+                modifiers: "cmd"
+            })
+        );
+
+        // Seperator
+        playback.append(
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        //TODO: improve/finish the piece of code commented out below
+
+        //// Shuffle
+        //playback.append(
+        //    new gui.MenuItem({
+        //        label: 'Shuffle',
+        //        click: function() {
+        //            console.log("Shuffle Songs");
+        //        },
+        //        key: "s",
+        //        modifiers: "cmd"
+        //    })
+        //);
+        //
+        //// Repeat
+        //playback.append(
+        //    new gui.MenuItem({
+        //        label: 'Repeat',
+        //        click: function() {
+        //            console.log("Repeat Song");
+        //        },
+        //        key: "r",
+        //        modifiers: "cmd"
+        //    })
+        //);
+        //
+        //// Seperator
+        //playback.append(
+        //    new gui.MenuItem({
+        //        type: 'separator'
+        //    })
+        //);
+        //
+        //// Volume Up
+        //playback.append(
+        //    new gui.MenuItem({
+        //        label: 'Volume Up',
+        //        click: function() {
+        //            console.log('volume up', player.elPlayer.volume)
+        //            playerService.volume(playerService.volume() - 0.1);
+        //            $scope.volume = playerService.volume();
+        //        },
+        //        key: String.fromCharCode(30),
+        //        modifiers: "cmd"
+        //    })
+        //);
+        //
+        //// Volume Down
+        //playback.append(
+        //    new gui.MenuItem({
+        //        label: 'Volume Down',
+        //        click: function() {
+        //            console.log('volume down', player.elPlayer.volume)
+        //            playerService.volume(playerService.volume() - 0.1);
+        //            $scope.volume = playerService.volume();
+        //        },
+        //        key: String.fromCharCode(31),
+        //        modifiers: "cmd"
+        //    })
+        //);
+
+        // Help Menu
+        nativeMenuBar.append(
+            new gui.MenuItem({
+                label: 'Help',
+                submenu: help
+            })
+        );
+
+        // Soundnode Help
+        help.append(
+            new gui.MenuItem({
+                label: 'Soundnode Help',
+                click: function() {
+                    gui.Shell.openExternal('https://github.com/Soundnode/soundnode-app');
+                }
+            })
+        );
+
+        // Seperator
+        help.append (
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // Licenses
+        help.append(
+            new gui.MenuItem({
+                label: 'Licenses',
+                click: function() {
+                    gui.Shell.openExternal('https://github.com/Soundnode/soundnode-app');
+                }
+            })
+        );
+
+        // Seperator
+        help.append (
+            new gui.MenuItem({
+                type: 'separator'
+            })
+        );
+
+        // DevTools
+        help.append(
+            new gui.MenuItem({
+                label: 'Developer Tools',
+                click: function() {
+                    appGUI.openDevTools();
+                }
+            })
+        );
+
+        appGUI.getGUI.menu = nativeMenuBar;
+    }
+
+};
+
+
 /**
  * Responsible to verify if user was verified
  */
@@ -113,6 +360,9 @@ OAuthVerification.verification = function (popUp) {
         document.body.setAttribute('data-isVisible', 'true');
 
         console.log('verification done');
+        appSystem.AppMenu(true);
+    } else {
+        appSystem.AppMenu(false);
     }
 };
 
@@ -123,6 +373,8 @@ OAuthVerification.verification = function (popUp) {
 //     var url = songUrl + '?client_id=' + window.scClientId + '&oauth_token=' + window.scAccessToken,
 //         path = '.' + folderPath + '/' + songTitle;
 // };
+
+
 
 // Initialize all
 uiFrame.init();

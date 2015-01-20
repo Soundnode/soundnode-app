@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/activities'
