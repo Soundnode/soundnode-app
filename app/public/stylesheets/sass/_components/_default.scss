@@ -92,20 +92,18 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: $bodyBackground;
 }
 
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   background-color: #222326;
 }
 
-::-webkit-scrollbar
-{
-  width: 6px;
+::-webkit-scrollbar {
+  width: 10px;
   background-color: #222326;
+
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
   background-color: #333;
 }
 
