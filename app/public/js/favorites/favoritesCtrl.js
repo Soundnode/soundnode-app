@@ -2,7 +2,7 @@
 
 app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/favorites'
-        , params = '';
+        , params = 'linked_partitioning=1';
 
     $scope.title = 'Likes';
     $scope.data = '';
@@ -10,7 +10,7 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
 
     SCapiService.get(endpoint, params)
         .then(function(data) {
-            $scope.data = data;
+            $scope.data = data.collection;
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
@@ -25,8 +25,8 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
 
         SCapiService.getNextPage()
             .then(function(data) {
-                for ( var i = 0; i < data.length; i++ ) {
-                    $scope.data.push( data[i] )
+                for ( var i = 0; i < data.collection.length; i++ ) {
+                    $scope.data.push( data.collection[i] )
                 }
             }, function(error) {
                 console.log('error', error);
