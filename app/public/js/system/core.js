@@ -326,7 +326,7 @@ appSystem.AppMenu = function (type) {
  */
 OAuthVerification.init = function () {
     var that = this,
-        popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=100,height=100');
+        popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=50,height=50');
 
     OAuthVerificationId = window.setInterval(function () {
         that.verification(popUp);
