@@ -1,10 +1,6 @@
 Soundnode App
 ============
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Soundnode/soundnode-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Analytics](https://ga-beacon.appspot.com/UA-50973331-1/soundnode-app/readme)](https://github.com/igrigorik/ga-beacon)
-
 Soundnode App is a Open-Source project to support Soundcloud for desktop. <br>
 Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
