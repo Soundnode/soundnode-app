@@ -29,7 +29,7 @@
                 <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
             </span>
             <span>
-                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="{{ data.user_favorite }}"> <i class="fa fa-heart"></i> like</a>
+                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="{{ data.user_favorite === null ? 'false' : data.user_favorite }}"> <i class="fa fa-heart"></i> like</a>
             </span>
             <span>
                 <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist> <i class="fa fa-bookmark"></i> Add to playlist</a>
