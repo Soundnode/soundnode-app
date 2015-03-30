@@ -22,20 +22,21 @@ module.exports = function (grunt) {
             ]
         },
 
-        compass: {
-            dev: {
-                options: {
-                    sassDir: 'app/public/stylesheets/sass',
-                    cssDir: 'app/public/stylesheets/css'
-                }
+        sass: {
+            options: {
+                sourceMap: false
             },
             production: {
                 options: {
-                    sassDir: 'app/public/stylesheets/sass',
-                    cssDir: 'app/public/stylesheets/css',
-                    environment: 'production',
-                    outputStyle: 'compressed',
-                    force: true
+                    outputStyle: 'compressed'
+                },
+                files: {
+                    'app/public/stylesheets/css/app.css': 'app/public/stylesheets/sass/app.scss'
+                }
+            },
+            dev: {
+                files: {
+                    'app/public/stylesheets/css/app.css': 'app/public/stylesheets/sass/app.scss'
                 }
             }
         },
@@ -61,20 +62,20 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-node-webkit-builder');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Build desktop
     grunt.registerTask('build', [
-        'compass:production',
+        'sass:production',
         'nodewebkit'
     ]);
 
     // Dev
     grunt.registerTask('dev', [
-        'compass:dev'
+        'sass:dev'
     ]);
 
     // Dev
