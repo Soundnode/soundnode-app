@@ -7,7 +7,7 @@ module.exports = function (grunt) {
                 buildDir: './dist', // Where the build version of my node-webkit app is saved
                 macIcns: './app/soundnode.icns',
                 platforms: ['osx', 'win'],
-                version: '0.12.0'
+                version: '0.11.6'
             },
             src: [
                 './app/**/*',
