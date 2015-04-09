@@ -13,7 +13,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-node-webkit-builder": "^0.2.2",
+    "grunt-node-webkit-builder": "^1.0.2",
     "grunt-sass": "^0.18.1"
   }
 }
