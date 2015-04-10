@@ -4,13 +4,10 @@ module.exports = function (grunt) {
 
         nodewebkit: {
             options: {
-                build_dir: './dist', // Where the build version of my node-webkit app is saved
-                mac: true, // We want to build it for mac
-                win: true, // We want to build it for win
-                linux32: false, // We don't need linux32
-                linux64: false, // We don't need linux64
-                download_url: 'http://www.soundnodeapp.com/build/',
-                mac_icns: './app/soundnode.icns',
+                buildDir: './dist', // Where the build version of my node-webkit app is saved
+                macIcns: './app/soundnode.icns',
+                downloadUrl: 'http://www.soundnodeapp.com/build/',
+                platforms: ['osx32', 'win32'],
                 version: '0.10.4'
             },
             src: [
@@ -58,10 +55,15 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             }
+        },
+
+        clean: {
+            build: ['dist']
         }
 
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-node-webkit-builder');
@@ -69,6 +71,7 @@ module.exports = function (grunt) {
 
     // Build desktop
     grunt.registerTask('build', [
+        'clean:build',
         'sass:production',
         'nodewebkit'
     ]);
