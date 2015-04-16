@@ -58,6 +58,7 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            force: true,
             build: ['dist']
         }
 
