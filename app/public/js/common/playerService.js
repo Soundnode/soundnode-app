@@ -111,7 +111,9 @@ app.factory('playerService', function($rootScope, $log) {
         this.elUser.innerHTML = user;
         this.elPlayer.play();
 
-        songNotification = new Notification(title, {
+        var songNotificationTitle = (title.length > 63 && process.platform == "win32") ? title.substr(0,60) + "..." : title; 
+		
+        songNotification = new Notification(songNotificationTitle, {
             body: user,
             icon: thumbnail
         });
