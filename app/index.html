@@ -3,7 +3,7 @@
 
 <head>
     <title>Soundnode App</title>
-  
+
     <!-- style -->
     <link href="public/stylesheets/css/vendor/normalize.min.css" rel="stylesheet">
     <link href="public/stylesheets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -11,21 +11,21 @@
     <link href="public/stylesheets/css/vendor/hotkeys.css" rel="stylesheet">
     <link href="public/stylesheets/css/vendor/ngDialog.css" rel="stylesheet">
     <link rel="stylesheet" href="public/stylesheets/css/vendor/toastr.min.css"/>
-    
+
     <!-- meta -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 </head>
 
 <body data-isVisible="false" ng-controller="AppCtrl">
-    
+
     <!-- loading gif -->
     <div class="box-loader loading">
         <h4>Please authenticate your Soundcloud account.</h4>
         <div class="loader"></div>
     </div>
     <!-- loading gif / end -->
-    
+
     <!-- UI App -->
     <div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
 
@@ -49,10 +49,21 @@
                 </li>
             </ul>
 
+            <ul class="topbarSearch">
+              <!-- search -->
+              <div class="search" ng-controller="SearchInputCtrl">
+                  <form ng-submit="onSubmit(keyword)" class="search-form">
+                      <input type="search" placeholder="Search" id="search" class="search_field" ng-model="keyword">
+                      <input type="submit" id="submit" value="Submit" class="searchButton" />
+                  </form>
+              </div>
+              <!-- search / end -->
+            </ul>
+
             <ul class="appInfo">
                 <li class="appInfo_item subNav">
                     <a ng-click="toggleSettings()" class="subNav_button"> <i class="fa fa-cog"></i> </a>
-                    
+
                     <!-- Settings navigation -->
                     <ul class="subNav_nav" data-isVisible="{{ isSettingsVisible }}">
                         <li class="subNav_nav_item" ng-controller="AboutCtrl">
@@ -65,13 +76,9 @@
                     <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
                 </li>
             </ul>
-
-            <h1 class="topFrame_title">
-                <img src="public/img/logo.70.png">
-            </h1>
         </header>
         <!-- header / end -->
-        
+
         <!-- aside -->
         <aside class="aside">
 
@@ -88,15 +95,6 @@
                 <!-- user / end -->
             </header>
             <!-- header / end -->
-
-            <!-- search -->
-            <div class="search" ng-controller="SearchInputCtrl">
-                <form ng-submit="onSubmit(keyword)">
-                    <input type="search" placeholder="Search" id="search" class="search_field" ng-model="keyword">
-                    <input type="submit" id="submit" value="Submit" class="searchButton" />
-                </form>
-            </div>
-            <!-- search / end -->
 
             <!-- main nav -->
             <nav class="mainNav">
@@ -172,7 +170,7 @@
 
         </aside>
         <!-- aside / end -->
-        
+
         <!-- main view -->
         <div class="mainView" ui-view></div>
         <!-- main view / end -->
@@ -215,7 +213,7 @@
     <script src="public/js/about/aboutCtrl.js"></script>
     <script src="public/js/updater/updaterCtrl.js"></script>
     <script src="public/js/profile/profileCtrl.js"></script>
-    
+
     <!-- directives -->
     <script src="public/js/playlists/collapsibleDirective.js"></script>
     <script src="public/js/common/songDirective.js"></script>
