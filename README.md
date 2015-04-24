@@ -2,7 +2,7 @@ Soundnode App
 ============
 
 Soundnode App is a Open-Source project to support Soundcloud for desktop. <br>
-Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
+Built with NW.js, Node.js, Angular.js and consuming Soundcloud API.
 
 **Why I built it?!** [blog post](http://www.bymichaellancaster.com/blog/soundnode-soundcloud-for-desktop-dev-release/)
 
@@ -32,11 +32,9 @@ Please follow the [contributions guidelines](https://github.com/Soundnode/soundn
 
 ## Development
 
-If you started work on any fix/new feature please notify what you are working on [status issue](https://github.com/Soundnode/soundnode-app/issues/97)
+Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-run-apps)
 
-Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
-
-Node-Webkit don't support mp3 and h264 in video and audio tag by default because of patented media formats.
+NW.js don't support mp3 and h264 in video and audio tag by default because of patented media formats.
 but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
 <br>
 See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
