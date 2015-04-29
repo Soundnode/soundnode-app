@@ -1,4 +1,9 @@
-.songList {}
+.songList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 .songList_item {
   display: inline-block;
@@ -150,13 +155,13 @@ div.active {
 }
 
 @-webkit-keyframes heartBeat {
-  0%   { 
+  0%   {
     font-size: 12px;
   }
-  50% { 
+  50% {
     font-size: 15px;
   }
-  100% { 
+  100% {
     font-size: 12px;
   }
 }

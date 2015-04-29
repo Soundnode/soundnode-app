@@ -47,12 +47,12 @@ input[type=text],
 input[type=search],
 input[type=email] {
   border: 1px solid #000;
-  background: $bodyBackground;
+  background: #FFFFFF;
   display: inline-block;
   height: 25px;
   padding: 0 0 0 5px;
   outline: none;
-  color: #fff;
+  color: #000000;
   font-size: 12px;
   transition: $transitionValue;
   border-radius: 5px;

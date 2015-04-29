@@ -4,7 +4,7 @@
   margin-left: 200px;
 
   & > div {
-    max-width: 930px;
+    max-width: 100%;
     min-width: 930px;
     margin: 0 auto;
   }
@@ -34,4 +34,8 @@
     &:last-child {
       margin-right: 0;
     }
+}
+
+.streamView_inner {
+  margin-top: 50px;
 }
