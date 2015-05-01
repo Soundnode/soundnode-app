@@ -114,6 +114,7 @@ OAuthVerification.verification = function (popUp) {
         document.body.setAttribute('data-isVisible', 'true');
 
         console.log('verification done');
+        systemAnalytics();
         appSystem.navBarUserAuthenticated();
     }
 };
