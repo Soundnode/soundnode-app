@@ -130,7 +130,7 @@ appSystem.navBarUserUnAuthenticated = function() {
     nativeMenuBar = new gui.Menu({ type: "menubar" });
 
     nativeMenuBar.createMacBuiltin("Soundnode", {
-        hideEdit: true,
+        hideEdit: false,
         hideWindow: false
     });
 
