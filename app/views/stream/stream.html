@@ -10,7 +10,7 @@
             infinite-scroll-immediate-check='false' >
 
             <li class="songList_item" ng-repeat="data in data"
-                ng-if="data.type == 'track' && data.origin.streamable" >
+                ng-if="data.type == 'track' || data.type == 'track-repost' && data.origin.streamable" >
 
                 <tracks data="data.origin"/>
 
