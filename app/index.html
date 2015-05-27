@@ -11,6 +11,7 @@
     <link href="public/stylesheets/css/vendor/hotkeys.css" rel="stylesheet">
     <link href="public/stylesheets/css/vendor/ngDialog.css" rel="stylesheet">
     <link rel="stylesheet" href="public/stylesheets/css/vendor/toastr.min.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <!-- meta -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -134,42 +135,43 @@
             </nav>
             <!-- main nav / end -->
 
-            <!-- now player -->
-            <div class="player" ng-controller="PlayerCtrl">
-                <div class="player_inner">
-                    <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb">
-                    <h2 id="playerTitle" class="player_title"></h2>
-                    <h4 id="playerUser" class="player_user"></h4>
-                    <div class="player_controls">
-                        <div class="clearfix">
-                            <div class="player_volume">
-                                <i class="fa fa-volume-up" ng-click="toggleRange()"></i>
-                                <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1" step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
-                            </div>
-                            <div class="player_timeLeft" id="player-timeleft">0</div>
-                        </div>
-                        <div class="player_progress">
-                          <span class="player_progress_bar" id="player-progress"></span>
-                        </div>
-                        <!-- player buttons -->
+        </aside>
+        <!-- aside / end -->
+
+        <!-- now player -->
+        <div class="player" ng-controller="PlayerCtrl">
+            <div class="player_inner">
+                <div class="player_controls">
                         <span class="player_prevSong" ng-click="prevSong($event)">
-                            <i class="fa fa-fast-backward"></i>
+                            <i class="fa fa-step-backward"></i>
                         </span>
                         <span class="player_play-pause" ng-click="playPause($event)">
                             <i class="fa fa-play"></i>
                             <i class="fa fa-pause" ></i>
                         </span>
                         <span class="player_nextSong" ng-click="nextSong($event)">
-                            <i class="fa fa-fast-forward"></i>
+                            <i class="fa fa-step-forward"></i>
                         </span>
-                    </div>
-                    <audio id="player" controls src="" class="player_currentSong"></audio>
                 </div>
+                <div class="player_time">
+                    <div class="player_progress">
+                        <span class="player_progress_bar" id="player-progress"></span>
+                    </div>
+                    <div class="player_timeLeft" id="player-timeleft"></div>
+                </div>
+                <div class="player_volume">
+                    <i class="fa fa-volume-up" ng-click="toggleRange()"></i>
+                    <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1" step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
+                </div>
+                <div class="player_details">
+                    <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb">
+                    <h2 id="playerTitle" class="player_title"></h2>
+                    <h4 id="playerUser" class="player_user"></h4>
+                </div>
+                <audio id="player" controls src="" class="player_currentSong"></audio>
             </div>
-            <!-- now player / end -->
-
-        </aside>
-        <!-- aside / end -->
+        </div>
+        <!-- now player / end -->
 
         <!-- main view -->
         <div class="mainView" ui-view></div>

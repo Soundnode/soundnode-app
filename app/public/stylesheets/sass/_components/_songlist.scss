@@ -126,16 +126,22 @@ div.active {
   }
 
   & a {
+    &:hover {
+      cursor: pointer;
 
+      & > .fa {
+        color: #FFF;
+      }
+    }    
+    
     &.clicked {
       -webkit-animation: heartBeat .1s normal;
     }
 
     & > .fa {
-      color: #fff;
+      color: $linkColor;
       display: inline-block;
       margin: 0 5px 0 0;
-      cursor: pointer;
     }
   }
 

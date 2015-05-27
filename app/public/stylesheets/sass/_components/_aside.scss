@@ -55,14 +55,13 @@
 
 .ui_title {
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: normal;
   color: $linkColor;
   margin: 0 0 10px;
 }
 
 .mainNav_item {
-  margin: 0 0 10px 0;
 
   &:last-child {
     margin: 0;
@@ -70,13 +69,19 @@
 }
 
 .mainNav_button {
-  font-size: 14px;
+  font-size: 13px;
   display: block;
+  padding: 5px 0;
+
+  &:hover .fa {
+    color: #FFF;
+  }
 
   & .fa {
-    color: #fff;
+    color: $linkColor;
     display: inline-block;
     width: 25px;
+
   }
 }
 
