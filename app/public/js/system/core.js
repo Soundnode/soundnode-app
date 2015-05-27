@@ -302,8 +302,25 @@ appSystem.navBarUserAuthenticated = function() {
     );
 
     appGUI.getGUI.menu = nativeMenuBar;
-
 };
+
+$(function(){
+    $('.soundnode_link').on('click', 'a', function (e) {
+        e.preventDefault();
+        gui.Shell.openExternal(e.target.href);
+    });
+});
+
+function linkify(inputText) {
+    var replacedText, replacePattern1, replacePattern2;
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a href="$1" class="soundnode_link">$1</a>');
+    replacePattern2 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern2, '<a href="mailto:$1">$1</a>');
+    return replacedText;
+}
+
+
 
 
 // Initialize modules

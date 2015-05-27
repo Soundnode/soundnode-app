@@ -13,6 +13,7 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
     //scope variables
     $scope.profile_data = '';
     $scope.followers_count = '';
+    $scope.description = '';
     $scope.busy = false;
     //tracks
     $scope.data = '';
@@ -23,6 +24,7 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
         .then(function(data) {
             $scope.profile_data = data;
             $scope.followers_count = numberWithCommas(data.followers_count);
+            $scope.description = linkify(data.description);
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
@@ -135,6 +137,4 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
             "As these actions aim to unfairly boost popularity within the community, they are forbidden on the SoundCloud platform." +
             "\n\nIt will be possible to follow/unfollow again at " + date.toLocaleString() + ".";
     }
-
-
 });
