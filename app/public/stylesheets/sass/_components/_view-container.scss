@@ -2,6 +2,8 @@
   // flex: 5 0 0;
   padding: 10px 20px;
   margin-left: 200px;
+  overflow-y: scroll;
+  height: 100%;
 
   & > div {
     max-width: 100%;
