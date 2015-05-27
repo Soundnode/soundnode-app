@@ -29,7 +29,7 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $wind
      */
     $http.get(urlAbout, config)
         .success(function (data) {
-            $scope.content = data;
+            $scope.content = linkify(data);
         })
         .error(function (error) {
             console.log('Error', error)
