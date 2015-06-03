@@ -19,6 +19,7 @@ body {
 a {
   color: $linkColor;
   text-decoration: none;
+  transition: $transitionValue;
 }
 
 a:hover {
