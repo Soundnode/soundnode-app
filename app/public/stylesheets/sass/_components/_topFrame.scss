@@ -54,15 +54,14 @@
 
 .navigationButton {
   font-size: 14px;
-  margin-top: -16px;
+  margin-top: 8px;
 
   & .fa {
     color: #464647;
   }
 
   &.goBack {
-    clear: both;
-    margin-left: 120px;
+
   }
 
   &.goForward {

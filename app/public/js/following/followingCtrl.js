@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('FollowingCtrl', function ($scope, SCapiService, $rootScope, $log) {
-    $scope.title = 'Following:';
+    $scope.title = 'Following';
     $scope.data = '';
     $scope.busy = false;
 

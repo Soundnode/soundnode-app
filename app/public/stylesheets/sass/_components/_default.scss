@@ -9,7 +9,7 @@ html {
 
 body {
   background: $bodyBackground;
-  font: 62.5% helvetica, sans-serif, arial !important;
+  font: 62.5% 'Open Sans', helvetica, sans-serif, arial !important;
   color: $defaultColor;
   height: 100%;
   -webkit-user-select: none;
@@ -21,6 +21,7 @@ a {
   text-decoration: none;
   transition: $transitionValue;
 }
+
 a:hover {
   color: #fff;
 }
@@ -41,6 +42,7 @@ h5,
 h6 {
   margin: 0;
   color: #fff;
+  font-weight: 600;
 }
 
 input[type=text],

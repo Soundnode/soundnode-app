@@ -9,9 +9,8 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
-  margin: 0 5px 80px 5px;
-  width: 300px;
-  height: 450px;
+  margin: 0 5px 30px 5px;
+  width: 210px;
 
   & .songList_item_box:first-child {
     margin-bottom: 20px;
@@ -32,7 +31,7 @@
 .songList_item_container_artwork {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 210px;
   background: $sectionBackground;
   border: 1px solid $separatorDarkColor;
 }
@@ -100,7 +99,7 @@ div.active {
 }
 
 .songList_item_song_tit {
-  font-size: 20px;
+  font-size: 18px;
   margin: 5px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -126,16 +125,23 @@ div.active {
   }
 
   & a {
+    &:hover {
+      cursor: pointer;
 
+      & > .fa {
+        color: #FFF;
+      }
+    }    
+    
     &.clicked {
       -webkit-animation: heartBeat .1s normal;
     }
 
     & > .fa {
-      color: #fff;
+      color: $linkColor;
       display: inline-block;
       margin: 0 5px 0 0;
-      cursor: pointer;
+      transition: $transitionFastValue;
     }
   }
 
