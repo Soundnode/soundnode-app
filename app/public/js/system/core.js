@@ -5,7 +5,8 @@ var gui = require('nw.gui'),
     OAuthVerification = {},
     OAuthVerificationId,
     appGUI = {},
-    appSystem = {};
+    appSystem = {},
+    appUser = {};
 
 // Iframe hosting the OAuth
 var elemIframe = document.getElementById('elIframe');
@@ -84,6 +85,7 @@ OAuthVerification.init = function () {
 
     OAuthVerificationId = window.setInterval(function () {
         that.verification(popUp);
+        appUser.checkAuth(popUp);
     }, 1500);
 };
 
@@ -115,6 +117,8 @@ OAuthVerification.verification = function (popUp) {
 
         console.log('verification done');
         appSystem.navBarUserAuthenticated();
+
+        appUser.saveUser();
     }
 };
 
@@ -303,6 +307,45 @@ appSystem.navBarUserAuthenticated = function() {
 
     appGUI.getGUI.menu = nativeMenuBar;
 
+};
+
+appUser.checkAuth = function(popUp) {
+    // Check is localStorage.SC exists
+    if(localStorage.SC) {
+        // Make Information Readable
+        window.SC = JSON.parse(localStorage.SC);
+        window.scAccessToken = localStorage.scAccessToken;
+        window.scClientId = localStorage.scClientId;
+
+        // stop verification
+        window.clearInterval(OAuthVerificationId);
+
+        // Start the app
+        angular.bootstrap(document, ['App']);
+        document.body.setAttribute('data-isVisible', 'true');
+
+        // Log that user has already been authenticated
+        console.log('User is already authenticated');
+
+        // Change Mac native menu
+        appSystem.navBarUserAuthenticated();
+
+        // Bring Soundnode to focus
+        window.focus();
+
+        // Close Soundcloud OAuth
+        popUp.SC._connectWindow.close();
+
+        // close popUp
+        popUp.close();
+    }
+};
+
+appUser.saveUser = function() {
+    // Save all to localStorage
+    localStorage.SC = JSON.stringify(window.SC);
+    localStorage.scAccessToken = window.SC.accessToken();
+    localStorage.scClientId = window.SC.options.client_id;
 };
 
 
