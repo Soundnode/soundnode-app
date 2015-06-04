@@ -64,4 +64,4 @@ app.run(function($rootScope, $log, SCapiService, hotkeys) {
 
 });
 
-angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1500);
+angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 200);
