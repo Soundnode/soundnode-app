@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('UserCtrl', function ($rootScope, $scope, SCapiService) {
+app.controller('UserCtrl', function ($rootScope, $scope, $window, SCapiService) {
     var endpoint = 'me'
         , params = '';
 
@@ -20,9 +20,8 @@ app.controller('UserCtrl', function ($rootScope, $scope, SCapiService) {
                 });
 
     $scope.logOut = function() {
-        SC.disconnect();
-        window.localStorage.clear();
-        console.log('User connected:', SC.isConnected() );
+        $window.SC.disconnect();
+        //$window.localStorage.clear();
         appGUI.close();
     }
 
