@@ -8,118 +8,98 @@ var gui = require('nw.gui'),
     appSystem = {},
     appUser = {};
 
-// Iframe hosting the OAuth
-var elemIframe = document.getElementById('elIframe');
-
-/**
- * Responsible to add GUI events
- */
-
-// Store the GUI window
-appGUI.getGUI = gui.Window.get();
-
-// close the App
-appGUI.close = function () {
-    var guiWin = this.getGUI;
-    guiWin.close(true);
-};
-
-// minimize the App
-appGUI.minimize = function () {
-    var guiWin = this.getGUI;
-    guiWin.minimize();
-};
-
-// maximize the App
-appGUI.maximize = function () {
-    var guiWin = this.getGUI;
-    guiWin.maximize();
-};
-
-// open dev tools
-appGUI.openDevTools = function () {
-    var guiWin = gui.Window.get();
-    guiWin.showDevTools();
-};
-
-//appGUI.openDevTools();
-
-/**
- * Responsible to enable all UI frame actions
- */
-uiFrame.init = function () {
-    // this.OpenDevTools();
-    this.addGUIeventHandlers();
-};
-
-uiFrame.addGUIeventHandlers = function () {
-    // Get the current window
-    var elCloseApp = document.getElementById('closeApp'),
-        elMinimizeApp = document.getElementById('minimizeApp'),
-        elExpandApp = document.getElementById('expandApp');
-
-    // Close App
-    $(elCloseApp).on('click', function () {
-        appGUI.close();
-    });
-
-    // Minimize App
-    $(elMinimizeApp).on('click', function () {
-        appGUI.minimize();
-    });
-
-    // Expand App
-    $(elExpandApp).on('click', function () {
-        appGUI.maximize();
-    });
-
-};
-
 
 /**
  * Responsible to verify if user was authenticated
  */
 OAuthVerification.init = function () {
-    var that = this,
-        popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=50,height=50');
+    var that = this, popUp;
+
+    //if ( appUser.checkAuth() ) {
+    //    // start the App
+    //    this.startApp();
+    //    return;
+    //}
+
+    popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=50,height=50');
 
     OAuthVerificationId = window.setInterval(function () {
         that.verification(popUp);
-        appUser.checkAuth(popUp);
     }, 1500);
 };
 
 OAuthVerification.verification = function (popUp) {
     var isOAuthDone;
 
+    console.log('verification called');
+
     if (popUp.document.body !== null) {
         isOAuthDone = popUp.document.body.getAttribute('data-isOAuth-done');
-    } else {
+    }
+
+    if (isOAuthDone !== 'true') {
         return;
     }
 
-    console.log('verification called');
+    // Expose Soundcloud API to node-webkit object window
+    window.SC = popUp.SC;
+    window.disconnectUser = popUp.SC.disconnect;
+    window.scAccessToken = popUp.SC.accessToken();
+    window.scClientId = popUp.SC.options.client_id;
 
-    if (isOAuthDone === 'true') {
-        // Expose Soundcloud API to node-webkit object window
-        window.SC = popUp.SC;
-        window.scAccessToken = popUp.SC.accessToken();
-        window.scClientId = popUp.SC.options.client_id;
+    // close popUp
+    popUp.close();
+    // stop verification
+    window.clearInterval(OAuthVerificationId);
 
-        // close popUp
-        popUp.close();
-        // stop verification
-        window.clearInterval(OAuthVerificationId);
+    // save user to localStorage
+    appUser.saveUser();
 
-        // Start the App
+    console.log('verification done');
+
+    // start the App
+    this.startApp();
+};
+
+OAuthVerification.startApp = function () {
+    setTimeout(function() {
         angular.bootstrap(document, ['App']);
         document.body.setAttribute('data-isVisible', 'true');
 
-        console.log('verification done');
         appSystem.navBarUserAuthenticated();
 
-        appUser.saveUser();
+        console.dir(window.localStorage.SC)
+    }, 2000)
+};
+
+appUser.checkAuth = function(popUp) {
+    // Check is localStorage.SC exists
+    if( ! window.localStorage.SC ) {
+        console.log('User not saved');
+        return false;
     }
+
+    console.log('User is saved');
+
+    // Make Information Readable
+    window.SC = window.localStorage.SC;
+    window.disconnectUser = window.localStorage.disconnectUser;
+    window.scAccessToken = window.localStorage.scAccessToken;
+    window.scClientId = window.localStorage.scClientId;
+
+    // Bring Soundnode to focus
+    window.focus();
+
+    return true;
+};
+
+appUser.saveUser = function() {
+    console.log('Saving user to localStorage');
+    // Save all to localStorage
+    window.localStorage.SC = window.SC;
+    window.localStorage.disconnectUser = window.SC.disconnect;
+    window.localStorage.scAccessToken = window.SC.accessToken();
+    window.localStorage.scClientId = window.SC.options.client_id;
 };
 
 appSystem.navBarUserUnAuthenticated = function() {
@@ -138,7 +118,7 @@ appSystem.navBarUserUnAuthenticated = function() {
     });
 
     appGUI.getGUI.menu = nativeMenuBar;
-}
+};
 
 appSystem.navBarUserAuthenticated = function() {
     if (process.platform !== "darwin") {
@@ -309,43 +289,68 @@ appSystem.navBarUserAuthenticated = function() {
 
 };
 
-appUser.checkAuth = function(popUp) {
-    // Check is localStorage.SC exists
-    if(localStorage.SC) {
-        // Make Information Readable
-        window.SC = JSON.parse(localStorage.SC);
-        window.scAccessToken = localStorage.scAccessToken;
-        window.scClientId = localStorage.scClientId;
+/**
+ * Responsible to add GUI events
+ */
 
-        // stop verification
-        window.clearInterval(OAuthVerificationId);
+// Store the GUI window
+appGUI.getGUI = gui.Window.get();
 
-        // Start the app
-        angular.bootstrap(document, ['App']);
-        document.body.setAttribute('data-isVisible', 'true');
-
-        // Log that user has already been authenticated
-        console.log('User is already authenticated');
-
-        // Change Mac native menu
-        appSystem.navBarUserAuthenticated();
-
-        // Bring Soundnode to focus
-        window.focus();
-
-        // Close Soundcloud OAuth
-        popUp.SC._connectWindow.close();
-
-        // close popUp
-        popUp.close();
-    }
+// close the App
+appGUI.close = function () {
+    var guiWin = this.getGUI;
+    guiWin.close(true);
 };
 
-appUser.saveUser = function() {
-    // Save all to localStorage
-    localStorage.SC = JSON.stringify(window.SC);
-    localStorage.scAccessToken = window.SC.accessToken();
-    localStorage.scClientId = window.SC.options.client_id;
+// minimize the App
+appGUI.minimize = function () {
+    var guiWin = this.getGUI;
+    guiWin.minimize();
+};
+
+// maximize the App
+appGUI.maximize = function () {
+    var guiWin = this.getGUI;
+    guiWin.maximize();
+};
+
+// open dev tools
+appGUI.openDevTools = function () {
+    var guiWin = gui.Window.get();
+    guiWin.showDevTools();
+};
+
+//appGUI.openDevTools();
+
+/**
+ * Responsible to enable all UI frame actions
+ */
+uiFrame.init = function () {
+    // this.OpenDevTools();
+    this.addGUIeventHandlers();
+};
+
+uiFrame.addGUIeventHandlers = function () {
+    // Get the current window
+    var elCloseApp = document.getElementById('closeApp'),
+        elMinimizeApp = document.getElementById('minimizeApp'),
+        elExpandApp = document.getElementById('expandApp');
+
+    // Close App
+    $(elCloseApp).on('click', function () {
+        appGUI.close();
+    });
+
+    // Minimize App
+    $(elMinimizeApp).on('click', function () {
+        appGUI.minimize();
+    });
+
+    // Expand App
+    $(elExpandApp).on('click', function () {
+        appGUI.maximize();
+    });
+
 };
 
 
