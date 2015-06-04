@@ -21,6 +21,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, SCapiService) {
 
     $scope.logOut = function() {
         SC.disconnect();
+        window.localStorage.clear();
         console.log('User connected:', SC.isConnected() );
         appGUI.close();
     }
