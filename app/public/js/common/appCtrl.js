@@ -4,7 +4,10 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
 
     // Settings sub nav (dropdown)
     $scope.isSettingsVisible = false;
-    $scope.isUserRunningWindows = (process.platform == "win32");
+
+    // Os detection
+    $scope.isRunningWindows = process.platform == 'win32';
+    $scope.isRunningMac = process.platform == 'darwin';
     
     $scope.toggleSettings = function() {
         if ( $scope.isSettingsVisible ) {

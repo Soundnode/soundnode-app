@@ -14,12 +14,10 @@
 
 .windowAction {
   overflow: hidden;
-}
-
-.windowAction {
   float: left;
   margin: 5px 0 0 0;
   -webkit-app-region: no-drag;
+  width: 200px;
 }
 .windowAction_item {
   float: left;
@@ -31,7 +29,14 @@
   letter-spacing: 0;
   margin-top: 10px;
 
-  &:nth-child(1) {
+  & .fa {
+    cursor: pointer;
+    color: #222326;
+  }
+}
+
+.macActionButtons {
+  & #closeApp {
     background: #D96C76;
 
     & .fa {
@@ -39,16 +44,37 @@
       top: -1px;
     }
   }
-  &:nth-child(2) {
+  & #minimizeApp {
     background: #FDF9C6;
   }
-  &:nth-child(3) {
+  & #expandApp {
     background: #96E1C7;
+  }
+}
+
+.windowsActionButtons {
+  float: right;
+  -webkit-app-region: no-drag;
+
+  & li {
+    margin: 0;
+    padding: 8px 10px 8px;
+    border-radius: 0;
+    &:hover {
+      background: $separatorCleanColor;
+    }
+  }
+
+  & #closeApp {
+    padding: 8px 15px 8px;
+    background: #390000;
+    &:hover {
+      background: #530000;
+    }
   }
 
   & .fa {
-    cursor: pointer;
-    color: #222326;
+    color: #FFF;
   }
 }
 
