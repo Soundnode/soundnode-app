@@ -5,8 +5,8 @@
   position: relative;
   overflow: hidden;
   margin: 0 5px 60px 5px;
-  width: 300px;
-  height: 350px;
+  width: 210px;
+  height: 210px;
 
   & .songList_item_box:first-child {
     margin-bottom: 20px;
@@ -18,6 +18,10 @@
 
   & .fa:last-child {
     display: table-cell;
+  }
+
+  & .songList_item_container_artwork {
+    height: 210px;
   }
 
 }

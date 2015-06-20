@@ -11,11 +11,14 @@ module.exports = function (grunt) {
                 version: '0.10.4'
             },
             src: [
-                './app/**/*',
-                '!./app/public/stylesheets/sass',
-                '!./app/public/stylesheets/config.rb',
-                '!./**/*.sass-cache',
-                '!./app/public/assets'
+                './app/index.html',
+                './app/package.json',
+                './app/soundnode.icns',
+                './app/soundnode.png',
+                './app/views/**/*',
+                './app/public/js/**/*',
+                './app/public/img/**/*',
+                './app/public/stylesheets/css/**/*'
             ]
         },
 
