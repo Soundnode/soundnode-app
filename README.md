@@ -32,6 +32,8 @@ Please follow the [contributions guidelines](https://github.com/Soundnode/soundn
 
 ## Development
 
+Soundnode use [Waffle.io](https://waffle.io/) as Project Management tool, you can check what's going on here [Soundnode App status](https://waffle.io/Soundnode/soundnode-app)
+
 Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-run-apps)
 
 NW.js don't support mp3 and h264 in video and audio tag by default because of patented media formats.
