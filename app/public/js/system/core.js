@@ -8,18 +8,16 @@ var gui = require('nw.gui'),
     appSystem = {},
     appUser = {};
 
-
 /**
  * Responsible to verify if user was authenticated
  */
 OAuthVerification.init = function () {
     var that = this, popUp;
 
-    //if ( appUser.checkAuth() ) {
-    //    // start the App
-    //    this.startApp();
-    //    return;
-    //}
+    if ( appUser.checkAuth() ) {
+       this.startApp();
+       return;
+    }
 
     popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=50,height=50');
 
@@ -43,7 +41,6 @@ OAuthVerification.verification = function (popUp) {
 
     // Expose Soundcloud API to node-webkit object window
     window.SC = popUp.SC;
-    window.disconnectUser = popUp.SC.disconnect;
     window.scAccessToken = popUp.SC.accessToken();
     window.scClientId = popUp.SC.options.client_id;
 
@@ -67,13 +64,11 @@ OAuthVerification.startApp = function () {
         document.body.setAttribute('data-isVisible', 'true');
 
         appSystem.navBarUserAuthenticated();
-
-        console.dir(window.localStorage.SC)
     }, 2000)
 };
 
 appUser.checkAuth = function(popUp) {
-    // Check is localStorage.SC exists
+
     if( ! window.localStorage.SC ) {
         console.log('User not saved');
         return false;
@@ -83,7 +78,6 @@ appUser.checkAuth = function(popUp) {
 
     // Make Information Readable
     window.SC = window.localStorage.SC;
-    window.disconnectUser = window.localStorage.disconnectUser;
     window.scAccessToken = window.localStorage.scAccessToken;
     window.scClientId = window.localStorage.scClientId;
 
@@ -97,9 +91,10 @@ appUser.saveUser = function() {
     console.log('Saving user to localStorage');
     // Save all to localStorage
     window.localStorage.SC = window.SC;
-    window.localStorage.disconnectUser = window.SC.disconnect;
     window.localStorage.scAccessToken = window.SC.accessToken();
     window.localStorage.scClientId = window.SC.options.client_id;
+
+    console.dir('window.localStorage.SC', window.localStorage.SC)
 };
 
 appSystem.navBarUserUnAuthenticated = function() {
