@@ -3,7 +3,7 @@
 app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log, $timeout) {
     $scope.imgPath = 'public/img/temp-playing.png';
     $timeout(function() {
-        $scope.volume = 0.5;
+        $scope.volume = 1.0;
     });
 
     /**
