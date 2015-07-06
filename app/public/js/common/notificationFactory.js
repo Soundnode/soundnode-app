@@ -5,11 +5,11 @@ app.factory('notificationFactory', function () {
         success: function (message) {
             toastr.success(message, "Success");
         },
-        warning: function (message) {
-            toastr.error(message, "Hey");
+        warn: function (message) {
+            toastr.warning(message, "Hey");
         },
         info: function (message) {
-            toastr.error(message, "FYI");
+            toastr.info(message, "FYI");
         },
         error: function (message) {
             toastr.error(message, "Oh No");

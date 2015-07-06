@@ -2,12 +2,9 @@
 
 app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $window) {
     var urlAbout = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html'
-        , config = { headers:  {
-                'Accept': 'application/vnd.github.v3.raw+json'
-            }
-        },
-        urlRelease = 'https://api.github.com/repos/Soundnode/soundnode-app/releases'
-        , config = { headers:  {
+    var urlRelease = 'https://api.github.com/repos/Soundnode/soundnode-app/releases';
+    var config = { 
+            headers:  {
                 'Accept': 'application/vnd.github.v3.raw+json'
             }
         };
@@ -25,7 +22,7 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $wind
     };
 
     /**
-     * Get Soundnode about.html form Github
+     * Get Soundnode about.html from Github
      */
     $http.get(urlAbout, config)
         .success(function (data) {
