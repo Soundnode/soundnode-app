@@ -118,12 +118,6 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
             icon: thumbnail
         });
 
-        $timeout(function() {
-            if ( player.elPlayer.currentTime < 1 ) {
-                notificationFactory.warn("Looks like I can't play this track :(");
-            }
-        }, 5000);
-
         $rootScope.isSongPlaying = true;
     };
 
