@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('playerService', function($rootScope, $log) {
+app.factory('playerService', function($rootScope, $log, $timeout, notificationFactory) {
 
     $rootScope.isSongPlaying = false;
 
@@ -117,6 +117,12 @@ app.factory('playerService', function($rootScope, $log) {
             body: user,
             icon: thumbnail
         });
+
+        $timeout(function() {
+            if ( player.elPlayer.currentTime < 1 ) {
+                notificationFactory.warn("For some reason I can't play this track :(");
+            }
+        }, 5000);
 
         $rootScope.isSongPlaying = true;
     };
@@ -255,13 +261,18 @@ app.factory('playerService', function($rootScope, $log) {
      * song progress bar
      */
     $(player.elPlayerProgress).parent().off().on('click', function(e) {
-        var percent = ( e.offsetX / $(this).width() )
-            , duration = player.elPlayer.duration
-            , seek = percent * duration;
+        var percent = ( e.offsetX / $(this).width() );
+        var duration = player.elPlayer.duration;
+        var seek = percent * duration;
 
-        if ( $rootScope.isSongPlaying ) {
+        if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
+            notificationFactory.error("Something went wrong. I can't play this track :(");
+        }
+
+        if ( player.elPlayer.readyState > 0 ) {
             player.elPlayer.currentTime = parseInt(seek, 10)
         }
+
     });
 
     return player;

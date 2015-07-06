@@ -1,6 +1,35 @@
 'use strict'
 
-app.service('SCapiService', function($http, $window, $q, $log, $state, $stateParams, $rootScope) {
+app.service('SCapiService', function($http, $window, $q, $log, $state, $stateParams, $rootScope, ngDialog) {
+
+    function rateLimitReached() {
+        ngDialog.open({
+            showClose: false,
+            template: 'views/common/modal.html',
+            controller: ['$scope', function($scope) {
+                var urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
+                var config = { 
+                        headers:  {
+                            'Accept': 'application/vnd.github.v3.raw+json'
+                        }
+                    };
+
+                $scope.content = '';
+
+                $scope.closeModal = function() {
+                    ngDialog.closeAll();
+                };
+
+                $http.get(urlGH, config)
+                    .success(function (data) {
+                        $scope.content = data;
+                    })
+                    .error(function (error) {
+                        console.log('Error', error)
+                    });
+            }]
+        });
+    };
 
     /**
      * Responsible to store next url for pagination request
@@ -26,6 +55,11 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
 
         return $http.get(url)
                     .then(function(response, status) {
+                        if ( response.status === 429 ) {
+                            rateLimitReached();
+                            return [];
+                        }
+
                         if ( response.status === 200 ) {
                             if ( response.data.next_href !== null || response.data.next_href !== undefined ) {
                                 that.next_page = response.data.next_href;
@@ -317,7 +351,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                         , uri
                         , i = 0;
 
-                    // finding the uri
+                    // find the uri
                     for ( ; i < response.data.length; i++ ){
                         if ( playlistId == playlists[i].id ) {
                             uri = response.data[i].uri + '.json?&oauth_token=' + $window.scAccessToken;
