@@ -120,7 +120,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
 
         $timeout(function() {
             if ( player.elPlayer.currentTime < 1 ) {
-                notificationFactory.warn("For some reason I can't play this track :(");
+                notificationFactory.warn("Looks like I can't play this track :(");
             }
         }, 5000);
 
