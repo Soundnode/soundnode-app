@@ -33,15 +33,7 @@
         <!-- header -->
         <header class="topFrame">
             <ul class="windowAction">
-                <li class="windowAction_item " id="closeApp">
-                    <i class="fa fa-times"></i>
-                </li>
-                <li class="windowAction_item " id="minimizeApp">
-                    <i class="fa fa-minus"></i>
-                </li>
-                <li class="windowAction_item " id="expandApp">
-                    <i class="fa fa-plus"></i>
-                </li>
+                <action-buttons class="macActionButtons" ng-if="isRunningMac" os="Mac"></action-buttons>
                 <li class="windowAction_item navigationButton goBack" ng-click="goBack()">
                     <i class="fa fa-chevron-left"></i>
                 </li>
@@ -60,6 +52,8 @@
               </div>
               <!-- search / end -->
             </ul>
+
+            <action-buttons class="windowsActionButtons" ng-if="isRunningWindows" os="Windows"></action-buttons>
 
             <ul class="appInfo">
                 <li class="appInfo_item subNav">
@@ -224,6 +218,7 @@
     <script src="public/js/common/showMoreDirective.js"></script>
     <script src="public/js/common/tracksDirective.js"></script>
     <script src="public/js/common/playlistDirective.js"></script>
+    <script src="public/js/common/actionButtonsDirective.js"></script>
 
 </body>
 </html>
