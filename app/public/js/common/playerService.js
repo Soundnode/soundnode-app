@@ -41,6 +41,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
     player.elPlayer = document.getElementById('player');
     player.elPlayerProgress = document.getElementById('player-progress');
     player.elPlayerTimeLeft = document.getElementById('player-timeleft');
+    player.elPlayerDuration = document.getElementById('player-duration');
+    player.elPlayerTimeCurrent = document.getElementById('player-timecurrent');
     player.elThumb = document.getElementById('playerThumb');
     player.elTitle = document.getElementById('playerTitle');
     player.elUser = document.getElementById('playerUser');
@@ -242,6 +244,20 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
 
         if ( !isNaN(mins) || !isNaN(secs) ) {
             $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+        }
+
+            mins = Math.floor(player.elPlayer.currentTime / 60,10);
+            secs = Math.floor(player.elPlayer.currentTime, 10) - mins * 60;
+
+        if ( !isNaN(mins) || !isNaN(secs) ) {
+            $(player.elPlayerTimeCurrent).text(mins + ':' + (secs >= 9 ? secs : '0' + secs));
+        }
+
+        var mins = Math.floor(player.elPlayer.duration / 60,10),
+            secs = Math.floor(player.elPlayer.duration, 10) - mins * 60;
+
+        if ( !isNaN(mins) || !isNaN(secs) ) {
+            $(player.elPlayerDuration).text(mins + ':' + (secs > 9 ? secs : '0' + secs));
         }
 
         $(player.elPlayerProgress).css({

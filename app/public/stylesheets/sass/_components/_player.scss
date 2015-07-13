@@ -7,6 +7,7 @@
   border-top: 1px solid $separatorDarkColor;
   display: flex;
   z-index: 1;
+  padding-top: 5px;
 }
 
 .player_thumb {
@@ -111,34 +112,73 @@
 
 }
 .player_time {
-  position: relative;
-  flex: 2;
-  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  font-size: 13px;
 }
 
 .player_timeLeft {
-  font-size: 13px;
-  position: absolute;
-  left: 49%;
+  margin-left: 25px;
+}
+
+.player_timeCurrent:not(:empty) {
+  &::after {
+    content: '/'
+  }
 }
 
 .player_progress {
+  position: absolute;
+  top: -20px;
+  left: 0;
   display: block;
   width: 100%;
-  height: 8px;
-  background: #FFF;
-  border-radius: 5px;
+  height: 4px;
+  padding: 20px 0 10px;
   overflow: hidden;
-  border-top: 1px solid $bodyBackground;
-  border-bottom: 1px solid $bodyBackground;
   cursor: pointer;
-  margin-top: 26px;
+  box-sizing: content-box;
+
+  &:hover {
+    & .player_progress_bar::before, & .player_progress_bar::after {
+      opacity: 1;
+    }
+  }
 
   & .player_progress_bar {
     display: block;
     width: 0;
-    height: 100%;
+    height: 4px;
     background: $scColor;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.29);
+      z-index: -1;
+      transition: $transitionFastValue;
+      opacity: 0;
+    }
+
+    &::after {
+      content: '';
+      position: relative;
+      top: -4px;
+      left: 6px;
+      display: block;
+      float: right;
+      height: 12px;
+      width: 12px;
+      background: rgb(255, 122, 0);
+      border-radius: 50%;
+      box-shadow: 0 0 2px 0 #000;
+      opacity: 0;
+      transition: $transitionFastValue;
+    }
   }
 }
 
