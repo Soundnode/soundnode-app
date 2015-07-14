@@ -97,6 +97,24 @@ appUser.saveUser = function() {
     console.dir('window.localStorage.SC', window.localStorage.SC)
 };
 
+appUser.windowState = function() {
+    if(window.localStorage.width || window.localStorage.height) {
+        gui.Window.get().width = Math.round(window.localStorage.width);
+        gui.Window.get().height = Math.round(window.localStorage.height);
+    }
+
+    gui.Window.get().on('resize', function(width, height) {
+        appUser.saveWindow(width, height);
+    });
+};
+
+appUser.saveWindow = function(width, height) {
+    if(width || height) {
+        window.localStorage.width = Math.round(width);
+        window.localStorage.height = Math.round(height);
+    }
+};
+
 appSystem.navBarUserUnAuthenticated = function() {
     if (process.platform !== "darwin") {
         return false;
@@ -353,3 +371,4 @@ uiFrame.addGUIeventHandlers = function () {
 uiFrame.init();
 OAuthVerification.init();
 appSystem.navBarUserUnAuthenticated();
+appUser.windowState();
