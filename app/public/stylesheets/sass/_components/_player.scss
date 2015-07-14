@@ -126,7 +126,8 @@
 
 .player_timeCurrent:not(:empty) {
   &::after {
-    content: '/'
+    content: '/';
+    margin: 0 3px;
   }
 }
 
