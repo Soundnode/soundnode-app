@@ -135,6 +135,18 @@
         <!-- now player -->
         <div class="player" ng-controller="PlayerCtrl">
             <div class="player_inner">
+                <div class="player_progress">
+                    <span class="player_progress_bar" id="player-progress"></span>
+                </div>
+                <div class="player_details">
+                    <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb">
+                    <h2 id="playerTitle" class="player_title"></h2>
+                    <h4 id="playerUser" class="player_user"></h4>
+                </div>
+                <div class="player_time">
+                    <span class="player_timeCurrent" id="player-timecurrent"></span>
+                    <span class="player_duration" id="player-duration"></span>
+                </div>
                 <div class="player_controls">
                         <span class="player_prevSong" ng-click="prevSong($event)">
                             <i class="fa fa-step-backward"></i>
@@ -147,22 +159,9 @@
                             <i class="fa fa-step-forward"></i>
                         </span>
                 </div>
-                <div class="player_time">
-                    <span class="player_timeCurrent" id="player-timecurrent"></span>
-                    <span class="player_duration" id="player-duration"></span>
-                    <span class="player_timeLeft" id="player-timeleft"></span>
-                </div>
-                <div class="player_progress">
-                    <span class="player_progress_bar" id="player-progress"></span>
-                </div>
                 <div class="player_volume">
                     <i class="fa fa-volume-up" ng-click="toggleRange()"></i>
                     <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1" step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
-                </div>
-                <div class="player_details">
-                    <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb">
-                    <h2 id="playerTitle" class="player_title"></h2>
-                    <h4 id="playerUser" class="player_user"></h4>
                 </div>
                 <audio id="player" controls src="" class="player_currentSong"></audio>
             </div>

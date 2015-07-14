@@ -6,6 +6,7 @@
   background: $sectionBackground;
   border-top: 1px solid $separatorDarkColor;
   display: flex;
+  flex-direction: row;
   z-index: 1;
   padding-top: 5px;
 }
@@ -28,6 +29,7 @@
 .player_details {
   width: 300px;
   flex: 1;
+  padding: 0 10px;
 }
 
 .player_user {
@@ -113,7 +115,7 @@
 }
 .player_time {
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   align-items: center;
   font-size: 13px;
 }
