@@ -1,4 +1,5 @@
 'use strict'
+var gui = require('nw.gui');
 
 app.factory('playerService', function($rootScope, $log, $timeout, notificationFactory) {
 
@@ -119,6 +120,9 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
             body: user,
             icon: thumbnail
         });
+        songNotification.onclick = function () {
+            gui.Window.get().show();
+        }
 
         $rootScope.isSongPlaying = true;
     };
