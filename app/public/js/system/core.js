@@ -312,7 +312,12 @@ appGUI.getGUI = gui.Window.get();
 // close the App
 appGUI.close = function () {
     var guiWin = this.getGUI;
-    guiWin.close(true);
+    if (process.platform !== "darwin") {
+        guiWin.close(true);
+    }
+    else {
+        guiWin.hide();
+    }
 };
 
 // minimize the App
@@ -326,6 +331,12 @@ appGUI.maximize = function () {
     var guiWin = this.getGUI;
     guiWin.maximize();
 };
+
+// reopen the App, this is OS X specific
+gui.App.on('reopen', function() {
+    var guiWin = appGUI.getGUI;
+    guiWin.show();
+});
 
 // open dev tools
 appGUI.openDevTools = function () {
