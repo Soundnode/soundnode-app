@@ -2,10 +2,10 @@
 Soundnode App
 ============
 
-Soundnode App is a Open-Source project to support Soundcloud for desktop. <br>
-Built with NW.js, Node.js, Angular.js and consuming Soundcloud API.
+Soundnode App is an Open-Source project to support Soundcloud for desktop. <br>
+It's built with NW.js, Node.js, and Angular.js, and uses the Soundcloud API.
 
-**Why I built it?!** [blog post](http://www.bymichaellancaster.com/blog/soundnode-soundcloud-for-desktop-dev-release/)
+**Why did I build it?** [blog post](http://www.bymichaellancaster.com/blog/soundnode-soundcloud-for-desktop-dev-release/)
 
 ![alt tag](https://raw.githubusercontent.com/Soundnode/soundnode-app/master/Soundnode-app.png)
 
@@ -20,20 +20,20 @@ Built with NW.js, Node.js, Angular.js and consuming Soundcloud API.
 - Full playlist feature
 - Follow/Unfollow users
 
-And much more..
+And much more!
 
 ## How to contribute
 
-First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report if possible.
+First, building, testing, and reporting bugs is highly appreciated. Please include console's output and steps to reproduce the problem in your bug report if possible.
 
-If you want to develop, you can look at the issues, specially the bugs and then fix them.
+If you want to develop, you can look at the issues, especially the bugs and then fix them.
 Here's a [list of issues](https://github.com/Soundnode/soundnode-app/issues?state=open).
 
-Please follow the [contributions guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
+Please follow the [contribution guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
 
 ## Development
 
-Soundnode use [Waffle.io](https://waffle.io/) as Project Management tool, you can check what's going on here [Soundnode App status](https://waffle.io/Soundnode/soundnode-app)
+We use [Waffle.io](https://waffle.io/) as our project management tool, you can check what's going on here: [Soundnode App status](https://waffle.io/Soundnode/soundnode-app)
 
 Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-run-apps)
 
