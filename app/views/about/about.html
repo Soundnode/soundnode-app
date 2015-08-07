@@ -3,7 +3,6 @@
 
     <div class="modalView_content" ng-bind-html="content"></div>
 
-    <!--TODO: when this released remove from Soundnode-about the hard coded version -->
-    <small class="ui-db">Your Soundnode current version {{ appVersion }}.</small>
-    <small class="ui-db">Soundnode latest release version {{ appLatestVersion }}</small>
+    <small class="ui-db" ng-if="isLatest">You have the latest version {{ appVersion }}.</small>
+	<small class="ui-db" ng-if="!isLatest">Your current version ({{ appVersion }}) isn't the latest ({{ appLatestVersion }}), please download the latest version.</small>
 </div>

@@ -12,6 +12,7 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $wind
     $scope.appVersion = $window.settings.appVersion;
     $scope.appLatestVersion = '';
     $scope.content = '';
+    $scope.isLatest = ($scope.appVersion < $scope.appLatestVersion) ? false : true;
 
     $scope.openModal = function() {
         ngDialog.open({
