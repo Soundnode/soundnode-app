@@ -58,6 +58,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
         }
         if (value >= 0 && value <= 1) {
             player.elPlayer.volume = parseFloat(value).toFixed(1);
+            window.localStorage.volume = parseFloat(value).toFixed(1);
         }
     };
 
@@ -113,8 +114,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
         this.elUser.innerHTML = user;
         this.elPlayer.play();
 
-        var songNotificationTitle = (title.length > 63 && process.platform == "win32") ? title.substr(0,60) + "..." : title; 
-		
+        var songNotificationTitle = (title.length > 63 && process.platform == "win32") ? title.substr(0,60) + "..." : title;
+
         songNotification = new Notification(songNotificationTitle, {
             body: user,
             icon: thumbnail
