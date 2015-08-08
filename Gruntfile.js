@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 macIcns: './app/soundnode.icns',
                 downloadUrl: 'http://www.soundnodeapp.com/build/',
                 platforms: ['osx32', 'win32'],
-                version: '0.10.4'
+                version: '0.12.3'
             },
             src: [
                 './app/index.html',
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 'app/public/js/**/*.js',
-                '!app/public/js/vendor/**/*.js',
+                '!app/public/js/vendor/**/*.js'
             ],
             options: {
                 jshintrc: '.jshintrc'
