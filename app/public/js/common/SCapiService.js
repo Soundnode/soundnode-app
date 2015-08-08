@@ -8,7 +8,7 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
             template: 'views/common/modal.html',
             controller: ['$scope', function($scope) {
                 var urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
-                var config = { 
+                var config = {
                         headers:  {
                             'Accept': 'application/vnd.github.v3.raw+json'
                         }
@@ -247,6 +247,25 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                 return $q.reject(response.data);
             });
     };
+
+    this.searchUsers = function(limit, query) {
+        var url = 'https://api.soundcloud.com/users.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
+            , that = this;
+
+        return $http.get(url)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    that.next_page = response.data.next_href;
+                    return response.data;
+                } else {
+                    //invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                //something went wrong
+                return $q.reject(response.data);
+            });
+    }
 
     this.followUser = function(id) {
         var url = 'https://api.soundcloud.com/me/followings/' + id + '?oauth_token=' + $window.scAccessToken;
