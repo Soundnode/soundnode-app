@@ -19,9 +19,12 @@ OAuthVerification.init = function () {
        return;
     }
 
-    popUp = window.open('http://sc-redirect.herokuapp.com/', '_blank', 'screenX=0,screenY=0,width=50,height=50');
+    popUp = gui.Window.open('http://sc-redirect.herokuapp.com/', {
+        show: false
+    });
 
     OAuthVerificationId = window.setInterval(function () {
+        console.log(popUp);
         that.verification(popUp);
     }, 1500);
 };
@@ -31,8 +34,8 @@ OAuthVerification.verification = function (popUp) {
 
     console.log('verification called');
 
-    if (popUp.document.body !== null) {
-        isOAuthDone = popUp.document.body.getAttribute('data-isOAuth-done');
+    if (popUp.window.document.body !== null) {
+        isOAuthDone = popUp.window.document.body.getAttribute('data-isOAuth-done');
     }
 
     if (isOAuthDone !== 'true') {
@@ -40,9 +43,9 @@ OAuthVerification.verification = function (popUp) {
     }
 
     // Expose Soundcloud API to node-webkit object window
-    window.SC = popUp.SC;
-    window.scAccessToken = popUp.SC.accessToken();
-    window.scClientId = popUp.SC.options.client_id;
+    window.SC = popUp.window.SC;
+    window.scAccessToken = popUp.window.SC.accessToken();
+    window.scClientId = popUp.window.SC.options.client_id;
 
     // close popUp
     popUp.close();
@@ -343,6 +346,13 @@ appGUI.openDevTools = function () {
     var guiWin = gui.Window.get();
     guiWin.showDevTools();
 };
+
+// when main window is closed, kill other windows (prevent running nw.js with invisible windows on crash etc.)
+
+appGUI.getGUI.on('close', function () {
+    gui.App.closeAllWindows();
+    this.close(true);
+});
 
 //appGUI.openDevTools();
 
