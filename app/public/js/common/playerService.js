@@ -1,6 +1,6 @@
 /**
- * USER FLOW TRACK QUEUE REWORK
- * 
+ * USER FLOW TRACKS QUEUE REWORK
+ *
  * flow_1:
  * User play track and no track is playing or paused
  * track clicked is added to first in the queue
@@ -25,6 +25,20 @@ var gui = require('nw.gui');
 app.factory('playerService', function($rootScope, $log, $timeout, notificationFactory) {
 
     $rootScope.isSongPlaying = false;
+
+    /**
+     * Get siblings of current song
+     * @returns array [sibling of ]
+     */
+    function getCurrentSongSiblings() {
+        var el = document.querySelector('.currentSong');
+
+        if ( el !== undefined || el !== null ) {
+            return el;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Responsible to get the current song
@@ -110,6 +124,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
             // there's no song playing
             deactivateCurrentSong();
             $(currentEl).addClass('currentSong');
+            getCurrentSongSiblings();
             this.playNewSong(currentEl, url, thumbnail, title, user);
         }
     };
@@ -144,7 +159,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
         });
         songNotification.onclick = function () {
             gui.Window.get().show();
-        }
+        };
 
         $rootScope.isSongPlaying = true;
     };
