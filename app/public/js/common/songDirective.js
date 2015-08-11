@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.directive('song', function ($rootScope, $window, playerService) {
     return {

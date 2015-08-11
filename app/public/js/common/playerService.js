@@ -1,4 +1,25 @@
-'use strict'
+/**
+ * USER FLOW TRACK QUEUE REWORK
+ * 
+ * flow_1:
+ * User play track and no track is playing or paused
+ * track clicked is added to first in the queue
+ * and all tracks next to track clicked are added to queue
+ *
+ * flow_2:
+ * User play track and player is playing track
+ * add clicked track next to current playing track in queue
+ * and play clicked song
+ *
+ * flow_3:
+ * User play track but view is different
+ * queue is cleaned, track clicked is added to first in the queue
+ * and all tracks next to track clicked are added to queue
+ *
+ */
+
+'use strict';
+
 var gui = require('nw.gui');
 
 app.factory('playerService', function($rootScope, $log, $timeout, notificationFactory) {
