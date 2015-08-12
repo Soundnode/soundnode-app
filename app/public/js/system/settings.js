@@ -2,4 +2,4 @@
 window.settings = window.settings || {};
 
 // App version
-window.settings.appVersion = '0.5.6';
+window.settings.appVersion = '0.5.7';
