@@ -33,6 +33,7 @@
         <!-- header -->
         <header class="topFrame">
             <ul class="windowAction">
+                <action-buttons class="linuxActionButtons" ng-if="isRunningLinux" os="Linux"></action-buttons>
                 <action-buttons class="macActionButtons" ng-if="isRunningMac" os="Mac"></action-buttons>
                 <li class="windowAction_item navigationButton goBack" ng-click="goBack()">
                     <i class="fa fa-chevron-left"></i>

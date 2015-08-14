@@ -52,6 +52,23 @@
   }
 }
 
+.linuxActionButtons {
+  & #closeApp {
+    background: #D96C76;
+
+    & .fa {
+      position: relative;
+      top: -1px;
+    }
+  }
+  & #minimizeApp {
+    background: #FDF9C6;
+  }
+  & #expandApp {
+    background: #96E1C7;
+  }
+}
+
 .windowsActionButtons {
   float: right;
   -webkit-app-region: no-drag;
