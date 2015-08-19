@@ -275,19 +275,30 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * Responsible to add scrubbing
      * song progress bar
      */
-    $(player.elPlayerProgress).parent().off().on('click', function(e) {
-        var percent = ( e.offsetX / $(this).width() );
-        var duration = player.elPlayer.duration;
-        var seek = percent * duration;
+    var scrub = $(player.elPlayerProgress).parent().off();
 
-        if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
-            notificationFactory.error("Something went wrong. I can't play this track :(");
-        }
+    scrub.on('mousedown', function (e) {
+        scrub.on('mousemove', function (e) {
+            var percent = ( e.offsetX / $(this).width() );
+            var duration = player.elPlayer.duration;
+            var seek = percent * duration;
 
-        if ( player.elPlayer.readyState > 0 ) {
-            player.elPlayer.currentTime = parseInt(seek, 10)
-        }
+            if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
+                notificationFactory.error("Something went wrong. I can't play this track :(");
+            }
 
+            if ( player.elPlayer.readyState > 0 ) {
+                player.elPlayer.currentTime = parseInt(seek, 10)
+            }
+        });
+    });
+
+    scrub.on('mouseup', function (e) {
+        scrub.unbind('mousemove');
+    });
+
+    scrub.on('dragstart', function (e) {
+        e.preventDefault();
     });
 
     return player;
