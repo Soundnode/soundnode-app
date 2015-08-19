@@ -273,23 +273,33 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
 
     /**
      * Responsible to add scrubbing
-     * song progress bar
+     * drag or click scrub on track progress bar
      */
     var scrub = $(player.elPlayerProgress).parent().off();
 
+    function scrubTimeTrack(e, el) {
+        var percent = ( e.offsetX / $(el).width() );
+        var duration = player.elPlayer.duration;
+        var seek = percent * duration;
+
+        if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
+            notificationFactory.error("Something went wrong. I can't play this track :(");
+        }
+
+        if ( player.elPlayer.readyState > 0 ) {
+            player.elPlayer.currentTime = parseInt(seek, 10)
+        }
+    }
+
+    scrub.on('click', function(e) {
+        var el = this;
+        scrubTimeTrack(e, el);
+    });
+
     scrub.on('mousedown', function (e) {
         scrub.on('mousemove', function (e) {
-            var percent = ( e.offsetX / $(this).width() );
-            var duration = player.elPlayer.duration;
-            var seek = percent * duration;
-
-            if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
-                notificationFactory.error("Something went wrong. I can't play this track :(");
-            }
-
-            if ( player.elPlayer.readyState > 0 ) {
-                player.elPlayer.currentTime = parseInt(seek, 10)
-            }
+            var el = this;
+            scrubTimeTrack(e, el);
         });
     });
 
