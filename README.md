@@ -52,6 +52,10 @@ See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Dev
 
 - [Michael Lancaster](https://github.com/weblancaster)
 
+## Contributors
+
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping make Soundnode better.
+
 ## License
 
 GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 [license](https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md).
