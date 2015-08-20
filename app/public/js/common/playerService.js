@@ -242,24 +242,24 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      */
     $(player.elPlayer).bind('timeupdate', function() {
 
-        var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10),
-            pos = (player.elPlayer.currentTime / player.elPlayer.duration) * 100,
-            mins = Math.floor(rem / 60,10),
-            secs = rem - mins * 60;
+        var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10);
+        var pos = (player.elPlayer.currentTime / player.elPlayer.duration) * 100
+        var mins = Math.floor(rem / 60,10);
+        var secs = rem - mins * 60;
 
         if ( !isNaN(mins) || !isNaN(secs) ) {
             $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
         }
 
-            mins = Math.floor(player.elPlayer.currentTime / 60,10);
-            secs = Math.floor(player.elPlayer.currentTime, 10) - mins * 60;
+        mins = Math.floor(player.elPlayer.currentTime / 60,10);
+        secs = Math.floor(player.elPlayer.currentTime, 10) - mins * 60;
 
         if ( !isNaN(mins) || !isNaN(secs) ) {
             $(player.elPlayerTimeCurrent).text(mins + ':' + (secs >= 9 ? secs : '0' + secs));
         }
 
-        var mins = Math.floor(player.elPlayer.duration / 60,10),
-            secs = Math.floor(player.elPlayer.duration, 10) - mins * 60;
+        mins = Math.floor(player.elPlayer.duration / 60,10);
+        secs = Math.floor(player.elPlayer.duration, 10) - mins * 60;
 
         if ( !isNaN(mins) || !isNaN(secs) ) {
             $(player.elPlayerDuration).text(mins + ':' + (secs > 9 ? secs : '0' + secs));
