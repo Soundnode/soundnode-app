@@ -54,7 +54,7 @@ See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Dev
 
 ## Contributors
 
-Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping make Soundnode better.
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or helped to make Soundnode better.
 
 ## License
 
