@@ -9,7 +9,6 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
     $scope.typeahead = function(keyword) {
         var dropdown = window.document.getElementById('searchDropDown');
-        var hr = document.createElement('hr');
         dropdown.innerHTML = '';
 
         if(keyword.length < 1) {
@@ -26,8 +25,10 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                             return false;
                         }
                         var artists = document.createElement('div');
-                        var title = document.createElement('div');
-                        title.innerHTML = '<h3 class="dropdown-title">Artists</h3>';
+                        artists.className = 'artist-container';
+                        var title = document.createElement('h3');
+                        title.className = 'dropdown-title';
+                        title.innerHTML = 'Artists';
                         artists.appendChild(title);
 
                         for(var i = 0; i < 4; i++) {
@@ -51,10 +52,11 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                                         if (data.collection.length < 1) {
                                             return false;
                                         }
-                                        dropdown.appendChild(hr);
                                         var tracks = document.createElement('div');
-                                        var title = document.createElement('div');
-                                        title.innerHTML = '<h3 class="dropdown-title">Tracks</h3>';
+                                        tracks.className = 'tracks-container';
+                                        var title = document.createElement('h3');
+                                        title.className = 'dropdown-title';
+                                        title.innerHTML = 'Tracks';
                                         tracks.appendChild(title);
 
                                         for(var i = 0; i < 4; i++) {
@@ -69,8 +71,9 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                                             tracks.appendChild(child);
                                         }
 
-                                        var showAll = document.createElement('div');
-                                        showAll.innerHTML = '<h4 class="show-all">Show All</h4>';
+                                        var showAll = document.createElement('h3');
+                                        showAll.className = 'show-all';
+                                        showAll.innerHTML = 'Show All';
                                         showAll.addEventListener("mousedown", function(){
                                             $state.go('search', {q: keyword}, {reload: true});
                                         });

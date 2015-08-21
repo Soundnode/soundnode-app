@@ -1,53 +1,75 @@
 .dropdown {
     position: absolute;
-    top: 35px;
-    left: 12px;
+    top: 40px;
     z-index: 1000;
     display: none;
-    float: left;
     min-width: 160px;
     padding: 5px 0;
     margin: 2px 0 0;
     list-style: none;
-    font-size: 14px;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    background-clip: padding-box;
-    width: calc(100% - 5px);
+    font-size: 13px;
+    background-color: $sectionBackground;
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 6px 12px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+.artist-container {
+    margin-bottom: 10px;
 }
 
 .dropdown-item {
     width: 100%;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 10px 10px 10px;
     text-align: left;
-}
 
-.dropdown-item img {
-    margin-right: 15px;
-}
+    & img {
+        margin-right: 10px;
+        width: 25px;
+        height: 25px;
+    }
 
-.dropdown-item:hover, .dropdown-item:hover h4 {
-    background: #222326;
-    color: #FFFFFF !important;
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+        & h4 {
+            color: #FFF;
+            cursor: pointer;
+        }
+    }
 }
 
 .dropdown h3, .dropdown h4 {
-    color: #949599;
+    color: $defaultColor;
+    font-weight: 400;
 }
 
-.show-all {
-    padding: 15px 0 15px 0;
+.dropdown h3 {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 13px;
+    &.dropdown-title {
+        padding: 5px 10px;
+        color: $linkColor;
+        border-left: 1px solid $linkColor;
+    }
 }
 
-.show-all:hover {
-    background: #222326;
-    color: #FFFFFF !important;
-    cursor: pointer;
+.dropdown h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 3px 0 0 0;
 }
 
-.dropdown-title {
-    padding: 5px 0 10px 0;
+.dropdown h3.show-all {
+    padding: 5px 10px;
+    text-align: right;
+    font-size: 12px;
+    margin-top: 10px;
+    border-right: 1px solid $linkColor;
+
+    &:hover {
+        color: #FFF;
+        cursor: pointer;
+    }
 }
