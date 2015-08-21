@@ -22,7 +22,7 @@
 
 var gui = require('nw.gui');
 
-app.factory('playerService', function($rootScope, $log, $timeout, notificationFactory) {
+app.factory('playerService', function($rootScope, $log, $timeout, $window, notificationFactory, queueService) {
 
     $rootScope.isSongPlaying = false;
 
@@ -30,14 +30,19 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * Get siblings of current song
      * @returns array [sibling of ]
      */
-    function getCurrentSongSiblings() {
-        var el = document.querySelector('.currentSong');
+    function getCurrentSongSiblingsData() {
+        var elCurrentSong = getCurrentSong();
+        var elCurrentSongParent = $(elCurrentSong).closest('li');
+        var elCurrentSongSiblings = $(elCurrentSongParent).nextAll('li');
+        var elCurrentSongSiblingData;
+        var list = [];
 
-        if ( el !== undefined || el !== null ) {
-            return el;
-        } else {
-            return false;
+        for ( var i = 0; i < elCurrentSongSiblings.length; i++ ) {
+            elCurrentSongSiblingData = $(elCurrentSongSiblings[i]).find('.songList_item_song_button').data();
+            list.push(elCurrentSongSiblingData);
         }
+
+        return list;
     }
 
     /**
@@ -47,7 +52,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
     function getCurrentSong() {
         var el = document.querySelector('.currentSong');
 
-        if ( el !== undefined || el !== null ) {
+        if ( el ) {
             return el;
         } else {
             return false;
@@ -105,27 +110,40 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * otherwise play song clicked
      * @method songClicked
      */
-    player.songClicked = function(clickedSong, clickedUrl, clickedThumbnail, clickedTitle, clickedUser) {
-        var url, thumbnail, title, user, currentEl;
+    player.songClicked = function(clickedSong) {
+        var currentElSiblings;
+        var trackPosition;
+        var currentElData = $(clickedSong).data();
 
-        currentEl = clickedSong;
-        url = clickedUrl;
-        thumbnail = clickedThumbnail;
-        title = clickedTitle;
-        user = clickedUser;
+        $(clickedSong).addClass('currentSong');
 
-        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && currentEl === getCurrentSong() ) {
+        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === getCurrentSong() ) {
             // song playing is equal to song clicked
             this.pauseSong();
-        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && currentEl === getCurrentSong() ) {
+        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === getCurrentSong() ) {
             // song playing but paused is equal to song clicked
             this.playSong();
-        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || currentEl !== getCurrentSong() ) {
+        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) {
             // there's no song playing
-            deactivateCurrentSong();
-            $(currentEl).addClass('currentSong');
-            getCurrentSongSiblings();
-            this.playNewSong(currentEl, url, thumbnail, title, user);
+            if ( queueService.isEmpty() ) {
+                currentElSiblings = getCurrentSongSiblingsData();
+                queueService.push(currentElData, currentElSiblings);
+            } else {
+
+                if ( queueService.find(currentElData.songId) > -1 ) {
+                    // track is in the list
+                    // get track from it's position
+                    trackPosition = queueService.find(currentElData.songId);
+                    queueService.currentPosition = trackPosition;
+                } else {
+                    // insert track after the current position
+                    trackPosition = queueService.find(currentElData.songId);
+                    queueService.pushInPosition(trackPosition);
+                }
+
+            }
+
+            this.playNewSong();
         }
     };
 
@@ -136,26 +154,30 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * otherwise play song
      * @method playNewSong
      */
-    player.playNewSong = function(currentEl, url, thumbnail, title, user) {
+    player.playNewSong = function() {
+        var trackObj = queueService.getTrack();
         var songNotification;
 
-        if ( thumbnail === '' || thumbnail === null ) {
-            thumbnail = 'public/img/logo-short.png';
+        if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
+            trackObj.songThumbnail = 'public/img/logo-short.png';
         }
 
-        this.elPlayer.setAttribute('src', url);
-        this.elThumb.setAttribute('src', thumbnail);
-        this.elThumb.setAttribute('alt', title);
-        this.elTitle.innerHTML = title;
-        this.elTitle.setAttribute('title', title);
-        this.elUser.innerHTML = user;
+        this.elPlayer.setAttribute('src', trackObj.songUrl + '?client_id=' + $window.scClientId);
+        this.elThumb.setAttribute('src', trackObj.songThumbnail);
+        this.elThumb.setAttribute('alt', trackObj.songTitle);
+        this.elTitle.innerHTML = trackObj.songTitle;
+        this.elTitle.setAttribute('title', trackObj.songTitle);
+        this.elUser.innerHTML = trackObj.songUser;
         this.elPlayer.play();
 
-        var songNotificationTitle = (title.length > 63 && process.platform == "win32") ? title.substr(0,60) + "..." : title;
+        deactivateCurrentSong();
+        $('span[data-song-id="' + trackObj.songId).addClass('currentSong');
+
+        var songNotificationTitle = (trackObj.songTitle.length > 63 && process.platform == "win32") ? trackObj.songTitle.substr(0,60) + "..." : trackObj.songTitle;
 
         songNotification = new Notification(songNotificationTitle, {
-            body: user,
-            icon: thumbnail
+            body: trackObj.songUser,
+            icon: trackObj.songThumbnail
         });
         songNotification.onclick = function () {
             gui.Window.get().show();
@@ -169,15 +191,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * @method playSong
      */
     player.playSong = function() {
-        if ( ! getCurrentSong() ) {
-            var $els = $('*[song]')
-                , index = Math.floor(Math.random() * $els.length);
-
-            if ( $els[index] !== undefined ) {
-                $els[index].click();
-            }
-
-        } else {
+        if ( getCurrentSong() ) {
             this.elPlayer.play();
             $rootScope.isSongPlaying = true;
         }
@@ -199,31 +213,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * @method playPrevSong
      */
     player.playPrevSong = function() {
-        var $elParent
-            , $prevSong
-            , $prevListSong
-            , $currentSong = $( getCurrentSong() )
-            , $isFirstChild = $($currentSong).closest('li').is(':first-child');
-
-        if ( $currentSong.attr('data-play-list') === 'true' ) {
-
-            $elParent = $currentSong.closest('.songList_item');
-            $prevSong = $currentSong.closest('.songList_item_songs_list_item').prev().find('*[song]');
-
-            if ( ! $isFirstChild ) {
-                $prevSong.click();
-            } else {
-                $prevListSong = $elParent.prev().find('li:first-child').find('*[song]');
-                $prevListSong.click();
-            }
-        } else {
-            $elParent = $currentSong.closest('.songList_item')
-            $prevSong = $elParent.prev().find('*[song]');
-
-            if ( ! $isFirstChild ) {
-                $prevSong.click();
-            }
-        }
+        queueService.prev();
+        this.playNewSong();
     };
 
     /**
@@ -233,35 +224,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, notificationFa
      * @method playPrevSong
      */
     player.playNextSong = function() {
-        var $elParent
-            , $nextSong
-            , $nextListSong
-            , $currentSong = $( getCurrentSong() )
-            , $isLastChild = $($currentSong).closest('li').is(':last-child');
-
-        if ( ! getCurrentSong() ) {
-            this.playSong();
-        } else {
-            if ( $currentSong.attr('data-play-list') === 'true' ) {
-
-                $elParent = $currentSong.closest('.songList_item');
-                $nextSong = $currentSong.closest('.songList_item_songs_list_item').next().find('*[song]');
-
-                if ( ! $isLastChild ) {
-                    $nextSong.click();
-                } else {
-                    $nextListSong = $elParent.next().find('li:first-child').find('*[song]');
-                    $nextListSong.click();
-                }
-            } else {
-                $elParent = $currentSong.closest('.songList_item')
-                $nextSong = $elParent.next().find('*[song]');
-
-                if ( ! $isLastChild ) {
-                    $nextSong.click();
-                }
-            }
-        }
+        queueService.next();
+        this.playNewSong();
     };
 
     /**
