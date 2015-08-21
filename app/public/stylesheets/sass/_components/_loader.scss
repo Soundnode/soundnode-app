@@ -1,11 +1,12 @@
 .box-loader {
   display: block;
   height: 35px;
-  width: 250px;
+  width: 300px;
   position: absolute;
+  text-align: center;
   top: 50%;
   left: 50%;
-  margin-left: -125px;
+  margin-left: -150px;
   margin-top: -17px;
 
   & > h4 {
