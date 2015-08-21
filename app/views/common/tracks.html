@@ -13,6 +13,17 @@
                         <i class="fa fa-pause"></i>
                     </span>
     <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
+    <div class="songList_item_song_social_details">
+        <span class="songList_comment_count">
+            <i class="fa fa-comments"></i>{{data.comment_count}}
+        </span>
+        <span class="songList_likes_count">
+            <i class="fa fa-heart"></i>{{data.favoritings_count}}
+        </span>
+        <span class="songList_reposts_count" ng-if="data.reposts_count">
+            <i class="fa fa-retweet"></i>{{data.reposts_count}}
+        </span>
+    </div>
 </div>
 
 <section class="songList_item_inner">
@@ -24,9 +35,9 @@
     </h3>
 
     <div class="songList_item_song_details">
-        <div>
+        <div class="songList_item_actions">
             <span>
-                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link-square"></i> permalink</a>
+                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link"></i> permalink</a>
             </span>
             <span>
                 <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="{{ data.user_favorite === null ? 'false' : data.user_favorite }}"> <i class="fa fa-heart"></i> like</a>
@@ -35,9 +46,9 @@
                 <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist> <i class="fa fa-bookmark"></i> Add to playlist</a>
             </span>
         </div>
-        <div>
-            <span>{{ data.genre }}</span>
-            <span>{{ data.license }}</span>
+        <div class="songList_item_additional_details">
+            <span class="songList_item_genre">{{ data.genre }}</span>
+            <span class="songList_item_license">{{ data.license }}</span>
         </div>
     </div>
 </section>
