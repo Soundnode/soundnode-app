@@ -332,7 +332,13 @@ appGUI.minimize = function () {
 // maximize the App
 appGUI.maximize = function () {
     var guiWin = this.getGUI;
-    guiWin.maximize();
+    if (guiWin.isMaximized) {
+        guiWin.unmaximize();
+        guiWin.isMaximized = false;
+    } else {
+        guiWin.maximize();
+        guiWin.isMaximized = true;
+    }
 };
 
 // reopen the App, this is OS X specific
