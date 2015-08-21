@@ -20,18 +20,41 @@
   height: 300px;
 }
 
-.profile_show_button {
-  float: right;
-  color: black;
-}
-
 .profile_description {
   font-size: 12px;
 }
 
-.follow_button {
+.follow_button, .profile_show_button {
   float: right;
-  width: 80px;
-  height: 20px;
   text-align: center;
+  color: #ededed;
+  background: transparent;
+  border: 1px solid;
+  padding: .75em 0;
+  border-radius: .25em;
+  width: 100px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: $transitionFastValue;
+
+  &.followed {
+    color: $scColor;
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  &:hover {
+    color: $defaultColor;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.profile_show_button {
+  padding: .34em 0;
+  font-size: 11px;
+  line-height: 16px;
 }
