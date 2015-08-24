@@ -5,12 +5,39 @@
 }
 
 .search-form {
-  margin-left: 12px;
+  position: relative;
+
+  & .search-icon {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    color: $defaultColor;
+    transition: $transitionFastValue;
+  }
 }
 
 
-.search_field {
+.search-form .search_field {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid $separatorCleanColor;
+  background: transparent;
+  border-radius: 0;
+  color: $defaultColor;
+  height: auto;
+  padding: 10px 5px 5px;
   width: 100%;
+  &:focus {
+    box-shadow: none;
+    border-bottom-color: $linkColor;
+    color: $linkColor;
+      & +.search-icon {
+          color: $linkColor;
+      }
+  }
+  &:hover {
+    cursor: text;
+  }
 }
 
 .searchButton {

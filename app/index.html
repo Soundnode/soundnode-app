@@ -48,6 +48,7 @@
               <div class="search" ng-controller="SearchInputCtrl">
                   <form ng-submit="onSubmit(keyword)" class="search-form">
                       <input type="search" placeholder="Search" id="search" class="search_field" ng-change="typeahead(keyword)" ng-model="keyword" ng-model-options="{debounce: 350}" ng-focus="refocusTypehead(keyword)" ng-blur="blurTypeahead()">
+                      <i class="fa fa-search search-icon"></i>
                       <input type="submit" id="submit" value="Submit" class="searchButton" />
                   </form>
                   <div class="dropdown" id="searchDropDown">
