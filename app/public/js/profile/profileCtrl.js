@@ -5,7 +5,7 @@
 'use strict'
 
 app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $stateParams) {
-    
+
     //ctrl variables
     var userId = $stateParams.id;
     $scope.isFollowing = false;
@@ -22,6 +22,7 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
     SCapiService.getProfile(userId)
         .then(function(data) {
             $scope.profile_data = data;
+            $scope.profile_data.description = data.description.replace(/\n/g, '<br>');
             $scope.followers_count = numberWithCommas(data.followers_count);
         }, function(error) {
             console.log('error', error);
