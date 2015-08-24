@@ -1,4 +1,9 @@
-.following {}
+.following {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 .following_item {
   display: inline-block;

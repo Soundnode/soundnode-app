@@ -29,7 +29,7 @@
 .player_details {
   width: 300px;
   flex: 1;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .player_user {
@@ -58,6 +58,9 @@
   & .fa {
     font-size: 20px;
     color: #FFF;
+    &.thin::before {
+      -webkit-text-stroke: 1px #000;
+    }
   }
 }
 
@@ -144,8 +147,12 @@
   box-sizing: content-box;
 
   &:hover {
-    & .player_progress_bar::before, & .player_progress_bar::after {
-      opacity: 1;
+    & .player_progress_bar::before {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    & .player_progress_bar::after {
+        transform: scale(1);
     }
   }
 
@@ -161,10 +168,9 @@
       display: block;
       height: 4px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.29);
+      background: rgba(0, 0, 0, 0.15);
       z-index: -1;
-      transition: $transitionFastValue;
-      opacity: 0;
+      transition: $transitionInstantValue;
     }
 
     &::after {
@@ -179,8 +185,8 @@
       background: rgb(255, 122, 0);
       border-radius: 50%;
       box-shadow: 0 0 2px 0 #000;
-      opacity: 0;
-      transition: $transitionFastValue;
+      transform: scale(0);
+      transition: $transitionInstantValue;
     }
   }
 }
