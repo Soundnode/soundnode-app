@@ -15,20 +15,20 @@
     <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
     <div class="songList_item_song_social_details">
         <span class="songList_comment_count">
-            <i class="fa fa-comments"></i>{{data.comment_count}}
+            <i class="fa fa-comments"></i>{{data.comment_count | round}}
         </span>
         <span class="songList_likes_count">
-            <i class="fa fa-heart"></i>{{data.favoritings_count}}
+            <i class="fa fa-heart"></i>{{data.favoritings_count | round}}
         </span>
         <span class="songList_reposts_count" ng-if="data.reposts_count">
-            <i class="fa fa-retweet"></i>{{data.reposts_count}}
+            <i class="fa fa-retweet"></i>{{data.reposts_count | round}}
         </span>
     </div>
 </div>
 
 <section class="songList_item_inner">
     <h2 class="songList_item_song_tit" title="{{ data.title }}">{{ data.title }}</h2>
-    
+
     <h3 class="songList_item_song_user">
       <a ui-sref="profile({id: {{data.user.id}}})">{{ data.user.username }}</a>
       <span ng-controller="AppCtrl" class="songList_item_song_length"> {{ formatSongDuration (data.duration) }}</span>
