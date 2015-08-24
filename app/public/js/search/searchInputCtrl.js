@@ -8,22 +8,21 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
     }
 
     $scope.typeahead = function(keyword) {
-        var dropdown = window.document.getElementById('searchDropDown');
-        dropdown.innerHTML = '';
+        var dropdown = document.getElementById('searchDropDown');
+            dropdown.innerHTML = '';
 
-        if(keyword.length < 1) {
-            dropdown.style.display = 'none';
-            return false;
-        }
 
-        SCapiService.searchUsers(4, keyword)
+        // search for artists
+        SCapiService.search(4, keyword)
                     .then(function(data) {
+
                         if (data.collection.length < 1) {
                             var error = document.createElement('div');
                             error.innerHTML = '<h4 class="dropdown-title">Unable to find any songs or Users named ' + keyword + '</h4>';
                             dropdown.appendChild(error);
                             return false;
                         }
+
                         var artists = document.createElement('div');
                         artists.className = 'artist-container';
                         var title = document.createElement('h3');
@@ -41,49 +40,53 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
                             });
 
-                            child.innerHTML = '<img src="' + data.collection[i].avatar_url + '" class="user_thumb"> <h4>' + data.collection[i].username +'</h4>';
+                            child.innerHTML = '<img src="' + data.collection[i].user.avatar_url + '" class="user_thumb"> <h4>' + data.collection[i].user.username +'</h4>';
                             artists.appendChild(child);
                         }
+
                         dropdown.appendChild(artists);
                     })
-                    .then(function() {
-                        SCapiService.searchTracks(4, keyword)
-                                    .then(function(data) {
-                                        if (data.collection.length < 1) {
-                                            return false;
-                                        }
-                                        var tracks = document.createElement('div');
-                                        tracks.className = 'tracks-container';
-                                        var title = document.createElement('h3');
-                                        title.className = 'dropdown-title';
-                                        title.innerHTML = 'Tracks';
-                                        tracks.appendChild(title);
+                    .catch(function(err) {
+                        console.error(err);
+                    });
 
-                                        for(var i = 0; i < 4; i++) {
-                                            var child = document.createElement('div');
-                                            child.className = 'dropdown-item';
-                                            child.id = data.collection[i].id;
+        // search for tracks
+        SCapiService.search(4, keyword)
+                    .then(function(data) {
+                        if (data.collection.length < 1) {
+                            return false;
+                        }
+                        var tracks = document.createElement('div');
+                        tracks.className = 'tracks-container';
+                        var title = document.createElement('h3');
+                        title.className = 'dropdown-title';
+                        title.innerHTML = 'Tracks';
+                        tracks.appendChild(title);
 
-                                            child.innerHTML = '<img src="' + data.collection[i].artwork_url + '" class="user_thumb"> <h4>' + data.collection[i].title +'</h4>';
-                                            child.addEventListener("mousedown", function(){
-                                                $state.go('search', {q: keyword}, {reload: true});
-                                            });
-                                            tracks.appendChild(child);
-                                        }
+                        for(var i = 0; i < 4; i++) {
+                            var child = document.createElement('div');
+                            child.className = 'dropdown-item';
+                            child.id = data.collection[i].id;
 
-                                        var showAll = document.createElement('h3');
-                                        showAll.className = 'show-all';
-                                        showAll.innerHTML = 'Show All';
-                                        showAll.addEventListener("mousedown", function(){
-                                            $state.go('search', {q: keyword}, {reload: true});
-                                        });
+                            child.innerHTML = '<img src="' + data.collection[i].artwork_url + '" class="user_thumb"> <h4>' + data.collection[i].title +'</h4>';
+                            child.addEventListener("mousedown", function(){
+                                $state.go('search', {q: keyword}, {reload: true});
+                            });
+                            tracks.appendChild(child);
+                        }
 
-                                        dropdown.appendChild(tracks);
-                                        dropdown.appendChild(showAll);
-                                    })
-                                    .then(function(){
-                                        dropdown.style.display = 'block';
-                                    });
+                        var showAll = document.createElement('h3');
+                        showAll.className = 'show-all';
+                        showAll.innerHTML = 'Show All';
+                        showAll.addEventListener("mousedown", function(){
+                            $state.go('search', {q: keyword}, {reload: true});
+                        });
+
+                        dropdown.appendChild(tracks);
+                        dropdown.appendChild(showAll);
+                    })
+                    .then(function(){
+                        dropdown.style.display = 'block';
                     })
                     .catch(function(err) {
                         console.error(err);
