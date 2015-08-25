@@ -2,10 +2,8 @@
 Soundnode App
 ============
 
-Soundnode App is an Open-Source project to support Soundcloud for desktop. <br>
-It's built with NW.js, Node.js, and Angular.js, and uses the Soundcloud API.
-
-**Why did I build it?** [blog post](http://www.bymichaellancaster.com/blog/soundnode-soundcloud-for-desktop-dev-release/)
+Soundnode App is an Open-Source project to support Soundcloud for desktop Mac Windows and Linux. <br>
+It's built with NW.js, Node.js, Angular.js and uses Soundcloud API.
 
 ![alt tag](https://raw.githubusercontent.com/Soundnode/soundnode-app/master/Soundnode-app.png)
 
