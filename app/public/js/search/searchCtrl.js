@@ -6,7 +6,7 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService
     $scope.data = '';
     var limit = 20;
 
-    SCapiService.search(limit, $stateParams.q)
+    SCapiService.search('tracks', limit, $stateParams.q)
         .then(function(data) {
             $scope.data = data.collection;
         }, function(error) {
