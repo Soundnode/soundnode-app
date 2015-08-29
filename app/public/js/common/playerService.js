@@ -26,14 +26,15 @@ var gui = require('nw.gui');
 app.factory('playerService', function($rootScope, $log, $timeout, $window, notificationFactory, queueService) {
 
     $rootScope.isSongPlaying = false;
+    $rootScope.isPlaylistPlaying = false;
 
     /**
      * Get siblings of current song
+     * @params clickedSong [track DOM element]
      * @returns array [sibling of ]
      */
-    function getCurrentSongSiblingsData() {
-        var elCurrentSong = getCurrentSong();
-        var elCurrentSongParent = $(elCurrentSong).closest('li');
+    function getSongSiblingsData(clickedSong) {
+        var elCurrentSongParent = $(clickedSong).closest('li');
         var elCurrentSongSiblings = $(elCurrentSongParent).nextAll('li');
         var elCurrentSongSiblingData;
         var list = [];
@@ -67,6 +68,11 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
     function deactivateCurrentSong() {
         var currentSong = getCurrentSong();
         $(currentSong).removeClass('currentSong');
+    }
+
+    function activateCurrentSong(track) {
+        var el = $('span[data-song-id="' + track);
+        $(el).addClass('currentSong');
     }
 
     /**
@@ -109,35 +115,40 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
      * playing if so check if the clicked song
      * is the current song playing and call pause
      * otherwise play song clicked
+     * @param clickedSong [track DOM element]
      * @method songClicked
      */
     player.songClicked = function(clickedSong) {
         var currentElSiblings;
-        var currentPosition;
         var trackPosition;
         var currentElData = $(clickedSong).data();
 
-        $(clickedSong).addClass('currentSong');
+        if ( currentElData.playList ) {
+            queueService.clear();
+            $rootScope.isPlaylistPlaying = true;
+        } else if ( $rootScope.isPlaylistPlaying ) {
+            queueService.clear();
+        }
 
         if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing is equal to song clicked
             this.pauseSong();
         } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing but paused is equal to song clicked
             this.playSong();
-        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) { // there's no song playing
+        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) { // there's no song playing or song clicked not equal to current song paying
 
             if ( queueService.isEmpty() ) {
-                currentElSiblings = getCurrentSongSiblingsData();
-                queueService.push(currentElData, currentElSiblings);
-            } else {
-                // Queue is not empty
-                // try find track in the Queue
+                currentElSiblings = getSongSiblingsData(clickedSong);
+                queueService.insert(currentElData);
+                queueService.push(currentElSiblings);
+            } else { // Queue is not empty
+
+                // find track in the Queue
                 trackPosition = queueService.find(currentElData.songId);
                 if ( trackPosition ) {
                     queueService.currentPosition = trackPosition;
                 } else {
-                    // insert track after the current position
-                    currentPosition = queueService.currentPosition;
-                    queueService.add(trackPosition);
+                    queueService.insert(currentElData);
+                    queueService.next();
                 }
 
             }
@@ -147,15 +158,17 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
     };
 
     /**
-     * Responsible to check if there's a song
-     * playing if so check if the clicked song
-     * is the current song playing and call pause
-     * otherwise play song
+     * Get track from Queue current position
+     * and play it
      * @method playNewSong
      */
     player.playNewSong = function() {
         var trackObj = queueService.getTrack();
+        var trackObjId = trackObj.songId;
         var songNotification;
+
+        deactivateCurrentSong();
+        activateCurrentSong(trackObjId);
 
         if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
             trackObj.songThumbnail = 'public/img/logo-short.png';
@@ -168,9 +181,6 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
         this.elTitle.setAttribute('title', trackObj.songTitle);
         this.elUser.innerHTML = trackObj.songUser;
         this.elPlayer.play();
-
-        deactivateCurrentSong();
-        $('span[data-song-id="' + trackObj.songId).addClass('currentSong');
 
         var songNotificationTitle = (trackObj.songTitle.length > 63 && process.platform == "win32") ? trackObj.songTitle.substr(0,60) + "..." : trackObj.songTitle;
 

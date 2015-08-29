@@ -26,7 +26,7 @@ app.factory('queueService', function($rootScope, $log) {
      * @method clear
      */
     Queue.clear = function() {
-        this.list.size = this.currentPosition = 0;
+        this.list.length = this.currentPosition = 0;
     };
 
     /**
@@ -36,7 +36,7 @@ app.factory('queueService', function($rootScope, $log) {
     Queue.currentPosition = 0;
 
     /**
-     * Add track to the current Queue list
+     * Push tracks from array to Queue list
      * {
 	 * 		title: 'track title',
 	 * 		published_by: 'john doe',
@@ -44,33 +44,32 @@ app.factory('queueService', function($rootScope, $log) {
 	 * 		track_url: 'path/to/track'
 	 * }
      * @method push
-     * TODO: refactor this logic to use recursive
      */
-    Queue.push = function() {
-        for ( var i = 0; i < arguments.length; i++ ) {
-            if ( Array.isArray(arguments[i]) ) {
-
-                for ( var j = 0; j < arguments[i].length; j++ ) {
-                    this.list.push(arguments[i][j]);
-                }
-            }
-            this.list.push(arguments[i]);
+    Queue.push = function(tracks) {
+        for ( var i = 0; i < tracks.length; i++ ) {
+            this.list.push(tracks[i]);
         }
     };
 
     /**
-     * Add track to the current Queue list
+     * Insert single track to Queue list
      * {
 	 * 		title: 'track title',
 	 * 		published_by: 'john doe',
 	 * 		track_thumb: 'path/to/thumb'
 	 * 		track_url: 'path/to/track'
 	 * }
-     * @param  pos [track obj format]
-     * @method push
+     * @param  currentElData [track obj]
+     * @method insert
      */
-    Queue.pushInPosition = function(pos) {
-        var currentPosition = this.currentPosition + pos;
+    Queue.insert = function(currentElData) {
+        if ( this.isEmpty() ) {
+            this.list.splice(0, 0, currentElData);
+            return;
+        }
+
+        var addAt = this.currentPosition + 1;
+        this.list.splice(addAt, 0, currentElData);
     };
 
     /**
@@ -145,6 +144,9 @@ app.factory('queueService', function($rootScope, $log) {
 
         return false;
     };
+
+    // todo: remove this in Production
+    window.Queue = Queue;
 
     // Make Queue obj accessible
     return Queue;
