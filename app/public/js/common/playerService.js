@@ -23,10 +23,11 @@
 
 var gui = require('nw.gui');
 
-app.factory('playerService', function($rootScope, $log, $timeout, $window, notificationFactory, queueService) {
+app.factory('playerService', function($rootScope, $log, $timeout, $window, $state, notificationFactory, queueService) {
 
     $rootScope.isSongPlaying = false;
     $rootScope.isPlaylistPlaying = false;
+    $rootScope.oldView = $state.current.name;
 
     /**
      * Get siblings of current song
@@ -123,10 +124,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
         var trackPosition;
         var currentElData = $(clickedSong).data();
 
-        if ( currentElData.playList ) {
-            queueService.clear();
-            $rootScope.isPlaylistPlaying = true;
-        } else if ( $rootScope.isPlaylistPlaying ) {
+        if ( $state.current.name !== $rootScope.oldView ) {
             queueService.clear();
         }
 

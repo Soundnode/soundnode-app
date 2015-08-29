@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('queueService', function($rootScope, $log) {
+app.factory('queueService', function() {
     /**
      * @class Queue
      */
