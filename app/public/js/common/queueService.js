@@ -43,13 +43,13 @@ app.factory('queueService', function($rootScope, $log) {
 	 * 		track_thumb: 'path/to/thumb'
 	 * 		track_url: 'path/to/track'
 	 * }
-     * @param  {[type]} track [track obj format]
      * @method push
      * TODO: refactor this logic to use recursive
      */
     Queue.push = function() {
         for ( var i = 0; i < arguments.length; i++ ) {
             if ( Array.isArray(arguments[i]) ) {
+
                 for ( var j = 0; j < arguments[i].length; j++ ) {
                     this.list.push(arguments[i][j]);
                 }
@@ -66,7 +66,7 @@ app.factory('queueService', function($rootScope, $log) {
 	 * 		track_thumb: 'path/to/thumb'
 	 * 		track_url: 'path/to/track'
 	 * }
-     * @param  {[type]} track [track obj format]
+     * @param  pos [track obj format]
      * @method push
      */
     Queue.pushInPosition = function(pos) {
@@ -124,7 +124,17 @@ app.factory('queueService', function($rootScope, $log) {
         }
     };
 
+    /**
+     * Get track id and find it
+     * in the queue list
+     * if track is in the list return track position
+     * otherwise return false
+     * @param id [track containing the track id]
+     * @method find
+     * @returns {id} or {false}
+     */
     Queue.find = function(id) {
+
         if ( ! this.isEmpty() ) {
             for ( var i = 0; i < this.list.length; i++ ) {
                 if ( this.list[i].songId === id ) {
@@ -133,7 +143,7 @@ app.factory('queueService', function($rootScope, $log) {
             }
         }
 
-        return -1;
+        return false;
     };
 
     // Make Queue obj accessible

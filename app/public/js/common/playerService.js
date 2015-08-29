@@ -1,17 +1,18 @@
 /**
  * USER FLOW TRACKS QUEUE REWORK
  *
- * flow_1:
- * User play track and no track is playing or paused
- * track clicked is added to first in the queue
- * and all tracks next to track clicked are added to queue
+ * scenario_1:
+ * User click on track when no track is playing or paused
+ * and Queue is empty.
+ * track clicked is added to first in the Queue
+ * and all track clicked siblings added next in Queue
  *
- * flow_2:
+ * scenario_2:
  * User play track and player is playing track
  * add clicked track next to current playing track in queue
  * and play clicked song
  *
- * flow_3:
+ * scenario_3:
  * User play track but view is different
  * queue is cleaned, track clicked is added to first in the queue
  * and all tracks next to track clicked are added to queue
@@ -112,33 +113,31 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, notif
      */
     player.songClicked = function(clickedSong) {
         var currentElSiblings;
+        var currentPosition;
         var trackPosition;
         var currentElData = $(clickedSong).data();
 
         $(clickedSong).addClass('currentSong');
 
-        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === getCurrentSong() ) {
-            // song playing is equal to song clicked
+        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing is equal to song clicked
             this.pauseSong();
-        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === getCurrentSong() ) {
-            // song playing but paused is equal to song clicked
+        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing but paused is equal to song clicked
             this.playSong();
-        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) {
-            // there's no song playing
+        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) { // there's no song playing
+
             if ( queueService.isEmpty() ) {
                 currentElSiblings = getCurrentSongSiblingsData();
                 queueService.push(currentElData, currentElSiblings);
             } else {
-
-                if ( queueService.find(currentElData.songId) > -1 ) {
-                    // track is in the list
-                    // get track from it's position
-                    trackPosition = queueService.find(currentElData.songId);
+                // Queue is not empty
+                // try find track in the Queue
+                trackPosition = queueService.find(currentElData.songId);
+                if ( trackPosition ) {
                     queueService.currentPosition = trackPosition;
                 } else {
                     // insert track after the current position
-                    trackPosition = queueService.find(currentElData.songId);
-                    queueService.pushInPosition(trackPosition);
+                    currentPosition = queueService.currentPosition;
+                    queueService.add(trackPosition);
                 }
 
             }
