@@ -145,9 +145,6 @@ app.factory('queueService', function() {
         return false;
     };
 
-    // todo: remove this in Production
-    window.Queue = Queue;
-
     // Make Queue obj accessible
     return Queue;
 });

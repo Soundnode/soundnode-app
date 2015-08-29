@@ -1,5 +1,5 @@
 /**
- * USER FLOW TRACKS QUEUE REWORK
+ * USER SCENARIOS QUEUE
  *
  * scenario_1:
  * User click on track when no track is playing or paused
