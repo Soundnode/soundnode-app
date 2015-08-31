@@ -1,0 +1,36 @@
+.queueList {
+    background: $sectionBackground;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+    padding: 55px 0 70px;
+    display: block;
+    overflow-y: scroll;
+}
+
+.queueListView_list {
+    width: 100%;
+
+    & .queueListView_list_item {
+        color: #fff;
+        border-bottom: 1px solid $separatorDarkColor;
+        height: 50px;
+        overflow: hidden;
+        padding: 0 5px;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    & .queueListView_list_item_index {
+        font-size: 12px;
+    }
+
+    & .queueListView_list_item_title,
+    & .queueListView_list_item_user{
+        font-size: 16px;
+    }
+}

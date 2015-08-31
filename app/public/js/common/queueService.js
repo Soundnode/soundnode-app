@@ -154,6 +154,9 @@ app.factory('queueService', function() {
         return false;
     };
 
+    // expose Queue for ONLY debugging
+    window.Queue = Queue;
+
     // Make Queue obj accessible
     return Queue;
 });

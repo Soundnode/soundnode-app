@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log, $timeout) {
     $scope.imgPath = 'public/img/temp-playing.png';

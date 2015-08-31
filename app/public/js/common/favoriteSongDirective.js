@@ -19,10 +19,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                     that.classList.remove('clicked');
                 }, 1000);
 
-                $log.log('favorite action', typeof attrs.favoriteAction);
-
                 if ( attrs.favoriteAction === 'true' ) {
-                    $log.log('inside true')
 
                     SCapiService.deleteFavorite(userId, songId)
                         .then(function(status) {
