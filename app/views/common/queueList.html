@@ -14,8 +14,8 @@
             ng-mouseleave="hover = false">
 
             <small class="queueListView_list_item_index">{{ $index }}</small>
-            <span class="queueListView_list_item_title">{{ item.songTitle }}</span>
-            <span class="queueListView_list_item_user" >by: {{ item.songUser }} </span>
+            <span class="queueListView_list_item_title" title="{{ item.songTitle }}">{{ item.songTitle }}</span>
+            <span class="queueListView_list_item_user" title="by: {{ item.songUser }}">by: {{ item.songUser }} </span>
 
         </li>
     </ul>

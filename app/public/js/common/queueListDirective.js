@@ -7,7 +7,6 @@ app.directive('queueList', function () {
         controller: "QueueCtrl",
         templateUrl: function(elem, attr){
             return "views/common/queueList.html";
-        },
-        link : function () {}
+        }
     }
 });

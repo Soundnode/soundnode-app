@@ -69,7 +69,6 @@
   position: relative;
 
   & .fa {
-    cursor: pointer;
     font-size: 20px;
   }
 
@@ -198,7 +197,10 @@
   overflow: hidden;
   text-align: center;
   flex-grow: 1;
-  & .fa {
-    cursor: pointer;
-  }
+}
+
+.player_queueList.active {
+    & .fa {
+        color: $scColor;
+    }
 }

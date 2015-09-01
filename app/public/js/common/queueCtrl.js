@@ -1,11 +1,15 @@
 'use strict';
 
 app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log) {
-    $scope.title = 'Queue';
     $scope.data = queueService.getAll();
 
     $scope.toggleView = function($event) {
 
-        console.log('called', $scope.data);
+        if ( $scope.data.length < 1 ) {
+            return;
+        }
+
+        $event.currentTarget.classList.toggle('active');
+        document.querySelector('.queueList').classList.toggle('active');
     }
 });
