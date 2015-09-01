@@ -27,7 +27,6 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
 
     $rootScope.isSongPlaying = false;
     $rootScope.isPlaylistPlaying = false;
-    $rootScope.oldView = $state.current.name;
 
     /**
      * Get siblings of current song
@@ -71,8 +70,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         $(currentSong).removeClass('currentSong');
     }
 
-    function activateCurrentSong(track) {
-        var el = $('span[data-song-id="' + track);
+    function activateCurrentSong(trackId) {
+        var el = $('span[data-song-id="' + trackId);
         $(el).addClass('currentSong');
     }
 
@@ -124,7 +123,11 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         var trackPosition;
         var currentElData = $(clickedSong).data();
 
-        if ( $state.current.name !== $rootScope.oldView ) {
+        if ( $rootScope.oldView !== '' &&
+            $rootScope.currentView !== $rootScope.oldView &&
+            ! queueService.find(currentElData.songId) &&
+            ! queueService.isEmpty()
+        ) {
             queueService.clear();
         }
 
@@ -138,7 +141,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
                 currentElSiblings = getSongSiblingsData(clickedSong);
                 queueService.insert(currentElData);
                 queueService.push(currentElSiblings);
-            } else { // Queue is not empty
+            } else {
 
                 // find track in the Queue
                 trackPosition = queueService.find(currentElData.songId);

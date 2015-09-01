@@ -3,7 +3,7 @@
 app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $window) {
     var urlAbout = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html'
     var urlRelease = 'https://api.github.com/repos/Soundnode/soundnode-app/releases';
-    var config = { 
+    var config = {
             headers:  {
                 'Accept': 'application/vnd.github.v3.raw+json'
             }
@@ -12,7 +12,7 @@ app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $wind
     $scope.appVersion = $window.settings.appVersion;
     $scope.appLatestVersion = '';
     $scope.content = '';
-    $scope.isLatest = ($scope.appVersion < $scope.appLatestVersion) ? false : true;
+    $scope.isLatest = ($scope.appVersion >= $scope.appLatestVersion);
 
     $scope.openModal = function() {
         ngDialog.open({

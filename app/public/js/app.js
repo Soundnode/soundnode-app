@@ -48,10 +48,19 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
     });
 });
 
-app.run(function($rootScope, $log, SCapiService, hotkeys) {
+app.run(function($rootScope, $log, $state, SCapiService, hotkeys) {
     // toastr config override
     toastr.options.positionClass = 'toast-bottom-right';
     toastr.options.timeOut = 4000;
+
+    $rootScope.oldView = "";
+    $rootScope.currentView = "";
+
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+        $log.log('oldView ' + $rootScope.oldView + ' | currentView ' +  $rootScope.currentView);
+        $rootScope.oldView = fromState.name;
+        $rootScope.currentView = toState.name;
+    });
 
     // shortcut to open devtools
     hotkeys.add({

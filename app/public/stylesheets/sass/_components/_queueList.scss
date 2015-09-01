@@ -1,0 +1,71 @@
+.queueList {
+    background: $sectionBackground;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+    padding: 60px 0 70px;
+    display: block;
+    overflow-y: scroll;
+    transform: translateX(350px);
+    transition: all .5s ease-in-out;
+
+    &.active {
+        transform: translateX(0);
+    }
+}
+
+.queueListView_list {
+    width: 100%;
+
+    & .queueListView_list_itemTitle {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    & .queueListView_list_item {
+        font-size: 12px;
+        color: #fff;
+        border-bottom: 1px solid $separatorDarkColor;
+        overflow: hidden;
+        padding: 10px 20px;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &:hover {
+            background: $separatorDarkColor;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    & .queueListView_list_item_index,
+    & .queueListView_list_item_title,
+    & .queueListView_list_item_user {
+        display: inline-block;
+        font-weight: 100;
+    }
+
+    & .queueListView_list_item_index {
+        position: relative;
+        top: -4px;
+    }
+
+    & .queueListView_list_item_title {
+        width: 143px;
+    }
+
+    & .queueListView_list_item_user {
+        width: 124px;
+    }
+
+    & .queueListView_list_item_title,
+    & .queueListView_list_item_user {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

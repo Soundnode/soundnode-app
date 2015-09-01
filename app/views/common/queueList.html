@@ -1,0 +1,31 @@
+<div class="queueListView">
+
+    <!-- Song list wrapper -->
+    <ul class="queueListView_list">
+        <li class="queueListView_list_itemTitle">
+            <span class="labelColumn">TRACKS</span>
+            |
+            <span class="labelColumn">ARTIST</span>
+        </li>
+        <li class="queueListView_list_item"
+            ng-repeat="item in data"
+            ng-class="{ active: hover }"
+            ng-mouseover="hover = true"
+            ng-mouseleave="hover = false"
+            song
+            data-song-url="{{ item.songUrl }}"
+            data-song-thumbnail="{{ item.songThumbnail }}"
+            data-song-title="{{ item.songTitle }}"
+            data-song-user="{{ item.songUser }}"
+            data-song-id="{{ item.songId }}" >
+
+            <small class="queueListView_list_item_index">{{ $index + 1 }}</small>
+            <span class="queueListView_list_item_title" title="{{ item.songTitle }}">{{ item.songTitle }}</span>
+            <span class="queueListView_list_item_user" title="by: {{ item.songUser }}">by: {{ item.songUser }} </span>
+
+        </li>
+    </ul>
+</div>
+<!-- Song list wrapper / end -->
+
+</div>

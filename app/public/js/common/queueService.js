@@ -124,6 +124,15 @@ app.factory('queueService', function() {
     };
 
     /**
+     * Get all items in Queue list
+     * @method getAll
+     * @returns {Array} [All items in list]
+     */
+    Queue.getAll = function() {
+        return this.list;
+    };
+
+    /**
      * Get track id and find it
      * in the queue list
      * if track is in the list return track position
@@ -144,6 +153,9 @@ app.factory('queueService', function() {
 
         return false;
     };
+
+    // expose Queue for ONLY debugging
+    window.Queue = Queue;
 
     // Make Queue obj accessible
     return Queue;
