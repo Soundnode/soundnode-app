@@ -13,7 +13,7 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
 
         // search for artists
-        SCapiService.search(4, keyword)
+        SCapiService.search('users', 4, keyword)
                     .then(function(data) {
 
                         if (data.collection.length < 1) {
@@ -40,7 +40,7 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
                             });
 
-                            child.innerHTML = '<img src="' + data.collection[i].user.avatar_url + '" class="user_thumb"> <h4>' + data.collection[i].user.username +'</h4>';
+                            child.innerHTML = '<img src="' + data.collection[i].avatar_url + '" class="user_thumb"> <h4>' + data.collection[i].username +'</h4>';
                             artists.appendChild(child);
                         }
 
@@ -51,7 +51,7 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                     });
 
         // search for tracks
-        SCapiService.search(4, keyword)
+        SCapiService.search('tracks', 4, keyword)
                     .then(function(data) {
                         if (data.collection.length < 1) {
                             return false;

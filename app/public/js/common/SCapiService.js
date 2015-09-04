@@ -229,8 +229,8 @@ app.service('SCapiService', function($http, $window, $q, $log, $state, $statePar
                     });
     };
 
-    this.search = function(limit, query) {
-        var url = 'https://api.soundcloud.com/tracks.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
+    this.search = function(endpoint, limit, query) {
+        var url = 'https://api.soundcloud.com/'+ endpoint +'.json?linked_partitioning=1&limit=' + limit + '&q=' + query + '&oauth_token=' + $window.scAccessToken
             , that = this;
 
         return $http.get(url)
