@@ -87,7 +87,6 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      */
     player.elPlayer = document.getElementById('player');
     player.elPlayerProgress = document.getElementById('player-progress');
-    player.elPlayerTimeLeft = document.getElementById('player-timeleft');
     player.elPlayerDuration = document.getElementById('player-duration');
     player.elPlayerTimeCurrent = document.getElementById('player-timecurrent');
     player.elThumb = document.getElementById('playerThumb');
@@ -254,32 +253,33 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      */
     $(player.elPlayer).bind('timeupdate', function() {
 
-        var rem = parseInt(player.elPlayer.duration - player.elPlayer.currentTime, 10);
-        var pos = (player.elPlayer.currentTime / player.elPlayer.duration) * 100
-        var mins = Math.floor(rem / 60,10);
-        var secs = rem - mins * 60;
+        var pos = (player.elPlayer.currentTime / player.elPlayer.duration) * 100;
+        var mins = Math.floor(player.elPlayer.currentTime / 60,10);
+        var secs = Math.floor(player.elPlayer.currentTime, 10) - mins * 60;
 
         if ( !isNaN(mins) || !isNaN(secs) ) {
-            $(player.elPlayerTimeLeft).text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
-        }
-
-        mins = Math.floor(player.elPlayer.currentTime / 60,10);
-        secs = Math.floor(player.elPlayer.currentTime, 10) - mins * 60;
-
-        if ( !isNaN(mins) || !isNaN(secs) ) {
-            $(player.elPlayerTimeCurrent).text(mins + ':' + (secs >= 9 ? secs : '0' + secs));
-        }
-
-        mins = Math.floor(player.elPlayer.duration / 60,10);
-        secs = Math.floor(player.elPlayer.duration, 10) - mins * 60;
-
-        if ( !isNaN(mins) || !isNaN(secs) ) {
-            $(player.elPlayerDuration).text(mins + ':' + (secs > 9 ? secs : '0' + secs));
+            $(player.elPlayerTimeCurrent).text(mins + ':' + (secs > 9 ? secs : '0' + secs));
         }
 
         $(player.elPlayerProgress).css({
             width: pos + '%'
         });
+
+    });
+
+    /**
+     * Add event listener "loaded data" to update track
+     * duration only once
+     */
+    $(player.elPlayer).bind('loadeddata', function() {
+
+        var mins = Math.floor(player.elPlayer.duration / 60,10),
+            secs = Math.floor(player.elPlayer.duration, 10) - mins * 60;
+
+        if ( !isNaN(mins) || !isNaN(secs) ) {
+            $(player.elPlayerDuration).text(mins + ':' + (secs > 9 ? secs : '0' + secs));
+            $(player.elPlayerTimeCurrent).text('0:00');
+        }
 
     });
 
