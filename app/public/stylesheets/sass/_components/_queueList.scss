@@ -5,7 +5,7 @@
     top: 0;
     bottom: 0;
     width: 350px;
-    padding: 60px 0 70px;
+    padding: 70px 0 70px;
     display: block;
     overflow-y: scroll;
     transform: translateX(350px);
@@ -22,6 +22,7 @@
     & .queueListView_list_itemTitle {
         text-align: center;
         font-size: 14px;
+        margin-bottom: 20px;
     }
 
     & .queueListView_list_item {
@@ -33,7 +34,8 @@
         white-space: nowrap;
         cursor: pointer;
 
-        &:hover {
+        &:hover,
+        &.active {
             background: $separatorDarkColor;
         }
 

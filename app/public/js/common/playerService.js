@@ -52,13 +52,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @return {object} [current song object]
      */
     function getCurrentSong() {
-        var el = document.querySelector('.currentSong');
-
-        if ( el ) {
-            return el;
-        } else {
-            return false;
-        }
+        return document.querySelector('.currentSong');
     }
 
     /**
@@ -67,12 +61,17 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      */
     function deactivateCurrentSong() {
         var currentSong = getCurrentSong();
-        $(currentSong).removeClass('currentSong');
+
+        if ( ! currentSong ) {
+            return false;
+        }
+
+        currentSong.classList.remove('currentSong');
     }
 
     function activateCurrentSong(trackId) {
-        var el = $('span[data-song-id="' + trackId);
-        $(el).addClass('currentSong');
+        var el = document.querySelector('span[data-song-id="' + trackId + '"]');
+        el.classList.add('currentSong');
     }
 
     /**
@@ -145,7 +144,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
 
                 // find track in the Queue
                 trackPosition = queueService.find(currentElData.songId);
-                if ( trackPosition ) {
+                if ( trackPosition === 0 || trackPosition > 0 ) {
                     queueService.currentPosition = trackPosition;
                 } else {
                     queueService.insert(currentElData);
@@ -225,6 +224,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playPrevSong = function() {
         queueService.prev();
         this.playNewSong();
+        $rootScope.$broadcast('activateQueue');
     };
 
     /**
@@ -236,6 +236,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playNextSong = function() {
         queueService.next();
         this.playNewSong();
+        $rootScope.$broadcast('activateQueue');
     };
 
     /**
