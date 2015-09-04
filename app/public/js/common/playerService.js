@@ -193,6 +193,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         };
 
         $rootScope.isSongPlaying = true;
+        $rootScope.$broadcast('activateQueue');
     };
 
     /**
@@ -224,7 +225,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playPrevSong = function() {
         queueService.prev();
         this.playNewSong();
-        $rootScope.$broadcast('activateQueue');
+        //$rootScope.$broadcast('activateQueue');
     };
 
     /**
@@ -236,7 +237,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playNextSong = function() {
         queueService.next();
         this.playNewSong();
-        $rootScope.$broadcast('activateQueue');
+        //$rootScope.$broadcast('activateQueue');
     };
 
     /**

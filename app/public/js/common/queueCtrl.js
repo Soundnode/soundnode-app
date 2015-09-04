@@ -1,11 +1,33 @@
 'use strict';
 
-app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log) {
+app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $timeout) {
     $scope.data = queueService.getAll();
 
     $scope.$on('activateQueue', function(event, data) {
         $scope.activateTrackInQueue();
     });
+
+    // Listen to DOM mutation and react
+    function addDOMmutationListener() {
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+        var list = document.querySelector('.queueListView_list');
+
+        var observer = new MutationObserver(function(mutations) {
+            $log.log('mutation done', mutations);
+            $scope.activateTrackInQueue();
+        });
+
+        observer.observe(list, {
+            attributes: true,
+            childList: true,
+            characterData: true
+        });
+    }
+
+    // quick hack to add DOM mutation listener
+    $timeout(function() {
+        addDOMmutationListener();
+    }, 1000);
 
     $scope.activateTrackInQueue = function() {
 
@@ -21,7 +43,9 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log) {
             oldActive.classList.remove('active');
         }
 
-        track.classList.add('active');
+        if ( track ) {
+            track.classList.add('active');
+        }
     };
 
 
@@ -34,6 +58,6 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log) {
         $event.currentTarget.classList.toggle('active');
         document.querySelector('.queueList').classList.toggle('active');
 
-        $scope.activateTrackInQueue();
+        //$scope.activateTrackInQueue();
     }
 });
