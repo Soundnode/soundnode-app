@@ -18,9 +18,7 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
         });
 
         observer.observe(list, {
-            attributes: true,
-            childList: true,
-            characterData: true
+            childList: true
         });
     }
 
