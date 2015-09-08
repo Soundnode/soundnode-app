@@ -27,6 +27,19 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
 
     $rootScope.isSongPlaying = false;
     $rootScope.isPlaylistPlaying = false;
+    $rootScope.shuffle= false;
+
+    /**
+     * Get a number betweem the min index and max index
+     * in the Queue array
+     * @returns {number} [index in array]
+     */
+    function shuffle() {
+        var max = queueService.size() - 1;
+        var min = 0;
+
+        queueService.currentPosition = Math.floor(Math.random() * (max - min) + min);
+    }
 
     /**
      * Get siblings of current song
@@ -67,6 +80,10 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         }
     }
 
+    /**
+     * Activate track in view based on trackId
+     * @param trackId [contain track id]
+     */
     function activateCurrentSong(trackId) {
         var el = document.querySelector('span[data-song-id="' + trackId + '"]');
 
@@ -221,9 +238,12 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playPrevSong
      */
     player.playPrevSong = function() {
-        queueService.prev();
+        if ( $rootScope.shuffle ) {
+            shuffle();
+        } else {
+            queueService.prev();
+        }
         this.playNewSong();
-        //$rootScope.$broadcast('activateQueue');
     };
 
     /**
@@ -233,9 +253,12 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playPrevSong
      */
     player.playNextSong = function() {
-        queueService.next();
+        if ( $rootScope.shuffle ) {
+            shuffle();
+        } else {
+            queueService.next();
+        }
         this.playNewSong();
-        //$rootScope.$broadcast('activateQueue');
     };
 
     /**

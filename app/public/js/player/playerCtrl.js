@@ -2,6 +2,7 @@
 
 app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log, $timeout) {
     $scope.imgPath = 'public/img/temp-playing.png';
+
     $timeout(function() {
         if(window.localStorage.volume) {
             $scope.volume = window.localStorage.volume;
@@ -57,6 +58,21 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         if ( $rootScope.isSongPlaying ) {
             playerService.playNextSong();
         }
+    };
+
+    $scope.shuffle = function($event) {
+        $event.currentTarget.classList.toggle('active');
+        if ( $rootScope.shuffle ) {
+            $rootScope.shuffle =  false;
+        } else {
+            $rootScope.shuffle = true;
+        }
+    };
+
+    $scope.toggleQueue = function($event) {
+
+        $event.currentTarget.classList.toggle('active');
+        document.querySelector('.queueList').classList.toggle('active');
     };
 
 
