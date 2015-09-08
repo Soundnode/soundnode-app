@@ -39,7 +39,6 @@
         <div class="songList_item_actions">
             <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
                 <i class="fa fa-heart"></i>
-                {{data.user_favorite ? 'Liked' : 'Like'}}
             </a>
             <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
             <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
