@@ -159,6 +159,9 @@
                 <span class="player_duration" id="player-duration"></span>
             </div>
             <div class="player_controls">
+                <span class="player_shuffle" ng-click="shuffle($event)">
+                    <i class="fa fa-random thin"></i>
+                </span>
                 <span class="player_prevSong" ng-click="prevSong($event)">
                     <i class="fa fa-step-backward thin"></i>
                 </span>
@@ -169,8 +172,8 @@
                 <span class="player_nextSong" ng-click="nextSong($event)">
                     <i class="fa fa-step-forward thin"></i>
                 </span>
-                <span class="player_queueList" ng-controller="QueueCtrl" ng-click="toggleQueue($event)">
-                    <i class="fa fa-list"></i>
+                <span class="player_queueList" ng-click="toggleQueue($event)">
+                    <i class="fa fa-list thin"></i>
                 </span>
             </div>
             <div class="player_volume">

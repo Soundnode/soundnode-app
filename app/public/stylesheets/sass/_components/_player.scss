@@ -199,6 +199,7 @@
   flex-grow: 1;
 }
 
+.player_shuffle.active,
 .player_queueList.active {
     & .fa {
         color: $scColor;
