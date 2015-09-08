@@ -30,7 +30,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     $rootScope.shuffle= false;
 
     /**
-     * Get a number betweem the min index and max index
+     * Get a number between min index and max index
      * in the Queue array
      * @returns {number} [index in array]
      */
