@@ -1,5 +1,6 @@
 "use strict";
 
+var ua = require('universal-analytics');
 var gui = require('nw.gui'),
     uiFrame = {},
     OAuthVerification = {},
@@ -7,6 +8,11 @@ var gui = require('nw.gui'),
     appGUI = {},
     appSystem = {},
     appUser = {};
+
+// GA / DO NOT CHANGE OR USE THIS CODE
+// setup GA
+window.visitor = ua('UA-67310953-1');
+// END
 
 /**
  * Responsible to verify if user was authenticated
