@@ -62,16 +62,17 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     function deactivateCurrentSong() {
         var currentSong = getCurrentSong();
 
-        if ( ! currentSong ) {
-            return false;
+        if ( currentSong ) {
+            currentSong.classList.remove('currentSong');
         }
-
-        currentSong.classList.remove('currentSong');
     }
 
     function activateCurrentSong(trackId) {
         var el = document.querySelector('span[data-song-id="' + trackId + '"]');
-        el.classList.add('currentSong');
+
+        if ( el ) {
+            el.classList.add('currentSong');
+        }
     }
 
     /**
@@ -200,10 +201,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playSong
      */
     player.playSong = function() {
-        if ( getCurrentSong() ) {
-            this.elPlayer.play();
-            $rootScope.isSongPlaying = true;
-        }
+        this.elPlayer.play();
+        $rootScope.isSongPlaying = true;
     };
 
     /**
