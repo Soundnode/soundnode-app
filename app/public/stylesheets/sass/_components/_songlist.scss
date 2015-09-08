@@ -100,12 +100,16 @@ div.active {
 }
 
 .songList_item_song_tit {
-  font-size: 18px;
+  font-size: 17px;
   margin: 5px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  height: 46px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .songList_item_song_social_details {
@@ -137,34 +141,34 @@ div.active {
     margin: 0 0 5px 0;
   }
 
-  & span {
-    display: inline-block;
-    margin: 0 5px 0 0;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
   & a {
+      display: inline-block;
+      margin: 0 10px 0 0;
+
+      &:last-child {
+          margin-right: 0;
+      }
+
+      &.liked {
+          & > .fa {
+              color: $scColor;
+          }
+      }
+
     &:hover {
       cursor: pointer;
+      color: #FFF;
 
       & > .fa {
         color: #FFF;
         cursor: pointer;
       }
-    }    
-    
-    &.clicked {
-      -webkit-animation: heartBeat .1s normal;
     }
 
     & > .fa {
-      color: $linkColor;
+      color: $defaultColor;
       display: inline-block;
-      margin: 0 5px 0 0;
-      transition: $transitionFastValue;
+      transition: $transitionValue;
     }
   }
 
@@ -181,6 +185,23 @@ div.active {
       visibility: hidden;
     }
   }
+}
+
+.songList_item_additional_details {
+    & .songList_item_genre {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        margin: 0;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 2px 0 0 2px;
+        padding: 3px 6px;
+        color: #FFF;
+    }
+
+    & .songList_item_license {
+        display: none;
+    }
 }
 
 @-webkit-keyframes heartBeat {

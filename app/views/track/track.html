@@ -1,0 +1,69 @@
+<div class="trackView">
+
+    <div class="trackDetails">
+        <div class="additionalInfo">
+            <div class="trackCover">
+                <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
+
+                <div class="details">
+                    <span class="playback_count">
+                        <i class="fa fa-play"></i> {{track.playback_count | number}}
+                    </span>
+                    <span class="likes_count">
+                        <i class="fa fa-heart"></i> {{track.favoritings_count | round}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div ng-click="changeLike()" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
+                 ng-class="{active: track.user_favorite}" class="button follow_button"
+                 favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite">
+                <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
+                <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
+            </div>
+            <h1>{{track.title}}</h1>
+
+            <h3>{{track.user.username}}</h3>
+            <h4>Created: {{track.created_at | date: short}}</h4>
+
+            <p class="track_description" text-collapse text-max-height="196"
+               text-to-collapse="{{track.description}}">
+            </p>
+            <div class="trackActions">
+                <a class="button inline" href="{{ track.purchase_url }}" open-external target="_blank" title="{{track.purchase_title}}" ng-if="track.purchase_title"> <i class="fa fa-download"></i> {{ track.purchase_title }}</a>
+                <a class="button inline" href="{{ track.permalink_url }}" open-external target="_blank" title="Download on SoundCloud website" ng-if="track.downloadable"> <i class="fa fa-download"></i> Download</a>
+                <a class="button inline" data-song-id="{{ track.id }}" data-song-name="{{ track.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i> Add to playlist</a>
+                <a class="button inline" href="{{ track.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i> Permalink</a>
+            </div>
+        </div>
+    </div>
+    <div class="tagContainer">
+        <span class="tag" ng-repeat="tag in track.tag_list">
+            #{{tag}}
+        </span>
+    </div>
+    <div class="trackComments"
+         infinite-scroll='loadMore()'
+         infinite-scroll-distance='0'
+         infinite-scroll-container='".mainView"'
+         infinite-scroll-immediate-check='false' >
+        <h2>Comments: ({{track.comment_count}})</h2>
+
+        <div class="commentsContainer">
+            <div class="comment" ng-repeat="comment in comments">
+                <img ng-src="{{comment.user.avatar_url}}" alt="{{comment.user.username}}" class="user_thumb">
+
+                <h3>{{comment.user.username}}
+                    <span>at {{comment.timestamp | date : 'mm:ss'}}</span>
+                    <span class="date">{{comment.created_at | limitTo: 19}}</span>
+                </h3>
+
+                <p>{{comment.body}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/loading.html'"></div>
+
+</div>

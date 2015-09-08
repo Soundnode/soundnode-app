@@ -28,7 +28,7 @@
 </div>
 
 <section class="songList_item_inner">
-    <h2 class="songList_item_song_tit" title="{{ data.title }}">{{ data.title }}</h2>
+    <h2 class="songList_item_song_tit" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
 
     <h3 class="songList_item_song_user">
       <a ui-sref="profile({id: {{data.user.id}}})">{{ data.user.username }}</a>
@@ -37,18 +37,15 @@
 
     <div class="songList_item_song_details">
         <div class="songList_item_actions">
-            <span>
-                <a href="{{ data.permalink_url }}" open-external target="_blank"> <i class="fa fa-external-link"></i> permalink</a>
-            </span>
-            <span>
-                <a favorite-song data-song-id="{{ data.id }}" data-favorite-action="{{ data.user_favorite === null ? 'false' : data.user_favorite }}"> <i class="fa fa-heart"></i> like</a>
-            </span>
-            <span>
-                <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist> <i class="fa fa-bookmark"></i> Add to playlist</a>
-            </span>
+            <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
+                <i class="fa fa-heart"></i>
+                {{data.user_favorite ? 'Liked' : 'Like'}}
+            </a>
+            <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
+            <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
         </div>
         <div class="songList_item_additional_details">
-            <span class="songList_item_genre">{{ data.genre }}</span>
+            <span class="songList_item_genre">#{{ data.genre }}</span>
             <span class="songList_item_license">{{ data.license }}</span>
         </div>
     </div>
