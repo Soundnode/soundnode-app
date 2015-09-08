@@ -1,0 +1,126 @@
+.trackView {
+    & .trackDetails {
+        display: flex;
+
+        & .additionalInfo {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        & .trackCover {
+            width: 300px;
+            height: 300px;
+            position: relative;
+
+            & img {
+                width: 300px;
+                height: 300px;
+            }
+
+            & .details {
+                display: flex;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 1.4em;
+                color: #FFF;
+                padding: 5px;
+                background: rgba(0,0,0,0.6);
+
+                & >span {
+                    flex-grow: 1;
+                    & .fa {
+                        display: inline-block !important;
+                    }
+                }
+            }
+        }
+
+        & .content {
+            padding: 0 10px;
+            width: 100%;
+
+            & h1 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            & .track_description {
+                margin-bottom: 12px;
+                min-height: 196px;
+            }
+        }
+
+    }
+
+    & .tagContainer {
+        padding: 10px 0;
+        & .tag {
+            display: inline-block;
+            padding: 3px 5px;
+            background: #323232;
+            border-radius: 4px;
+            margin: 0 5px 5px 0;
+        }
+    }
+
+    & .trackActions {
+        & a {
+            color: $defaultColor;
+            text-transform: uppercase;
+            border-color: #323232;
+
+            &:hover {
+                color: #FFF;
+            }
+
+            & .fa {
+                margin-right: 3px;
+                color: inherit;
+            }
+        }
+    }
+
+    & .trackComments {
+        & > h2 {
+            margin-bottom: 15px;
+        }
+
+        & .comment {
+            padding: 9px 5px;
+
+            & .user_thumb {
+                margin: 5px 0;
+                border: 1px solid #2c2c2c;
+                width: 35px;
+                height: 35px;
+            }
+
+            & h3 {
+                margin: 3px 0;
+                padding-left: 50px;
+                color: $linkColor;
+
+                span {
+                    font-weight: 300;
+                    color: $defaultColor;
+                    font-size: 0.9em;
+                }
+            }
+
+            & p {
+                margin: 0;
+                font-size: 1.05em;
+                padding-left: 50px;
+                color: #FFF;
+            }
+
+            & .date {
+                float: right;
+            }
+        }
+
+    }
+}

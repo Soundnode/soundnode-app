@@ -26,6 +26,11 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
             templateUrl: 'views/tracks/tracks.html',
             controller: 'TracksCtrl'
         })
+        .state('track', {
+            url: '/track/:id',
+            templateUrl: 'views/track/track.html',
+            controller: 'TrackCtrl'
+        })
         .state('playlists', {
             url: '/playlists',
             templateUrl: 'views/playlists/playlists.html',

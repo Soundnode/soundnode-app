@@ -1,0 +1,48 @@
+.button {
+    float: right;
+    text-align: center;
+    color: #ededed;
+    background: transparent;
+    border: 1px solid;
+    padding: .75em 0;
+    border-radius: .25em;
+    width: 100px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: $transitionFastValue;
+    margin-left: 1em;
+
+    &.active {
+        color: $scColor;
+        &:hover {
+            color: #FFF;
+        }
+    }
+
+    &:hover {
+        color: $defaultColor;
+        cursor: pointer;
+        & span {
+            cursor: pointer;
+        }
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.button.show_more {
+    padding: .34em 0;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.button.inline {
+    float: none;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    width: auto;
+    padding: .4em .75em;
+    font-size: 10px;
+}

@@ -8,10 +8,12 @@
 .following_item {
   display: inline-block;
   position: relative;
-  overflow: hidden;
   margin: 0 5px 60px 5px;
   width: 210px;
-  height: 210px;
+
+  & .songList_item_song_tit {
+      height: auto;
+  }
 
   & .songList_item_box:first-child {
     margin-bottom: 20px;

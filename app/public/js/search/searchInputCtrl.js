@@ -5,6 +5,7 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
     $scope.onSubmit = function(keyword) {
         $state.go('search', {q: keyword}, {reload: true});
+        $scope.blurTypeahead();
     }
 
     $scope.typeahead = function(keyword) {
