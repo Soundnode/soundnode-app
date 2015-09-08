@@ -54,6 +54,10 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
 });
 
 app.run(function($rootScope, $log, SCapiService, hotkeys) {
+
+    //start GA
+    window.visitor.pageview("/").send();
+
     // toastr config override
     toastr.options.positionClass = 'toast-bottom-right';
     toastr.options.timeOut = 4000;
@@ -64,6 +68,14 @@ app.run(function($rootScope, $log, SCapiService, hotkeys) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         $rootScope.oldView = fromState.name;
         $rootScope.currentView = toState.name;
+
+        // set GA page/view
+        if ( toState.name === "" ) {
+            window.visitor.pageview("/").send();
+        } else {
+            window.visitor.pageview(toState.name).send();
+        }
+
     });
 
     // shortcut to open devtools

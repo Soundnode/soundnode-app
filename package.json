@@ -15,5 +15,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-node-webkit-builder": "^1.0.2",
     "grunt-sass": "^0.18.1"
+  },
+  "dependencies": {
+    "universal-analytics": "^0.3.9"
   }
 }
