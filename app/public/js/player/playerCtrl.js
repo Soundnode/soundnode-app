@@ -60,6 +60,15 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         }
     };
 
+    $scope.repeat = function($event) {
+        $event.currentTarget.classList.toggle('active');
+        if ( $rootScope.repeat ) {
+            $rootScope.repeat =  false;
+        } else {
+            $rootScope.repeat = true;
+        }
+    };
+
     $scope.shuffle = function($event) {
         $event.currentTarget.classList.toggle('active');
         if ( $rootScope.shuffle ) {
