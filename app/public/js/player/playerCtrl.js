@@ -61,11 +61,24 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
     $scope.repeat = function($event) {
-        $event.currentTarget.classList.toggle('active');
-        if ( $rootScope.repeat ) {
-            $rootScope.repeat =  false;
-        } else {
+        var button = $event.currentTarget;
+
+        if ( button.classList.contains('active') &&
+            button.classList.contains('locked')
+        ) { // both states are true therefore remove classes
+            button.classList.remove('active', 'locked');
+            $rootScope.repeat = false;
+            $rootScope.repeatLocked = false;
+        } else if ( button.classList.contains('active') &&
+            ! button.classList.contains('locked')
+        ) { // active state is true but locked is false, add locked class
+            button.classList.add('locked');
+            $rootScope.repeat = false;
+            $rootScope.repeatLocked = true;
+        } else if ( ! button.classList.contains('active') ) { // both states are false, add active class
+            button.classList.add('active');
             $rootScope.repeat = true;
+            $rootScope.repeatLocked = false;
         }
     };
 

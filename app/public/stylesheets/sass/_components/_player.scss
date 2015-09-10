@@ -205,7 +205,25 @@
         font-size: 14px;
     }
 
+    &.active,
     &.active .fa {
         color: $scColor;
+    }
+}
+
+.player_repeat {
+    position: relative;
+
+    & .player_repeat_locked {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        right: 4px
+    }
+
+    &.locked {
+        & .player_repeat_locked {
+            display: block;
+        }
     }
 }
