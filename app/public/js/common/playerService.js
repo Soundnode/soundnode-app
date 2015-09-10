@@ -29,6 +29,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     $rootScope.isPlaylistPlaying = false;
     $rootScope.shuffle = false;
     $rootScope.repeat = false;
+    $rootScope.repeatLocked = false;
 
     /**
      * Get a number between min index and max index
@@ -241,8 +242,10 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playPrevSong = function() {
         if ( $rootScope.shuffle ) {
             shuffle();
-        } else if ( ! $rootScope.repeat ) {
+        } else if ( ! $rootScope.repeat && ! $rootScope.repeatLocked ) {
             queueService.prev();
+        } else if ( $rootScope.repeatLocked ) {
+            return false;
         }
         this.playNewSong();
     };
@@ -256,8 +259,10 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     player.playNextSong = function() {
         if ( $rootScope.shuffle ) {
             shuffle();
-        } else if ( ! $rootScope.repeat ) {
+        } else if ( ! $rootScope.repeat && ! $rootScope.repeatLocked ) {
             queueService.next();
+        } else if ( $rootScope.repeatLocked ) {
+            return false;
         }
         this.playNewSong();
     };
