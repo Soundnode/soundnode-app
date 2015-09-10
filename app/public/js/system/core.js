@@ -130,14 +130,30 @@ appSystem.navBarUserUnAuthenticated = function() {
     }
 
     var nativeMenuBar = new gui.Menu({ type: "menubar" });
-
-    // OS X Menu
-    nativeMenuBar = new gui.Menu({ type: "menubar" });
+    var help = new gui.Menu();
 
     nativeMenuBar.createMacBuiltin("Soundnode", {
         hideEdit: false,
         hideWindow: false
     });
+
+    // Help Menu
+    nativeMenuBar.append(
+        new gui.MenuItem({
+            label: 'Help',
+            submenu: help
+        })
+    );
+
+    // DevTools
+    help.append(
+        new gui.MenuItem({
+            label: 'Developer Tools',
+            click: function() {
+                appGUI.openDevTools();
+            }
+        })
+    );
 
     appGUI.getGUI.menu = nativeMenuBar;
 };
