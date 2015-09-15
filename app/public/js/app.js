@@ -46,6 +46,11 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
             templateUrl: 'views/following/following.html',
             controller: 'FollowingCtrl'
         })
+        .state('followers', {
+            url: '/followers',
+            templateUrl: 'views/followers/followers.html',
+            controller: 'FollowersCtrl'
+        })
         .state('profile', {
             url: '/profile/:id',
             templateUrl: 'views/profile/profile.html',

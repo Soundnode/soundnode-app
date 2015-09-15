@@ -1,11 +1,11 @@
 'use strict';
 
-app.controller('FollowingCtrl', function ($scope, SCapiService, $rootScope, $log) {
-    $scope.title = 'Following';
+app.controller('FollowersCtrl', function ($scope, SCapiService, $rootScope, $log) {
+    $scope.title = 'Followers';
     $scope.data = '';
     $scope.busy = false;
 
-    SCapiService.getFollowing('followings')
+    SCapiService.getFollowing('followers')
         .then(function(data) {
             $scope.data = data.collection.sort( sortBy("username") );
         }, function(error) {

@@ -110,10 +110,10 @@ app.service('SCapiService', function ($http, $window, $q, $log, $state, $statePa
      * Responsible to get the followed users.
      * @return {[object]} data response
      */
-    this.getFollowing = function () {
+    this.getFollowing = function (endpoint) {
         this.isLoading();
 
-        var url = 'https://api.soundcloud.com/me/followings.json?limit=25&oauth_token=' + $window.scAccessToken
+        var url = 'https://api.soundcloud.com/me/' + endpoint + '.json?limit=25&oauth_token=' + $window.scAccessToken
                 + '&linked_partitioning=1'
             , that = this;
 
