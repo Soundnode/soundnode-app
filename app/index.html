@@ -90,11 +90,23 @@
         <header class="header">
             <!-- user -->
             <div class="user" ng-controller="UserCtrl">
-                <img ng-src="{{ userThumb }}" alt="{{ name }}" class="user_thumb">
+                <div class="user_profile clearfix">
+                    <img ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
-                <div class="user_inner">
-                    <span class="user_name">{{ name }}</span>
-                    <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
+                    <div class="user_inner">
+                        <span class="user_name">{{ data.username }}</span>
+                        <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
+                    </div>
+                </div>
+                <div class="user_info">
+                    <span class="user_info_wrap" ui-sref="following">
+                        <small>{{ data.followings_count }}</small>
+                        <small>following</small>
+                    </span>
+                    <span class="user_info_wrap" ui-sref="followers">
+                        <small>{{ data.followers_count }}</small>
+                        <small>followers</small>
+                    </span>
                 </div>
             </div>
             <!-- user / end -->
@@ -109,12 +121,6 @@
                     <a class="mainNav_button" ui-sref="stream">
                         <i class="fa fa-cloud"></i>
                         <span class="mainNav_tit">Stream</span>
-                    </a>
-                </li>
-                <li class="mainNav_item">
-                    <a class="mainNav_button" ui-sref="following">
-                        <i class="fa fa-users"></i>
-                        <span class="mainNav_tit">Following</span>
                     </a>
                 </li>
                 <li class="mainNav_item">
@@ -235,6 +241,7 @@
 <script src="public/js/playlists/playlistsCtrl.js"></script>
 <script src="public/js/playlists/playlistDashboardCtrl.js"></script>
 <script src="public/js/following/followingCtrl.js"></script>
+<script src="public/js/followers/followersCtrl.js"></script>
 <script src="public/js/about/aboutCtrl.js"></script>
 <script src="public/js/updater/updaterCtrl.js"></script>
 <script src="public/js/profile/profileCtrl.js"></script>
