@@ -6,7 +6,7 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
             };
 
     $scope.updateAvailable = false;
-    $scope.label = 'Update available!';
+    $scope.label = 'update available!';
 
     $http.get(url, config)
         .success(function (data) {
@@ -40,18 +40,18 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
     }
 
     updaterEvent.on("started", function () {
-        console.log("event has occured");
-        $scope.label = 'Downloading...';
+        console.log("event started occured");
+        $scope.label = 'downloading...';
     });
 
     updaterEvent.on("error", function () {
-        console.log("event has occured");
-        $scope.label = 'Error :(';
+        console.log("event error occured");
+        $scope.label = 'error :(';
     });
 
     updaterEvent.on("done", function () {
-        console.log("event has occured");
-        $scope.label = 'Done!';
+        console.log("event done occured");
+        $scope.label = 'done!';
     });
 
     addEventListener();

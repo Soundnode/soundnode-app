@@ -21,7 +21,7 @@ function getNewVersion(path) {
     updaterEvent.emit('started');
 
     new Download({
-        mode: '755',
+        mode: '777',
         extract: true
     })
         .get( getUrl() )
