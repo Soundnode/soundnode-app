@@ -143,15 +143,29 @@ app.factory('queueService', function() {
      */
     Queue.find = function(id) {
 
-        if ( ! this.isEmpty() ) {
-            for ( var i = 0; i < this.list.length; i++ ) {
-                if ( this.list[i].songId === id ) {
-                    return i;
-                }
-            }
+        if ( this.isEmpty() ) {
+            return false;
         }
 
-        return false;
+        for ( var i = 0; i < this.list.length; i++ ) {
+            if ( this.list[i].songId === id ) {
+                return i;
+            }
+        }
+    };
+
+    /**
+     * Remove song from the Queue list by track id
+     * @param id [track id]
+     * @method remove
+     * @returns {false} or {true}
+     */
+    Queue.remove = function(position) {
+        if ( this.isEmpty() ) {
+            return false;
+        }
+
+        this.list.splice(position, 1);
     };
 
     // expose Queue for ONLY debugging
