@@ -17,6 +17,7 @@
     "grunt-sass": "^0.18.1"
   },
   "dependencies": {
+    "download": "^4.2.0",
     "universal-analytics": "^0.3.9"
   }
 }

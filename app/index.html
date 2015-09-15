@@ -76,8 +76,8 @@
 
             </li>
             <li class="appInfo_item" ng-controller="UpdaterCtrl">
-                <a href="http://www.soundnodeapp.com" target="_blank" open-external
-                   ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
+                <a ng-click="openDialog($event)" ng-class="{ updateAvailable: updateAvailable }"> {{ label }} </a>
+                <input style="display: none" type="file" nwdirectory id="updater" />
             </li>
         </ul>
     </header>
@@ -206,6 +206,9 @@
 
 </div>
 <!-- UI App / end -->
+
+<!-- system -->
+<script src="public/js/system/updater.js"></script>
 
 <!-- vendors -->
 <script src="public/js/vendor/jquery.min.js"></script>
