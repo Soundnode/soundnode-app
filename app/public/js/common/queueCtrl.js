@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $timeout) {
+app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $timeout, playerService, SCapiService, ngDialog, notificationFactory, $location, $anchorScroll) {
     $scope.data = queueService.getAll();
 
     $scope.$on('activateQueue', function(event, data) {
@@ -28,10 +28,7 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
         addDOMmutationListener();
     }, 1000);
 
-    $scope.activateTrackInQueue = function() {
-
-        console.log('called activate track ');
-
+    $scope.activateTrackInQueue = function($event) {
         if ( $scope.data.length < 1 ) {
             return;
         }
@@ -54,7 +51,11 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
      * @param $event
      */
     $scope.remove = function($event) {
-        $log.log('remove called')
+        var trackData = $($event.target).closest('.queueListView_list_item').data();
+        var trackPosition = queueService.find(trackData.songId);
+
+        queueService.remove(trackPosition);
+        playerService.playNewSong();
     };
 
     /**
@@ -62,7 +63,18 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
      * @param $event
      */
     $scope.like = function($event) {
-        $log.log('like called')
+        var trackData = $($event.target).closest('.queueListView_list_item').data();
+        var userId = $rootScope.userId;
+        var songId = trackData.songId;
+
+        SCapiService.saveFavorite(userId, songId)
+            .then(function(status) {
+                if ( typeof status == "object" ) {
+                    notificationFactory.success("Song added to likes!");
+                }
+            }, function(status) {
+                notificationFactory.error("Something went wrong!");
+            });
     };
 
     /**
@@ -70,15 +82,29 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
      * @param $event
      */
     $scope.addToPlaylist = function($event) {
-        $log.log('add to playlist called')
+        var trackData = $($event.target).closest('.queueListView_list_item').data();
+
+        $scope.playlistSongId = trackData.songId;
+        $scope.playlistSongName = trackData.songTitle;
+
+        ngDialog.open({
+            showClose: false,
+            scope: $scope,
+            controller: 'PlaylistDashboardCtrl',
+            template: 'views/playlists/playlistDashboard.html'
+        });
     };
 
     /**
-     * scroll view to current track playing
+     * scroll view to track
      * @param $event
      */
     $scope.gotoTrack = function($event) {
-        $log.log('gotoTrack called')
+        var trackData = $($event.target).closest('.queueListView_list_item').data();
+        var trackId = trackData.songId;
+
+        $location.hash(trackId);
+        $anchorScroll();
     }
 
 });

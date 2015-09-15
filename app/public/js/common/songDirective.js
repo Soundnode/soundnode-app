@@ -6,8 +6,6 @@ app.directive('song', function ($rootScope, $window, playerService) {
         link: function ($scope, elem, attrs ) {
             var currentEl;
 
-            console.log('called song directive');
-
             elem.bind('click', function () {
                 currentEl = this;
 
