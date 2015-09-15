@@ -14,6 +14,25 @@ app.controller('FollowingCtrl', function ($scope, SCapiService, $rootScope, $log
             $rootScope.isLoading = false;
         });
 
+    $scope.loadMore = function() {
+        if ( $scope.busy ) {
+            return;
+        }
+        $scope.busy = true;
+
+        SCapiService.getNextPage()
+            .then(function(data) {
+                for ( var i = 0; i < data.collection.length; i++ ) {
+                    $scope.data.push( data.collection[i] )
+                }
+            }, function(error) {
+                console.log('error', error);
+            }).finally(function(){
+                $scope.busy = false;
+                $rootScope.isLoading = false;
+            });
+    };
+
     function sortBy(prop){
         return function(a,b){
             if( a[prop] > b[prop]){

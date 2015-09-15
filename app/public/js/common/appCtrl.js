@@ -6,7 +6,7 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
     $scope.isSettingsVisible = false;
 
     // Os detection
-    $scope.isRunningLinux = process.platform == 'linux32' || process.platform == 'linux64';
+    $scope.isRunningLinux = process.platform == 'linux32' || process.platform == 'linux64' || process.platform == 'linux';
     $scope.isRunningWindows = process.platform == 'win32';
     $scope.isRunningMac = process.platform == 'darwin';
 
