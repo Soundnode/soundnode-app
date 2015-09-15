@@ -10,8 +10,6 @@ app.controller('UserCtrl', function ($rootScope, $scope, $window, SCapiService) 
                 .then(function(data) {
                     $rootScope.userId = data.id;
                     $scope.data = data;
-                    $scope.name = data.username;
-                    $scope.userThumb = data.avatar_url;
                 }, function(error) {
                     console.log('error', error);
                 });
