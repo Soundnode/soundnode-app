@@ -23,6 +23,7 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
     }
 
     // quick hack to add DOM mutation listener
+    // time to wait until page is fully loaded
     $timeout(function() {
         addDOMmutationListener();
     }, 1000);
