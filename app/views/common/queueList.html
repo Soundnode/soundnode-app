@@ -20,6 +20,18 @@
             <small class="queueListView_list_item_index">{{ $index + 1 }}</small>
             <span class="queueListView_list_item_title" title="{{ item.songTitle }}">{{ item.songTitle }}</span>
             <span class="queueListView_list_item_user" title="by: {{ item.songUser }}">by: {{ item.songUser }} </span>
+            <div class="queueListView_list_item_options"
+                 ng-class="{ active: hover }"
+                 ng-mouseover="hover = true"
+                 ng-mouseleave="hover = false" >
+                <i class="fa fa-ellipsis-v"></i>
+                <ul class="queueListView_list_item_options_list" >
+                    <li class="queueListView_list_item_options_list_button" ng-click="remove($event)">Remove</li>
+                    <li class="queueListView_list_item_options_list_button" ng-click="like($event)">Like</li>
+                    <li class="queueListView_list_item_options_list_button" ng-click="addToPlaylist($event)">Add to playlist</li>
+                    <li class="queueListView_list_item_options_list_button" ng-click="gotoTrack($event)">Go to track</li>
+                </ul>
+            </div>
 
         </li>
     </ul>

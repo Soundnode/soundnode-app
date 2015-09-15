@@ -30,6 +30,8 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
 
     $scope.activateTrackInQueue = function() {
 
+        console.log('called activate track ');
+
         if ( $scope.data.length < 1 ) {
             return;
         }
@@ -46,5 +48,37 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
             track.classList.add('active');
         }
     };
+
+    /**
+     * remove track from the queue
+     * @param $event
+     */
+    $scope.remove = function($event) {
+        $log.log('remove called')
+    };
+
+    /**
+     * like track from the queue
+     * @param $event
+     */
+    $scope.like = function($event) {
+        $log.log('like called')
+    };
+
+    /**
+     * add track to playlist
+     * @param $event
+     */
+    $scope.addToPlaylist = function($event) {
+        $log.log('add to playlist called')
+    };
+
+    /**
+     * scroll view to current track playing
+     * @param $event
+     */
+    $scope.gotoTrack = function($event) {
+        $log.log('gotoTrack called')
+    }
 
 });

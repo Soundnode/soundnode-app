@@ -29,7 +29,6 @@
         font-size: 12px;
         color: #fff;
         border-bottom: 1px solid $separatorDarkColor;
-        overflow: hidden;
         padding: 10px 20px;
         white-space: nowrap;
         cursor: pointer;
@@ -46,7 +45,8 @@
 
     & .queueListView_list_item_index,
     & .queueListView_list_item_title,
-    & .queueListView_list_item_user {
+    & .queueListView_list_item_user,
+    & .queueListView_list_item_options{
         display: inline-block;
         font-weight: 100;
     }
@@ -69,5 +69,40 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+    }
+}
+
+.queueListView_list_item_options {
+    position: relative;
+    width: 10px;
+    text-align: center;
+    height: 17px;
+
+    &.active .queueListView_list_item_options_list {
+        display: block;
+    }
+}
+
+.queueListView_list_item_options_list {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 17px;
+    background: $separatorCleanColor;
+    z-index: 10;
+    border-radius: 2px;
+
+    & li:last-child {
+        border-bottom: none;
+    }
+}
+
+.queueListView_list_item_options_list_button {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid $separatorDarkColor;
+
+    &:hover {
+        background: $separatorDarkColor;
     }
 }
