@@ -19,7 +19,8 @@ module.exports = function (grunt) {
                 './app/public/js/**/*',
                 './app/public/img/**/*',
                 './app/public/stylesheets/css/**/*',
-                './node_modules/universal-analytics/**/*'
+                './node_modules/universal-analytics/**/*',
+                './node_modules/download/**/*'
             ]
         },
 

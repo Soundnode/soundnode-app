@@ -76,7 +76,7 @@
 
             </li>
             <li class="appInfo_item" ng-controller="UpdaterCtrl">
-                <a ng-click="openDialog($event)" ng-class="{ updateAvailable: updateAvailable }"> {{ label }} </a>
+                <a id="updaterLabel" ng-click="openDialog($event)" ng-class="{ updateAvailable: updateAvailable }"> {{ label }} </a>
                 <input style="display: none" type="file" nwdirectory id="updater" />
             </li>
         </ul>

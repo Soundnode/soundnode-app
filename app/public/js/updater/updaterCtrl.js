@@ -1,4 +1,4 @@
-app.controller('UpdaterCtrl', function($scope, $http, $window) {
+app.controller('UpdaterCtrl', function($scope, $http, $window, $timeout) {
     var url = 'https://api.github.com/repos/Soundnode/soundnode-app/releases'
         , config = { headers:  {
                     'Accept': 'application/vnd.github.v3.raw+json'
@@ -6,7 +6,7 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
             };
 
     $scope.updateAvailable = false;
-    $scope.label = 'update available!';
+    $scope.label = 'update now!';
 
     $http.get(url, config)
         .success(function (data) {
@@ -52,6 +52,10 @@ app.controller('UpdaterCtrl', function($scope, $http, $window) {
     updaterEvent.on("done", function () {
         console.log("event done occured");
         $scope.label = 'done!';
+        $timeout(function() {
+            var el = document.querySelector('#updaterLabel');
+            el.parentNode.removeChild(el);
+        }, 5000);
     });
 
     addEventListener();
