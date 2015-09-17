@@ -41,6 +41,10 @@
             padding: 0 10px;
             width: 100%;
 
+            & .user_name {
+                cursor: pointer;
+            }
+
             & h1 {
                 white-space: nowrap;
                 overflow: hidden;
