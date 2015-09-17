@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="tagContainer">
-        <span class="tag" ng-repeat="tag in track.tag_list">
+        <span class="tag" ng-repeat="tag in track.tag_list" ui-sref="tag({name: tag})">
             #{{tag}}
         </span>
     </div>

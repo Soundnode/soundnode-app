@@ -44,7 +44,7 @@
             <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
         </div>
         <div class="songList_item_additional_details">
-            <span class="songList_item_genre">#{{ data.genre }}</span>
+            <span class="songList_item_genre" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
             <span class="songList_item_license">{{ data.license }}</span>
         </div>
     </div>
