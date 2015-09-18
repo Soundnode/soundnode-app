@@ -29,7 +29,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
     $rootScope.isPlaylistPlaying = false;
     $rootScope.shuffle = false;
     $rootScope.repeat = false;
-    $rootScope.repeatLocked = false;
+    $rootScope.lock = false;
 
     /**
      * Get a number between min index and max index
@@ -240,13 +240,17 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playPrevSong
      */
     player.playPrevSong = function() {
-        if ( $rootScope.shuffle ) {
-            shuffle();
-        } else if ( ! $rootScope.repeat && ! $rootScope.repeatLocked ) {
-            queueService.prev();
-        } else if ( $rootScope.repeatLocked ) {
+
+        if ( $rootScope.lock ) {
             return false;
         }
+
+        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
+            shuffle();
+        } else if ( ! $rootScope.repeat ) {
+            queueService.prev();
+        }
+
         this.playNewSong();
     };
 
@@ -257,13 +261,18 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playPrevSong
      */
     player.playNextSong = function() {
-        if ( $rootScope.shuffle ) {
-            shuffle();
-        } else if ( ! $rootScope.repeat && ! $rootScope.repeatLocked ) {
-            queueService.next();
-        } else if ( $rootScope.repeatLocked ) {
+
+        $log.log('lock', $rootScope.lock);
+        if ( $rootScope.lock ) {
             return false;
         }
+
+        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
+            shuffle();
+        } else if ( ! $rootScope.repeat ) {
+            queueService.next();
+        }
+
         this.playNewSong();
     };
 

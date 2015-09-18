@@ -198,6 +198,7 @@
     flex-grow: 1;
 }
 
+.player_lock,
 .player_repeat,
 .player_shuffle,
 .player_queueList {
@@ -208,22 +209,5 @@
     &.active,
     &.active .fa {
         color: $scColor;
-    }
-}
-
-.player_repeat {
-    position: relative;
-
-    & .player_repeat_locked {
-        display: none;
-        position: absolute;
-        bottom: 0;
-        right: 4px
-    }
-
-    &.locked {
-        & .player_repeat_locked {
-            display: block;
-        }
     }
 }

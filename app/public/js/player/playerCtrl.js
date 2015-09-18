@@ -60,30 +60,33 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         }
     };
 
-    $scope.repeat = function($event) {
-        var button = $event.currentTarget;
+    $scope.lock = function($event) {
+        $event.currentTarget.classList.toggle('active');
 
-        if ( button.classList.contains('active') &&
-            button.classList.contains('locked')
-        ) { // both states are true therefore remove classes
-            button.classList.remove('active', 'locked');
+        $log.log('lock', $rootScope.lock);
+
+        if ( $rootScope.lock ) {
+            $rootScope.lock = false;
+        } else {
+            $rootScope.lock = true;
+        }
+
+        $log.log('lock end', $rootScope.lock);
+    };
+
+    $scope.repeat = function($event) {
+        $event.currentTarget.classList.toggle('active');
+
+        if ( $rootScope.repeat ) {
             $rootScope.repeat = false;
-            $rootScope.repeatLocked = false;
-        } else if ( button.classList.contains('active') &&
-            ! button.classList.contains('locked')
-        ) { // active state is true but locked is false, add locked class
-            button.classList.add('locked');
-            $rootScope.repeat = false;
-            $rootScope.repeatLocked = true;
-        } else if ( ! button.classList.contains('active') ) { // both states are false, add active class
-            button.classList.add('active');
+        } else {
             $rootScope.repeat = true;
-            $rootScope.repeatLocked = false;
         }
     };
 
     $scope.shuffle = function($event) {
         $event.currentTarget.classList.toggle('active');
+
         if ( $rootScope.shuffle ) {
             $rootScope.shuffle =  false;
         } else {
@@ -92,7 +95,6 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
     $scope.toggleQueue = function($event) {
-
         $event.currentTarget.classList.toggle('active');
         document.querySelector('.queueList').classList.toggle('active');
     };
