@@ -24,7 +24,7 @@
             </div>
             <h1>{{track.title}}</h1>
 
-            <h3>{{track.user.username}}</h3>
+            <h3 ui-sref="profile({id: track.user.id})" class="user_name">{{track.user.username}}</h3>
             <h4>Created: {{track.created_at | date: short}}</h4>
 
             <p class="track_description" text-collapse text-max-height="196"
