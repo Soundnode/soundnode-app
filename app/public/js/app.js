@@ -41,6 +41,11 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
             templateUrl: 'views/search/search.html',
             controller: 'searchCtrl'
         })
+        .state('tag', {
+            url: '/tag/:name',
+            templateUrl: 'views/tag/tag.html',
+            controller: 'tagCtrl'
+        })
         .state('following', {
             url: '/following',
             templateUrl: 'views/following/following.html',

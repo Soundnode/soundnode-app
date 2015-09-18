@@ -67,6 +67,11 @@
             background: #323232;
             border-radius: 4px;
             margin: 0 5px 5px 0;
+            transition: $transitionFastValue;
+            &:hover {
+                color: #FFF;
+                cursor: pointer;
+            }
         }
     }
 
