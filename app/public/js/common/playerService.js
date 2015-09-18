@@ -261,8 +261,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      * @method playPrevSong
      */
     player.playNextSong = function() {
-
-        $log.log('lock', $rootScope.lock);
+        
         if ( $rootScope.lock ) {
             return false;
         }

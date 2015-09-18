@@ -63,8 +63,6 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     $scope.lock = function($event) {
         $event.currentTarget.classList.toggle('active');
 
-        $log.log('lock', $rootScope.lock);
-
         if ( $rootScope.lock ) {
             $rootScope.lock = false;
         } else {
