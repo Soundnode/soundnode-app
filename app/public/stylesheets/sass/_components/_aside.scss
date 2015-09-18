@@ -1,57 +1,61 @@
 .aside {
-  // flex: 1 0 0;
-  background: $sectionBackground;
-  border-right: 1px solid $separatorDarkColor;
-  width: 200px;
-  position: fixed;
-  top: 50px;
-  bottom: 0;
-  left: 0;
+    background: $sectionBackground;
+    border-right: 1px solid $separatorDarkColor;
+    width: 200px;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
 }
 
 .header {
-  padding: 15px 10px 10px;
+    padding: 15px 10px 10px;
 }
-
 
 /* main navigation */
 .mainNav {
-  padding: 10px 15px;
-  margin: 0 0 30px 0;
+    margin: 10px 0 30px 0;
 }
 
 .ui_title {
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: normal;
-  color: $linkColor;
-  margin: 0 0 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+    color: $linkColor;
+    margin: 0 0 10px;
+    padding-left: 15px;
 }
 
 .mainNav_item {
 
-  &:last-child {
-    margin: 0;
-  }
+    &:last-child {
+        margin: 0;
+    }
+
+    &.active a {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.05);
+        color: #FFF;
+    }
 }
 
 .mainNav_button {
-  font-size: 13px;
-  display: block;
-  padding: 5px 0;
+    font-size: 13px;
+    display: block;
+    padding: 9px 0 9px 15px;
+    border-left: 1px solid transparent;
 
-  &:hover .fa {
-    color: #FFF;
-  }
+    &:hover, &:hover span {
+        cursor: pointer;
+    }
 
-  & .fa {
-    color: $linkColor;
-    display: inline-block;
-    width: 25px;
-    transition: $transitionFastValue;
-  }
+    & .fa {
+        color: inherit;
+        display: inline-block;
+        width: 25px;
+    }
 }
 
 .mainNav_tit {
-  display: inline-block;
+    display: inline-block;
 }
