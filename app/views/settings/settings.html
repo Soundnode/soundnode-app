@@ -7,12 +7,23 @@
         <li class="full-flex">
             <div class="settings-container leftSide">
                 <h2>Notifications</h2>
-                <label>Song notifications {{ label }} </label>
+                <label>Enable/Disable song notifications </label>
             </div>
             <div class="settings-switch">
                 <div class="onoffswitch">
                     <input type="checkbox" class="onoffswitch-checkbox" name="notifications" id="notificationSettings" ng-model="notification" ng-change="notificationSettings()" ng-checked="notification">
                     <label class="onoffswitch-label" for="notificationSettings"></label>
+                </div>
+            </div>
+        </li>
+        <li class="full-flex">
+            <div class="settings-container leftSide">
+                <h2>Clean local storage</h2>
+                <label>Remove last user logged in, last window screen size, notification state.</label>
+            </div>
+            <div class="settings-switch">
+                <div class="onoffswitch">
+                    <button ng-click="cleanStorage()" class="button follow_button">Clean All</button>
                 </div>
             </div>
         </li>
