@@ -1,0 +1,83 @@
+.settingsView {
+    width: 90%;
+}
+
+.settings-hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #3e3e40;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.settings-container {
+    width: auto;
+}
+
+.leftSide {
+    width: 400px;
+}
+
+.rightSide {
+    padding-top: 10px;
+}
+
+.full-flex {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+// Switch for Settings
+.onoffswitch {
+    position: relative;
+    width: 50px;
+    -webkit-user-select:none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 15px;
+    padding: 0;
+    line-height: 15px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    background-color: #222326;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block;
+    width: 24px;
+    margin: -5px;
+    background: #525252;
+    position: absolute; top: 0; bottom: 0;
+    right: 31px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #FF5500;
+    border: 1px solid transparent;
+    border-radius: 25px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #FF5500;
+   border: 1px solid transparent;
+   border-radius: 25px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+    background-color: #FF5500;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, .3);
+}

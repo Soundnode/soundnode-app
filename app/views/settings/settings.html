@@ -1,0 +1,22 @@
+<div class="settingsView">
+
+    <h2 class="settings">Settings</h2>
+    <hr class="settings-hr" />
+
+    <!-- Notifications & Switch -->
+    <div class="full-flex">
+        <div class="settings-container leftSide">
+            <h2>Notifications</h2>
+            <label ng-if="notification == false">Song Notifications Disabled </label>
+            <label ng-if="notification == true">Song Notifications Enabled </label>
+        </div>
+        <div class="settings-container rightSide">
+            <div class="onoffswitch">
+                <input type="checkbox" class="onoffswitch-checkbox" name="notifications" id="notificationSettings" ng-model="notification" ng-change="notificationSettings()" ng-checked="notification">
+                <label class="onoffswitch-label" for="notificationSettings"></label>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/loading.html'"></div>
+</div>
