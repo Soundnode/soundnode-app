@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/favorites'
