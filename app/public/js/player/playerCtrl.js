@@ -61,19 +61,19 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
     $scope.lock = function($event) {
-        $event.currentTarget.classList.toggle('active');
+        var elButton = document.querySelector('.player_lock');
+        elButton.classList.toggle('active');
 
         if ( $rootScope.lock ) {
             $rootScope.lock = false;
         } else {
             $rootScope.lock = true;
         }
-
-        $log.log('lock end', $rootScope.lock);
     };
 
     $scope.repeat = function($event) {
-        $event.currentTarget.classList.toggle('active');
+        var elButton = document.querySelector('.player_repeat');
+        elButton.classList.toggle('active');
 
         if ( $rootScope.repeat ) {
             $rootScope.repeat = false;
@@ -83,7 +83,8 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
     $scope.shuffle = function($event) {
-        $event.currentTarget.classList.toggle('active');
+        var elButton = document.querySelector('.player_shuffle');
+        elButton.classList.toggle('active');
 
         if ( $rootScope.shuffle ) {
             $rootScope.shuffle =  false;
@@ -93,7 +94,8 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
     };
 
     $scope.toggleQueue = function($event) {
-        $event.currentTarget.classList.toggle('active');
+        var elButton = document.querySelector('.player_queueList');
+        elButton.classList.toggle('active');
         document.querySelector('.queueList').classList.toggle('active');
     };
 
@@ -227,6 +229,42 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         	e.preventDefault();
             playerService.volume(playerService.volume() - 0.1);
             $scope.volume = playerService.volume();
+        }
+    });
+
+    hotkeys.add({
+        combo: ['shift+q'],
+        description: 'Toggle Queue',
+        callback: function(e) {
+            e.preventDefault();
+            $scope.toggleQueue()
+        }
+    });
+
+    hotkeys.add({
+        combo: ['shift+r'],
+        description: 'Toggle repeat on/off',
+        callback: function(e) {
+            e.preventDefault();
+            $scope.repeat()
+        }
+    });
+
+    hotkeys.add({
+        combo: ['shift+s'],
+        description: 'Toggle shuffle on/off',
+        callback: function(e) {
+            e.preventDefault();
+            $scope.shuffle()
+        }
+    });
+
+    hotkeys.add({
+        combo: ['shift+l'],
+        description: 'Toggle lock on/off',
+        callback: function(e) {
+            e.preventDefault();
+            $scope.lock()
         }
     });
 
