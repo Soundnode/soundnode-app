@@ -21,7 +21,6 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
      * @params songId [track id to be removed from the playlist
      * @params playlistId [playlist id that contains the track]
      * @method removeFromPlaylist
-     * @todo remove the put request from the controller. Add to SCapiService
      */
     $scope.removeFromPlaylist = function(songId, playlistId) {
         var endpoint = 'users/'+  $rootScope.userId + '/playlists/'+ playlistId
@@ -64,7 +63,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
             }, function(error) {
                 console.log('error', error);
             });
-        
+
     };
 
     /**

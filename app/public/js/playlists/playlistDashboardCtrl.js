@@ -19,7 +19,6 @@ app.controller('PlaylistDashboardCtrl', function($rootScope, $scope, SCapiServic
      * Responsible to add track to a particular playlist
      * @params playlistId [playlist id that contains the track]
      * @method saveToPlaylist
-     * @todo remove the put request from the controller. Add to SCapiService
      */
     $scope.saveToPlaylist = function(playlistId) {
         var endpoint = 'users/'+  $rootScope.userId + '/playlists/'+ playlistId

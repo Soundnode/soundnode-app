@@ -378,7 +378,6 @@ app.service('SCapiService', function ($http, $window, $q, $log, $state, $statePa
      * Responsible to remove playlist
      * @param playlistId [playlist id to be removed]
      * return { request response }
-     * todo: remove get from this method and re-use the get method
      */
     this.removePlaylist = function (playlistId) {
         var url = 'https://api.soundcloud.com/users/me' + '/playlists' + '.json?&oauth_token=' + $window.scAccessToken;
