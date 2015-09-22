@@ -203,13 +203,15 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
 
         var songNotificationTitle = (trackObj.songTitle.length > 63 && process.platform == "win32") ? trackObj.songTitle.substr(0,60) + "..." : trackObj.songTitle;
 
-        songNotification = new Notification(songNotificationTitle, {
-            body: trackObj.songUser,
-            icon: trackObj.songThumbnail
-        });
-        songNotification.onclick = function () {
-            gui.Window.get().show();
-        };
+        if(window.localStorage.notificationToggle === "true") {
+            songNotification = new Notification(songNotificationTitle, {
+                body: trackObj.songUser,
+                icon: trackObj.songThumbnail
+            });
+            songNotification.onclick = function () {
+                gui.Window.get().show();
+            };
+        }
 
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');

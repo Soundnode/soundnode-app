@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 var app = angular.module('App', ['ui.router', 'ngSanitize', 'cfp.hotkeys', 'infinite-scroll', 'ngDialog']);
 
@@ -60,10 +60,15 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
             url: '/profile/:id',
             templateUrl: 'views/profile/profile.html',
             controller: 'ProfileCtrl'
-    });
+        })
+        .state('settings', {
+            url: '/settings',
+            templateUrl: 'views/settings/settings.html',
+            controller: 'SettingsCtrl'
+        });
 });
 
-app.run(function($rootScope, $log, SCapiService, hotkeys) {
+app.run(function($rootScope, $log, $state, SCapiService, hotkeys) {
 
     //start GA
     window.visitor.pageview("/").send();
@@ -94,6 +99,14 @@ app.run(function($rootScope, $log, SCapiService, hotkeys) {
         description: 'Open devtools',
         callback: function() {
             appGUI.openDevTools();
+        }
+    });
+
+    hotkeys.add({
+        combo: ['mod+,'],
+        description: 'Open Settings',
+        callback: function() {
+            $state.go('settings');
         }
     });
 
