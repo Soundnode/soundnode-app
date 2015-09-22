@@ -1,27 +1,8 @@
-.settingsView {
-    width: 90%;
-}
-
-.settings-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #3e3e40;
-    margin: 1em 0;
-    padding: 0;
-}
-
 .settings-container {
-    width: auto;
-}
-
-.leftSide {
     width: 400px;
 }
 
-.rightSide {
-    padding-top: 10px;
-}
+.settings-switch {}
 
 .full-flex {
     width: 100%;
@@ -29,7 +10,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
 }
 // Switch for Settings
 .onoffswitch {
