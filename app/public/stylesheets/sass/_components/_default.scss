@@ -12,6 +12,7 @@ body {
   font: 62.5% 'Open Sans', helvetica, sans-serif, arial !important;
   color: $defaultColor;
   height: 100%;
+  overflow: hidden;
   -webkit-user-select: none;
   letter-spacing: 1px;
 }
