@@ -156,7 +156,7 @@ app.factory('queueService', function() {
 
     /**
      * Remove song from the Queue list by track id
-     * @param id [track id]
+     * @param position [track id]
      * @method remove
      * @returns {false} or {true}
      */
@@ -168,7 +168,7 @@ app.factory('queueService', function() {
         this.list.splice(position, 1);
     };
 
-    // expose Queue for ONLY debugging
+    // expose Queue for debugging ONLY
     window.Queue = Queue;
 
     // Make Queue obj accessible
