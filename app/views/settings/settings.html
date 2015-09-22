@@ -3,17 +3,19 @@
     <h1> {{ title }}</h1>
 
     <!-- Notifications & Switch -->
-    <div class="full-flex">
-        <div class="settings-container leftSide">
-            <h2>Notifications</h2>
-            <label>Song notifications {{ label }} </label>
-        </div>
-        <div class="settings-switch">
-            <div class="onoffswitch">
-                <input type="checkbox" class="onoffswitch-checkbox" name="notifications" id="notificationSettings" ng-model="notification" ng-change="notificationSettings()" ng-checked="notification">
-                <label class="onoffswitch-label" for="notificationSettings"></label>
+    <ul>
+        <li class="full-flex">
+            <div class="settings-container leftSide">
+                <h2>Notifications</h2>
+                <label>Song notifications {{ label }} </label>
             </div>
-        </div>
-    </div>
+            <div class="settings-switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" class="onoffswitch-checkbox" name="notifications" id="notificationSettings" ng-model="notification" ng-change="notificationSettings()" ng-checked="notification">
+                    <label class="onoffswitch-label" for="notificationSettings"></label>
+                </div>
+            </div>
+        </li>
+    </ul>
 
 </div>
