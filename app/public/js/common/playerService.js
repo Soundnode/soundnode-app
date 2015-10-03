@@ -272,7 +272,6 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
 
         if ( $rootScope.shuffle ) {
             shuffle();
-            this.playNewSong();
         } else if ( ! $rootScope.repeat ) {
             queueEnded = !queueService.next();
         } else {
