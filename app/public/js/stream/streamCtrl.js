@@ -53,7 +53,7 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
             var track = tracksData[i].origin;
 
             if (track.hasOwnProperty('user_favorite'))
-                track.user_favorite = ($scope.likes.collection.indexOf(track.id) != -1);
+                track.user_favorite = ($scope.likes.indexOf(track.id) != -1);
         }
     }
 
