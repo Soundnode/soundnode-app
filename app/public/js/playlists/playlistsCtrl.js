@@ -9,6 +9,14 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
 
     SCapiService.get(endpoint, params)
         .then(function(data) {
+            data.forEach(function(playlist, i) {
+                var l = playlist.tracks.length;
+                while(l--) {
+                    if(!playlist.tracks[l].streamable) {
+                        data[i].tracks.splice(l, 1);
+                    }
+                }
+            });
             $scope.data = data;
         }, function(error) {
             console.log('error', error);
