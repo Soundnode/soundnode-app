@@ -208,7 +208,7 @@ app.service('SCapiService', function ($http, $window, $q, $log, $state, $statePa
                                 return response.data.collection.concat(next_href_response.collection);
                         })
                     } else {
-                        return response.data;
+                        return response.data.collection;
                     }
                 } else {
                     // invalid response
