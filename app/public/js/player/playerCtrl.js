@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkeys, $log, $timeout) {
+app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueService, hotkeys, $state, $log, $timeout) {
     $scope.imgPath = 'public/img/temp-playing.png';
 
     $timeout(function() {
@@ -97,6 +97,16 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, hotkey
         var elButton = document.querySelector('.player_queueList');
         elButton.classList.toggle('active');
         document.querySelector('.queueList').classList.toggle('active');
+    };
+
+    $scope.goToSong = function ($event) {
+        var trackObj = queueService.getTrack();
+        $state.go('track', { id: trackObj.songId });
+    };
+
+    $scope.goToUser = function ($event) {
+        var trackObj = queueService.getTrack();
+        $state.go('profile', { id: trackObj.songUserId });
     };
 
 

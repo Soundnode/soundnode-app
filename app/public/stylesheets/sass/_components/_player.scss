@@ -16,6 +16,7 @@
     width: 50px;
     margin: 5px 0;
     float: left;
+    cursor: pointer;
 }
 
 .player_title {
@@ -24,6 +25,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 13px 10px 0;
+    cursor: pointer;
 }
 
 .player_details {
@@ -41,6 +43,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 300;
+    cursor: pointer;
 }
 
 .player_currentSong {
