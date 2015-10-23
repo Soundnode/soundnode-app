@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
-        nodewebkit: {
+        nwjs: {
             options: {
                 buildDir: './dist', // Where the build version of my node-webkit app is saved
                 macIcns: './app/soundnode.icns',
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-node-webkit-builder');
+    grunt.loadNpmTasks('grunt-nw-builder');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Build desktop
