@@ -93,7 +93,13 @@ app.run(function($rootScope, $log, $state, SCapiService, hotkeys) {
 
     });
 
-    // shortcut to open devtools
+    // disable cmd (ctrl) + click to open a new tab/page
+    document.addEventListener('click', function(e) {
+        if ( e.metaKey ) {
+            e.preventDefault();
+        }
+    }, false);
+
     hotkeys.add({
         combo: ['command+/', 'ctrl+/'],
         description: 'Open devtools',
