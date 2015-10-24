@@ -117,6 +117,14 @@
                     color: $defaultColor;
                     font-size: 0.9em;
                 }
+
+                & .user_name {
+                    cursor: pointer;
+                    display: initial;
+                    font-size: inherit;
+                    font-weight: inherit;
+                    color: inherit;
+                }
             }
 
             & p {
