@@ -78,7 +78,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:build',
         'sass:production',
-        'nodewebkit'
+        'nwjs'
     ]);
 
     // Dev
