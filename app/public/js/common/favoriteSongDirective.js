@@ -1,6 +1,14 @@
 "use strict";
 
-app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout, $state, $stateParams, notificationFactory) {
+app.directive('favoriteSong', function(
+    $rootScope,
+    $log,
+    SCapiService,
+    $timeout,
+    $state,
+    $stateParams,
+    notificationFactory
+) {
     return {
         restrict: 'A',
         scope: {
