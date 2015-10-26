@@ -50,14 +50,13 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
 
     function filterTracks(tracks) {
         // Filter reposts: display only first appearance of track in stream
-        var result = tracks.filter(function (track) {
+        return tracks.filter(function (track) {
             var exists = tracksIds.indexOf(track.origin.id) > -1;
             if (!exists) {
                 tracksIds.push(track.origin.id);
             }
             return !exists;
         });
-        return result;
     }
 
     function markLikedTracks (tracks) {
