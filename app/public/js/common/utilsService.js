@@ -13,11 +13,12 @@ app.factory('utilsService', function(
     /**
      * Find track and mark as favorited
      * @param trackId (track id)
-     * @method markTrackAsFav
+     * @method markTrackAsFavorite
      */
     utils.markTrackAsFavorite = function(trackId) {
         var track = document.querySelector('a[data-song-id="' + trackId + '"]');
         track.classList.add('liked');
+        //track.setAttribute('favorite', true);
     };
 
     /**
