@@ -23,76 +23,22 @@
 
 var gui = require('nw.gui');
 
-app.factory('playerService', function($rootScope, $log, $timeout, $window, $state, notificationFactory, queueService) {
+app.factory('playerService', function(
+    $rootScope,
+    $log,
+    $timeout,
+    $window,
+    $state,
+    notificationFactory,
+    queueService,
+    utilsService
+) {
 
     $rootScope.isSongPlaying = false;
     $rootScope.isPlaylistPlaying = false;
     $rootScope.shuffle = false;
     $rootScope.repeat = false;
     $rootScope.lock = false;
-
-    /**
-     * Get a number between min index and max index
-     * in the Queue array
-     * @returns {number} [index in array]
-     */
-    function shuffle() {
-        var max = queueService.size() - 1;
-        var min = 0;
-
-        queueService.currentPosition = Math.floor(Math.random() * (max - min) + min);
-    }
-
-    /**
-     * Get siblings of current song
-     * @params clickedSong [track DOM element]
-     * @returns array [sibling of ]
-     */
-    function getSongSiblingsData(clickedSong) {
-        var elCurrentSongParent = $(clickedSong).closest('li');
-        var elCurrentSongSiblings = $(elCurrentSongParent).nextAll('li');
-        var elCurrentSongSiblingData;
-        var list = [];
-
-        for ( var i = 0; i < elCurrentSongSiblings.length; i++ ) {
-            elCurrentSongSiblingData = $(elCurrentSongSiblings[i]).find('.songList_item_song_button').data();
-            list.push(elCurrentSongSiblingData);
-        }
-
-        return list;
-    }
-
-    /**
-     * Responsible to get the current song
-     * @return {object} [current song object]
-     */
-    function getCurrentSong() {
-        return document.querySelector('.currentSong');
-    }
-
-    /**
-     * Responsible to deactivate current song
-     * (remove class "currentSong" from element)
-     */
-    function deactivateCurrentSong() {
-        var currentSong = getCurrentSong();
-
-        if ( currentSong ) {
-            currentSong.classList.remove('currentSong');
-        }
-    }
-
-    /**
-     * Activate track in view based on trackId
-     * @param trackId [contain track id]
-     */
-    function activateCurrentSong(trackId) {
-        var el = document.querySelector('span[data-song-id="' + trackId + '"]');
-
-        if ( el ) {
-            el.classList.add('currentSong');
-        }
-    }
 
     /**
      * Contain player actions
@@ -149,14 +95,14 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
             queueService.clear();
         }
 
-        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing is equal to song clicked
+        if ( this.elPlayer.currentTime !== 0 && !this.elPlayer.paused && clickedSong === utilsService.getCurrentSong() ) { // song playing is equal to song clicked
             this.pauseSong();
-        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === getCurrentSong() ) { // song playing but paused is equal to song clicked
+        } else if ( this.elPlayer.currentTime !== 0 && this.elPlayer.paused && clickedSong === utilsService.getCurrentSong() ) { // song playing but paused is equal to song clicked
             this.playSong();
-        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== getCurrentSong() ) { // there's no song playing or song clicked not equal to current song paying
+        } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== utilsService.getCurrentSong() ) { // there's no song playing or song clicked not equal to current song paying
 
             if ( queueService.isEmpty() ) {
-                currentElSiblings = getSongSiblingsData(clickedSong);
+                currentElSiblings = utilsService.getSongSiblingsData(clickedSong);
                 queueService.insert(currentElData);
                 queueService.push(currentElSiblings);
             } else {
@@ -186,8 +132,8 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         var trackObjId = trackObj.songId;
         var songNotification;
 
-        deactivateCurrentSong();
-        activateCurrentSong(trackObjId);
+        utilsService.deactivateCurrentSong();
+        utilsService.activateCurrentSong(trackObjId);
 
         if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
             trackObj.songThumbnail = 'public/img/logo-short.png';
@@ -248,7 +194,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         }
 
         if ( $rootScope.shuffle && ! $rootScope.repeat ) {
-            shuffle();
+            utilsService.shuffle();
         } else if ( ! $rootScope.repeat ) {
             queueService.prev();
         }
@@ -269,7 +215,7 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
         }
 
         if ( $rootScope.shuffle && ! $rootScope.repeat ) {
-            shuffle();
+            utilsService.shuffle();
         } else if ( ! $rootScope.repeat ) {
             queueService.next();
         }

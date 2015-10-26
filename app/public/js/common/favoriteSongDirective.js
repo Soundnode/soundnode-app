@@ -14,7 +14,7 @@ app.directive('favoriteSong', function($rootScope, $log, SCapiService, $timeout,
                 userId = $rootScope.userId;
                 songId = attrs.songId;
 
-                if ( $scope.favorite === true ) {
+                if ( $scope.favorite ) {
 
                     SCapiService.deleteFavorite(userId, songId)
                         .then(function(status) {
