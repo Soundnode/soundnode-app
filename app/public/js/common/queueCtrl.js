@@ -1,6 +1,18 @@
 'use strict';
 
-app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $timeout, playerService, SCapiService, ngDialog, notificationFactory, $location, $anchorScroll) {
+app.controller('QueueCtrl', function(
+    $scope,
+    $rootScope,
+    queueService,
+    $log, $timeout,
+    playerService,
+    SCapiService,
+    ngDialog,
+    notificationFactory,
+    $location,
+    $anchorScroll,
+    utilsService
+) {
     $scope.data = queueService.getAll();
 
     $scope.$on('activateQueue', function(event, data) {
@@ -71,6 +83,7 @@ app.controller('QueueCtrl', function($scope, $rootScope, queueService, $log, $ti
             .then(function(status) {
                 if ( typeof status == "object" ) {
                     notificationFactory.success("Song added to likes!");
+                    utilsService.markTrackAsFavorite(songId);
                 }
             }, function(status) {
                 notificationFactory.error("Something went wrong!");
