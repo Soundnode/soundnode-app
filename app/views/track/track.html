@@ -52,9 +52,10 @@
 
         <div class="commentsContainer">
             <div class="comment" ng-repeat="comment in comments">
-                <img ng-src="{{comment.user.avatar_url}}" alt="{{comment.user.username}}" class="user_thumb">
+                <img ng-src="{{comment.user.avatar_url}}" alt="{{comment.user.username}}" class="user_thumb" ui-sref="profile({ id: comment.user.id })">
 
-                <h3>{{comment.user.username}}
+                <h3>
+                    <a ui-sref="profile({ id: comment.user.id })" class="user_name">{{comment.user.username}}</a>
                     <span>at {{comment.timestamp | date : 'mm:ss'}}</span>
                     <span class="date">{{comment.created_at | limitTo: 19}}</span>
                 </h3>
