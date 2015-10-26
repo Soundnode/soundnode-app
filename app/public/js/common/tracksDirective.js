@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.directive('tracks', function () {
     return {
