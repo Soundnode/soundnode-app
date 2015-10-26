@@ -2,7 +2,8 @@
 
 app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
     var endpoint = 'me/activities'
-        , params = 'limit=33';
+        , params = 'limit=33'
+        , tracksIds = [];
 
     $scope.title = 'Stream';
     $scope.data = '';
@@ -11,7 +12,8 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
 
     SCapiService.get(endpoint, params)
         .then(function(data) {
-            $scope.data = data.collection;
+            var tracks = filterTracks(data.collection);
+            $scope.data = tracks;
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
@@ -35,10 +37,9 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
 
         SCapiService.getNextPage()
             .then(function(data) {
-                markLikedTracks(data);
-                for ( var i = 0; i < data.collection.length; i++ ) {
-                    $scope.data.push( data.collection[i] )
-                }
+                var tracks = filterTracks(data.collection);
+                markLikedTracks(tracks);
+                $scope.data = $scope.data.concat(tracks);
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){
@@ -46,6 +47,18 @@ app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
                 $rootScope.isLoading = false;
             });
     };
+
+    function filterTracks(tracks) {
+        // Filter reposts: display only first appearance of track in stream
+        var result = tracks.filter(function (track) {
+            var exists = tracksIds.indexOf(track.origin.id) > -1;
+            if (!exists) {
+                tracksIds.push(track.origin.id);
+            }
+            return !exists;
+        });
+        return result;
+    }
 
     function markLikedTracks (tracks) {
         var tracksData = tracks.collection || tracks;
