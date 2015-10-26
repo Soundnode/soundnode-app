@@ -96,20 +96,23 @@ app.factory('queueService', function() {
      * @method prev
      */
     Queue.prev = function() {
-        if ( this.currentPosition !== 0 ) {
+        if ( this.currentPosition > 0 ) {
             --this.currentPosition;
         }
     };
 
     /**
      * Increase (by 1) currentPosition in the list
-     * if currentPosition not equal to list size
+     * if currentPosition is less than list size
      * @method next
+     * @return {false} if no next track available or {true} otherwise
      */
     Queue.next = function() {
-        if ( this.currentPosition !== this.size() ) {
+        if ( this.currentPosition < this.size()-1 ) {
             ++this.currentPosition;
+            return true;
         }
+        return false;
     };
 
     /**

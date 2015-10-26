@@ -247,9 +247,9 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
             return false;
         }
 
-        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
+        if ( $rootScope.shuffle ) {
             shuffle();
-        } else if ( ! $rootScope.repeat ) {
+        } else {
             queueService.prev();
         }
 
@@ -264,17 +264,26 @@ app.factory('playerService', function($rootScope, $log, $timeout, $window, $stat
      */
     player.playNextSong = function() {
 
+        var queueEnded = false;
+
         if ( $rootScope.lock ) {
             return false;
         }
 
-        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
+        if ( $rootScope.shuffle ) {
             shuffle();
         } else if ( ! $rootScope.repeat ) {
-            queueService.next();
+            queueEnded = !queueService.next();
+        } else {
+            if( ! queueService.next() ) {
+                queueService.currentPosition = 0;
+            }
         }
 
-        this.playNewSong();
+        if( ! queueEnded ) {
+            this.playNewSong();
+        }
+
     };
 
     /**
