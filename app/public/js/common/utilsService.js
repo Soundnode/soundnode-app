@@ -8,14 +8,14 @@ app.factory('utilsService', function(
      * and the rest of the App
      * @type {{}}
      */
-    var utils = {};
+    var Utils = {};
 
     /**
      * Find track and mark as favorited
      * @param trackId (track id)
      * @method markTrackAsFavorite
      */
-    utils.markTrackAsFavorite = function(trackId) {
+    Utils.markTrackAsFavorite = function(trackId) {
         var track = document.querySelector('a[data-song-id="' + trackId + '"]');
         track.classList.add('liked');
         //track.setAttribute('favorite', true);
@@ -25,7 +25,7 @@ app.factory('utilsService', function(
      * Activate track in view based on trackId
      * @param trackId [contain track id]
      */
-    utils.activateCurrentSong = function(trackId) {
+    Utils.activateCurrentSong = function(trackId) {
         var el = document.querySelector('span[data-song-id="' + trackId + '"]');
 
         if ( el ) {
@@ -37,7 +37,7 @@ app.factory('utilsService', function(
      * Responsible to deactivate current song
      * (remove class "currentSong" from element)
      */
-    utils.deactivateCurrentSong = function() {
+    Utils.deactivateCurrentSong = function() {
         var currentSong = this.getCurrentSong();
 
         if ( currentSong ) {
@@ -49,7 +49,7 @@ app.factory('utilsService', function(
      * Responsible to get the current song
      * @return {object} [current song object]
      */
-    utils.getCurrentSong = function() {
+    Utils.getCurrentSong = function() {
         return document.querySelector('.currentSong');
     };
 
@@ -58,7 +58,7 @@ app.factory('utilsService', function(
      * in the Queue array
      * @returns {number} [index in array]
      */
-    utils.shuffle = function() {
+    Utils.shuffle = function() {
         var max = queueService.size() - 1;
         var min = 0;
 
@@ -70,7 +70,7 @@ app.factory('utilsService', function(
      * @params clickedSong [track DOM element]
      * @returns array [sibling of ]
      */
-    utils.getSongSiblingsData = function(clickedSong) {
+    Utils.getSongSiblingsData = function(clickedSong) {
         var elCurrentSongParent = $(clickedSong).closest('li');
         var elCurrentSongSiblings = $(elCurrentSongParent).nextAll('li');
         var elCurrentSongSiblingData;
@@ -85,6 +85,6 @@ app.factory('utilsService', function(
     };
 
 
-    return utils;
+    return Utils;
 
 });
