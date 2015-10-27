@@ -1,7 +1,13 @@
 'use strict';
 
-app.controller('AboutCtrl', function ($scope, $http, $rootScope, ngDialog, $window) {
-    var urlAbout = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html'
+app.controller('AboutCtrl', function (
+    $scope,
+    $http,
+    $rootScope,
+    ngDialog,
+    $window
+) {
+    var urlAbout = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/about.html';
     var urlRelease = 'https://api.github.com/repos/Soundnode/soundnode-app/releases';
     var config = {
             headers:  {

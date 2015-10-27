@@ -65,6 +65,11 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
             url: '/settings',
             templateUrl: 'views/settings/settings.html',
             controller: 'SettingsCtrl'
+        })
+        .state('news', {
+            url: '/news',
+            templateUrl: 'views/news/news.html',
+            controller: 'NewsCtrl'
         });
 });
 
