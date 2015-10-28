@@ -1,8 +1,18 @@
 'use strict';
 
-var app = angular.module('App', ['ui.router', 'ngSanitize', 'cfp.hotkeys', 'infinite-scroll', 'ngDialog']);
+var app = angular.module('App', [
+    'ui.router',
+    'ngSanitize',
+    'cfp.hotkeys',
+    'infinite-scroll',
+    'ngDialog'
+]);
 
-app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
+app.config(function (
+    $stateProvider,
+    $urlRouterProvider,
+    hotkeysProvider
+) {
 
     // Hotkeys config
     hotkeysProvider.includeCheatSheet = false;
@@ -73,10 +83,16 @@ app.config(function ($stateProvider, $urlRouterProvider, hotkeysProvider) {
         });
 });
 
-app.run(function($rootScope, $log, $state, SCapiService, hotkeys) {
+app.run(function(
+    $rootScope,
+    $log,
+    $state,
+    SCapiService,
+    hotkeys
+) {
 
     //start GA
-    window.visitor.pageview("/").send();
+    window.settings.visitor.pageview("/").send();
 
     // toastr config override
     toastr.options.positionClass = 'toast-bottom-right';
@@ -91,9 +107,9 @@ app.run(function($rootScope, $log, $state, SCapiService, hotkeys) {
 
         // set GA page/view
         if ( toState.name === "" ) {
-            window.visitor.pageview("/").send();
+            window.settings.visitor.pageview("/").send();
         } else {
-            window.visitor.pageview(toState.name).send();
+            window.settings.visitor.pageview(toState.name).send();
         }
 
     });
