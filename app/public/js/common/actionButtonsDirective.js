@@ -7,7 +7,7 @@ app.directive('actionButtons', function () {
             return "views/common/actionButtons"+attr.os+".html";
         },
         link : function () {
-            uiFrame.addGUIeventHandlers();
+            guiConfig.addGUIeventHandlers();
         }
     }
 });

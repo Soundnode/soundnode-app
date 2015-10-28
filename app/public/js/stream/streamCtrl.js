@@ -1,6 +1,10 @@
 'use strict';
 
-app.controller('StreamCtrl', function ($scope, SCapiService, $rootScope) {
+app.controller('StreamCtrl', function (
+    $scope,
+    SCapiService,
+    $rootScope
+) {
     var endpoint = 'me/activities'
         , params = 'limit=33'
         , tracksIds = [];
