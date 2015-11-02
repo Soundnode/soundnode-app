@@ -1,5 +1,6 @@
 build:
     - 'clean:build'
+    - 'shell'
     - 'sass:production'
     - 'nwjs'
 
