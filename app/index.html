@@ -64,23 +64,7 @@
         <action-buttons class="windowsActionButtons" ng-if="isRunningWindows" os="Windows"></action-buttons>
 
         <ul class="appInfo">
-            <li class="appInfo_item subNav">
-                <a ng-click="toggleSettings()" class="subNav_button"> <i class="fa fa-cog"></i> </a>
-
-                <!-- Settings navigation -->
-                <ul class="subNav_nav" data-isVisible="{{ isSettingsVisible }}">
-                    <li class="subNav_nav_item" ng-controller="AboutCtrl">
-                        <a ng-click="openModal()">About</a>
-                    </li>
-                    <li class="subNav_nav_item">
-                        <a ui-sref="settings">Settings</a>
-                    </li>
-                    <li class="subNav_nav_item">
-                        <a ui-sref="news">News</a>
-                    </li>
-                </ul>
-
-            </li>
+            <li class="appInfo_item subNav settingsApp"></li>
             <li class="appInfo_item" ng-controller="UpdaterCtrl">
                 <a href="http://www.soundnodeapp.com" target="_blank" open-external
                    ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
@@ -278,7 +262,7 @@
 <script src="public/js/common/roundFilter.js"></script>
 
 <!-- Webpack bundle -->
-<!--<script src="public/dist/bundle.js"></script>-->
+<script src="dist/bundle.js"></script>
 
 </body>
 </html>
