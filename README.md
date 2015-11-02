@@ -20,6 +20,12 @@ It's built with NW.js, Node.js, Angular.js and uses Soundcloud API.
 
 And much more!
 
+## Reasons to contribute
+
+- You will learn new things
+- 1000 + daily users
+- 30,000 + downloads
+
 ## How to contribute
 
 First, building, testing, and reporting bugs is highly appreciated. Please include console's output and steps to reproduce the problem in your bug report if possible.

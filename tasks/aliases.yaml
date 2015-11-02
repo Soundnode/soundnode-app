@@ -1,0 +1,8 @@
+build:
+    - 'clean:build'
+    - 'shell'
+    - 'sass:production'
+    - 'nwjs'
+
+dev:
+    - 'sass:dev'

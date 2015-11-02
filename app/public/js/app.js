@@ -125,7 +125,7 @@ app.run(function(
         combo: ['command+/', 'ctrl+/'],
         description: 'Open devtools',
         callback: function() {
-            appGUI.openDevTools();
+            guiConfig.openDevTools();
         }
     });
 
