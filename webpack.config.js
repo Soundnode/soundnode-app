@@ -1,9 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    // Gives you sourcemaps without slowing down rebundling
-    devtool: 'eval-source-map',
-    entry: path.join(__dirname, './app/public/js/main.jsx'),
+    entry: path.join(__dirname, './app/public/js/components/main.jsx'),
     output: {
         path: path.join(__dirname, './app/dist'),
         filename: 'bundle.js', // or [name]
@@ -18,6 +16,7 @@ module.exports = {
                 query: {
                     presets: [
                         'es2015',
+                        'stage-0', // this enable JS.next features in stage-0
                         'react'
                     ]
                 }
