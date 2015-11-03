@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import WindowActions from './header/windowActions.jsx';
+import HeaderActions from './header/headerActions.jsx';
 import SettingsNav from './header/settingsNav.jsx';
 
 // because of https://github.com/babel/babel/issues/2700
@@ -19,8 +19,8 @@ import SettingsNav from './header/settingsNav.jsx';
 // components
 
 ReactDOM.render(
-    <WindowActions />,
-    document.querySelector('.windowActionsApp')
+    <HeaderActions />,
+    document.querySelector('.headerActionsApp')
 );
 
 ReactDOM.render(

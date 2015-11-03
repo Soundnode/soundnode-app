@@ -17,7 +17,7 @@ const BackForwardActions = React.createClass({
    }
 });
 
-const AppActions = React.createClass({
+const WindowActions = React.createClass({
 
     closeApp () {
         guiConfig.close();
@@ -68,12 +68,15 @@ const AppActions = React.createClass({
     }
 });
 
-const WindowActions = React.createClass({
+const HeaderActions = React.createClass({
     render () {
         return (
-            <AppActions />
+            <div>
+                <WindowActions />
+                <BackForwardActions />
+            </div>
         )
     }
 });
 
-export default WindowActions;
+export default HeaderActions;

@@ -17,7 +17,6 @@
   float: left;
   margin: 5px 0 0 0;
   -webkit-app-region: no-drag;
-  width: 200px;
 }
 .windowAction_item {
   float: left;
@@ -39,23 +38,6 @@
 }
 
 .macActionButtons {
-  & #closeApp {
-    background: #D96C76;
-
-    & .fa {
-      position: relative;
-      top: -1px;
-    }
-  }
-  & #minimizeApp {
-    background: #FDF9C6;
-  }
-  & #expandApp {
-    background: #96E1C7;
-  }
-}
-
-.linuxActionButtons {
   & #closeApp {
     background: #D96C76;
 
@@ -153,7 +135,7 @@
 .topbarSearch {
   position: relative;
   float: left;
-  margin: 0;
+  margin: 0 0 0 37px;
   -webkit-app-region: no-drag;
 }
 
