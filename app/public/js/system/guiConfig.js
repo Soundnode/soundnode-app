@@ -11,29 +11,6 @@ guiConfig.init = function () {
     this.navBarUserUnAuthenticated();
 };
 
-guiConfig.addGUIeventHandlers = function () {
-    // Get the current window
-    var elCloseApp = document.getElementById('closeApp'),
-        elMinimizeApp = document.getElementById('minimizeApp'),
-        elExpandApp = document.getElementById('expandApp');
-
-    // Close App
-    $(elCloseApp).on('click', function () {
-        guiConfig.close();
-    });
-
-    // Minimize App
-    $(elMinimizeApp).on('click', function () {
-        guiConfig.minimize();
-    });
-
-    // Expand App
-    $(elExpandApp).on('click', function () {
-        guiConfig.maximize();
-    });
-
-};
-
 // close the App
 guiConfig.close = function () {
     if (process.platform !== "darwin") {
