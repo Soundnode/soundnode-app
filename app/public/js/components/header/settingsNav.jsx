@@ -2,15 +2,15 @@
 
 import React, { Component } from 'react';
 
-const SettingsButton = React.createClass({
+class SettingsButton extends Component {
     render () {
         return (
             <a onClick={this.props.onClick} className="subNav_button"><i className="fa fa-cog"></i></a>
         )
     }
-});
+}
 
-const SettingsList = React.createClass({
+class SettingsList extends Component {
     render () {
         return (
             <ul className="subNav_nav" data-isvisible={this.props.isVisible}>
@@ -26,26 +26,22 @@ const SettingsList = React.createClass({
             </ul>
         )
     }
-});
+}
 
-const SettingsApp = React.createClass({
-    getInitialState () {
-        return {
+class SettingsApp extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
             isVisible: false
-        }
-    },
+        };
 
-    toggleSettings () {
-        if ( this.state.isVisible ) {
+        this.toggleSettings = () => {
             this.setState({
-                isVisible: false
+                isVisible: !this.state.isVisible
             });
-        } else {
-            this.setState({
-                isVisible: true
-            });
-        }
-    },
+        };
+    }
 
     render () {
         return (
@@ -55,6 +51,6 @@ const SettingsApp = React.createClass({
             </div>
         )
     }
-});
+}
 
 export default SettingsApp;

@@ -1,8 +1,8 @@
 "use strict";
 
-import React from 'react';
+import React, { Component } from 'react';
 
-const BackForwardActions = React.createClass({
+class BackForwardActions extends Component {
    render () {
        return (
            <ul className="windowAction">
@@ -15,21 +15,21 @@ const BackForwardActions = React.createClass({
            </ul>
        )
    }
-});
+}
 
-const WindowActions = React.createClass({
+class WindowActions extends Component {
 
     closeApp () {
         guiConfig.close();
-    },
+    }
 
     minimizeApp () {
         guiConfig.minimize();
-    },
+    }
 
     maximizeApp () {
         guiConfig.maximize();
-    },
+    }
 
     render () {
 
@@ -66,9 +66,9 @@ const WindowActions = React.createClass({
             )
         }
     }
-});
+}
 
-const HeaderActions = React.createClass({
+class HeaderActions extends Component {
     render () {
         return (
             <div>
@@ -77,6 +77,6 @@ const HeaderActions = React.createClass({
             </div>
         )
     }
-});
+}
 
 export default HeaderActions;
