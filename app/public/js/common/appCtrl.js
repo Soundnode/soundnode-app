@@ -2,22 +2,6 @@
 
 app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog) {
 
-    // Settings sub nav (dropdown)
-    $scope.isSettingsVisible = false;
-
-    // Os detection
-    $scope.isRunningLinux = process.platform == 'linux32' || process.platform == 'linux64' || process.platform == 'linux';
-    $scope.isRunningWindows = process.platform == 'win32';
-    $scope.isRunningMac = process.platform == 'darwin';
-
-    $scope.toggleSettings = function() {
-        if ( $scope.isSettingsVisible ) {
-            $scope.isSettingsVisible = false;
-        } else {
-            $scope.isSettingsVisible = true;
-        }
-    };
-
     // check if track has Art work
     // otherwise replace to Soundnode App logo
     $scope.showBigArtwork = function (img) {

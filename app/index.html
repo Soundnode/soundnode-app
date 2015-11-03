@@ -34,16 +34,7 @@
 
     <!-- header -->
     <header class="topFrame">
-        <ul class="windowAction">
-            <action-buttons class="linuxActionButtons" ng-if="isRunningLinux" os="Linux"></action-buttons>
-            <action-buttons class="macActionButtons" ng-if="isRunningMac" os="Mac"></action-buttons>
-            <li class="windowAction_item navigationButton goBack" ng-click="goBack()">
-                <i class="fa fa-chevron-left"></i>
-            </li>
-            <li class="windowAction_item navigationButton goForward" ng-click="goForward()">
-                <i class="fa fa-chevron-right"></i>
-            </li>
-        </ul>
+        <div class="headerActionsApp"></div>
 
         <ul class="topbarSearch">
             <!-- search -->
@@ -60,8 +51,6 @@
             </div>
             <!-- search / end -->
         </ul>
-
-        <action-buttons class="windowsActionButtons" ng-if="isRunningWindows" os="Windows"></action-buttons>
 
         <ul class="appInfo">
             <li class="appInfo_item subNav settingsApp"></li>
@@ -254,7 +243,6 @@
 <script src="public/js/common/showMoreDirective.js"></script>
 <script src="public/js/common/tracksDirective.js"></script>
 <script src="public/js/common/playlistDirective.js"></script>
-<script src="public/js/common/actionButtonsDirective.js"></script>
 <script src="public/js/common/queueListDirective.js"></script>
 
 <!-- filters / utils -->
