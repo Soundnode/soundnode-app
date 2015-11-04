@@ -23,8 +23,8 @@ And much more!
 ## Reasons to contribute
 
 - You will learn new things
-- 1000 + daily users
-- 30,000 + downloads
+- 1000+ daily users
+- 30,000+ downloads
 
 ## How to contribute
 
