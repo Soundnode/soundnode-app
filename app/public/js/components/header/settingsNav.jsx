@@ -33,18 +33,18 @@ class SettingsApp extends Component {
         this.state = {
             isVisible: false
         };
-
-        this.toggleSettings = () => {
-            this.setState({
-                isVisible: !this.state.isVisible
-            });
-        };
     }
+
+    toggleSettings () {
+        this.setState({
+            isVisible: !this.state.isVisible
+        });
+    };
 
     render () {
         return (
             <div>
-                <SettingsButton onClick={this.toggleSettings} />
+                <SettingsButton onClick={this.toggleSettings.bind(this)} />
                 <SettingsList isVisible={this.state.isVisible} />
             </div>
         )
