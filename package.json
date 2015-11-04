@@ -4,8 +4,8 @@
   "main": "app/index.html",
   "description": "Soundnode App is the Soundcloud for desktop",
   "scripts": {
-    "build": "webpack -p",
-    "watch": "webpack --watch",
+    "build": "webpack -d -p",
+    "watch": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
