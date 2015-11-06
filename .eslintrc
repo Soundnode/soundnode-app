@@ -21,7 +21,7 @@
     "no-underscore-dangle": 0,
     "no-undefined": 2,
     "no-unused-vars": 1,
-    "no-var": 2,
+    "no-var": 1,
     "quotes": [0, "double", "avoid-escape"],
     "radix": 1,
     "semi-spacing": [1, {"before": false, "after": true}],
