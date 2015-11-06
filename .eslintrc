@@ -19,7 +19,7 @@
     "no-throw-literal": 2,
     "no-trailing-spaces": 0,
     "no-underscore-dangle": 0,
-    "no-undefined": 1,
+    "no-undefined": 2,
     "no-unused-vars": 1,
     "no-var": 1,
     "quotes": [0, "double", "avoid-escape"],
