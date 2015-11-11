@@ -3,19 +3,27 @@
 app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCapiService) {
     $scope.title = 'Search results';
 
+    var isTypeaheadAborted = false;
+
     $scope.onSubmit = function(keyword) {
         $state.go('search', {q: keyword}, {reload: true});
         $scope.blurTypeahead();
+        isTypeaheadAborted = true;
     }
 
     $scope.typeahead = function(keyword) {
         var dropdown = document.getElementById('searchDropDown');
-            dropdown.innerHTML = '';
+        dropdown.innerHTML = '';
 
+        isTypeaheadAborted = false;
 
         // search for artists
         SCapiService.search('users', 4, keyword)
                     .then(function(data) {
+                        if (isTypeaheadAborted) {
+                            $scope.blurTypeahead();
+                            return false;
+                        }
 
                         if (data.collection.length < 1) {
                             var error = document.createElement('div');
@@ -54,6 +62,10 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
         // search for tracks
         SCapiService.search('tracks', 4, keyword)
                     .then(function(data) {
+                        if (isTypeaheadAborted) {
+                            $scope.blurTypeahead();
+                            return false;
+                        }
                         if (data.collection.length < 1) {
                             return false;
                         }
@@ -87,6 +99,10 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                         dropdown.appendChild(showAll);
                     })
                     .then(function(){
+                        if (isTypeaheadAborted) {
+                            $scope.blurTypeahead();
+                            return false;
+                        }
                         dropdown.style.display = 'block';
                     })
                     .catch(function(err) {
