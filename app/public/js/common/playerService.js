@@ -29,6 +29,7 @@ app.factory('playerService', function(
     $timeout,
     $window,
     $state,
+    mprisService,
     notificationFactory,
     queueService,
     utilsService
@@ -161,6 +162,10 @@ app.factory('playerService', function(
 
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
+
+        if(process.platform === "linux") {
+            mprisService.play("0", trackObj.songThumbnail, trackObj.songTitle, trackObj.songUser);
+        }
     };
 
     /**
@@ -170,6 +175,10 @@ app.factory('playerService', function(
     player.playSong = function() {
         this.elPlayer.play();
         $rootScope.isSongPlaying = true;
+
+        if(process.platform === "linux") {
+            mprisService.play("0", player.elThumb.src, player.elTitle.innerHTML, player.elUser.innerHTML);
+        }
     };
 
     /**
@@ -179,6 +188,10 @@ app.factory('playerService', function(
     player.pauseSong = function() {
         this.elPlayer.pause();
         $rootScope.isSongPlaying = false;
+
+        if(process.platform === "linux") {
+            mprisService.pause();
+        }
     };
 
     /**
@@ -306,6 +319,31 @@ app.factory('playerService', function(
     scrub.on('dragstart', function (e) {
         e.preventDefault();
     });
+
+    /*
+    ** Handle mpris Calls
+    */
+    if(process.platform === "linux") {
+        mprisService.on('playpause', function() {
+            if ( $rootScope.isSongPlaying ) {
+                player.pauseSong();
+            } else {
+                player.playSong();
+            }
+        });
+
+        mprisService.on('next', function() {
+            player.playNextSong();
+        });
+
+        mprisService.on('previous', function() {
+            player.playPrevSong();
+        });
+
+        mprisService.on('shuffle', function() {
+            player.shuffle();
+        });
+    }
 
     return player;
 });

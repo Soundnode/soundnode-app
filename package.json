@@ -32,6 +32,8 @@
   "dependencies": {
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "universal-analytics": "^0.3.9"
+    "universal-analytics": "^0.3.9",
+    "grunt-nw-gyp": "^0.5.0",
+    "mpris-service": "latest"
   }
 }
