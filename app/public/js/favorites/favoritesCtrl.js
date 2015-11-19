@@ -1,6 +1,11 @@
 'use strict';
 
-app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
+app.controller('FavoritesCtrl', function (
+    $scope,
+    $rootScope,
+    SCapiService,
+    utilsService
+) {
     var endpoint = 'me/favorites'
         , params = 'linked_partitioning=1';
 
@@ -14,6 +19,7 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
+            utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
         });
 
@@ -28,6 +34,7 @@ app.controller('FavoritesCtrl', function ($scope, SCapiService, $rootScope) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
                     $scope.data.push( data.collection[i] )
                 }
+                utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){

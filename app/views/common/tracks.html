@@ -32,15 +32,30 @@
 <section class="songList_item_inner">
     <h2 class="songList_item_song_tit" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
 
-    <h3 class="songList_item_song_user">
-      <a ui-sref="profile({id: {{data.user.id}}})">{{ data.user.username }}</a>
-      <span ng-controller="AppCtrl" class="songList_item_song_length"> {{ formatSongDuration (data.duration) }}</span>
+    <h3 class="songList_item_song_info clearfix">
+        <div class="songList_item_song_user">
+            <a ui-sref="profile({id: {{data.user.id}}})">
+                {{ data.user.username }}
+            </a>
+            <span class="songList_item_repost" ng-if="type === 'track-repost'">
+                <i class="fa fa-retweet"></i>
+                <a ui-sref="profile({ id: {{ user.id }} })" title="Reposted by {{ user.username }}">
+                    {{ user.username }}
+                </a>
+            </span>
+        </div>
+        <div ng-controller="AppCtrl" class="songList_item_song_length">
+            {{ formatSongDuration (data.duration) }}
+        </div>
     </h3>
 
     <div class="songList_item_song_details">
         <div class="songList_item_actions">
             <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
                 <i class="fa fa-heart"></i>
+            </a>
+            <a reposted-song data-song-id="{{ data.id }}" reposted="data.user_reposted" ng-class="{ reposted: data.user_reposted }" title="{{data.user_reposted ? 'Unpost' : 'Repost'}}" ng-if="data.user.id !== $root.userId">
+                <i class="fa fa-retweet"></i>
             </a>
             <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
             <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>

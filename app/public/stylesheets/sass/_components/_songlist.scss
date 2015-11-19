@@ -88,15 +88,33 @@ div.active {
   }
 }
 
-.songList_item_song_user {
+.songList_item_song_info {
   display: block;
   color: $defaultColor;
   font-size: 11px;
   text-transform: uppercase;
+
+}
+
+.songList_item_song_user {
+  width: 165px;
+  float: left;
+}
+
+.songList_item_repost {
+  & > i {
+    color: inherit;
+    cursor: default;
+  }
+  & > a {
+    font-size: 8px;
+  }
 }
 
 .songList_item_song_length {
   float: right;
+  width: 45px;
+  text-align: right
 }
 
 .songList_item_song_tit {
@@ -149,7 +167,8 @@ div.active {
           margin-right: 0;
       }
 
-      &.liked {
+      &.liked,
+      &.reposted {
           & > .fa {
               color: $scColor;
           }

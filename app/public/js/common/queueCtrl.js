@@ -91,6 +91,27 @@ app.controller('QueueCtrl', function(
     };
 
     /**
+     * repost track from queue
+     * @param  {object} $event - Angular event
+     * @return {promise}
+     */
+    $scope.repost = function ($event) {
+        var trackData = $($event.target).closest('.queueListView_list_item').data();
+        var songId = trackData.songId;
+
+        return SCapiService.createRepost(songId)
+            .then(function (status) {
+                if (angular.isObject(status)) {
+                    notificationFactory.success('Song added to reposts!');
+                    utilsService.markTrackAsReposted(songId);
+                }
+            })
+            .catch(function (status) {
+                notificationFactory.error('Something went wrong!');
+            });
+    };
+
+    /**
      * add track to playlist
      * @param $event
      */

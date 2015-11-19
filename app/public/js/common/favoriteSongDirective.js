@@ -2,11 +2,7 @@
 
 app.directive('favoriteSong', function(
     $rootScope,
-    $log,
     SCapiService,
-    $timeout,
-    $state,
-    $stateParams,
     notificationFactory
 ) {
     return {

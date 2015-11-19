@@ -1,35 +1,15 @@
 'use strict';
 
-app.service('SCapiService', function ($http, $window, $q, $log, $state, $stateParams, $rootScope, ngDialog) {
-
-    function rateLimitReached() {
-        ngDialog.open({
-            showClose: false,
-            template: 'views/common/modal.html',
-            controller: ['$scope', function ($scope) {
-                var urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
-                var config = {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3.raw+json'
-                    }
-                };
-
-                $scope.content = '';
-
-                $scope.closeModal = function () {
-                    ngDialog.closeAll();
-                };
-
-                $http.get(urlGH, config)
-                    .success(function (data) {
-                        $scope.content = data;
-                    })
-                    .error(function (error) {
-                        console.log('Error', error)
-                    });
-            }]
-        });
-    }
+app.service('SCapiService', function (
+    $http,
+    $window,
+    $q,
+    $log,
+    $state,
+    $stateParams,
+    $rootScope,
+    rateLimit
+) {
 
     /**
      * Responsible to store next url for pagination request
@@ -56,7 +36,7 @@ app.service('SCapiService', function ($http, $window, $q, $log, $state, $statePa
         return $http.get(url)
             .then(function (response, status) {
                 if (response.status === 429) {
-                    rateLimitReached();
+                    rateLimit.showNotification();
                     return [];
                 }
 
@@ -419,5 +399,71 @@ app.service('SCapiService', function ($http, $window, $q, $log, $state, $statePa
             });
     };
 
+    /**
+     * Get ids of all user reposts
+     * @param  {string} next_href - next page of ids, coming from recursive call
+     * @return {promise}
+     */
+    this.getRepostsIds = function(next_href) {
+        var url = next_href || 'https://api.soundcloud.com/e1/me/track_reposts/ids?linked_partitioning=1&limit=200&oauth_token=' + $window.scAccessToken;
+        var that = this;
+        return $http.get(url)
+            .then(function (response) {
+                if (!angular.isObject(response.data)) {
+                    return $q.reject(response.data);
+                }
+                if (response.data.hasOwnProperty('next_href')) {
+                    // call itself to get all repost ids
+                    return that.getRepostsIds(response.data.next_href)
+                        .then(function (next_href_response) {
+                            // sums all ids
+                            return response.data.collection.concat(next_href_response.collection);
+                        });
+                }
+                return response.data.collection;
+
+            })
+            .catch(function (response) {
+                return $q.reject(response.data);
+            });
+    };
+
+    /**
+     * Create repost for a track
+     * @param  {string} songId
+     * @return {promise}
+     */
+    this.createRepost = function (songId) {
+        var url = 'https://api.soundcloud.com/e1/me/track_reposts/' + songId + '?&oauth_token=' + $window.scAccessToken;
+        return $http.put(url)
+            .then(function (response) {
+                if (!angular.isObject(response.data)) {
+                    return $q.reject(response.data);
+                }
+                return response.data;
+            })
+            .catch(function (response) {
+                return $q.reject(response.data);
+            });
+    };
+
+    /**
+     * Delete repost for a track
+     * @param  {string} songId
+     * @return {promise}
+     */
+    this.deleteRepost = function (songId) {
+        var url = 'https://api.soundcloud.com/e1/me/track_reposts/' + songId + '?&oauth_token=' + $window.scAccessToken;
+        return $http.delete(url)
+            .then(function (response) {
+                if (!angular.isObject(response.data)) {
+                    return $q.reject(response.data);
+                }
+                return response.data;
+            })
+            .catch(function (response) {
+                return $q.reject(response.data);
+            });
+    };
 
 });

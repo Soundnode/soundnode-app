@@ -1,6 +1,13 @@
 'use strict';
 
-app.controller('tagCtrl', function ($scope, $http, $stateParams, SCapiService, $rootScope) {
+app.controller('tagCtrl', function (
+    $scope,
+    $rootScope,
+    $http,
+    $stateParams,
+    SCapiService,
+    utilsService
+) {
     var tagUrl = encodeURIComponent($stateParams.name);
 
     $scope.tag = $stateParams.name;
@@ -12,11 +19,12 @@ app.controller('tagCtrl', function ($scope, $http, $stateParams, SCapiService, $
         }, function (error) {
             console.log('error', error);
         }).finally(function () {
+            utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
         });
 
     $scope.loadMore = function () {
-        if ( $scope.busy || !SCapiService.isNextPage()) {
+        if ( $scope.busy || !SCapiService.next_page) {
             return;
         }
         $scope.busy = true;
@@ -26,6 +34,7 @@ app.controller('tagCtrl', function ($scope, $http, $stateParams, SCapiService, $
                 for (var i = 0; i < data.collection.length; i++) {
                     $scope.data.push(data.collection[i])
                 }
+                utilsService.updateTracksReposts(data.collection, true);
             }, function (error) {
                 console.log('error', error);
             }).finally(function () {
