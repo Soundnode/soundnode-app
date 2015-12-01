@@ -2,35 +2,31 @@
 
 app.controller('StreamCtrl', function (
     $scope,
+	$rootScope,
     SCapiService,
-    $rootScope
+    SC2apiService,
+    utilsService
 ) {
-    var endpoint = 'me/activities'
-        , params = 'limit=33'
-        , tracksIds = [];
+    var tracksIds = [];
 
     $scope.title = 'Stream';
     $scope.data = '';
     $scope.busy = false;
-    $scope.likes = '';
 
-    SCapiService.get(endpoint, params)
-        .then(function(data) {
-            var tracks = filterTracks(data.collection);
-            $scope.data = tracks;
-        }, function(error) {
+    SC2apiService.getStream()
+        .then(filterCollection)
+        .then(function (collection) {
+            $scope.data = collection;
+
+            loadTracksInfo(collection);
+        })
+        .catch(function (error) {
             console.log('error', error);
-        }).finally(function() {
-
-            SCapiService.getFavoritesIds()
-                .then(function(data) {
-                    $scope.likes = data;
-                    markLikedTracks($scope.data);
-                }, function(error) {
-                    console.log('error', error);
-                }).finally(function() {
-                    $rootScope.isLoading = false;
-                });
+        })
+        .finally(function () {
+            utilsService.updateTracksLikes($scope.data);
+            utilsService.updateTracksReposts($scope.data);
+            $rootScope.isLoading = false;
         });
 
     $scope.loadMore = function() {
@@ -39,38 +35,67 @@ app.controller('StreamCtrl', function (
         }
         $scope.busy = true;
 
-        SCapiService.getNextPage()
-            .then(function(data) {
-                var tracks = filterTracks(data.collection);
-                markLikedTracks(tracks);
-                $scope.data = $scope.data.concat(tracks);
-            }, function(error) {
+        SC2apiService.getNextPage()
+            .then(filterCollection)
+            .then(function (collection) {
+                $scope.data = $scope.data.concat(collection);
+                utilsService.updateTracksLikes(collection, true);
+                utilsService.updateTracksReposts(collection, true);
+                loadTracksInfo(collection);
+            }, function (error) {
                 console.log('error', error);
-            }).finally(function(){
+            }).finally(function () {
                 $scope.busy = false;
                 $rootScope.isLoading = false;
             });
     };
 
-    function filterTracks(tracks) {
-        // Filter reposts: display only first appearance of track in stream
-        return tracks.filter(function (track) {
-            var exists = tracksIds.indexOf(track.origin.id) > -1;
-            if (!exists) {
-                tracksIds.push(track.origin.id);
+    function filterCollection(data) {
+        return data.collection.filter(function (item) {
+            // Keep only tracks (remove playlists, etc)
+            var isTrackType = item.type === 'track' ||
+                              item.type === 'track-repost' ||
+                              !!(item.track && item.track.streamable);
+            if (!isTrackType) {
+                return false;
             }
-            return !exists;
+
+            // Filter reposts: display only first appearance of track in stream
+            var exists = tracksIds.indexOf(item.track.id) > -1;
+            if (exists) {
+                return false;
+            }
+
+            // "stream_url" property is missing in V2 API
+            item.track.stream_url = item.track.uri + '/stream';
+
+            tracksIds.push(item.track.id);
+            return true;
         });
     }
 
-    function markLikedTracks (tracks) {
-        var tracksData = tracks.collection || tracks;
-        for (var i = 0; i < tracksData.length; ++i) {
-            var track = tracksData[i].origin;
+    // Load extra information, because SoundCloud v2 API does not return
+    // number of track likes
+    function loadTracksInfo(collection) {
+        var ids = collection.map(function (item) {
+            return item.track.id;
+        });
 
-            if (track.hasOwnProperty('user_favorite'))
-                track.user_favorite = ($scope.likes.indexOf(track.id) != -1);
-        }
+        SC2apiService.getTracksByIds(ids)
+            .then(function (tracks) {
+                // Both collections are unordered
+                collection.forEach(function (item) {
+                    tracks.forEach(function (track) {
+                        if (item.track.id === track.id) {
+                            item.track.favoritings_count = track.likes_count;
+                            return;
+                        }
+                    });
+                });
+            })
+            .catch(function (error) {
+                console.log('error', error);
+            });
     }
 
 });

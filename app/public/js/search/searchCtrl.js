@@ -1,6 +1,13 @@
 'use strict';
 
-app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService, $rootScope) {
+app.controller('searchCtrl', function (
+    $scope,
+    $rootScope,
+    $http,
+    $stateParams,
+    SCapiService,
+    utilsService
+) {
 
     $scope.title = 'Results for: ' + $stateParams.q;
     $scope.data = '';
@@ -12,6 +19,7 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService
         }, function(error) {
             console.log('error', error);
         }).finally(function(){
+            utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
         });
 
@@ -26,6 +34,7 @@ app.controller('searchCtrl', function ($scope, $http, $stateParams, SCapiService
                 for ( var i = 0; i < data.collection.length; i++ ) {
                     $scope.data.push( data.collection[i] )
                 }
+                utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){

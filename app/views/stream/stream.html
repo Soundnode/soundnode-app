@@ -1,18 +1,17 @@
 <div class="streamView">
     <h1> {{ title }}</h1>
-    
+
     <!-- Song list wrapper -->
     <div class="streamView_inner">
-        <ul class="songList" 
-            infinite-scroll='loadMore()' 
+        <ul class="songList"
+            infinite-scroll='loadMore()'
             infinite-scroll-distance='0'
             infinite-scroll-container='".mainView"'
             infinite-scroll-immediate-check='false' >
 
-            <li class="songList_item" ng-repeat="data in data"
-                ng-if="data.type == 'track' || data.type == 'track-repost' && data.origin.streamable" >
+            <li class="songList_item" ng-repeat="data in data">
 
-                <tracks data="data.origin"/>
+                <tracks data="data.track" type="data.type" user="data.user"/>
 
             </li>
         </ul>

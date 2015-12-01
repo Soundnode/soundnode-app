@@ -4,7 +4,13 @@
 
 'use strict'
 
-app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $stateParams) {
+app.controller('ProfileCtrl', function (
+    $scope,
+    $rootScope,
+    $stateParams,
+    SCapiService,
+    utilsService
+) {
 
     //ctrl variables
     var userId = $stateParams.id;
@@ -36,6 +42,7 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
+            utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
         });
 
@@ -60,6 +67,7 @@ app.controller('ProfileCtrl', function ($scope, SCapiService, $rootScope, $state
                 for ( var i = 0; i < data.collection.length; i++ ) {
                     $scope.data.push( data.collection[i] )
                 }
+                utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
                 console.log('error', error);
             }).finally(function(){
