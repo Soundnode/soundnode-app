@@ -7,8 +7,8 @@
   height: 100%;
 
   & > div {
+    min-width: 130px;
     max-width: 100%;
-    min-width: 930px;
     margin: 0 auto;
   }
 
@@ -40,4 +40,3 @@
       margin-right: 0;
     }
 }
-
