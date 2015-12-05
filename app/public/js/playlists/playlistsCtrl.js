@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams, notificationFactory) {
+app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams, notificationFactory, modalFactory) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -80,23 +80,25 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
      * @method removePlaylist
      */
     $scope.removePlaylist = function(playlistId) {
-
-        SCapiService.removePlaylist(playlistId)
-            .then(function(response) {
-                if ( typeof response === 'object' ) {
-                    notificationFactory.success("Playlist removed!");
-                }
-            }, function(error) {
-                notificationFactory.error("Something went wrong!");
-            })
-            .finally(function() {
-                $state.transitionTo($state.current, $stateParams, {
-                    reload: true,
-                    inherit: false,
-                    notify: true
-                });
+        modalFactory
+            .confirm('Do you really want to delete the playlist?')
+            .then(function () {
+                SCapiService.removePlaylist(playlistId)
+                    .then(function(response) {
+                        if ( typeof response === 'object' ) {
+                            notificationFactory.success("Playlist removed!");
+                        }
+                    }, function(error) {
+                        notificationFactory.error("Something went wrong!");
+                    })
+                    .finally(function() {
+                        $state.transitionTo($state.current, $stateParams, {
+                            reload: true,
+                            inherit: false,
+                            notify: true
+                        });
+                    });
             });
-
     };
 
     /**

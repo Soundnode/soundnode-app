@@ -8,7 +8,7 @@ app.service('SCapiService', function (
     $state,
     $stateParams,
     $rootScope,
-    rateLimit
+    modalFactory
 ) {
 
     /**
@@ -36,7 +36,7 @@ app.service('SCapiService', function (
         return $http.get(url)
             .then(function (response, status) {
                 if (response.status === 429) {
-                    rateLimit.showNotification();
+                    modalFactory.rateLimitReached();
                     return [];
                 }
 

@@ -1,0 +1,10 @@
+<div class="modalView">
+    <div ng-include="'views/common/modals/closeButton.html'"></div>
+
+    <div class="modalView_content" ng-bind-html="content"></div>
+
+    <div class="modalView_footer">
+        <button class="button" ng-click="confirm()">Confirm</button>
+        <button class="button" ng-click="closeModal()">Cancel</button>
+    </div>
+</div>
