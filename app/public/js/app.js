@@ -141,7 +141,7 @@ app.run(function(
         combo: ['mod+0'],
         description: 'Reset Window Scale to 1',
         callback: function() {
-            userConfig.scaleWindow("reset");
+            userConfig.scaleWindow(1);
         }
     });
 
@@ -149,7 +149,8 @@ app.run(function(
         combo: ['mod+=', 'mod++'],
         description: 'Zoom in +0.1',
         callback: function() {
-            userConfig.scaleWindow("plus");
+            var newScale = Number.parseFloat(window.localStorage.scale) + 0.1;
+            userConfig.scaleWindow(newScale);
         }
     });
 
@@ -157,7 +158,8 @@ app.run(function(
         combo: ['mod+-'],
         description: 'Zoom out -0.1',
         callback: function() {
-            userConfig.scaleWindow("minus");
+            var newScale = Number.parseFloat(window.localStorage.scale) - 0.1;
+            userConfig.scaleWindow(newScale);
         }
     });
 

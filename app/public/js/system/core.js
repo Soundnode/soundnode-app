@@ -3,5 +3,5 @@
 // Initialize modules
 authentication.init();
 userConfig.windowState();
-userConfig.scaleState();
+userConfig.scaleInit();
 guiConfig.init();
