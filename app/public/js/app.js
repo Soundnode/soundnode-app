@@ -137,6 +137,30 @@ app.run(function(
         }
     });
 
+    hotkeys.add({
+        combo: ['mod+0'],
+        description: 'Reset Window Scale to 1',
+        callback: function() {
+            userConfig.scaleWindow("reset");
+        }
+    });
+
+    hotkeys.add({
+        combo: ['mod+=', 'mod++'],
+        description: 'Zoom in +0.1',
+        callback: function() {
+            userConfig.scaleWindow("plus");
+        }
+    });
+
+    hotkeys.add({
+        combo: ['mod+-'],
+        description: 'Zoom out -0.1',
+        callback: function() {
+            userConfig.scaleWindow("minus");
+        }
+    });
+
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 200);
