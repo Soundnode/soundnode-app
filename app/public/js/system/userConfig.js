@@ -51,36 +51,14 @@ userConfig.saveWindow = function(width, height) {
     }
 };
 
-userConfig.scaleWindow = function(scale){
-    if("plus" === scale) {
-        var currentScale = window.document.getElementsByTagName("body")[0].style.zoom;
-        var newScale = (currentScale * 100 + 10);
-
-        window.document.getElementsByTagName("body")[0].style.zoom = newScale / 100;
-
-        userConfig.saveScale(window.document.getElementsByTagName("body")[0].style.zoom);
-    }
-    if("minus" === scale) {
-        var currentScale = window.document.getElementsByTagName("body")[0].style.zoom;
-        var newScale = newScale = (currentScale - .1);
-
-        window.document.getElementsByTagName("body")[0].style.zoom = newScale;
-
-        userConfig.saveScale(window.document.getElementsByTagName("body")[0].style.zoom);
-    }
-    if("reset" === scale) {
-        window.document.getElementsByTagName("body")[0].style.zoom = 1;
-
-        userConfig.saveScale(window.document.getElementsByTagName("body")[0].style.zoom);
-    }
+userConfig.scaleWindow = function(scaleValue){
+    window.localStorage.scale = scaleValue;
+    window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale
 };
 
-userConfig.saveScale = function(scale) {
-    window.localStorage.scale = scale;
-};
-
-userConfig.scaleState = function() {
-    if(window.localStorage.scale) {
+userConfig.scaleInit = function() {
+    if ( ! window.localStorage.scale ) {
+        window.localStorage.setItem('scale', 1);
         window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale;
     }
 };
