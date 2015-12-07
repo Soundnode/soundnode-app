@@ -9,7 +9,7 @@ app.service('SC2apiService', function (
     $window,
     $http,
     $q,
-    rateLimit
+    modalFactory
 ) {
 
     /**
@@ -118,7 +118,7 @@ app.service('SC2apiService', function (
      */
     function onResponseError(response) {
         if (response.status === 429) {
-            rateLimit.showNotification();
+            modalFactory.rateLimitReached();
         }
         return $q.reject(response.data);
     }
