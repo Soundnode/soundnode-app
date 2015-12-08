@@ -18,6 +18,9 @@
 
 .queueListView_list {
     width: 100%;
+    // Keep some offset from the bottom not to mix last queue item
+    // with player progress bar on mouse over
+    padding-bottom: 15px;
 
     & .queueListView_list_itemTitle {
         text-align: center;
@@ -78,16 +81,19 @@
     text-align: center;
     height: 17px;
 
-    &.active .queueListView_list_item_options_list {
-        display: block;
+    &.active {
+        .queueListView_list_item_options_list,
+        .queueListView_list_item_options_arrow {
+            display: block;
+        }
     }
 }
 
 .queueListView_list_item_options_list {
     display: none;
     position: absolute;
-    right: 0;
-    top: 17px;
+    right: 19px;
+    top: -11px;
     background: $separatorCleanColor;
     z-index: 10;
     border-radius: 2px;
@@ -105,4 +111,16 @@
     &:hover {
         background: $separatorDarkColor;
     }
+}
+
+.queueListView_list_item_options_arrow {
+    display: none;
+    position: absolute;
+    top: -3px;
+    right: 8px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 12px solid #3E3E40;
 }
