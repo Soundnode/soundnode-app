@@ -2,6 +2,7 @@ module.exports = {
     options: {
         buildDir: '<%= settings.dist %>', // Where the build version of my node-webkit app is saved
         macIcns: '<%= settings.app %>/soundnode.icns',
+        winIco: '<%= settings.app %>/soundnode.ico',
         downloadUrl: 'http://www.soundnodeapp.com/build/',
         platforms: ['linux32', 'linux64', 'osx64', 'win32'],
         version: '0.12.3'
