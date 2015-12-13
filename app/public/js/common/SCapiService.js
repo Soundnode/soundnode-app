@@ -400,6 +400,27 @@ app.service('SCapiService', function (
     };
 
     /**
+     * Unlike playlist
+     * @param  {Number} playlistId - playlist id
+     * @return {promise}
+     */
+    this.unlikePlaylist = function (playlistId) {
+        var url = 'https://api.soundcloud.com/e1/' +
+            'me/playlist_likes/' + playlistId +
+            '?oauth_token=' + $window.scAccessToken;
+        return $http.delete(url)
+            .then(function (response) {
+                if (!angular.isObject(response.data)) {
+                    return $q.reject(response.data);
+                }
+                return response.data;
+            })
+            .catch(function (response) {
+                return $q.reject(response.data);
+            });
+    };
+
+    /**
      * Get ids of all user reposts
      * @param  {string} next_href - next page of ids, coming from recursive call
      * @return {promise}

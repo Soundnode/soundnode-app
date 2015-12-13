@@ -102,12 +102,24 @@
                         <span class="mainNav_tit">Stream</span>
                     </a>
                 </li>
+            </ul>
+            <h2 class="ui_title">Collection</h2>
+            <ul class="mainNav_nav">
                 <li class="mainNav_item" ui-sref-active="active">
-                    <a class="mainNav_button" ui-sref="favorites">
+                    <a class="mainNav_button" ui-sref="collection.favorites">
                         <i class="fa fa-heart"></i>
                         <span class="mainNav_tit">Likes</span>
                     </a>
                 </li>
+                <li class="mainNav_item" ui-sref-active="active">
+                    <a class="mainNav_button" ui-sref="collection.playlists">
+                        <i class="fa fa-bookmark"></i>
+                        <span class="mainNav_tit">Playlists</span>
+                    </a>
+                </li>
+            </ul>
+            <h2 class="ui_title">You</h2>
+            <ul class="mainNav_nav">
                 <li class="mainNav_item" ui-sref-active="active">
                     <a class="mainNav_button" ui-sref="tracks">
                         <i class="fa fa-tags"></i>
@@ -212,6 +224,7 @@
 <script src="public/js/common/SCapiService.js"></script>
 <script src="public/js/common/SC2apiService.js"></script>
 <script src="public/js/common/playerService.js"></script>
+<script src="public/js/common/userService.js"></script>
 <script src="public/js/common/notificationFactory.js"></script>
 <script src="public/js/common/modalFactory.js"></script>
 
@@ -223,7 +236,9 @@
 <script src="public/js/stream/streamCtrl.js"></script>
 <script src="public/js/user/userCtrl.js"></script>
 <script src="public/js/player/playerCtrl.js"></script>
-<script src="public/js/favorites/favoritesCtrl.js"></script>
+
+<script src="public/js/collection/favoritesCtrl.js"></script>
+<script src="public/js/collection/playlistsCtrl.js"></script>
 <script src="public/js/tracks/tracksCtrl.js"></script>
 <script src="public/js/playlists/playlistsCtrl.js"></script>
 <script src="public/js/playlists/playlistDashboardCtrl.js"></script>

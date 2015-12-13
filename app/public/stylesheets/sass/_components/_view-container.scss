@@ -6,16 +6,16 @@
   overflow-x: hidden;
   height: 100%;
 
-  & > div {
+  .pageView {
     min-width: 130px;
     max-width: 100%;
     margin: 0 auto;
-  }
 
-  & > div > h1 {
-    margin: 10px 0 30px;
-    font-weight: 300;
-    font-size: 3em;
+    .pageView_title {
+      margin: 10px 0 30px;
+      font-weight: 300;
+      font-size: 3em;
+    }
   }
 }
 

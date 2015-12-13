@@ -3,14 +3,24 @@
 
     <!-- Song list wrapper -->
     <div class="playlistsView_inner">
-        <ul class="songList">
+        <ul class="songList"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-container='".mainView"'
+            infinite-scroll-immediate-check='false'>
             <li class="songList_item" ng-repeat="data in data"
                 ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}"
                 ng-if="data.kind == 'playlist'"
                 data-playlist-hidden="true" >
 
-                <h4 class="songList_item_song_user" collapsible>{{ data.title }} playlist - <span>show</span></h4>
+                <h4 class="songList_item_song_user"
+                    collapsible
+                    collapsible-on-first-open="loadTracks(data)">
+
+                    {{ data.title }} playlist - <span>show</span>
+                </h4>
+
                 <span class="mediaBox_item_info">
                     <i class="fa fa-list"></i> {{ data.track_count }}
                 </span>
@@ -18,8 +28,12 @@
                     <i class="fa fa-clock-o"></i> {{ formatSongDuration (data.duration) }}
                 </span>
                 <span class="songList_item_song_info">
-                    <a ng-click="removePlaylist(data.id)"> <i class="fa fa-trash"></i> delete playlist</a>
+                    <a ng-click="unlikePlaylist(data, $index)"> <i class="fa fa-trash"></i> unlike playlist</a>
                 </span>
+
+                <div ng-if="!data.tracks">
+                    <div ng-include="'views/common/spinner.html'"></div>
+                </div>
 
                 <ul class="songList_item_songs_list">
                     <li class="songList_item_songs_list_item"
@@ -50,9 +64,6 @@
                             <h4 class="songList_item_song_user">
                                 <span class="songList_item_song_info" ui-sref="profile({id: {{ tracks.user.id }}})">by: {{ tracks.user.username }} </span>
                                 <span class="songList_item_song_info">{{ formatSongDuration (tracks.duration) }}</span>
-                                <span class="songList_item_song_info">
-                                    <a ng-click="removeFromPlaylist(tracks.id, data.id)"> <i class="fa fa-trash"></i> remove</a>
-                                </span>
                             </h4>
                         </div>
 

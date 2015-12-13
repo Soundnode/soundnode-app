@@ -42,6 +42,37 @@ app.service('SC2apiService', function (
     };
 
     /**
+     * Get liked and owned playlist
+     * @param  {Number} userId
+     * @return {promise}
+     */
+    this.getPlaylists = function (userId) {
+        var uri = 'users/' + userId + '/playlists/liked_and_owned';
+        var params = {
+            limit: 40
+        };
+        return sendRequest(uri, { params: params })
+            .then(onResponseSuccess)
+            .then(updateNextPageUrl)
+            .catch(onResponseError);
+    };
+
+    /**
+     * Get detailed info about particular playlist
+     * @param  {Number} id - playlist id
+     * @return {promise}
+     */
+    this.getPlaylist = function (id) {
+        var uri = 'playlists/' + id;
+        var params = {
+            representation: 'full'
+        };
+        return sendRequest(uri, { params: params })
+            .then(onResponseSuccess)
+            .catch(onResponseError);
+    };
+
+    /**
      * Get next page for last requested resource
      * @return {promise}
      */
