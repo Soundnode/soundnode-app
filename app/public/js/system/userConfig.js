@@ -40,6 +40,7 @@ userConfig.windowState = function() {
     }
 
     gui.Window.get().on('resize', function(width, height) {
+        if (gui.Window.get().x < 100 && gui.Window.get().y < 100) return;
         userConfig.saveWindow(width, height);
     });
 };

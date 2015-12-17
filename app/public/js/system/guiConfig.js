@@ -8,6 +8,7 @@ var guiConfig = {};
 guiConfig.getGUI = gui.Window.get();
 
 guiConfig.init = function () {
+    this.getGUI.show();
     this.navBarUserUnAuthenticated();
 };
 
