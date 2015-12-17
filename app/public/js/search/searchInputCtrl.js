@@ -6,12 +6,17 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
     var isTypeaheadAborted = false;
 
     $scope.onSubmit = function(keyword) {
+        if (keyword == void 0 || keyword.length == 0) return;
         $state.go('search', {q: keyword}, {reload: true});
         $scope.blurTypeahead();
         isTypeaheadAborted = true;
-    }
+    };
 
     $scope.typeahead = function(keyword) {
+        if (keyword.length == 0) {
+            $scope.blurTypeahead();
+            return
+        }
         var dropdown = document.getElementById('searchDropDown');
         dropdown.innerHTML = '';
 
@@ -24,7 +29,6 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                             $scope.blurTypeahead();
                             return false;
                         }
-
                         if (data.collection.length < 1) {
                             var error = document.createElement('div');
                             error.innerHTML = '<h4 class="dropdown-title">Unable to find any songs or Users named ' + keyword + '</h4>';
@@ -78,10 +82,11 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
                         for(var i = 0; i < 4; i++) {
                             var child = document.createElement('div');
+                            var image = data.collection[i].atwork_url || 'public/img/logo-short.png';
                             child.className = 'dropdown-item';
                             child.id = data.collection[i].id;
 
-                            child.innerHTML = '<img src="' + data.collection[i].artwork_url + '" class="user_thumb"> <h4>' + data.collection[i].title +'</h4>';
+                            child.innerHTML = '<img src="' + image + '" class="user_thumb"> <h4>' + data.collection[i].title +'</h4>';
                             child.addEventListener("mousedown", function(){
                                 $state.go('search', {q: keyword}, {reload: true});
                             });
@@ -108,12 +113,12 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                     .catch(function(err) {
                         console.error(err);
                     });
-    }
+    };
 
     $scope.blurTypeahead = function() {
         var dropdown = window.document.getElementById('searchDropDown');
         dropdown.style.display = 'none';
-    }
+    };
 
     $scope.refocusTypehead = function(keyword) {
         if(keyword) {
