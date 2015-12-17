@@ -141,4 +141,38 @@ app.controller('QueueCtrl', function(
         $anchorScroll();
     }
 
+    /**
+     * Dynamically change position of menu not to overlap fixed footer and header
+     * @param  {object} $event - Angular event
+     */
+    $scope.menuPosition = function ($event) {
+        var $hover = $($event.target);
+        var $menu = $hover.find('.queueListView_list_item_options_list');
+        var $arrow = $hover.find('.queueListView_list_item_options_arrow');
+
+        var menuHeight = $menu.height();
+        var arrowHeight = $arrow.outerHeight();
+        var headerHeight = $('.topFrame').outerHeight();
+        var footerHeight = $('.player_inner').outerHeight();
+        var hoverHeight = $hover.outerHeight();
+
+        // Calculate top and bottom edge position and compare it with current
+        var borderTop = headerHeight;
+        var borderBottom = window.innerHeight - footerHeight;
+        var hoverTop = $hover.offset().top;
+
+        // Arrow in the middle by default
+        var newTop = -menuHeight / 2 + arrowHeight / 2;
+
+        // If overlapping top border - move list to the bottom
+        if (hoverTop - menuHeight / 2 < borderTop) {
+            newTop = -arrowHeight;
+        // If overlapping bottom border - move list to the top
+        } else if (hoverTop + hoverHeight + menuHeight / 2 > borderBottom) {
+            newTop = -menuHeight + arrowHeight;
+        }
+
+        $menu.css({ top: newTop });
+    };
+
 });
