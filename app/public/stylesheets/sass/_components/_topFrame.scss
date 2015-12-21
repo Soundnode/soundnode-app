@@ -57,10 +57,11 @@
 .windowsActionButtons {
   float: right;
   -webkit-app-region: no-drag;
+  margin: 0;
 
   & li {
     margin: 0;
-    padding: 7px 10px 7px;
+    padding: 7px 14px 7px;
     border-radius: 0;
     &:hover {
       background: #2C2C2C;
@@ -71,7 +72,7 @@
   }
 
   & #minimizeApp {
-      padding: 10px 10px 4px;
+      padding: 10px 14px 4px;
   }
 
   & #closeApp {
@@ -133,9 +134,8 @@
 }
 
 .topbarSearch {
-  position: relative;
-  float: left;
-  margin: 0 0 0 37px;
+  position: absolute;
+  left: 205px;
   -webkit-app-region: no-drag;
 }
 
