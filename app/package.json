@@ -20,6 +20,7 @@
     "resizable": true,
     "position": "center",
     "single-instance": true,
-    "node-remote": "localhost"
+    "node-remote": "localhost",
+    "show": false
   }
 }
