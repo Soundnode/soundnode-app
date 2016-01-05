@@ -26,11 +26,6 @@ app.config(function (
             templateUrl: 'views/stream/stream.html',
             controller: 'StreamCtrl'
         })
-        .state('favorites', {
-            url: '/favorites',
-            templateUrl: 'views/favorites/favorites.html',
-            controller: 'FavoritesCtrl'
-        })
         .state('tracks', {
             url: '/tracks',
             templateUrl: 'views/tracks/tracks.html',
@@ -80,6 +75,21 @@ app.config(function (
             url: '/news',
             templateUrl: 'views/news/news.html',
             controller: 'NewsCtrl'
+        })
+        .state('collection', {
+            abstract: true,
+            url: '/collection',
+            template: '<ui-view></ui-view>'
+        })
+        .state('collection.favorites', {
+            url: '/favorites',
+            templateUrl: 'views/collection/favorites.html',
+            controller: 'CollectionFavoritesCtrl'
+        })
+        .state('collection.playlists', {
+            url: '/playlists',
+            templateUrl: 'views/collection/playlists.html',
+            controller: 'CollectionPlaylistsCtrl'
         });
 });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('FavoritesCtrl', function (
+app.controller('CollectionFavoritesCtrl', function (
     $scope,
     $rootScope,
     SCapiService,
