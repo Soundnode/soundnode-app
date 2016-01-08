@@ -1,7 +1,7 @@
 <div class="modalView">
     <div ng-include="'views/common/modals/closeButton.html'"></div>
 
-    <div class="modalView_content" ng-bind-html="content"></div>
+    <div class="modalView_content selectable-text" ng-bind-html="content"></div>
 
     <small class="ui-db" ng-if="isLatest">You have the latest version {{ appVersion }}.</small>
 	<small class="ui-db" ng-if="!isLatest">Your current version ({{ appVersion }}) isn't the latest ({{ appLatestVersion }}), please download the latest version.</small>
