@@ -22,12 +22,12 @@
                 <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
                 <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
             </div>
-            <h1>{{track.title}}</h1>
+            <h1 class="selectable-text">{{track.title}}</h1>
 
-            <h3 ui-sref="profile({id: track.user.id})" class="user_name">{{track.user.username}}</h3>
+            <h3 ui-sref="profile({id: track.user.id})" class="user_name selectable-text">{{track.user.username}}</h3>
             <h4>Created: {{track.created_at | date: short}}</h4>
 
-            <p class="track_description" text-collapse text-max-height="196"
+            <p class="track_description selectable-text" text-collapse text-max-height="196"
                text-to-collapse="{{track.description}}">
             </p>
             <div class="trackActions">

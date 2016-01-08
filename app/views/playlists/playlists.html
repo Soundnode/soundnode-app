@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="songList_item_container_info">
-                            <h2 class="songList_item_song_tit">{{ tracks.title }}</h2>
+                            <h2 class="songList_item_song_tit selectable-text">{{ tracks.title }}</h2>
                             <h4 class="songList_item_song_user">
                                 <span class="songList_item_song_info" ui-sref="profile({id: {{ tracks.user.id }}})">by: {{ tracks.user.username }} </span>
                                 <span class="songList_item_song_info">{{ formatSongDuration (tracks.duration) }}</span>
