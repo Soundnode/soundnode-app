@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.directive('playlist', function ($rootScope, ngDialog, $log) {
     return {
@@ -17,7 +17,7 @@ app.directive('playlist', function ($rootScope, ngDialog, $log) {
                     controller: 'PlaylistDashboardCtrl',
                     template: 'views/playlists/playlistDashboard.html'
                 });
-                
+
             });
         }
     }
