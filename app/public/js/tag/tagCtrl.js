@@ -11,10 +11,12 @@ app.controller('tagCtrl', function (
     var tagUrl = encodeURIComponent($stateParams.name);
 
     $scope.tag = $stateParams.name;
+    $scope.originalData = '';
     $scope.data = '';
 
     SCapiService.get('search/sounds', 'limit=32&q=*&filter.genre_or_tag=' + tagUrl)
         .then(function (data) {
+            $scope.originalData = data.collection;
             $scope.data = data.collection;
         }, function (error) {
             console.log('error', error);
@@ -32,7 +34,8 @@ app.controller('tagCtrl', function (
         SCapiService.getNextPage()
             .then(function (data) {
                 for (var i = 0; i < data.collection.length; i++) {
-                    $scope.data.push(data.collection[i])
+                    $scope.originalData.push(data.collection[i]);
+                    $scope.data.push(data.collection[i]);
                 }
                 utilsService.updateTracksReposts(data.collection, true);
             }, function (error) {

@@ -1,6 +1,8 @@
 <div class="searchView">
     <h1>Most popular tracks for #{{tag}}</h1>
 
+    <filter-tracks class="filterTracks" ></filter-tracks>
+
     <!-- Song list wrapper -->
     <div class="searchView_inner">
 
@@ -10,7 +12,7 @@
             infinite-scroll-container='".mainView"'
             infinite-scroll-immediate-check='false'>
 
-            <li class="songList_item" ng-repeat="data in data"
+            <li class="songList_item" ng-repeat="data in data track by $index"
                 ng-if="data.kind == 'track' && data.streamable" >
 
                 <tracks data="data"/>
