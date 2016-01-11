@@ -16,13 +16,15 @@
     <div class="favoritesView_inner">
         <h2>Tracks:</h2><br>
 
+        <filter-tracks class="filterTracks" ></filter-tracks>
+
         <ul class="songList"
             infinite-scroll='loadMore()'
             infinite-scroll-distance='0'
             infinite-scroll-container='".mainView"'
             infinite-scroll-immediate-check='false' >
 
-            <li class="songList_item" ng-repeat="data in data"
+            <li class="songList_item" ng-repeat="data in data track by $index"
                 ng-if="data.kind == 'track' && data.streamable" >
 
                 <tracks data="data"/>

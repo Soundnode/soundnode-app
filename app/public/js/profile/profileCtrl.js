@@ -21,6 +21,7 @@ app.controller('ProfileCtrl', function (
     $scope.followers_count = '';
     $scope.busy = false;
     //tracks
+    $scope.originalData = '';
     $scope.data = '';
     $scope.follow_button_text = '';
 
@@ -38,6 +39,7 @@ app.controller('ProfileCtrl', function (
 
     SCapiService.getProfileTracks(userId)
         .then(function(data) {
+            $scope.originalData = data.collection;
             $scope.data = data.collection;
         }, function(error) {
             console.log('error', error);
@@ -65,7 +67,8 @@ app.controller('ProfileCtrl', function (
         SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
-                    $scope.data.push( data.collection[i] )
+                    $scope.originalData.push( data.collection[i] );
+                    $scope.data.push( data.collection[i] );
                 }
                 utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {

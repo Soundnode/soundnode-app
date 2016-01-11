@@ -40,3 +40,28 @@
       margin-right: 0;
     }
 }
+
+/*
+* filter tracks component
+*/
+.filterTracks {
+    h4 {
+        font-size: 12px
+    }
+
+    ul {
+        margin-bottom: 30px;
+    }
+
+    li {
+        display: inline;
+        margin: 10px;
+
+        strong {
+            font-size: 11px;
+        }
+    }
+    li:first-child {
+        margin-left: 0;
+    }
+}
