@@ -1,6 +1,8 @@
 'use strict';
 
-app.directive('filterTracks', function () {
+app.directive('filterTracks', function (
+    utilsService
+) {
     return {
         restrict: 'E',
         templateUrl: function(elem, attr){
@@ -63,6 +65,8 @@ app.directive('filterTracks', function () {
                 if ( scope.listens ) {
                     scope.data = scope.data.filter(filterByListens);
                 }
+
+                utilsService.setCurrent();
 
             };
 

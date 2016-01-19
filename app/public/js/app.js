@@ -88,7 +88,8 @@ app.run(function(
     $log,
     $state,
     SCapiService,
-    hotkeys
+    hotkeys,
+    utilsService
 ) {
 
     //start GA

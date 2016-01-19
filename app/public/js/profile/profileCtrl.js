@@ -46,6 +46,7 @@ app.controller('ProfileCtrl', function (
         }).finally(function() {
             utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     SCapiService.isFollowing(userId)
@@ -76,6 +77,7 @@ app.controller('ProfileCtrl', function (
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
+                utilsService.setCurrent();
             });
     };
 
@@ -85,13 +87,13 @@ app.controller('ProfileCtrl', function (
         } else {
             $scope.follow_button_text = 'Follow';
         }
-    }
+    };
 
     $scope.hoverIn = function() {
         if ($scope.isFollowing) {
             $scope.follow_button_text = 'Unfollow';
         }
-    }
+    };
 
     $scope.changeFollowing = function() {
         if ($scope.isFollowing) {
@@ -118,7 +120,7 @@ app.controller('ProfileCtrl', function (
                 });
         }
         $scope.setFollowButtonText();
-    }
+    };
 
     function handlerFollowOrUnfollowError(errorResponse) {
         console.log('error', errorResponse);
