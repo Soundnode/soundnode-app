@@ -23,6 +23,7 @@ app.controller('FavoritesCtrl', function (
         }).finally(function() {
             utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     $scope.loadMore = function() {
@@ -43,6 +44,7 @@ app.controller('FavoritesCtrl', function (
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
+                utilsService.setCurrent();
             });
     };
 

@@ -101,7 +101,7 @@ app.factory('playerService', function(
             this.playSong();
         } else if ( this.elPlayer.currentTime === 0 && this.elPlayer.paused || clickedSong !== utilsService.getCurrentSong() ) { // there's no song playing or song clicked not equal to current song paying
 
-            if ( queueService.isEmpty() ) {
+            if ( queueService.isEmpty() || utilsService.isLastTrackInQueue() ) {
                 currentElSiblings = utilsService.getSongSiblingsData(clickedSong);
                 queueService.insert(currentElData);
                 queueService.push(currentElSiblings);
@@ -214,9 +214,12 @@ app.factory('playerService', function(
             return false;
         }
 
-        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
+        if ( $rootScope.shuffle && !$rootScope.repeat ) {
             utilsService.shuffle();
-        } else if ( ! $rootScope.repeat ) {
+        } else if ( !$rootScope.repeat && utilsService.isLastTrackInQueue() ) {
+            utilsService.scrollToBottom();
+            utilsService.addLoadedTracks();
+        } else if ( !$rootScope.repeat && !utilsService.isLastTrackInQueue() ) {
             queueService.next();
         }
 

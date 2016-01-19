@@ -1,6 +1,18 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams, notificationFactory, modalFactory) {
+app.controller('PlaylistsCtrl', function (
+    $scope,
+    SCapiService,
+    $rootScope,
+    $log,
+    $window,
+    $http,
+    $state,
+    $stateParams,
+    notificationFactory,
+    modalFactory,
+    utilsService
+) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -22,6 +34,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
             console.log('error', error);
         }).finally(function(){
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     /**

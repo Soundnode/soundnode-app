@@ -22,6 +22,15 @@ app.factory('queueService', function() {
     Queue.list = [];
 
     /**
+     * Return queue size
+     * @method size
+     * @return {Number} [number of items in the list]
+     */
+    Queue.size = function() {
+        return this.list.length;
+    };
+
+    /**
      * Clean Queue and reset currentPosition to 0
      * @method clear
      */
@@ -70,15 +79,6 @@ app.factory('queueService', function() {
 
         var addAt = this.currentPosition + 1;
         this.list.splice(addAt, 0, currentElData);
-    };
-
-    /**
-     * Return queue size
-     * @method size
-     * @return {Number} [number of items in the list]
-     */
-    Queue.size = function() {
-        return this.list.length;
     };
 
     /**
