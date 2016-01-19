@@ -171,6 +171,11 @@ app.factory('utilsService', function(
         $mainView.scrollTop = $mainView.scrollHeight;
     };
 
+    /**
+     * Watch for changes on "isLoading" state
+     * and once that happened click the next tracks
+     * to last track (not in Queue) to Queue
+     */
     Utils.addLoadedTracks = function() {
         var that = this;
 
@@ -189,6 +194,9 @@ app.factory('utilsService', function(
         });
     };
 
+    /**
+     * Find current track playing and set as "currentSong"
+     */
     Utils.setCurrent = function() {
         var $track = queueService.getTrack();
 
