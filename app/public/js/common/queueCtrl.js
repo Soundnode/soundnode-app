@@ -25,7 +25,6 @@ app.controller('QueueCtrl', function(
         var list = document.querySelector('.queueListView_list');
 
         var observer = new MutationObserver(function(mutations) {
-            notificationFactory.success("Queue updated!");
             $scope.activateTrackInQueue();
         });
 
