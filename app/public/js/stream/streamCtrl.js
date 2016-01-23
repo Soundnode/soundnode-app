@@ -10,27 +10,37 @@ app.controller('StreamCtrl', function (
     var tracksIds = [];
 
     $scope.title = 'Stream';
-    $scope.originalData = '';
-    $scope.data = '';
     $scope.busy = false;
+    
+    // Create a wrapper function so the user can manually refresh 
+    $scope.getStream = function() {
+    
+        $scope.originalData = '';
+        $scope.data = '';
+        tracksIds = [];
+    
+        SC2apiService.getStream()
+            .then(filterCollection)
+            .then(function (collection) {
+                $scope.originalData = collection;
+                $scope.data = collection;
 
-    SC2apiService.getStream()
-        .then(filterCollection)
-        .then(function (collection) {
-            $scope.originalData = collection;
-            $scope.data = collection;
-
-            loadTracksInfo(collection);
-        })
-        .catch(function (error) {
-            console.log('error', error);
-        })
-        .finally(function () {
-            utilsService.updateTracksLikes($scope.data);
-            utilsService.updateTracksReposts($scope.data);
-            $rootScope.isLoading = false;
+                loadTracksInfo(collection);
+            })
+            .catch(function (error) {
+                console.log('error', error);
+            })
+            .finally(function () {
+                utilsService.updateTracksLikes($scope.data);
+                utilsService.updateTracksReposts($scope.data);
+                $rootScope.isLoading = false;
         });
-
+    
+    };
+    
+    // Initial stream request
+    $scope.getStream();
+    
     $scope.loadMore = function() {
         if ( $scope.busy ) {
             return;

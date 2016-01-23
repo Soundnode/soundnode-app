@@ -1,5 +1,10 @@
 <div class="streamView">
-    <h1> {{ title }}</h1>
+    <h1> 
+      {{ title }} 
+      <span ng-click="getStream()" class="refresh"><i class="fa fa-refresh"></i><span>
+    </h1>
+    
+    <filter-tracks class="filterTracks" ></filter-tracks>
 
     <!-- Song list wrapper -->
     <div class="streamView_inner">
