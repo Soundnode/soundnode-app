@@ -17,7 +17,7 @@
         </div>
         <div class="content">
             <div ng-click="changeLike()" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
-                 ng-class="{active: track.user_favorite}" class="button follow_button"
+                 ng-class="{liked: track.user_favorite}" class="button follow_button"
                  favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite">
                 <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
                 <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
