@@ -5,8 +5,6 @@ Maintainer: Jonas Gröger <jonas.groeger@posteo.de>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.6
 Homepage: http://www.soundnodeapp.com
-#Vcs-Git: git://anonscm.debian.org/collab-maint/soundnodeapp.git
-#Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/soundnodeapp.git;a=summary
 
 Package: soundnodeapp
 Architecture: amd64
