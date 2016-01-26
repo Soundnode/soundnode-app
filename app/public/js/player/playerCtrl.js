@@ -117,11 +117,13 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var playPause = new gui.Shortcut({
         key: 'MediaPlayPause',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            } else {
-                playerService.playSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.pauseSong();
+                } else {
+                    playerService.playSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -131,9 +133,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var stop = new gui.Shortcut({
         key: 'MediaStop',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.pauseSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -143,9 +147,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var prevTrack = new gui.Shortcut({
         key: 'MediaPrevTrack',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.playPrevSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.playPrevSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -155,9 +161,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var nextTrack = new gui.Shortcut({
         key: 'MediaNextTrack',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.playNextSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.playNextSong();
+                }
+            });
         },
         failed: function() {
             // nothing here

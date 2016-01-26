@@ -9,7 +9,9 @@ app.directive('song', function ($rootScope, $window, playerService) {
             elem.bind('click', function () {
                 currentEl = this;
 
-                playerService.songClicked(currentEl);
+                $scope.$apply(function() {
+                    playerService.songClicked(currentEl);
+                });
             });
 
         }
