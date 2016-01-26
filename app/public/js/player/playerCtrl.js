@@ -211,7 +211,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     });
 
     hotkeys.add({
-        combo: ['command+right', 'ctrl+right'],
+        combo: 'ctrl+right',
         description: 'Next song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
@@ -221,7 +221,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     });
 
     hotkeys.add({
-        combo: ['command+left', 'ctrl+left'],
+        combo: 'ctrl+left',
         description: 'Prev song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
