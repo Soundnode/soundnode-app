@@ -1,0 +1,23 @@
+<div class="streamView">
+    <h1> {{ title }}</h1>
+
+    <!-- Song list wrapper -->
+    <div class="streamView_inner">
+        <ul class="songList"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-container='".mainView"'
+            infinite-scroll-immediate-check='false' >
+
+            <li class="songList_item" ng-repeat="data in data">
+
+                <tracks data="data.track" type="data.type" user="data.user"/>
+
+            </li>
+        </ul>
+    </div>
+    <!-- Song list wrapper / end -->
+
+    <div ng-include="'views/common/loading.html'"></div>
+
+</div>

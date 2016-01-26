@@ -26,6 +26,11 @@ app.config(function (
             templateUrl: 'views/stream/stream.html',
             controller: 'StreamCtrl'
         })
+        .state('charts', {
+            url: '/',
+            templateUrl: 'views/charts/charts.html',
+            controller: 'ChartsCtrl'
+        })
         .state('favorites', {
             url: '/favorites',
             templateUrl: 'views/favorites/favorites.html',
