@@ -10,6 +10,7 @@
     border-radius: 50px;
     float: left;
     cursor: pointer;
+    -webkit-user-drag: none;
 }
 
 .user_inner {
