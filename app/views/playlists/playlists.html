@@ -8,7 +8,8 @@
                 ng-class="{ playlist: data.kind  }"
                 data-kind="{{ data.kind }}"
                 ng-if="data.kind == 'playlist'"
-                data-playlist-hidden="true" >
+                data-playlist-hidden="true"
+                id="{{data.id}}">
 
                 <h4 class="songList_item_song_user" collapsible>{{ data.title }} playlist - <span>show</span></h4>
                 <span class="mediaBox_item_info">
@@ -26,7 +27,8 @@
                         ng-repeat="tracks in data.tracks"
                         ng-class="{ active: hover }"
                         ng-mouseover="hover = true"
-                        ng-mouseleave="hover = false" >
+                        ng-mouseleave="hover = false"
+                        id="{{tracks.id}}">
 
                         <div class="songList_item_container_artwork">
                             <span class="songList_item_song_button"
@@ -63,7 +65,5 @@
         </ul>
     </div>
     <!-- Song list wrapper / end -->
-
-    <div ng-include="'views/common/loading.html'"></div>
 
 </div>
