@@ -292,7 +292,8 @@ app.factory('playerService', function(
     
     /**
      * Responsible to add event listener to detect
-     * if mouse leaves the window. 
+     * if mouse leaves the window.
+     */ 
     function addEvent(object, event, fn) {
         if (object.addEventListener) {
             object.addEventListener(event, fn, false);
