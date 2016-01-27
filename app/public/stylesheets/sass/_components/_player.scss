@@ -24,7 +24,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 13px 10px 0;
+    padding: 5px 10px 0;
     cursor: pointer;
 }
 
@@ -134,6 +134,21 @@
     &::after {
         content: '/';
         margin: 0 3px;
+    }
+}
+
+.player_favorite {
+    margin: 0 0 0 10px;
+
+    .fa {
+        color: #949599;
+        font-size: 12px;
+    }
+
+    &.active {
+        .fa {
+            color: #f50;
+        }
     }
 }
 
