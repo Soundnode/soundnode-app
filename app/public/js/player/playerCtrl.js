@@ -1,6 +1,17 @@
 'use strict';
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueService, hotkeys, $state, $log, $timeout) {
+app.controller('PlayerCtrl', function (
+    $scope,
+    $rootScope,
+    playerService,
+    queueService,
+    hotkeys,
+    $state,
+    $log,
+    $timeout,
+    SCapiService,
+    notificationFactory
+) {
     $scope.imgPath = 'public/img/temp-playing.png';
 
     $timeout(function() {
@@ -107,6 +118,34 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     $scope.goToUser = function ($event) {
         var trackObj = queueService.getTrack();
         $state.go('profile', { id: trackObj.songUserId });
+    };
+
+    $scope.favorite = function($event) {
+        var userId = $rootScope.userId;
+        var track = queueService.getTrack();
+
+        if ( $event.currentTarget.classList.contains('active') ) {
+
+            SCapiService.deleteFavorite(userId, track.songId)
+                .then(function(status) {
+                    if ( typeof status == "object" ) {
+                        notificationFactory.success("Song removed from likes!");
+                        $event.currentTarget.classList.remove('active');
+                    }
+                }, function() {
+                    notificationFactory.error("Something went wrong!");
+                })
+        } else {
+            SCapiService.saveFavorite(userId, track.songId)
+                .then(function(status) {
+                    if ( typeof status == "object" ) {
+                        notificationFactory.success("Song added to likes!");
+                        $event.currentTarget.classList.add('active');
+                    }
+                }, function(status) {
+                    notificationFactory.error("Something went wrong!");
+                });
+        }
     };
 
 
