@@ -44,7 +44,7 @@ Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-r
 NW.js don't support mp3 and h264 in video and audio tag by default because of patented media formats.
 but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
 <br>
-See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
+See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Development)
 
 ## Supported Platforms
 
