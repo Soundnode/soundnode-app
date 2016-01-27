@@ -150,7 +150,7 @@
                     <span class="player_duration" id="player-duration"></span>
                 </div>
                 <div class="player_actions">
-                    <span class="player_favorite" ng-click="favorite($event)" ng-if="isSongPlaying">
+                    <span class="player_favorite" ng-click="favorite($event)" ng-hide="!isSongPlaying">
                         &nbsp;<i class="fa fa-heart"></i>
                     </span>
                 </div>

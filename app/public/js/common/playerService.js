@@ -161,6 +161,10 @@ app.factory('playerService', function(
 
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
+
+        // remove the active class from player favorite icon before play new song
+        // TODO: this should check if the current song is already favorited
+        document.querySelector('.player_favorite').classList.remove('active');
     };
 
     /**
