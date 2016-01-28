@@ -293,6 +293,26 @@ app.factory('playerService', function(
             player.elPlayer.currentTime = parseInt(seek, 10)
         }
     }
+    
+    /**
+     * Responsible to add event listener to detect
+     * if mouse leaves the window.
+     */ 
+    function addEvent(object, event, fn) {
+        if (object.addEventListener) {
+            object.addEventListener(event, fn, false);
+        }
+
+        else if (object.attachEvent) {
+            object.attachEvent('on' + event, fn);
+        }
+    }
+
+    addEvent(document, 'mouseout', function(event) {
+        if (event.toElement == null && event.relatedTarget == null) {
+            scrub.unbind('mousemove');
+        }
+    })
 
     scrub.on('click', function(e) {
         var el = this;
