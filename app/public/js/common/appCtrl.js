@@ -40,4 +40,12 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
         ngDialog.closeAll();
     };
 
+    // Increase max listeners for process
+
+    process.setMaxListeners(0);
+
+    // Save track progress on process exit
+    process.on('exit', function() {
+        window.localStorage.lastPlayedSongDuration = player.elPlayer.currentTime;
+    });
 });
