@@ -9,7 +9,9 @@
                     <span class="playback_count">
                         <i class="fa fa-play"></i> {{track.playback_count | number}}
                     </span>
-                    <span class="likes_count">
+                    <span class="likes_count" ng-click="changeLike()" 
+								ng-class="{liked: track.user_favorite}"
+								favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite">
                         <i class="fa fa-heart"></i> {{track.favoritings_count | round}}
                     </span>
                 </div>

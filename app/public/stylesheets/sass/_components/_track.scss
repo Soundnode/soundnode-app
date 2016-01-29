@@ -1,4 +1,11 @@
 .trackView {
+	& .likes_count {
+		&.liked {
+			& > i {
+				color: $scColor;
+			}
+		}
+	}
     & .trackDetails {
         display: flex;
 
