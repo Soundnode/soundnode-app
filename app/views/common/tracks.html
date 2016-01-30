@@ -21,7 +21,7 @@
             <i class="fa fa-comments"></i>{{data.comment_count | round}}
         </span>
         <span class="songList_likes_count">
-            <i class="fa fa-heart"></i>{{data.favoritings_count | round}}
+            <i class="fa fa-heart"></i>{{data.likes_count || data.favoritings_count | round}}
         </span>
         <span class="songList_reposts_count" ng-if="data.reposts_count">
             <i class="fa fa-retweet"></i>{{data.reposts_count | round}}
