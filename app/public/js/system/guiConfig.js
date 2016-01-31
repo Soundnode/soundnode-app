@@ -51,6 +51,9 @@ guiConfig.openDevTools = function () {
 // when main window is closed, kill other windows (prevent running nw.js with invisible windows on crash etc.)
 
 guiConfig.getGUI.on('close', function () {
+    // save last played track progress before shutting down
+    window.localStorage.lastPlayedSongDuration = player.elPlayer.currentTime;
+
     gui.App.closeAllWindows();
     this.close(true);
 });
