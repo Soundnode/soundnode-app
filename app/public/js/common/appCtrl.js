@@ -39,4 +39,12 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
     $scope.closeModal = function() {
         ngDialog.closeAll();
     };
+
+    // Increase max listeners for Node process
+    process.setMaxListeners(0);
+
+    // Save track progress on process exit
+    process.on('exit', function() {
+        window.localStorage.lastPlayedSongDuration = $(document.getElementById('player-progress')).data("track-progress");
+    });
 });

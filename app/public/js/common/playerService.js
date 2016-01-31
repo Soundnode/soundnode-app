@@ -282,6 +282,7 @@ app.factory('playerService', function(
             width: pos + '%'
         });
 
+        $(player.elPlayerProgress).data("track-progress", player.elPlayer.currentTime);
     });
 
     /**
