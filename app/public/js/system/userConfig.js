@@ -17,8 +17,10 @@ userConfig.checkAuth = function() {
     window.scAccessToken = window.localStorage.scAccessToken;
     window.scClientId = window.localStorage.scClientId;
     window.lastPlayedSong = window.localStorage.lastPlayedSong;
+    window.queue = window.localStorage.queue;
     window.lastPlayedSongDuration = window.localStorage.lastPlayedSongDuration;
-
+    window.queueCurrentPosition = window.localStorage.queueCurrentPosition;
+    
     // Bring Soundnode to focus
     window.focus();
 
@@ -28,6 +30,11 @@ userConfig.checkAuth = function() {
 userConfig.saveLastPlayedSong = function(trackObj) {
     window.localStorage.lastPlayedSong = JSON.stringify(trackObj);
 };
+
+userConfig.saveQueue = function(queueList, currentPosition) {
+    window.localStorage.queue = JSON.stringify(queueList);
+    window.localStorage.queueCurrentPosition = currentPosition;
+}
 
 userConfig.saveUser = function() {
     console.log('Saving user to localStorage');

@@ -162,6 +162,8 @@ app.factory('playerService', function(
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
         userConfig.saveLastPlayedSong(trackObj);
+        // save queue into local storage for resume
+        userConfig.saveQueue(queueService.list, queueService.find(trackObjId));
 
         // remove the active class from player favorite icon before play new song
         // TODO: this should check if the current song is already favorited
@@ -174,7 +176,11 @@ app.factory('playerService', function(
      */
 
     player.loadLastPlayedSong = function() {
-        var trackObj = JSON.parse(window.lastPlayedSong);
+        var trackObj;
+        queueService.push(JSON.parse(window.queue));
+        queueService.currentPosition = window.queueCurrentPosition;
+        trackObj = queueService.getTrack();
+
         if (trackObj) {
             utilsService.deactivateCurrentSong();
             utilsService.activateCurrentSong(trackObj.songId);
@@ -182,7 +188,7 @@ app.factory('playerService', function(
             if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
                 trackObj.songThumbnail = 'public/img/logo-short.png';
             }
-
+            // update player view
             this.elPlayer.setAttribute('src', trackObj.songUrl + '?client_id=' + $window.scClientId);
             this.elThumb.setAttribute('src', trackObj.songThumbnail);
             this.elThumb.setAttribute('alt', trackObj.songTitle);
@@ -190,6 +196,7 @@ app.factory('playerService', function(
             this.elTitle.setAttribute('title', trackObj.songTitle);
             this.elUser.innerHTML = trackObj.songUser;
             this.elPlayer.currentTime = window.lastPlayedSongDuration;
+
         } else return;
     };
 
