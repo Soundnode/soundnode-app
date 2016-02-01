@@ -1,0 +1,14 @@
+.genre-selector {
+    width: 50%;
+    overflow: hidden;
+    height: 60px;
+    transition: height 0.4s;
+    &:hover{
+        height: 400px;
+    }
+}
+
+.genre-selector button.button{
+    margin-top: 5px;
+    width: 32%;
+}

@@ -27,7 +27,7 @@ app.config(function (
             controller: 'StreamCtrl'
         })
         .state('charts', {
-            url: '/',
+            url: '/charts/:genre',
             templateUrl: 'views/charts/charts.html',
             controller: 'ChartsCtrl'
         })
