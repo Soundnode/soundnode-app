@@ -94,7 +94,8 @@ app.run(function(
     $state,
     SCapiService,
     hotkeys,
-    utilsService
+    utilsService,
+    notificationFactory
 ) {
 
     //start GA
@@ -176,6 +177,17 @@ app.run(function(
             userConfig.scaleWindow(newScale);
         }
     });
+
+    function updateOnlineStatus(event) {
+        if(!navigator.onLine) {
+            notificationFactory.warn("Seems like internet connection is down.");
+        } else {
+            notificationFactory.success("Awesome! You're connected back to the internet.");
+        }
+    }
+
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
 
 });
 
