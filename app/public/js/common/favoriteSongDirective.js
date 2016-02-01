@@ -23,7 +23,7 @@ app.directive('favoriteSong', function(
                     SCapiService.deleteFavorite(userId, songId)
                         .then(function(status) {
                             if ( typeof status == "object" ) {
-                                notificationFactory.success("Song removed from likes!");
+                                notificationFactory.warn("Song removed from likes!");
                                 $scope.favorite = false;
                             }
                         }, function() {

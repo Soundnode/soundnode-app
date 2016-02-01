@@ -127,3 +127,54 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .selectable-text {
     -webkit-user-select: initial;
 }
+
+.toast-message a,
+.toast-message label {
+	font-size: 0.900em!important;
+    color: #ecf0f1!important;
+}
+
+.toast-message a:hover {
+    color: #bdc3c7!important;
+}
+
+#toast-container>div {
+	padding: 10px 15px 10px 45px!important;
+    width: 278px!important;
+	-moz-border-radius: 0!important;
+    -webkit-border-radius: 0!important;
+    border-radius: 0!important;
+	-moz-box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+	color: #ecf0f1!important;
+}
+
+#toast-container>div:hover {
+	-moz-box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.toast {
+    background-color: #333!important;
+}
+.toast-success {
+    background-color: #2ecc71!important;
+}
+.toast-error {
+    background-color: #c0392b!important;
+}
+.toast-info {
+    background-color: #2980b9!important;
+}
+.toast-warning {
+    background-color: #d35400!important;
+}
+.toast-progress{
+	background-color: #222;
+}
+.toast-top-right {
+    top: 62px!important;
+    right: 42px!important;
+}
