@@ -8,9 +8,10 @@
   position: relative;
 
   & .search-icon {
-    position: absolute;
+    float: left;
+    position: relative;
     top: 15px;
-    right: 5px;
+    right: 15px;
     color: $defaultColor;
     transition: $transitionFastValue;
   }
@@ -24,13 +25,16 @@
   background: transparent;
   border-radius: 0;
   color: $defaultColor;
+  float: left;
   height: auto;
   padding: 10px 5px 5px;
-  width: 100%;
+  width: 70%;
+  transition: $transitionFastValue;
   &:focus {
     box-shadow: none;
     border-bottom-color: $linkColor;
     color: $linkColor;
+    width: 96%;
       & +.search-icon {
           color: $linkColor;
       }
