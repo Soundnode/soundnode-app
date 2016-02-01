@@ -1,14 +1,14 @@
 <div class="streamView">
-    <h1 class="pull-left"> {{ title }}</h1>
+    <h1> {{ title }}</h1>
 
     <!-- Genre Selector -->
-    <div class="genre-selector pull-right" >
-        <h3>Charts By Genre</h3>
+    <div class="genre-selector" >
+        <h3 class="title">Charts By Genre</h3>
         <div class="btn-group">
-          <button ui-sref="charts({genre:'{{genre.link}}'})" ui-sref-opts="{reload:true}" class="button inline" ng-repeat="genre in genres">{{genre.title}}</button>
+            <button ui-sref="charts({genre:'{{genre.link}}'})" ui-sref-opts="{reload:true}" class="button inline" ng-repeat="genre in genres">{{genre.title}}</button>
         </div>
     </div>
-    <div class="clearfix"></div>
+
     <!-- Song list wrapper -->
     <div class="streamView_inner">
         <ul class="songList"

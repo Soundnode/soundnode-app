@@ -1,14 +1,20 @@
 .genre-selector {
-    width: 50%;
+    width: 100%;
     overflow: hidden;
-    height: 60px;
+    height: 75px;
     transition: height 0.4s;
+    margin: 0 0 20px 0;
+
     &:hover{
-        height: 400px;
+        height: 230px;
+    }
+
+    .title {
+        color: #a9aaae;
     }
 }
 
 .genre-selector button.button{
     margin-top: 5px;
-    width: 32%;
+    width: 19%;
 }
