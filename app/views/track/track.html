@@ -2,9 +2,24 @@
 
     <div class="trackDetails">
         <div class="additionalInfo">
-            <div class="trackCover">
-                <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
+            <div class="trackCover"
+             ng-class="{ active: hover }"
+             ng-mouseover="hover = true"
+             ng-mouseleave="hover = false">
+                <span class="songList_item_song_button"
+                          id="{{ track.id }}"
+                          song
+                          data-song-url="{{ track.stream_url }}"
+                          data-song-thumbnail="{{ track.artwork_url }}"
+                          data-song-title="{{ track.title }}"
+                          data-song-user="{{ track.user.username }}"
+                          data-song-user-id="{{ track.user.id }}"
+                          data-song-id="{{ track.id }}" >
 
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                </span>                
+                <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
                 <div class="details">
                     <span class="playback_count">
                         <i class="fa fa-play"></i> {{track.playback_count | number}}
