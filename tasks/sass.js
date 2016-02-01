@@ -1,10 +1,8 @@
 module.exports = {
-    options: {
-        sourceMap: true
-    },
     production: {
         options: {
-            outputStyle: 'compressed'
+            outputStyle: 'compressed',
+            sourceMap: true
         },
         files: {
             '<%= settings.app %>/public/stylesheets/css/app.css': '<%= settings.app %>/public/stylesheets/sass/app.scss'
