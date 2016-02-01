@@ -136,6 +136,14 @@ app.run(function(
     });
 
     hotkeys.add({
+        combo: ['command+w'],
+        description: 'Minimize window',
+        callback: function() {
+            guiConfig.minimize();
+        }
+    });
+
+    hotkeys.add({
         combo: ['mod+,'],
         description: 'Open Settings',
         callback: function() {
