@@ -10,7 +10,7 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
             newArtwork = img.replace('large', 't300x300');
             return newArtwork;
         } else {
-            newArtwork = 'public/img/logo-short.png';
+            newArtwork = 'public/img/song-placeholder.png';
             return newArtwork;
         }
     };
