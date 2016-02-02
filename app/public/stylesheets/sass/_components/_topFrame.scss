@@ -20,11 +20,11 @@
 }
 .windowAction_item {
   float: left;
-  margin: 10px 5px 0;
-  font-size: 10px;
+  margin: 13px 5px 0;
+  font-size: 7px;
   cursor: pointer;
   border-radius: 15px;
-  padding: 0px 3px;
+  padding: 1px 3px;
   letter-spacing: 0;
 
 
@@ -45,11 +45,6 @@
 .macActionButtons {
   & #closeApp {
     background: #FF4441;
-
-    & .fa {
-      position: relative;
-      top: -1px;
-    }
   }
 
   & #minimizeApp {
