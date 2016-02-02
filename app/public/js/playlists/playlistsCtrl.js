@@ -1,6 +1,19 @@
 'use strict';
 
-app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log, $window, $http, $state, $stateParams, notificationFactory, modalFactory) {
+app.controller('PlaylistsCtrl', function (
+    $scope,
+    SCapiService,
+    $rootScope,
+    $log,
+    $window,
+    $http,
+    $state,
+    $stateParams,
+    notificationFactory,
+    modalFactory,
+    utilsService,
+    queueService
+) {
     var endpoint = 'me/playlists'
         , params = '';
 
@@ -22,6 +35,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
             console.log('error', error);
         }).finally(function(){
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     /**
@@ -61,11 +75,13 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
                     $log.log(response);
                     return $q.reject(response.data);
                 }).finally(function() {
-                    $state.transitionTo($state.current, $stateParams, {
-                        reload: true,
-                        inherit: false,
-                        notify: true
-                    });
+                    var inQueue = queueService.find(songId);
+
+                    $('#' + songId).remove();
+
+                    if ( inQueue ) {
+                        queueService.remove(inQueue);
+                    }
                 })
 
             }, function(error) {
@@ -92,11 +108,7 @@ app.controller('PlaylistsCtrl', function ($scope, SCapiService, $rootScope, $log
                         notificationFactory.error("Something went wrong!");
                     })
                     .finally(function() {
-                        $state.transitionTo($state.current, $stateParams, {
-                            reload: true,
-                            inherit: false,
-                            notify: true
-                        });
+                        $('#' + playlistId).remove();
                     });
             });
     };

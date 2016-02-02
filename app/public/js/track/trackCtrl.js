@@ -1,4 +1,10 @@
-app.controller('TrackCtrl', function ($scope, SCapiService, $rootScope, $stateParams) {
+app.controller('TrackCtrl', function (
+    $scope,
+    SCapiService,
+    $rootScope,
+    $stateParams,
+    utilsService
+) {
     var songId = $stateParams.id;
     $scope.hover = false;
 
@@ -28,6 +34,7 @@ app.controller('TrackCtrl', function ($scope, SCapiService, $rootScope, $statePa
             console.log('error', error);
         }).finally(function() {
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     SCapiService.get('tracks/' + songId + '/comments', 'linked_partitioning=1&limit=30')
@@ -55,6 +62,7 @@ app.controller('TrackCtrl', function ($scope, SCapiService, $rootScope, $statePa
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
+                utilsService.setCurrent();
             });
     };
 

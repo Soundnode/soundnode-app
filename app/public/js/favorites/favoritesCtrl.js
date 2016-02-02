@@ -10,17 +10,20 @@ app.controller('FavoritesCtrl', function (
         , params = 'linked_partitioning=1';
 
     $scope.title = 'Likes';
+    $scope.originalData = '';
     $scope.data = '';
     $scope.busy = false;
 
     SCapiService.get(endpoint, params)
         .then(function(data) {
+            $scope.originalData = data.collection;
             $scope.data = data.collection;
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
             utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     $scope.loadMore = function() {
@@ -32,6 +35,7 @@ app.controller('FavoritesCtrl', function (
         SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
+                    $scope.originalData.push( data.collection[i] );
                     $scope.data.push( data.collection[i] )
                 }
                 utilsService.updateTracksReposts(data.collection, true);
@@ -40,6 +44,7 @@ app.controller('FavoritesCtrl', function (
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
+                utilsService.setCurrent();
             });
     };
 

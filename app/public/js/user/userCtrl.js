@@ -16,7 +16,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, $window, SCapiService) 
 
     $scope.logOut = function() {
         $window.localStorage.clear();
-        appGUI.close();
+        guiConfig.close();
     }
 
 });

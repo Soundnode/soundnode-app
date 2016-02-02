@@ -42,6 +42,24 @@ app.service('SC2apiService', function (
     };
 
     /**
+     * Get charts (top 50)
+     * @returns {Promise.<T>}
+     */
+    this.getCharts = function (genre) {
+        // kind=top&genre=soundcloud%3Agenres%3Aall-music&limit=50
+
+        var params = {
+            kind: 'top',
+            genre: 'soundcloud:genres:'+genre,
+            limit: 50
+        };
+        return sendRequest('charts', { params: params })
+            .then(onResponseSuccess)
+            .then(updateNextPageUrl)
+            .catch(onResponseError);
+    };
+
+    /**
      * Get next page for last requested resource
      * @return {promise}
      */

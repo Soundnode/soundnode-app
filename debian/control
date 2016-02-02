@@ -1,0 +1,14 @@
+Source: soundnodeapp
+Section: unknown
+Priority: optional
+Maintainer: Jonas Gröger <jonas.groeger@posteo.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.soundnodeapp.com
+
+Package: soundnodeapp
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Soundcloud for Ubuntu/Debian
+ Explore the largest community of artists, bands,
+ podcasters and creators of music & audio.

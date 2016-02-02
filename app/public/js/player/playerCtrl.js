@@ -1,6 +1,17 @@
 'use strict';
 
-app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueService, hotkeys, $state, $log, $timeout) {
+app.controller('PlayerCtrl', function (
+    $scope,
+    $rootScope,
+    playerService,
+    queueService,
+    hotkeys,
+    $state,
+    $log,
+    $timeout,
+    SCapiService,
+    notificationFactory
+) {
     $scope.imgPath = 'public/img/temp-playing.png';
 
     $timeout(function() {
@@ -109,6 +120,34 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
         $state.go('profile', { id: trackObj.songUserId });
     };
 
+    $scope.favorite = function($event) {
+        var userId = $rootScope.userId;
+        var track = queueService.getTrack();
+
+        if ( $event.currentTarget.classList.contains('active') ) {
+
+            SCapiService.deleteFavorite(userId, track.songId)
+                .then(function(status) {
+                    if ( typeof status == "object" ) {
+                        notificationFactory.success("Song removed from likes!");
+                        $event.currentTarget.classList.remove('active');
+                    }
+                }, function() {
+                    notificationFactory.error("Something went wrong!");
+                })
+        } else {
+            SCapiService.saveFavorite(userId, track.songId)
+                .then(function(status) {
+                    if ( typeof status == "object" ) {
+                        notificationFactory.success("Song added to likes!");
+                        $event.currentTarget.classList.add('active');
+                    }
+                }, function(status) {
+                    notificationFactory.error("Something went wrong!");
+                });
+        }
+    };
+
 
     /*
     * Add native media shortcuts
@@ -117,11 +156,13 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var playPause = new gui.Shortcut({
         key: 'MediaPlayPause',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            } else {
-                playerService.playSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.pauseSong();
+                } else {
+                    playerService.playSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -131,9 +172,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var stop = new gui.Shortcut({
         key: 'MediaStop',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.pauseSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -143,9 +186,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var prevTrack = new gui.Shortcut({
         key: 'MediaPrevTrack',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.playPrevSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.playPrevSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -155,9 +200,11 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     var nextTrack = new gui.Shortcut({
         key: 'MediaNextTrack',
         active: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.playNextSong();
-            }
+            $scope.$apply(function() {
+                if ( $rootScope.isSongPlaying ) {
+                    playerService.playNextSong();
+                }
+            });
         },
         failed: function() {
             // nothing here
@@ -203,7 +250,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     });
 
     hotkeys.add({
-        combo: ['command+right', 'ctrl+right'],
+        combo: 'ctrl+right',
         description: 'Next song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {
@@ -213,7 +260,7 @@ app.controller('PlayerCtrl', function ($scope, $rootScope, playerService, queueS
     });
 
     hotkeys.add({
-        combo: ['command+left', 'ctrl+left'],
+        combo: 'ctrl+left',
         description: 'Prev song',
         callback: function() {
             if ( $rootScope.isSongPlaying ) {

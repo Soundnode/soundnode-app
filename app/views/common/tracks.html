@@ -15,13 +15,13 @@
                         <i class="fa fa-play"></i>
                         <i class="fa fa-pause"></i>
                     </span>
-    <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" alt="{{ data.title }}" class="songList_item_artwork">
+    <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" onerror="if (this.src != 'public/img/logo-short.png') this.src = 'public/img/logo-short.png';" alt="{{ data.title }}" class="songList_item_artwork">
     <div class="songList_item_song_social_details">
         <span class="songList_comment_count">
             <i class="fa fa-comments"></i>{{data.comment_count | round}}
         </span>
         <span class="songList_likes_count">
-            <i class="fa fa-heart"></i>{{data.favoritings_count | round}}
+            <i class="fa fa-heart"></i>{{data.likes_count || data.favoritings_count | round}}
         </span>
         <span class="songList_reposts_count" ng-if="data.reposts_count">
             <i class="fa fa-retweet"></i>{{data.reposts_count | round}}
@@ -30,10 +30,10 @@
 </div>
 
 <section class="songList_item_inner">
-    <h2 class="songList_item_song_tit" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
+    <h2 class="songList_item_song_tit selectable-text" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
 
     <h3 class="songList_item_song_info clearfix">
-        <div class="songList_item_song_user">
+        <div class="songList_item_song_user selectable-text">
             <a ui-sref="profile({id: {{data.user.id}}})">
                 {{ data.user.username }}
             </a>

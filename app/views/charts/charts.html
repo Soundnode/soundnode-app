@@ -1,0 +1,31 @@
+<div class="streamView">
+    <h1> {{ title }}</h1>
+
+    <!-- Genre Selector -->
+    <div class="genre-selector" >
+        <h3 class="title">Charts By Genre</h3>
+        <div class="btn-group">
+            <button ui-sref="charts({genre:'{{genre.link}}'})" ui-sref-opts="{reload:true}" class="button inline" ng-repeat="genre in genres">{{genre.title}}</button>
+        </div>
+    </div>
+
+    <!-- Song list wrapper -->
+    <div class="streamView_inner">
+        <ul class="songList"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-container='".mainView"'
+            infinite-scroll-immediate-check='false' >
+
+            <li class="songList_item" ng-repeat="data in data">
+
+                <tracks data="data.track" type="data.type" user="data.user"/>
+
+            </li>
+        </ul>
+    </div>
+    <!-- Song list wrapper / end -->
+
+    <div ng-include="'views/common/loading.html'"></div>
+
+</div>

@@ -73,7 +73,7 @@
                     <img ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
                     <div class="user_inner">
-                        <span class="user_name">{{ data.username }}</span>
+                        <span class="user_name" title="{{ data.username}}">{{ data.username }}</span>
                         <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
                     </div>
                 </div>
@@ -96,6 +96,12 @@
         <nav class="mainNav">
             <h2 class="ui_title">Main</h2>
             <ul class="mainNav_nav">
+                <li class="mainNav_item" ui-sref-active="active">
+                    <a class="mainNav_button" ui-sref="charts">
+                        <i class="fa fa-trophy"></i>
+                        <span class="mainNav_tit">Top 50</span>
+                    </a>
+                </li>
                 <li class="mainNav_item" ui-sref-active="active">
                     <a class="mainNav_button" ui-sref="stream">
                         <i class="fa fa-cloud"></i>
@@ -142,6 +148,11 @@
                 <div class="player_time">
                     <span class="player_timeCurrent" id="player-timecurrent"></span>
                     <span class="player_duration" id="player-duration"></span>
+                </div>
+                <div class="player_actions">
+                    <span class="player_favorite" ng-click="favorite($event)" ng-hide="!isSongPlaying">
+                        &nbsp;<i class="fa fa-heart"></i>
+                    </span>
                 </div>
             </div>
             <div class="player_controls">
@@ -221,6 +232,7 @@
 <script src="public/js/search/searchInputCtrl.js"></script>
 <script src="public/js/search/searchCtrl.js"></script>
 <script src="public/js/stream/streamCtrl.js"></script>
+<script src="public/js/charts/chartsCtrl.js"></script>
 <script src="public/js/user/userCtrl.js"></script>
 <script src="public/js/player/playerCtrl.js"></script>
 <script src="public/js/favorites/favoritesCtrl.js"></script>

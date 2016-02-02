@@ -25,7 +25,6 @@ app.controller('QueueCtrl', function(
         var list = document.querySelector('.queueListView_list');
 
         var observer = new MutationObserver(function(mutations) {
-            $log.log('mutation done', mutations);
             $scope.activateTrackInQueue();
         });
 
@@ -139,7 +138,7 @@ app.controller('QueueCtrl', function(
 
         $location.hash(trackId);
         $anchorScroll();
-    }
+    };
 
     /**
      * Dynamically change position of menu not to overlap fixed footer and header

@@ -44,6 +44,7 @@
     display: block;
     padding: 9px 0 9px 15px;
     border-left: 1px solid transparent;
+    -webkit-user-drag: none;
 
     &:hover, &:hover span {
         cursor: pointer;

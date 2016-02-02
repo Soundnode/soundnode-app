@@ -34,6 +34,7 @@ tray.menu = menu;
 guiConfig.getGUI = gui.Window.get();
 
 guiConfig.init = function () {
+    this.getGUI.show();
     this.navBarUserUnAuthenticated();
 };
 

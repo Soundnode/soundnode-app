@@ -12,7 +12,7 @@
     transition: $transitionFastValue;
     margin-left: 1em;
 
-    &.active {
+    &.active, &.liked {
         color: $scColor;
         &:hover {
             color: #FFF;

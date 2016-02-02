@@ -3,7 +3,9 @@
 app.factory('utilsService', function(
     queueService,
     SCapiService,
-    $q
+    $q,
+    $rootScope,
+    $timeout
 ) {
     /**
      * API (helpers/utils) to interact with the UI
@@ -151,6 +153,59 @@ app.factory('utilsService', function(
             });
             return collection;
         });
+    };
+
+    /**
+     * Check if current track position is last
+     * @returns {boolean}
+     */
+    Utils.isLastTrackInQueue = function() {
+        return queueService.currentPosition === queueService.size() - 1;
+    };
+
+    /**
+     * Scroll main view to bottom
+     */
+    Utils.scrollToBottom = function() {
+        var $mainView = document.querySelector('.mainView');
+        $mainView.scrollTop = $mainView.scrollHeight;
+    };
+
+    /**
+     * Watch for changes on "isLoading" state
+     * and once that happened click the next tracks
+     * to last track (not in Queue) to Queue
+     */
+    Utils.addLoadedTracks = function() {
+        var that = this;
+
+        $rootScope.$watch('isLoading', function(newVal, oldVal) {
+            if ( oldVal ) {
+                $timeout(function() {
+                    var currentSong = that.getCurrentSong();
+
+                    $(currentSong)
+                        .closest('li')
+                        .next()
+                        .find('.songList_item_song_button')
+                        .click();
+                }, 0)
+            }
+        });
+    };
+
+    /**
+     * Find current track playing and set as "currentSong"
+     */
+    Utils.setCurrent = function() {
+        var $track = queueService.getTrack();
+
+        if ( $track !== null && $track != undefined ) {
+            $timeout(function() {
+                $('#' + $track.songId).addClass('currentSong');
+            }, 1500);
+        }
+
     };
 
     return Utils;

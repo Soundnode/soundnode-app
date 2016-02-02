@@ -10,15 +10,16 @@ app.controller('StreamCtrl', function (
     var tracksIds = [];
 
     $scope.title = 'Stream';
+    $scope.originalData = '';
     $scope.data = '';
     $scope.busy = false;
 
     SC2apiService.getStream()
         .then(filterCollection)
         .then(function (collection) {
+            $scope.originalData = collection;
             $scope.data = collection;
 
-            loadTracksInfo(collection);
         })
         .catch(function (error) {
             console.log('error', error);
@@ -38,10 +39,10 @@ app.controller('StreamCtrl', function (
         SC2apiService.getNextPage()
             .then(filterCollection)
             .then(function (collection) {
+                $scope.originalData = $scope.originalData.concat(collection);
                 $scope.data = $scope.data.concat(collection);
                 utilsService.updateTracksLikes(collection, true);
                 utilsService.updateTracksReposts(collection, true);
-                loadTracksInfo(collection);
             }, function (error) {
                 console.log('error', error);
             }).finally(function () {
@@ -72,30 +73,6 @@ app.controller('StreamCtrl', function (
             tracksIds.push(item.track.id);
             return true;
         });
-    }
-
-    // Load extra information, because SoundCloud v2 API does not return
-    // number of track likes
-    function loadTracksInfo(collection) {
-        var ids = collection.map(function (item) {
-            return item.track.id;
-        });
-
-        SC2apiService.getTracksByIds(ids)
-            .then(function (tracks) {
-                // Both collections are unordered
-                collection.forEach(function (item) {
-                    tracks.forEach(function (track) {
-                        if (item.track.id === track.id) {
-                            item.track.favoritings_count = track.likes_count;
-                            return;
-                        }
-                    });
-                });
-            })
-            .catch(function (error) {
-                console.log('error', error);
-            });
     }
 
 });

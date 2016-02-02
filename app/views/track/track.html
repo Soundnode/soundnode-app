@@ -2,9 +2,24 @@
 
     <div class="trackDetails">
         <div class="additionalInfo">
-            <div class="trackCover">
-                <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
+            <div class="trackCover"
+             ng-class="{ active: hover }"
+             ng-mouseover="hover = true"
+             ng-mouseleave="hover = false">
+                <span class="songList_item_song_button"
+                          id="{{ track.id }}"
+                          song
+                          data-song-url="{{ track.stream_url }}"
+                          data-song-thumbnail="{{ track.artwork_url }}"
+                          data-song-title="{{ track.title }}"
+                          data-song-user="{{ track.user.username }}"
+                          data-song-user-id="{{ track.user.id }}"
+                          data-song-id="{{ track.id }}" >
 
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                </span>                
+                <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
                 <div class="details">
                     <span class="playback_count">
                         <i class="fa fa-play"></i> {{track.playback_count | number}}
@@ -17,17 +32,17 @@
         </div>
         <div class="content">
             <div ng-click="changeLike()" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
-                 ng-class="{active: track.user_favorite}" class="button follow_button"
+                 ng-class="{liked: track.user_favorite}" class="button follow_button"
                  favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite">
                 <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
                 <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
             </div>
-            <h1>{{track.title}}</h1>
+            <h1 class="selectable-text">{{track.title}}</h1>
 
-            <h3 ui-sref="profile({id: track.user.id})" class="user_name">{{track.user.username}}</h3>
+            <h3 ui-sref="profile({id: track.user.id})" class="user_name selectable-text">{{track.user.username}}</h3>
             <h4>Created: {{track.created_at | date: short}}</h4>
 
-            <p class="track_description" text-collapse text-max-height="196"
+            <p class="track_description selectable-text" text-collapse text-max-height="196"
                text-to-collapse="{{track.description}}">
             </p>
             <div class="trackActions">

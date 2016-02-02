@@ -1,0 +1,21 @@
+<h4>Filter tracks by:</h4>
+<ul>
+    <li>
+        <label for="time">
+            <input type="checkbox" name="time" id="time" ng-model="time" ng-change="filter($event)">
+            <strong title="filter tracks by higher than 30 minutes "> > 30 minutes</strong>
+        </label>
+    </li>
+    <li>
+        <label for="reposts">
+            <input type="checkbox" name="reposts" id="reposts" ng-model="reposts" ng-change="filter($event)">
+            <strong title="filter tracks by no reposts by current user logged in"> no reposts</strong>
+        </label>
+    </li>
+    <li>
+        <label for="listens">
+            <input type="checkbox" name="listens" id="listens" ng-model="listens" ng-change="filter($event)">
+            <strong title="filter tracks by listened more than 10k times"> > 10k listens</strong>
+        </label>
+    </li>
+</ul>

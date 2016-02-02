@@ -9,7 +9,7 @@
             infinite-scroll-container='".mainView"'
             infinite-scroll-immediate-check='false' >
 
-            <li class="songList_item" ng-repeat="data in data"
+            <li class="songList_item" ng-repeat="data in data track by $index"
                 ng-if="data.kind == 'track' && data.streamable">
 
                 <tracks data="data"/>

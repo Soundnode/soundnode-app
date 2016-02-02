@@ -21,6 +21,7 @@ app.controller('ProfileCtrl', function (
     $scope.followers_count = '';
     $scope.busy = false;
     //tracks
+    $scope.originalData = '';
     $scope.data = '';
     $scope.follow_button_text = '';
 
@@ -38,12 +39,14 @@ app.controller('ProfileCtrl', function (
 
     SCapiService.getProfileTracks(userId)
         .then(function(data) {
+            $scope.originalData = data.collection;
             $scope.data = data.collection;
         }, function(error) {
             console.log('error', error);
         }).finally(function() {
             utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
+            utilsService.setCurrent();
         });
 
     SCapiService.isFollowing(userId)
@@ -65,7 +68,8 @@ app.controller('ProfileCtrl', function (
         SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
-                    $scope.data.push( data.collection[i] )
+                    $scope.originalData.push( data.collection[i] );
+                    $scope.data.push( data.collection[i] );
                 }
                 utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
@@ -73,6 +77,7 @@ app.controller('ProfileCtrl', function (
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;
+                utilsService.setCurrent();
             });
     };
 
@@ -82,13 +87,13 @@ app.controller('ProfileCtrl', function (
         } else {
             $scope.follow_button_text = 'Follow';
         }
-    }
+    };
 
     $scope.hoverIn = function() {
         if ($scope.isFollowing) {
             $scope.follow_button_text = 'Unfollow';
         }
-    }
+    };
 
     $scope.changeFollowing = function() {
         if ($scope.isFollowing) {
@@ -115,7 +120,7 @@ app.controller('ProfileCtrl', function (
                 });
         }
         $scope.setFollowButtonText();
-    }
+    };
 
     function handlerFollowOrUnfollowError(errorResponse) {
         console.log('error', errorResponse);
