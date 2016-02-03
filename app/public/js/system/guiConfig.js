@@ -15,6 +15,8 @@ guiConfig.init = function () {
 // close the App
 guiConfig.close = function () {
     if (process.platform !== "darwin") {
+        // save last played track progress before shutting down
+        window.localStorage.lastPlayedSongDuration = $(document.getElementById('player-progress')).data("track-progress");
         this.getGUI.close(true);
     }
     else {

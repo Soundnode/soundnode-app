@@ -162,9 +162,43 @@ app.factory('playerService', function(
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
 
+        userConfig.saveLastPlayedSong(trackObj);
+        // save queue into local storage for resume
+        userConfig.saveQueue(queueService.list, queueService.find(trackObjId));
+
         // remove the active class from player favorite icon before play new song
         // TODO: this should check if the current song is already favorited
         document.querySelector('.player_favorite').classList.remove('active');
+    };
+
+    /**
+     * Loads last played song
+     * @method loadLastPlayedSong
+     */
+
+    player.loadLastPlayedSong = function() {
+        var trackObj;
+        queueService.push(JSON.parse(window.queue));
+        queueService.currentPosition = window.queueCurrentPosition;
+        trackObj = queueService.getTrack();
+
+        if (trackObj) {
+            utilsService.deactivateCurrentSong();
+            utilsService.activateCurrentSong(trackObj.songId);
+
+            if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
+                trackObj.songThumbnail = 'public/img/logo-short.png';
+            }
+            // update player view
+            this.elPlayer.setAttribute('src', trackObj.songUrl + '?client_id=' + $window.scClientId);
+            this.elThumb.setAttribute('src', trackObj.songThumbnail);
+            this.elThumb.setAttribute('alt', trackObj.songTitle);
+            this.elTitle.innerHTML = trackObj.songTitle;
+            this.elTitle.setAttribute('title', trackObj.songTitle);
+            this.elUser.innerHTML = trackObj.songUser;
+            this.elPlayer.currentTime = window.lastPlayedSongDuration;
+
+        } else return;
     };
 
     /**
@@ -256,6 +290,7 @@ app.factory('playerService', function(
             width: pos + '%'
         });
 
+        $(player.elPlayerProgress).data("track-progress", player.elPlayer.currentTime);
     });
 
     /**
