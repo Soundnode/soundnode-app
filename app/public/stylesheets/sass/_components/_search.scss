@@ -9,7 +9,7 @@
 
   & .search-icon {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 5px;
     color: $defaultColor;
     transition: $transitionFastValue;
@@ -25,7 +25,7 @@
   border-radius: 0;
   color: $defaultColor;
   height: auto;
-  padding: 10px 5px 5px;
+  padding: 5px 5px 5px;
   width: 100%;
   &:focus {
     box-shadow: none;
