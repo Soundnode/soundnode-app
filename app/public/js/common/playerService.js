@@ -136,7 +136,7 @@ app.factory('playerService', function(
         utilsService.activateCurrentSong(trackObjId);
 
         if ( trackObj.songThumbnail === '' || trackObj.songThumbnail === null ) {
-            trackObj.songThumbnail = 'public/img/logo-short.png';
+            trackObj.songThumbnail = 'public/img/song-placeholder.png';
         }
 
         this.elPlayer.setAttribute('src', trackObj.songUrl + '?client_id=' + $window.scClientId);
