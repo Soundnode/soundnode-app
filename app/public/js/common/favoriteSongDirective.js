@@ -8,7 +8,8 @@ app.directive('favoriteSong', function(
     return {
         restrict: 'A',
         scope: {
-            favorite: "="
+            favorite: "=",
+			count: "="
         },
         link: function($scope, elem, attrs) {
             var userId
@@ -25,6 +26,7 @@ app.directive('favoriteSong', function(
                             if ( typeof status == "object" ) {
                                 notificationFactory.success("Song removed from likes!");
                                 $scope.favorite = false;
+								$scope.count -= 1;
                             }
                         }, function() {
                             notificationFactory.error("Something went wrong!");
@@ -35,6 +37,7 @@ app.directive('favoriteSong', function(
                             if ( typeof status == "object" ) {
                                 notificationFactory.success("Song added to likes!");
                                 $scope.favorite = true;
+								$scope.count += 1;
                             }
                         }, function(status) {
                             notificationFactory.error("Something went wrong!");

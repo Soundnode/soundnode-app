@@ -51,7 +51,7 @@
 
     <div class="songList_item_song_details">
         <div class="songList_item_actions">
-            <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
+            <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" count="data.favoritings_count" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
                 <i class="fa fa-heart"></i>
             </a>
             <a reposted-song data-song-id="{{ data.id }}" reposted="data.user_reposted" ng-class="{ reposted: data.user_reposted }" title="{{data.user_reposted ? 'Unpost' : 'Repost'}}" ng-if="data.user.id !== $root.userId">
