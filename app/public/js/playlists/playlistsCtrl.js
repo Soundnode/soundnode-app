@@ -15,7 +15,7 @@ app.controller('PlaylistsCtrl', function (
     queueService
 ) {
     var endpoint = 'me/playlists'
-        , params = '';
+        , params = 'limit=125';
 
     $scope.title = 'Playlists';
     $scope.data = '';
