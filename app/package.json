@@ -1,5 +1,5 @@
 {
-  "name": "Soundnode-App",
+  "name": "SoundNode",
   "version": "0.5.7",
   "description": "Soundnode App is the Soundcloud for desktop",
   "main": "./index.html",
