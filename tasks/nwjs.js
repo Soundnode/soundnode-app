@@ -15,8 +15,7 @@ var config = {
             '<%= settings.app %>/public/js/**/*',
             '<%= settings.app %>/public/img/**/*',
             '<%= settings.app %>/public/stylesheets/css/**/*',
-            '<%= settings.app %>/dist/**/*',
-            './node_modules/universal-analytics/**/*'
+            '<%= settings.app %>/dist/**/*'
         ]
     };
 

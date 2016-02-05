@@ -98,8 +98,13 @@ app.run(function(
     notificationFactory
 ) {
 
-    //start GA
-    window.settings.visitor.pageview("/").send();
+    // Initialize Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-67310953-1', 'auto'); // DO NOT CHANGE OR USE THIS CODE
+    ga('send', 'pageview', '/');
 
     // toastr config override
     toastr.options.positionClass = 'toast-bottom-right';
@@ -112,11 +117,11 @@ app.run(function(
         $rootScope.oldView = fromState.name;
         $rootScope.currentView = toState.name;
 
-        // set GA page/view
+        // Set GA pageview
         if ( toState.name === "" ) {
-            window.settings.visitor.pageview("/").send();
+            ga('send', 'pageview', '/');
         } else {
-            window.settings.visitor.pageview(toState.name).send();
+            ga('send', 'pageview', toState.name);
         }
 
     });

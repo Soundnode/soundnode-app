@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "react": "^0.14.2",
-    "react-dom": "^0.14.2",
-    "universal-analytics": "^0.3.9"
+    "react-dom": "^0.14.2"
   }
 }
