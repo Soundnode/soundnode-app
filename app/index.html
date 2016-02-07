@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Soundnode App</title>
+    <title>Soundnode</title>
 
     <!-- style -->
     <link href="public/stylesheets/css/vendor/normalize.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@
                     <img ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
                     <div class="user_inner">
-                        <span class="user_name">{{ data.username }}</span>
+                        <span class="user_name" title="{{ data.username}}">{{ data.username }}</span>
                         <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                 <span class="player_progress_bar" id="player-progress"></span>
             </div>
             <div class="player_details">
-                <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb" ng-click="goToSong($event)">
+                <img id="playerThumb" src="public/img/song-placeholder.png" alt="" class="player_thumb" ng-click="goToSong($event)">
 
                 <h2 id="playerTitle" class="player_title" ng-click="goToSong($event)"></h2>
                 <h4 id="playerUser" class="player_user" ng-click="goToUser($event)"></h4>

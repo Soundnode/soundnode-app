@@ -1,6 +1,6 @@
 {
-  "name": "Soundnode-App",
-  "version": "0.5.7",
+  "name": "Soundnode",
+  "version": "0.6.3",
   "description": "Soundnode App is the Soundcloud for desktop",
   "main": "./index.html",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "Michael Lancaster",
   "license": "GNU",
   "window": {
-    "title": "Soundnode App",
+    "title": "Soundnode",
     "icon": "./soundnode.png",
     "toolbar": false,
     "frame": false,

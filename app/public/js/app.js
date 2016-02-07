@@ -27,7 +27,7 @@ app.config(function (
             controller: 'StreamCtrl'
         })
         .state('charts', {
-            url: '/',
+            url: '/charts/:genre',
             templateUrl: 'views/charts/charts.html',
             controller: 'ChartsCtrl'
         })
@@ -94,7 +94,8 @@ app.run(function(
     $state,
     SCapiService,
     hotkeys,
-    utilsService
+    utilsService,
+    notificationFactory
 ) {
 
     //start GA
@@ -136,6 +137,14 @@ app.run(function(
     });
 
     hotkeys.add({
+        combo: ['command+w'],
+        description: 'Minimize window',
+        callback: function() {
+            guiConfig.minimize();
+        }
+    });
+
+    hotkeys.add({
         combo: ['mod+,'],
         description: 'Open Settings',
         callback: function() {
@@ -168,6 +177,17 @@ app.run(function(
             userConfig.scaleWindow(newScale);
         }
     });
+
+    function updateOnlineStatus(event) {
+        if(!navigator.onLine) {
+            notificationFactory.warn("Seems like internet connection is down.");
+        } else {
+            notificationFactory.success("Awesome! You're connected back to the internet.");
+        }
+    }
+
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
 
 });
 

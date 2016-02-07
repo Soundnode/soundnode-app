@@ -31,6 +31,7 @@
     border: 1px solid transparent;
     border-radius: 25px;
     background-color: #222326;
+    transition: all 0.2s ease-in;
 }
 .onoffswitch-label:before {
     content: "";
@@ -42,6 +43,7 @@
     right: 31px;
     border: 1px solid transparent;
     border-radius: 25px;
+    transition: all 0.2s ease-in;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
     background-color: #FF5500;
