@@ -75,6 +75,7 @@
         float: right;
         
         & i {
+          color: $linkColor;
           &:hover {
               color: #FFF;
           }
