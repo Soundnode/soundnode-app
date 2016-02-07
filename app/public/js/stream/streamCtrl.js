@@ -10,6 +10,8 @@ app.controller('StreamCtrl', function (
     var tracksIds = [];
 
     $scope.title = 'Stream';
+    $scope.originalData = '';
+    $scope.data = '';
     $scope.busy = false;
     
     // Create a wrapper function so the user can manually refresh 
