@@ -1,5 +1,4 @@
 'use strict';
-
 app.controller('tagCtrl', function (
     $scope,
     $rootScope,
@@ -9,11 +8,9 @@ app.controller('tagCtrl', function (
     utilsService
 ) {
     var tagUrl = encodeURIComponent($stateParams.name);
-
     $scope.tag = $stateParams.name;
     $scope.originalData = '';
     $scope.data = '';
-
     SCapiService.get('search/sounds', 'limit=32&q=*&filter.genre_or_tag=' + tagUrl)
         .then(function (data) {
             $scope.originalData = data.collection;
@@ -30,7 +27,6 @@ app.controller('tagCtrl', function (
             return;
         }
         $scope.busy = true;
-
         SCapiService.getNextPage()
             .then(function (data) {
                 for (var i = 0; i < data.collection.length; i++) {
@@ -45,5 +41,4 @@ app.controller('tagCtrl', function (
                 $rootScope.isLoading = false;
             });
     };
-
 });

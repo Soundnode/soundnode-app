@@ -3,7 +3,6 @@
 
 <head>
     <title>Soundnode App</title>
-
     <!-- style -->
     <link href="public/stylesheets/css/vendor/normalize.min.css" rel="stylesheet">
     <link href="public/stylesheets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -13,29 +12,21 @@
     <link rel="stylesheet" href="public/stylesheets/css/vendor/toastr.min.css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext'
           rel='stylesheet' type='text/css'>
-
     <!-- meta -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-
 </head>
-
 <body data-isVisible="false" ng-controller="AppCtrl">
-
 <!-- loading gif -->
 <div class="box-loader loading">
     <h4>Authenticating your Soundcloud account.</h4>
-
     <div class="loader"></div>
 </div>
 <!-- loading gif / end -->
-
 <!-- UI App -->
 <div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
-
     <!-- header -->
     <header class="topFrame">
         <div class="headerActionsApp"></div>
-
         <ul class="topbarSearch">
             <!-- search -->
             <div class="search" ng-controller="SearchInputCtrl">
@@ -51,7 +42,6 @@
             </div>
             <!-- search / end -->
         </ul>
-
         <ul class="appInfo">
             <li class="appInfo_item subNav settingsApp"></li>
             <li class="appInfo_item" ng-controller="UpdaterCtrl">
@@ -61,10 +51,8 @@
         </ul>
     </header>
     <!-- header / end -->
-
     <!-- aside -->
     <aside class="aside">
-
         <!-- header -->
         <header class="header">
             <!-- user -->
@@ -91,7 +79,6 @@
             <!-- user / end -->
         </header>
         <!-- header / end -->
-
         <!-- main nav -->
         <nav class="mainNav">
             <h2 class="ui_title">Main</h2>
@@ -129,10 +116,8 @@
             </ul>
         </nav>
         <!-- main nav / end -->
-
     </aside>
     <!-- aside / end -->
-
     <!-- now player -->
     <div class="player" ng-controller="PlayerCtrl">
         <div class="player_inner">
@@ -141,10 +126,8 @@
             </div>
             <div class="player_details">
                 <img id="playerThumb" src="public/img/logo-short.png" alt="" class="player_thumb" ng-click="goToSong($event)">
-
                 <h2 id="playerTitle" class="player_title" ng-click="goToSong($event)"></h2>
                 <h4 id="playerUser" class="player_user" ng-click="goToUser($event)"></h4>
-
                 <div class="player_time">
                     <span class="player_timeCurrent" id="player-timecurrent"></span>
                     <span class="player_duration" id="player-duration"></span>
@@ -188,18 +171,14 @@
         </div>
     </div>
     <!-- now player / end -->
-
     <!-- main view -->
     <div class="mainView" ui-view></div>
     <!-- main view / end -->
-
     <!-- queue list -->
     <queue-list class="queueList" ></queue-list>
     <!-- queue list / end -->
-
 </div>
 <!-- UI App / end -->
-
 <!-- vendors -->
 <script src="public/js/vendor/jquery.min.js"></script>
 <script src="public/js/vendor/angular.min.1.3.8.js"></script>
@@ -266,6 +245,5 @@
 
 <!-- Webpack bundle -->
 <script src="dist/bundle.js"></script>
-
 </body>
 </html>
