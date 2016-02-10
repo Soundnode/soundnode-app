@@ -2,7 +2,7 @@
 
 app.controller('StreamCtrl', function (
     $scope,
-	$rootScope,
+	  $rootScope,
     SCapiService,
     SC2apiService,
     utilsService

@@ -1,3 +1,5 @@
+/* global app */
+/* global toastr */
 'use strict';
 
 app.factory('notificationFactory', function () {

@@ -13,7 +13,6 @@ app.controller('FollowersCtrl', function ($scope, SCapiService, $rootScope, $log
         }).finally(function() {
             $rootScope.isLoading = false;
         });
-
     $scope.loadMore = function() {
         if ( $scope.busy ) {
             return;
