@@ -21,6 +21,12 @@
 
 'use strict';
 
+/**
+ * Set a max timeout for when the user tries to go back a song
+ * If the user is over the timeout, Lets restart the song instead of go to the previous track
+ */
+const SONG_TIMEOUT_THRESHOLD = 3;
+
 var gui = require('nw.gui');
 
 app.factory('playerService', function(
@@ -226,11 +232,13 @@ app.factory('playerService', function(
      * @method playPrevSong
      */
     player.playPrevSong = function() {
-
         if ( $rootScope.lock ) {
             return false;
         }
-
+        if(SONG_TIMEOUT_THRESHOLD < player.elPlayer.currentTime) {
+            player.elPlayer.currentTime = 0;
+            return false;
+        }
         if ( $rootScope.shuffle && ! $rootScope.repeat ) {
             utilsService.shuffle();
         } else if ( ! $rootScope.repeat ) {
