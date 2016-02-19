@@ -127,3 +127,57 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .selectable-text {
     -webkit-user-select: initial;
 }
+
+body {
+	#toast-container{
+		& > div {
+			padding: 10px 15px 10px 45px;
+			width: 278px;
+			-moz-border-radius: 0;
+			-webkit-border-radius: 0;
+			border-radius: 0;
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			color: #ecf0f1;
+		}
+		& > div:hover {
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+	}
+		
+	.toast-message a,
+	.toast-message label {
+		font-size: 0.900em;
+		color: #ecf0f1;
+	}
+
+	.toast-message a:hover {
+		color: #bdc3c7;
+	}
+	
+	.toast {
+		background-color: #333;
+	}
+	.toast-success {
+		background-color: #2ecc71;
+	}
+	.toast-error {
+		background-color: #c0392b;
+	}
+	.toast-info {
+		background-color: #2980b9;
+	}
+	.toast-warning {
+		background-color: #d35400;
+	}
+	.toast-progress{
+		background-color: #222;
+	}
+	.toast-top-right {
+		top: 62px;
+		right: 42px;
+	}
+}

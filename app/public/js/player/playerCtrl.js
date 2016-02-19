@@ -133,7 +133,7 @@ app.controller('PlayerCtrl', function (
             SCapiService.deleteFavorite(userId, track.songId)
                 .then(function(status) {
                     if ( typeof status == "object" ) {
-                        notificationFactory.success("Song removed from likes!");
+                        notificationFactory.warn("Song removed from likes!");
                         $event.currentTarget.classList.remove('active');
                     }
                 }, function() {
