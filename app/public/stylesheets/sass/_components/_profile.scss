@@ -1,25 +1,21 @@
 .profile {
   overflow: hidden;
   margin-bottom: 25px;
+    display: flex;
 }
 
 .profile_box {
   display: inline-block;
-  float: right;
-  width: 590px;
   margin: 0 5px 0 5px;
+    flex: 1 0 300px;
 }
 
 .profile_pic {
-  float: left;
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  margin: 0 5px 0px 5px;
-  width: 300px;
-  height: 300px;
+    margin: 0 5px 0 5px;
+    flex: 0 1 300px;
+    min-width: 150px;
 }
 
 .profile_description {
-  font-size: 12px;
+    font-size: 12px;
 }

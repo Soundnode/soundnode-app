@@ -10,18 +10,16 @@
         display: flex;
 
         & .additionalInfo {
-            width: 300px;
-            flex-shrink: 0;
+            min-width: 150px;
+            flex: 0 1 300px;
         }
 
         & .trackCover {
-            width: 300px;
-            height: 300px;
             position: relative;
+            font-size: 0;
 
             & img {
-                width: 300px;
-                height: 300px;
+                width: 100%;
             }
 
             & .details {
@@ -30,7 +28,7 @@
                 bottom: 0;
                 width: 100%;
                 text-align: center;
-                font-size: 1.4em;
+                font-size: 14px;
                 color: #FFF;
                 padding: 5px;
                 background: rgba(0,0,0,0.6);
@@ -46,7 +44,7 @@
 
         & .content {
             padding: 0 10px;
-            width: 100%;
+            flex: 1 0 300px;
 
             & .user_name {
                 cursor: pointer;
