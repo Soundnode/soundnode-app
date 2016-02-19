@@ -24,16 +24,18 @@
                     <span class="playback_count">
                         <i class="fa fa-play"></i> {{track.playback_count | number}}
                     </span>
-                    <span class="likes_count">
+                    <span class="likes_count"
+								ng-class="{liked: track.user_favorite}"
+								favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite" count="track.favoritings_count">
                         <i class="fa fa-heart"></i> {{track.favoritings_count | round}}
                     </span>
                 </div>
             </div>
         </div>
         <div class="content">
-            <div ng-click="changeLike()" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
+            <div ng-mouseenter="hover = true" ng-mouseleave="hover = false"
                  ng-class="{liked: track.user_favorite}" class="button follow_button"
-                 favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite">
+                 favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite" count="track.favoritings_count">
                 <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
                 <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
             </div>
