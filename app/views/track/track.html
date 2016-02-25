@@ -52,6 +52,7 @@
                 <a class="button inline" href="{{ track.permalink_url }}" open-external target="_blank" title="Download on SoundCloud website" ng-if="track.downloadable"> <i class="fa fa-download"></i> Download</a>
                 <a class="button inline" data-song-id="{{ track.id }}" data-song-name="{{ track.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i> Add to playlist</a>
                 <a class="button inline" href="{{ track.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i> Permalink</a>
+                <a copy-directive class="button inline" data-copy="{{ track.permalink_url }}" title="Copy"> <i class="fa fa-clipboard"></i>Copy track link</a>
             </div>
         </div>
     </div>
