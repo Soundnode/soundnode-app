@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('TrackCtrl', function (
     $scope,
     SCapiService,
@@ -67,5 +69,3 @@ app.controller('TrackCtrl', function (
     };
 
 });
-
-'use strict';
