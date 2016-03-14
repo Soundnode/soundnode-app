@@ -82,7 +82,7 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
 
                         for(var i = 0; i < 4; i++) {
                             var child = document.createElement('div');
-                            var image = data.collection[i].atwork_url || 'public/img/song-placeholder.png';
+                            var image = data.collection[i].artwork_url || 'public/img/song-placeholder.png';
                             child.className = 'dropdown-item';
                             child.id = data.collection[i].id;
 
