@@ -35,11 +35,7 @@ app.controller('PlayerCtrl', function (
      */
     $scope.isVisible = false;
     $scope.toggleRange = function() {
-        if ( $scope.isVisible ) {
-            $scope.isVisible = false;
-        } else {
-            $scope.isVisible = true;
-        }
+        $scope.isVisible = !$scope.isVisible;
     };
 
     /**
@@ -78,34 +74,19 @@ app.controller('PlayerCtrl', function (
     $scope.lock = function($event) {
         var elButton = document.querySelector('.player_lock');
         elButton.classList.toggle('active');
-
-        if ( $rootScope.lock ) {
-            $rootScope.lock = false;
-        } else {
-            $rootScope.lock = true;
-        }
+        $rootScope.lock = !$rootScope.lock;
     };
 
     $scope.repeat = function($event) {
         var elButton = document.querySelector('.player_repeat');
         elButton.classList.toggle('active');
-
-        if ( $rootScope.repeat ) {
-            $rootScope.repeat = false;
-        } else {
-            $rootScope.repeat = true;
-        }
+        $rootScope.repeat = !$rootScope.repeat;
     };
 
     $scope.shuffle = function($event) {
         var elButton = document.querySelector('.player_shuffle');
         elButton.classList.toggle('active');
-
-        if ( $rootScope.shuffle ) {
-            $rootScope.shuffle =  false;
-        } else {
-            $rootScope.shuffle = true;
-        }
+        $rootScope.shuffle = !$rootScope.shuffle;
     };
 
     $scope.toggleQueue = function($event) {
