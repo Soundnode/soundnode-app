@@ -135,7 +135,7 @@ app.controller('ChartsCtrl', function (
             "link": 'world',
             "title": "World"
         }
-    ]
+    ];
 
     var url_genre = $stateParams.genre;
     var genre = {};
@@ -230,7 +230,7 @@ app.controller('ChartsCtrl', function (
                     tracks.forEach(function (track) {
                         if (item.track.id === track.id) {
                             item.track.favoritings_count = track.likes_count;
-                            return;
+                            break;
                         }
                     });
                 });
