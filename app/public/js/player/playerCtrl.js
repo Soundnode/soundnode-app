@@ -22,11 +22,7 @@ app.controller('PlayerCtrl', function (
             $scope.volume = 1.0;
             playerService.volume($scope.volume);
             window.localStorage.volume = $scope.volume;
-        };
-
-        if (window.lastPlayedSong) {
-            playerService.loadLastPlayedSong();
-        } else return;
+        }
     });
 
     /**
