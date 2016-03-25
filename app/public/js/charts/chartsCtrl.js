@@ -230,7 +230,7 @@ app.controller('ChartsCtrl', function (
                     tracks.forEach(function (track) {
                         if (item.track.id === track.id) {
                             item.track.favoritings_count = track.likes_count;
-                            break;
+                            return false;
                         }
                     });
                 });
