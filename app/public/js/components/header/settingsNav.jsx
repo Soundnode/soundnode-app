@@ -21,6 +21,9 @@ class SettingsList extends Component {
                 <li className="subNav_nav_item">
                     <a data-ui-sref="news">News</a>
                 </li>
+                <li className="subNav_nav_item">
+                    <a>Shortcuts (shift + ?)</a>
+                </li>
             </ul>
         )
     }
