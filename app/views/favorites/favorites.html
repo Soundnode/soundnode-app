@@ -1,5 +1,16 @@
 <div class="favoritesView">
-    <h1> {{ title }}</h1>
+    <header class="filters">
+        <h1> {{ title }}</h1>
+        <div class="filters_inner">
+            <h3 class="filters_header">Filter tracks by:</h3>
+            <label class="filters_textFilter">
+                <input type="text" ng-model="trackSearch.title" placeholder="Track title" ng-class="{active: trackSearch.title}" ng-change="$emit('tracks:filtered')">
+            </label>
+            <label class="filters_textFilter">
+                <input type="text" ng-model="trackSearch.user.username" placeholder="Author" ng-class="{active: trackSearch.user.username}" ng-change="$emit('tracks:filtered')">
+            </label>
+        </div>
+    </header>
 
     <!-- Song list wrapper -->
     <div class="favoritesView_inner">
@@ -7,9 +18,10 @@
             infinite-scroll='loadMore()'
             infinite-scroll-distance='0'
             infinite-scroll-container='".mainView"'
-            infinite-scroll-immediate-check='false' >
+            infinite-scroll-immediate-check='false'
+            infinite-scroll-listen-for-event='tracks:filtered'>
 
-            <li class="songList_item" ng-repeat="data in data track by $index"
+            <li class="songList_item" ng-repeat="data in data | filter: trackSearch track by data.id"
                 ng-if="data.kind == 'track' && data.streamable">
 
                 <tracks data="data"/>
