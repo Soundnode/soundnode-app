@@ -2,6 +2,7 @@
 
 app.controller('StreamCtrl', function (
     $scope,
+    $state,
 	$rootScope,
     SCapiService,
     SC2apiService,
@@ -20,6 +21,7 @@ app.controller('StreamCtrl', function (
             $scope.originalData = collection;
             $scope.data = collection;
 
+            loadTracksInfo(collection);
         })
         .catch(function (error) {
             console.log('error', error);
@@ -29,6 +31,10 @@ app.controller('StreamCtrl', function (
             utilsService.updateTracksReposts($scope.data);
             $rootScope.isLoading = false;
         });
+        
+    $scope.refresh = function() {
+        $state.go($state.current, {}, {reload: true});
+    }
 
     $scope.loadMore = function() {
         if ( $scope.busy ) {
@@ -43,6 +49,7 @@ app.controller('StreamCtrl', function (
                 $scope.data = $scope.data.concat(collection);
                 utilsService.updateTracksLikes(collection, true);
                 utilsService.updateTracksReposts(collection, true);
+                loadTracksInfo(collection);
             }, function (error) {
                 console.log('error', error);
             }).finally(function () {
@@ -73,6 +80,30 @@ app.controller('StreamCtrl', function (
             tracksIds.push(item.track.id);
             return true;
         });
+    }
+
+    // Load extra information, because SoundCloud v2 API does not return
+    // number of track likes
+    function loadTracksInfo(collection) {
+        var ids = collection.map(function (item) {
+            return item.track.id;
+        });
+
+        SC2apiService.getTracksByIds(ids)
+            .then(function (tracks) {
+                // Both collections are unordered
+                collection.forEach(function (item) {
+                    tracks.forEach(function (track) {
+                        if (item.track.id === track.id) {
+                            item.track.favoritings_count = track.likes_count;
+                            return;
+                        }
+                    });
+                });
+            })
+            .catch(function (error) {
+                console.log('error', error);
+            });
     }
 
 });

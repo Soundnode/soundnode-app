@@ -65,3 +65,21 @@
         margin-left: 0;
     }
 }
+
+/*
+* refresh stream 
+*/
+
+.streamView {
+    & .refresh {
+        float: right;
+        
+        & i {
+          color: $linkColor;
+          &:hover {
+              color: #FFF;
+          }
+        
+        }
+    }
+}
