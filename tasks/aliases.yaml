@@ -6,3 +6,4 @@ build:
 
 dev:
     - 'sass:dev'
+    - 'shell'

@@ -15,7 +15,7 @@ app.config(function (
 ) {
 
     // Hotkeys config
-    hotkeysProvider.includeCheatSheet = false;
+    hotkeysProvider.includeCheatSheet = true;
 
     // unmatched url redirect to /
     $urlRouterProvider.otherwise('/');
