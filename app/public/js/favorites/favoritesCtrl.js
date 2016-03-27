@@ -35,8 +35,9 @@ app.controller('FavoritesCtrl', function (
         SCapiService.getNextPage()
             .then(function(data) {
                 for ( var i = 0; i < data.collection.length; i++ ) {
-                    $scope.originalData.push( data.collection[i] );
-                    $scope.data.push( data.collection[i] )
+                   // This makes the information repeat each time the data loads
+                   // $scope.originalData.push( data.collection[i] );
+                    $scope.data.push( data.collection[i] );
                 }
                 utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
