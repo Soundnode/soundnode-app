@@ -10,14 +10,12 @@ app.controller('StreamCtrl', function (
     var tracksIds = [];
 
     $scope.title = 'Stream';
-    $scope.originalData = '';
     $scope.data = '';
     $scope.busy = false;
 
     SC2apiService.getStream()
         .then(filterCollection)
         .then(function (collection) {
-            $scope.originalData = collection;
             $scope.data = collection;
 
         })
@@ -39,7 +37,6 @@ app.controller('StreamCtrl', function (
         SC2apiService.getNextPage()
             .then(filterCollection)
             .then(function (collection) {
-                $scope.originalData = $scope.originalData.concat(collection);
                 $scope.data = $scope.data.concat(collection);
                 utilsService.updateTracksLikes(collection, true);
                 utilsService.updateTracksReposts(collection, true);
