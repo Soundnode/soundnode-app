@@ -149,7 +149,6 @@ app.controller('ChartsCtrl', function (
     }
 
     $scope.title = 'Top 50 - '+genre.title;
-    $scope.originalData = '';
     $scope.data = '';
     $scope.busy = false;
 
@@ -157,7 +156,6 @@ app.controller('ChartsCtrl', function (
     SC2apiService.getCharts(genre.link)
         .then(filterCollection)
         .then(function (collection) {
-            $scope.originalData = collection;
             $scope.data = collection;
             loadTracksInfo(collection);
         })
@@ -179,7 +177,6 @@ app.controller('ChartsCtrl', function (
         SC2apiService.getNextPage()
             .then(filterCollection)
             .then(function (collection) {
-                $scope.originalData = $scope.originalData.concat(collection);
                 $scope.data = $scope.data.concat(collection);
                 utilsService.updateTracksLikes(collection, true);
                 utilsService.updateTracksReposts(collection, true);
