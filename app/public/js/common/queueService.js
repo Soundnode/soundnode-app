@@ -166,6 +166,14 @@ app.factory('queueService', function() {
         }
 
         this.list.splice(position, 1);
+
+        // keep current playing track in the same position
+        // after a track removed from the list
+        if ( this.currentPosition > position ) {
+            this.currentPosition = --this.currentPosition;
+        } else if ( this.currentPosition < position ) {
+            this.currentPosition = this.currentPosition++;
+        }
     };
 
     // expose Queue for debugging ONLY

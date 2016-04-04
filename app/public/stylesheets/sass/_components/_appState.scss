@@ -1,75 +1,89 @@
 body[data-isVisible="false"] {
-  & .ui_app {
-    display: none;
-  }
-  & .box-loader {
-    display: block;
-  }
+    & .ui_app {
+        display: none;
+    }
+    & .box-loader {
+        display: block;
+    }
 }
 
 body[data-isVisible="true"] {
-  & .ui_app {
-    display: block;
-  }
-  & .box-loader {
-    display: none;
-  }
+    & .ui_app {
+        display: block;
+    }
+    & .box-loader {
+        display: none;
+    }
 }
 
 /* playing/ not playing state */
-.ui_app {
-  & .fa-pause {
+.fa-pause {
     display: none;
-  }
 }
 
 .songPlaying {
-  & .currentSong {
-    & .fa:first-child {
-      display: none;
+    & .currentSong {
+        & .fa:first-child {
+            display: none;
+        }
+
+        & .fa:last-child {
+            display: table-cell;
+            vertical-align: middle;
+        }
     }
 
-    & .fa:last-child {
-      display: table-cell;
-      vertical-align: middle;
+    .player_controls {
+        .player_play-pause {
+            .fa-play {
+                display: none;
+            }
+            .fa-pause {
+                display: block;
+            }
+        }
     }
-  }
 }
 
 /* sub navigation states */
 .subNav_nav[data-isVisible="false"] {
-  display: none;
+    display: none;
 }
-.subNav_nav[data-isVisible="true"] {
-  display: block;
-}
-.subNav {
-  position: relative;
-}
-.subNav .subNav_button {
-  display: block;
 
-  & i {
+.subNav_nav[data-isVisible="true"] {
     display: block;
-    color: $defaultColor;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  &:hover i {
-    color: #fff;
-  }
 }
+
+.subNav {
+    position: relative;
+}
+
+.subNav .subNav_button {
+    display: block;
+
+    & i {
+        display: block;
+        color: $defaultColor;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    &:hover i {
+        color: #fff;
+    }
+}
+
 .subNav_nav {
-  background: $sectionBackground;
-  border-right: 1px solid $separatorDarkColor;
-  box-shadow: 0 0 7px 0px #000;
-  padding: 5px 20px;
-  border-radius: 5px;
-  position: absolute;
-  top: 25px;
-  right: 0;
+    background: $sectionBackground;
+    border-right: 1px solid $separatorDarkColor;
+    box-shadow: 0 0 7px 0px #000;
+    padding: 5px 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 25px;
+    right: 0;
 }
+
 .subNav_nav_item {
-  margin: 5px 0;
+    margin: 5px 0;
     text-transform: lowercase;
 }
