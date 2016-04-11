@@ -20,11 +20,15 @@
 }
 
 /*
-* Modal UI components
+* Modal UI components for adding song to playlist
 */
 .mediaBox_wrapper {
   float: left;
   margin: 0 5px;
+
+  &, & * {
+    cursor: pointer;
+  }
 
   &:first-child {
     margin-left: 0px;
