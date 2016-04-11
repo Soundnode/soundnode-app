@@ -61,6 +61,7 @@ app.factory('playerService', function(
     player.elPlayerProgress = document.getElementById('player-progress');
     player.elPlayerDuration = document.getElementById('player-duration');
     player.elPlayerTimeCurrent = document.getElementById('player-timecurrent');
+    player.elPlayerFavorite = angular.element( document.querySelector('.player_favorite') );
     player.elThumb = document.getElementById('playerThumb');
     player.elTitle = document.getElementById('playerTitle');
     player.elUser = document.getElementById('playerUser');
@@ -165,6 +166,15 @@ app.factory('playerService', function(
             };
         }
 
+        // Make sure the favorite heart is active if user liked it
+        var fav = this.elPlayerFavorite;
+        utilsService.updateTracksLikes([trackObj], true) // use cache to start
+        .then(function() {
+            if ( trackObj.user_favorite ) {
+                fav.addClass('active');
+            }
+        });
+
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
 
@@ -172,6 +182,14 @@ app.factory('playerService', function(
         // TODO: this should check if the current song is already favorited
         document.querySelector('.player_favorite').classList.remove('active');
     };
+
+    // Updates cache when liking or unliking a song, so future checks will be correct
+    $rootScope.$on('track::favorited', function(event, trackId) {
+        utilsService.addCachedFavorite(trackId);
+    });
+    $rootScope.$on('track::unfavorited', function(event, trackId) {
+        utilsService.removeCachedFavorite(trackId);
+    });
 
     /**
      * Responsible to play song

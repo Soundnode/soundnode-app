@@ -27,6 +27,7 @@ app.directive('favoriteSong', function(
                                 notificationFactory.warn("Song removed from likes!");
                                 $scope.favorite = false;
 								$scope.count -= 1;
+                                $rootScope.$broadcast("track::unfavorited", songId);
                             }
                         }, function() {
                             notificationFactory.error("Something went wrong!");
@@ -38,6 +39,7 @@ app.directive('favoriteSong', function(
                                 notificationFactory.success("Song added to likes!");
                                 $scope.favorite = true;
 								$scope.count += 1;
+                                $rootScope.$broadcast("track::favorited", songId);
                             }
                         }, function(status) {
                             notificationFactory.error("Something went wrong!");

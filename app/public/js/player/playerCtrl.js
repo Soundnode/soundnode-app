@@ -112,6 +112,7 @@ app.controller('PlayerCtrl', function (
                     if ( typeof status == "object" ) {
                         notificationFactory.warn("Song removed from likes!");
                         $event.currentTarget.classList.remove('active');
+                        $rootScope.$broadcast("track::unfavorited", track.songId);
                     }
                 }, function() {
                     notificationFactory.error("Something went wrong!");
@@ -122,12 +123,29 @@ app.controller('PlayerCtrl', function (
                     if ( typeof status == "object" ) {
                         notificationFactory.success("Song added to likes!");
                         $event.currentTarget.classList.add('active');
+                        $rootScope.$broadcast("track::favorited",  track.songId);
                     }
                 }, function(status) {
                     notificationFactory.error("Something went wrong!");
                 });
         }
     };
+
+    // Listen for updates from other scopes about favorites and unfavorites
+    $scope.$on('track::favorited', function(event, trackId) {
+        var track = queueService.getTrack();
+        if ( track && trackId == track.songId ) {
+            var elFavorite = document.querySelector('.player_favorite');
+            elFavorite.classList.add('active');
+        }
+    });
+    $scope.$on('track::unfavorited', function(event, trackId) {
+        var track = queueService.getTrack();
+        if ( track && trackId == track.songId ) {
+            var elFavorite = document.querySelector('.player_favorite');
+            elFavorite.classList.remove('active');
+        }
+    });
 
 
     /*

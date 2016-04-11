@@ -125,12 +125,41 @@ app.factory('utilsService', function(
             }
             collection.forEach(function (item) {
                 var track = item.track || item;
+                var id = track.id || track.songId;
                 // modify each track by reference
-                track.user_favorite = Utils.likesIds.indexOf(track.id) > -1;
+                track.user_favorite = Utils.likesIds.indexOf(id) > -1;
             });
             return collection;
         });
     };
+
+    /**
+     * When manipulating likes after a page is loaded, it's necessary to
+     * manipulate the likesIds cache when you modify user_favorite like
+     * above. Used to sync the likes between player and everything else
+     * @param  {number or string} id - the song id to add to likes
+     */
+    Utils.addCachedFavorite = function(id) {
+        id = parseInt(id);
+        var index = Utils.likesIds.indexOf(id);
+        if (index == -1) {
+            Utils.likesIds.push(id);
+        }
+    }
+
+    /**
+     * When manipulating likes after a page is loaded, it's necessary to
+     * manipulate the likesIds cache when you modify user_favorite like
+     * above. Used to sync the likes between player and everything else
+     * @param  {number or string} id - the song id to remove from likes
+     */
+    Utils.removeCachedFavorite = function(id) {
+        id = parseInt(id);
+        var index = Utils.likesIds.indexOf(id);
+        if (index > -1) {
+            Utils.likesIds.splice(index, 1);
+        }
+    }
 
     /**
      * Fetch ids of reposted tracks and apply them to existing collection
