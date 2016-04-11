@@ -134,6 +134,34 @@ app.factory('utilsService', function(
     };
 
     /**
+     * When manipulating likes after a page is loaded, it's necessary to
+     * manipulate the likesIds cache when you modify user_favorite like
+     * above. Used to sync the likes between player and everything else
+     * @param  {number or string} id - the song id to add to likes
+     */
+    Utils.addCachedFavorite = function(id) {
+        id = parseInt(id);
+        var index = Utils.likesIds.indexOf(id);
+        if (index == -1) {
+            Utils.likesIds.push(id);
+        }
+    }
+
+    /**
+     * When manipulating likes after a page is loaded, it's necessary to
+     * manipulate the likesIds cache when you modify user_favorite like
+     * above. Used to sync the likes between player and everything else
+     * @param  {number or string} id - the song id to remove from likes
+     */
+    Utils.removeCachedFavorite = function(id) {
+        id = parseInt(id);
+        var index = Utils.likesIds.indexOf(id);
+        if (index > -1) {
+            Utils.likesIds.splice(index, 1);
+        }
+    }
+
+    /**
      * Fetch ids of reposted tracks and apply them to existing collection
      * @param  {array} collection - stream collection or tracks array
      * @param  {boolean} fromCache  - if should make request to API

@@ -83,6 +83,7 @@ app.controller('QueueCtrl', function(
                 if ( typeof status == "object" ) {
                     notificationFactory.success("Song added to likes!");
                     utilsService.markTrackAsFavorite(songId);
+                    $rootScope.$broadcast("track::favorited", songId);
                 }
             }, function(status) {
                 notificationFactory.error("Something went wrong!");

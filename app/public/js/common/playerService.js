@@ -168,7 +168,7 @@ app.factory('playerService', function(
 
         // Make sure the favorite heart is active if user liked it
         var fav = this.elPlayerFavorite;
-        utilsService.updateTracksLikes([trackObj], true)
+        utilsService.updateTracksLikes([trackObj], true) // use cache to start
         .then(function() {
             if ( trackObj.user_favorite ) {
                 fav.addClass('active');
@@ -182,6 +182,14 @@ app.factory('playerService', function(
         // TODO: this should check if the current song is already favorited
         document.querySelector('.player_favorite').classList.remove('active');
     };
+
+    // Makes sure that future favorite changes will change the cache
+    $rootScope.$on('track::favorited', function(event, trackId) {
+        utilsService.addCachedFavorite(trackId);
+    });
+    $rootScope.$on('track::unfavorited', function(event, trackId) {
+        utilsService.removeCachedFavorite(trackId);
+    });
 
     /**
      * Responsible to play song
