@@ -183,7 +183,7 @@ app.factory('playerService', function(
         document.querySelector('.player_favorite').classList.remove('active');
     };
 
-    // Makes sure that future favorite changes will change the cache
+    // Updates cache when liking or unliking a song, so future checks will be correct
     $rootScope.$on('track::favorited', function(event, trackId) {
         utilsService.addCachedFavorite(trackId);
     });

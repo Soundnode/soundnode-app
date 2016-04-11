@@ -48,24 +48,6 @@ app.controller('StreamCtrl', function (
             });
     };
 
-    // Updating favorites when they get sent from other scope like the queue and player
-    $scope.$on('track::favorited', function(event, trackId) {
-        for (var index in $scope.data) {
-            var track = $scope.data[index].track;
-            if ( trackId == track.id ) {
-                track.user_favorite = true;
-            }
-        }
-    });
-    $scope.$on('track::unfavorited', function(event, trackId) {
-        for (var index in $scope.data) {
-            var track = $scope.data[index].track;
-            if ( trackId == track.id ) {
-                track.user_favorite = false;
-            }
-        }
-    });
-
     function filterCollection(data) {
         return data.collection.filter(function (item) {
             // Keep only tracks (remove playlists, etc)
