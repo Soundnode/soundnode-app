@@ -125,8 +125,9 @@ app.factory('utilsService', function(
             }
             collection.forEach(function (item) {
                 var track = item.track || item;
+                var id = track.id || track.songId;
                 // modify each track by reference
-                track.user_favorite = Utils.likesIds.indexOf(track.id) > -1;
+                track.user_favorite = Utils.likesIds.indexOf(id) > -1;
             });
             return collection;
         });

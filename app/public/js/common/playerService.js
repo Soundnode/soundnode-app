@@ -61,6 +61,7 @@ app.factory('playerService', function(
     player.elPlayerProgress = document.getElementById('player-progress');
     player.elPlayerDuration = document.getElementById('player-duration');
     player.elPlayerTimeCurrent = document.getElementById('player-timecurrent');
+    player.elPlayerFavorite = angular.element( document.querySelector('.player_favorite') );
     player.elThumb = document.getElementById('playerThumb');
     player.elTitle = document.getElementById('playerTitle');
     player.elUser = document.getElementById('playerUser');
@@ -164,6 +165,15 @@ app.factory('playerService', function(
                 gui.Window.get().show();
             };
         }
+
+        // Make sure the favorite heart is active if user liked it
+        var fav = this.elPlayerFavorite;
+        utilsService.updateTracksLikes([trackObj], true)
+        .then(function() {
+            if ( trackObj.user_favorite ) {
+                fav.addClass('active');
+            }
+        });
 
         $rootScope.isSongPlaying = true;
         $rootScope.$broadcast('activateQueue');
