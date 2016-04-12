@@ -70,7 +70,7 @@
             <!-- user -->
             <div class="user" ng-controller="UserCtrl">
                 <div class="user_profile clearfix">
-                    <img ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
+                    <img ng-click="loadUserProfile()" ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
                     <div class="user_inner">
                         <a href="" class="user_name" title="{{ data.username}}" ng-click="loadUserProfile()">{{ data.username }}</a>
