@@ -1,45 +1,48 @@
+$user_image_size: 40px;
+%clickable-block {
+    cursor: pointer;
+    display: block;
+}
+
 .user {
-    padding: 10px 0 0;
+    padding: 0 0 10px;
     overflow: hidden;
 }
 
 .user_thumb {
-    width: 30px;
-    height: 30px;
-    display: block;
-    border-radius: 50px;
+    @extend %clickable-block;
+    width: $user_image_size;
+    height: $user_image_size;
+    border-radius: $user_image_size;
     float: left;
-    cursor: pointer;
     -webkit-user-drag: none;
 }
 
 .user_inner {
+    @extend %clickable-block;
     float: left;
-    margin: 0 0 0 20px;
-}
-
-.user_name,
-.user_logOut {
-    font-weight: normal;
-    display: block;
+    margin: 0 0 0 10px;
+    cursor: pointer;
 }
 
 .user_name {
-    font-size: 12px;
+    @extend %clickable-block;
+    font-size: 15px;
     color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 128px;
+    line-height: 22px;
 }
 
 .user_logOut {
+    @extend %clickable-block;
     font-size: 10px;
-    cursor: pointer;
 }
 
 .user_info {
-    margin: 10px 0 0;
+    margin: 15px 0 0;
     font-size: 13px;
 }
 
@@ -53,7 +56,6 @@
 
     & small,
     & strong {
-        cursor: pointer;
-        display: block;
+        @extend %clickable-block;
     }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('UserCtrl', function ($rootScope, $scope, $window, SCapiService) {
+app.controller('UserCtrl', function ($rootScope, $scope, $window, $state, SCapiService) {
     var endpoint = 'me';
     var params = '';
 
@@ -19,4 +19,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, $window, SCapiService) 
         guiConfig.close();
     }
 
+    $scope.loadUserProfile = function() {
+        $state.go('profile', { id: $rootScope.userId });
+    }
 });
