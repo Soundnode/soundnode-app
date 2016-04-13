@@ -28,7 +28,7 @@ app.controller('ProfileCtrl', function (
     SCapiService.getProfile(userId)
         .then(function(data) {
             $scope.profile_data = data;
-            $scope.profile_data.description = data.description.replace(/\n/g, '<br>') || '';
+            $scope.profile_data.description = data.description && data.description.replace(/\n/g, '<br>') || '';
             $scope.followers_count = numberWithCommas(data.followers_count);
         }, function(error) {
             console.log('error', error);
@@ -70,7 +70,9 @@ app.controller('ProfileCtrl', function (
                 }
                 utilsService.updateTracksReposts(data.collection, true);
             }, function(error) {
-                console.log('error', error);
+                if (error != 'No next page URL'){ // not a real error
+                    console.log('error', error);
+                }
             }).finally(function(){
                 $scope.busy = false;
                 $rootScope.isLoading = false;

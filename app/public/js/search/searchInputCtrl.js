@@ -43,7 +43,8 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                         title.innerHTML = 'Artists';
                         artists.appendChild(title);
 
-                        for(var i = 0; i < 4; i++) {
+                        // May not actually be 4 tracks long
+                        for(var i = 0; i < data.collection.length; i++) {
                             var child = document.createElement('div');
                             child.className = 'dropdown-item';
                             child.id = data.collection[i].id;
@@ -80,7 +81,8 @@ app.controller('SearchInputCtrl', function ($scope, $http, $state, $window, SCap
                         title.innerHTML = 'Tracks';
                         tracks.appendChild(title);
 
-                        for(var i = 0; i < 4; i++) {
+                        // May not actually be 4 tracks long
+                        for(var i = 0; i < data.collection.length; i++) {
                             var child = document.createElement('div');
                             var image = data.collection[i].artwork_url || 'public/img/song-placeholder.png';
                             child.className = 'dropdown-item';
