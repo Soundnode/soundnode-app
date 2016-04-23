@@ -151,13 +151,17 @@
         }
     }
 }
-
-.player_progress {
+.player_progress_wrapper {
     position: absolute;
-    top: -20px;
+    // 1px horizontal protection area for window mouseleave workaround
+    padding: 0 1px;
+    top: 0;
     left: 0;
-    display: block;
     width: 100%;
+}
+.player_progress {
+    position: relative;
+    top: -20px;
     height: 4px;
     padding: 20px 0 10px;
     overflow: hidden;
@@ -206,6 +210,16 @@
             transform: scale(0);
             transition: $transitionInstantValue;
         }
+    }
+
+    &.mousetrap {
+        // reset scrub if mouse leaves this area
+        $topThreshold: 100px;
+        $bottomThreshold: 50px;
+
+        top: -$topThreshold;
+        padding-top: $topThreshold;
+        padding-bottom: $bottomThreshold;
     }
 }
 

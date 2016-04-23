@@ -189,6 +189,19 @@ app.run(function(
     window.addEventListener('online',  updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 
+    // map blur and focus from the gui.window to jquery events on window
+    var $window = $(window);
+    var gui = require('nw.gui');
+    var guiWindow = gui.Window.get();
+
+    guiWindow.on('blur', function () {
+        $window.trigger('blur');
+    });
+
+    guiWindow.on('focus', function() {
+        $window.trigger('focus');
+    });
+
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 200);
