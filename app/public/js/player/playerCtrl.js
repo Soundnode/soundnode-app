@@ -289,6 +289,16 @@ app.controller('PlayerCtrl', function (
     });
 
     hotkeys.add({
+        combo: ['command+l', 'ctrl+l'],
+        description: 'Favorite track',
+        callback: function() {
+          $timeout(function() {
+            angular.element(".player_favorite").triggerHandler('click');
+          }, 0);
+        }
+    });
+
+    hotkeys.add({
         combo: ['shift+q'],
         description: 'Toggle Queue',
         callback: function(e) {
