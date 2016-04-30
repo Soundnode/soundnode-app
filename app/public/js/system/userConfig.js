@@ -63,6 +63,6 @@ userConfig.scaleWindow = function(scaleValue){
 userConfig.scaleInit = function() {
     if ( ! window.localStorage.scale ) {
         window.localStorage.setItem('scale', 1);
-        window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale;
     }
+    window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale;
 };
