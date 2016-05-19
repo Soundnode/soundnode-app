@@ -289,8 +289,8 @@ app.controller('PlayerCtrl', function (
     });
 
     hotkeys.add({
-        combo: ['command+l', 'ctrl+l'],
-        description: 'Favorite track',
+        combo: ['command+h', 'ctrl+h'],
+        description: 'Heart track',
         callback: function() {
           $timeout(function() {
             angular.element(".player_favorite").triggerHandler('click');
