@@ -1,33 +1,19 @@
-DESTDIR = /tmp
+GIT_VERSION := $(shell git describe --tags --long --dirty --always)
 
-SNA_INSTALL_LOCATION = "$(DESTDIR)/opt/soundnodeapp/"
+.DEFAULT_GOAL := help
 
-SNA_DIST_LOCATION = "dist/Soundnode/linux64"
+.PHONY: build
+build: ## Build the project
+	sudo npm install --global grunt-cli webpack
+	npm install --legacy-bundling
+	grunt build
 
-verify_dist_exists:
-	@if test ! -d $(SNA_DIST_LOCATION) ; then \
-		echo "The distribution folder '$(SNA_DIST_LOCATION)' doesn't exist."; \
-		echo "Did you forget to run 'grunt build'?"; \
-		exit 1; \
-	fi
+.PHONY: deb
+deb: build ## Build debian packages (32bit + 64bit)
+	VERSION=$(GIT_VERSION) DIST=linux32 ./fpm/build-deb
+	VERSION=$(GIT_VERSION) DIST=linux64 ./fpm/build-deb
 
-install: verify_dist_exists
-	mkdir -p $(SNA_INSTALL_LOCATION)
+.PHONY: help
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-	cp --force --recursive --target-directory $(SNA_INSTALL_LOCATION) \
-		$(SNA_DIST_LOCATION)/icudtl.dat \
-		$(SNA_DIST_LOCATION)/libffmpegsumo.so \
-		$(SNA_DIST_LOCATION)/locales/ \
-		$(SNA_DIST_LOCATION)/nw.pak \
-		$(SNA_DIST_LOCATION)/Soundnode-App
-
-uninstall:
-	rm -rf $(SNA_INSTALL_LOCATION)
-
-clean:
-	rm --force --recursive \
-		debian/soundnodeapp \
-		debian/files \
-		debian/docs \
-		debian/*.log \
-		debian/*.substvars
