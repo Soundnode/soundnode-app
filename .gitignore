@@ -8,3 +8,5 @@ report/
 npm-debug.log
 app/public/stylesheets/css/app.css
 app/public/stylesheets/css/app.css.map
+fpm/packages/*.deb
+
