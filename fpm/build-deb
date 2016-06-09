@@ -54,6 +54,19 @@ fpm -t deb \
     --vendor "http://www.soundnodeapp.com/" \
     --url "http://www.soundnodeapp.com/" \
     --version "$VERSION" \
+    --depends "libgconf-2-4" \
+    --depends "libglib2.0-0" \
+    --depends "libnss3" \
+    --depends "libfontconfig1" \
+    --depends "libpangocairo-1.0-0" \
+    --depends "libxi6" \
+    --depends "libxcomposite1" \
+    --depends "libasound2" \
+    --depends "libxdamage1" \
+    --depends "libxtst6" \
+    --depends "libxrandr2" \
+    --depends "libgtk2.0-0" \
+    --depends "libnotify4" \
     --category "sound" \
     --iteration "1" \
     --package "fpm/packages" \
