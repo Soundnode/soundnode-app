@@ -35,6 +35,7 @@ app.factory('playerService', function(
     $timeout,
     $window,
     $state,
+    mprisService,
     notificationFactory,
     queueService,
     utilsService
@@ -137,6 +138,7 @@ app.factory('playerService', function(
     player.playNewSong = function() {
         var trackObj = queueService.getTrack();
         var trackObjId = trackObj.songId;
+        var duration = player.elPlayer.duration * 1000;
         var songNotification;
 
         utilsService.deactivateCurrentSong();
@@ -181,6 +183,12 @@ app.factory('playerService', function(
         // remove the active class from player favorite icon before play new song
         // TODO: this should check if the current song is already favorited
         document.querySelector('.player_favorite').classList.remove('active');
+
+        // mpris only supports linux
+        if(process.platform === "linux") {
+            // tell mpris that we're now playing & send off the attributes for dbus to use.
+            mprisService.play("0", duration, trackObj.songThumbnail, trackObj.songTitle, trackObj.songUser);
+        }
     };
 
     // Updates cache when liking or unliking a song, so future checks will be correct
@@ -196,8 +204,17 @@ app.factory('playerService', function(
      * @method playSong
      */
     player.playSong = function() {
+        var duration = player.elPlayer.duration * 1000;
+
         this.elPlayer.play();
         $rootScope.isSongPlaying = true;
+
+        /**
+         * linux mpris passthrough for media keys & desktop integration
+         */
+        if(process.platform === "linux") {
+            mprisService.play("0", duration, player.elThumb.src, player.elTitle.innerHTML, player.elUser.innerHTML);
+        }
     };
 
     /**
@@ -207,6 +224,24 @@ app.factory('playerService', function(
     player.pauseSong = function() {
         this.elPlayer.pause();
         $rootScope.isSongPlaying = false;
+
+        /**
+         * linux mpris passthrough for media keys & desktop integration
+         */
+        if(process.platform === "linux") {
+            mprisService.pause();
+        }
+    };
+
+    /**
+     * Sets the songs time to 0 & then pauses the song, stopping the song.
+     */
+    player.stopSong = function() {
+        // Set time to 0
+        player.setSongTime(0);
+
+        // Set a paused state
+        player.pauseSong();
     };
 
     /**
@@ -255,6 +290,15 @@ app.factory('playerService', function(
 
         this.playNewSong();
     };
+
+    /**
+     * Set the song time.
+     * @param  {Number} time The time in milliseconds you want to set
+     */
+    player.setSongTime = function(time) {
+      if(isNaN(time)) throw new Error("You can only set time with a number");
+      return document.getElementById('player').currentTime = time;
+    }
 
     /**
      * Add event listener "on ended" to player

@@ -4,6 +4,7 @@ app.controller('PlayerCtrl', function (
     $scope,
     $rootScope,
     playerService,
+    mprisService,
     queueService,
     hotkeys,
     $state,
@@ -147,20 +148,27 @@ app.controller('PlayerCtrl', function (
         }
     });
 
+    /**
+     * Used between multiple functions, so we'll leave it here so it reduces
+     * the amount of times we define it.
+     */
+    var togglePlayPause = function() {
+        if ( $rootScope.isSongPlaying ) {
+            playerService.pauseSong();
+        } else {
+            playerService.playSong();
+        }
+    };
+
 
     /*
     * Add native media shortcuts
     */
-
     var playPause = new gui.Shortcut({
         key: 'MediaPlayPause',
         active: function() {
             $scope.$apply(function() {
-                if ( $rootScope.isSongPlaying ) {
-                    playerService.pauseSong();
-                } else {
-                    playerService.playSong();
-                }
+                togglePlayPause();
             });
         },
         failed: function() {
@@ -173,7 +181,7 @@ app.controller('PlayerCtrl', function (
         active: function() {
             $scope.$apply(function() {
                 if ( $rootScope.isSongPlaying ) {
-                    playerService.pauseSong();
+                    playerService.stopSong();
                 }
             });
         },
@@ -215,6 +223,39 @@ app.controller('PlayerCtrl', function (
     gui.App.registerGlobalHotKey(prevTrack);
     gui.App.registerGlobalHotKey(nextTrack);
 
+    /**
+     * Add native media shortcuts for linux based systems
+     */
+     if(process.platform === "linux") {
+         // Set a default state
+         mprisService.playbackStatus = mprisService.playbackStatus || "Stopped";
+
+         // When the user toggles play/pause
+         mprisService.on("playpause", function() {
+             togglePlayPause();
+         });
+
+         // When the user stops the song
+         mprisService.on("stop", function() {
+             playerService.stopSong();
+         });
+
+         // When the user requests next song
+         mprisService.on("next", function() {
+             playerService.playNextSong();
+         });
+
+         // When the user requests previous song
+         mprisService.on("previous", function() {
+             playerService.playPrevSong();
+         });
+
+         // When the user toggles shuffle
+         mprisService.on("shuffle", function() {
+             playerService.shuffle();
+         });
+     }
+
 //    function unregister() {
 //        gui.App.unregisterGlobalHotKey(shortcut);
 //    }
@@ -228,11 +269,7 @@ app.controller('PlayerCtrl', function (
         description: 'Play/Pause song',
         callback: function(event) {
             event.preventDefault();
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            } else {
-                playerService.playSong();
-            }
+            togglePlayPause();
         }
     });
 
@@ -240,11 +277,7 @@ app.controller('PlayerCtrl', function (
         combo: ['command+return', 'ctrl+return'],
         description: 'Play/Pause song',
         callback: function() {
-            if ( $rootScope.isSongPlaying ) {
-                playerService.pauseSong();
-            } else {
-                playerService.playSong();
-            }
+            togglePlayPause();
         }
     });
 
