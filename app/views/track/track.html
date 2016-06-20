@@ -18,7 +18,7 @@
 
                         <i class="fa fa-play"></i>
                         <i class="fa fa-pause"></i>
-                </span>                
+                </span>
                 <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (track.artwork_url) }}" alt="{{ track.title }}">
                 <div class="details">
                     <span class="playback_count">
@@ -33,11 +33,11 @@
             </div>
         </div>
         <div class="content">
-            <div ng-mouseenter="hover = true" ng-mouseleave="hover = false"
+            <div ng-mouseenter="hoverFav = true" ng-mouseleave="hoverFav = false"
                  ng-class="{liked: track.user_favorite}" class="button follow_button"
                  favorite-song data-song-id="{{ track.id }}" favorite="track.user_favorite" count="track.favoritings_count">
-                <span ng-if="hover == false">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
-                <span ng-if="hover == true">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
+                <span ng-if="!hoverFav">{{track.user_favorite ? 'Liked' : 'Like'}}</span>
+                <span ng-if="hoverFav">{{track.user_favorite ? 'Unlike' : 'Like'}}</span>
             </div>
             <h1 class="selectable-text">{{track.title}}</h1>
 
