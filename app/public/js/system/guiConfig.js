@@ -42,19 +42,26 @@ gui.App.on('reopen', function() {
     guiConfig.getGUI.show();
 });
 
-guiConfig.tray;
 
 // Get the minimize event
 guiConfig.getGUI.on('minimize', function() {
-    if (window.localStorage.minimizeToTray === 'false' || process.platform !== "win32") return false;
+    if (window.localStorage.minimizeToTray === 'false' || !window.settings.traySupport()) {
+        return false;
+    }
     this.hide();
-    console.log('dde');
 
     // Show tray
     this.tray = new gui.Tray({ title: 'Soundnode', icon: 'soundnode.png' });
 
     // Build tray menu
-    var trayMenu = new gui.Menu();
+    var trayMenu = new gui.Menu(),
+        playerElement = document.querySelector('[ng-controller=PlayerCtrl]'),
+        playerScope = angular.element(playerElement).scope();
+
+    // Separator
+    var separator = new gui.MenuItem({
+        type: 'separator'
+    });
 
     // Open
     trayMenu.append(
@@ -74,11 +81,44 @@ guiConfig.getGUI.on('minimize', function() {
         }
     }));
 
-    // Separator
+    // Seperator
+    trayMenu.append(separator);
+
+    // Play/Pause
     trayMenu.append(
         new gui.MenuItem({
-        type: 'separator'
-    }));
+            label: 'Play / Pause',
+            click: function() {
+                playerScope.playPause();
+            }
+        })
+    );
+
+    // Seperator
+    trayMenu.append(separator);
+
+    // Next
+    trayMenu.append(
+        new gui.MenuItem({
+            label: 'Next',
+            click: function() {
+                playerScope.nextSong();
+            }
+        })
+    );
+
+    // Previous
+    trayMenu.append(
+        new gui.MenuItem({
+            label: 'Previous',
+            click: function() {
+                playerScope.prevSong();
+            }
+        })
+    );
+
+    // Separator
+    trayMenu.append(separator);
 
     // Exit
     trayMenu.append(

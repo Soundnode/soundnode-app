@@ -30,7 +30,7 @@ app.controller('SettingsCtrl', function ($scope, notificationFactory) {
         window.localStorage.minimizeToTray = $scope.minimize;
     };
 
-    $scope.showTraySettings = (process.platform === 'win32');
+    $scope.showTraySettings = window.settings.traySupport();
 
     /**
      * Clea storage which remove everything stored in window.localStorage
