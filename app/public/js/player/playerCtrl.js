@@ -1,5 +1,7 @@
 'use strict';
 
+var http = require('http');
+
 app.controller('PlayerCtrl', function (
     $scope,
     $rootScope,
@@ -357,5 +359,42 @@ app.controller('PlayerCtrl', function (
         }
     });
 
+
+    var server = http.createServer(function (req, res) {
+        switch (req.url) {
+            case '/playpause':
+                if ($rootScope.isSongPlaying) {
+                    playerService.pauseSong();
+                } else {
+                    playerService.playSong();
+                }
+                break;
+            case '/prev':
+                if ($rootScope.isSongPlaying) {
+                    playerService.playPrevSong();
+                }
+                break;
+            case '/next':
+                if ($rootScope.isSongPlaying) {
+                    playerService.playNextSong();
+                }
+                break;
+        }
+        res.end(`
+            <html>
+                <head>
+                    <title>HTTP Controller for Soundnode</title>
+                </head>
+                <body>
+                    <ul>
+                        <li><a href="/prev">Previous</a></li>
+                        <li><a href="/playpause">Play/Pause</a></li>
+                        <li><a href="/next">Next</a></li>
+                    </ul>
+                </body>
+            </html>
+        `);
+    });
+    server.listen(8319);
 
 });
