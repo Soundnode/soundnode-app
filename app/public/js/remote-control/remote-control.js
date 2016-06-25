@@ -7,6 +7,7 @@ var ws = require('ws').Server;
 var remoteControlHtml = fs.readFileSync('./views/remote-control/remote-control.html');
 var remoteControlCss = fs.readFileSync('./views/remote-control/remote-control.css');
 var remoteControlJs = fs.readFileSync('./views/remote-control/remote-control.js');
+var placeholderPng = fs.readFileSync('./public/img/song-placeholder.png');
 
 app.controller('RemoteCtrl', function (
     $scope,
@@ -31,6 +32,9 @@ app.controller('RemoteCtrl', function (
                 break;
             case '/remote-control.js':
                 res.end(remoteControlJs);
+                break;
+            case '/placeholder.png':
+                res.end(placeholderPng);
                 break;
         }
     });
@@ -90,6 +94,15 @@ app.controller('RemoteCtrl', function (
             progress: (elPlayer.currentTime / elPlayer.duration) * 100
         }));
     }, 1000);
+
+    elPlayer.onloadeddata = function() {
+        if ($rootScope.isSongPlaying) {
+            wss.broadcast(JSON.stringify({
+                id: 'position',
+                position: queueService.currentPosition
+            }));
+        }
+    }
 
     server.listen(8319);
 });

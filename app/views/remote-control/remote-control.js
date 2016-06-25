@@ -16,7 +16,9 @@ ws.onmessage = function(message) {
             var output = '';
             msg.queue.forEach(function(track, id) {
                 output += id === msg.position ? '<li class="active">' : '<li>';
-                output += '<img src="' + track.songThumbnail + '"><h2>' + track.songTitle + '</h2><h3>' + track.songUser + '</h3></li>';
+                output += '<img src="';
+                output += track.songThumbnail === '' ? '/placeholder.png' : track.songThumbnail;
+                output += '"><h2>' + track.songTitle + '</h2><h3>' + track.songUser + '</h3></li>';
             });
             document.getElementById('queue').innerHTML = '<ul>' + output + '</ul>';
             document.getElementById('progress').style.width = msg.progress + 'vw';
@@ -27,6 +29,10 @@ ws.onmessage = function(message) {
             break;
         case 'progress':
             document.getElementById('progress').style.width = msg.progress + 'vw';
+            break;
+        case 'position':
+            document.getElementsByClassName('active')[0].className = '';
+            document.querySelectorAll('#queue li')[msg.position].className = 'active';
             break;
     }
 }
