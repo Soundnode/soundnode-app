@@ -36,14 +36,36 @@ app.controller('RemoteCtrl', function (
     });
 
     var wss = new ws({ server: server, path: '/__remote_control' });
+
+    wss.broadcast = function broadcast(data) {
+        wss.clients.forEach(function each(client) {
+            client.send(data);
+        });
+    };
+
     wss.on('connection', function connection(ws) {
+        ws.send(JSON.stringify({
+            id: 'init',
+            playing: $rootScope.isSongPlaying,
+            queue: queueService.list,
+            position: queueService.currentPosition
+        }));
+
         ws.on('message', function incoming(message) {
             switch (message) {
                 case 'playpause':
                     if ($rootScope.isSongPlaying) {
                         playerService.pauseSong();
+                        wss.broadcast(JSON.stringify({
+                            id: 'playState',
+                            playing: $rootScope.isSongPlaying
+                        }));
                     } else {
                         playerService.playSong();
+                        wss.broadcast(JSON.stringify({
+                            id: 'playState',
+                            playing: $rootScope.isSongPlaying
+                        }));
                     }
                     break;
                 case 'prev':
