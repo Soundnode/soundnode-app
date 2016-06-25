@@ -17,7 +17,8 @@ var config = {
             '<%= settings.app %>/public/stylesheets/css/**/*',
             '<%= settings.app %>/dist/**/*',
             './node_modules/universal-analytics/**/*',
-            './node_modules/mpris-service/**/*'
+            './node_modules/mpris-service/**/*',
+            './node_modules/ws/**/*'
         ]
     };
 

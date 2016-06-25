@@ -1,7 +1,5 @@
 'use strict';
 
-var http = require('http');
-
 app.controller('PlayerCtrl', function (
     $scope,
     $rootScope,
@@ -358,87 +356,5 @@ app.controller('PlayerCtrl', function (
             $scope.lock()
         }
     });
-
-
-    var server = http.createServer(function (req, res) {
-        switch (req.url) {
-            case '/playpause':
-                if ($rootScope.isSongPlaying) {
-                    playerService.pauseSong();
-                } else {
-                    playerService.playSong();
-                }
-                break;
-            case '/prev':
-                if ($rootScope.isSongPlaying) {
-                    playerService.playPrevSong();
-                }
-                break;
-            case '/next':
-                if ($rootScope.isSongPlaying) {
-                    playerService.playNextSong();
-                }
-                break;
-        }
-        res.end(`
-            <html>
-                <head>
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <title>HTTP Controller for Soundnode</title>
-                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-                    <style>
-                        body {
-                            background: -webkit-linear-gradient(45deg, #d0303e 0%, #b32841 25%, #9a2b4d 50%, #7c3a6d 75%, #5d3375 100%);
-                            background: linear-gradient(45deg, #d0303e 0%, #b32841 25%, #9a2b4d 50%, #7c3a6d 75%, #5d3375 100%);
-                            color: #fff;
-                            width: 100vw;
-                            height: 100vh;
-                            margin: 0;
-                        }
-                        .controls {
-                            background-color: #222326;
-                            position: fixed;
-                            width: 100vw;
-                            height: 48px;
-                            bottom: 0;
-                        }
-                        .controls ul {
-                            padding: 0;
-                            margin: 0;
-                            display: -webkit-box;
-                            display: -webkit-flex;
-                            display: -ms-flexbox;
-                            display: flex;
-                            -webkit-box-pack: center;
-                            -webkit-justify-content: center;
-                                -ms-flex-pack: center;
-                                    justify-content: center;
-                        }
-                        .controls ul li {
-                            display: inline-block;
-                            margin: 8px;
-                        }
-                        .controls ul li a {
-                            text-decoration: none;
-                        }
-                        .controls ul li a::before {
-                            color: #fff;
-                            font-size: 32px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="controls">
-                        <ul>
-                            <li><a href="/prev" class="fa fa-step-backward"></a></li>
-                            <li><a href="/playpause" class="fa fa-play"></a></li>
-                            <li><a href="/next" class="fa fa-step-forward"></a></li>
-                        </ul>
-                    </div>
-                </body>
-            </html>
-        `);
-    });
-    server.listen(8319);
 
 });
