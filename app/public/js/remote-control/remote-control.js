@@ -2,7 +2,11 @@
 
 var fs = require('fs');
 var http = require('http');
-var remoteControl = fs.readFileSync('./views/remote-control/remote-control.html');
+
+var ws = require('ws').Server;
+var remoteControlHtml = fs.readFileSync('./views/remote-control/remote-control.html');
+var remoteControlCss = fs.readFileSync('./views/remote-control/remote-control.css');
+var remoteControlJs = fs.readFileSync('./views/remote-control/remote-control.js');
 
 app.controller('RemoteCtrl', function (
     $scope,
@@ -19,25 +23,42 @@ app.controller('RemoteCtrl', function (
 ) {
     var server = http.createServer(function (req, res) {
         switch (req.url) {
-            case '/playpause':
-                if ($rootScope.isSongPlaying) {
-                    playerService.pauseSong();
-                } else {
-                    playerService.playSong();
-                }
+            case '/':
+                res.end(remoteControlHtml);
                 break;
-            case '/prev':
-                if ($rootScope.isSongPlaying) {
-                    playerService.playPrevSong();
-                }
+            case '/remote-control.css':
+                res.end(remoteControlCss);
                 break;
-            case '/next':
-                if ($rootScope.isSongPlaying) {
-                    playerService.playNextSong();
-                }
+            case '/remote-control.js':
+                res.end(remoteControlJs);
                 break;
         }
-        res.end(remoteControl);
     });
+
+    var wss = new ws({ server: server, path: '/__remote_control' });
+    wss.on('connection', function connection(ws) {
+        ws.on('message', function incoming(message) {
+            switch (message) {
+                case 'playpause':
+                    if ($rootScope.isSongPlaying) {
+                        playerService.pauseSong();
+                    } else {
+                        playerService.playSong();
+                    }
+                    break;
+                case 'prev':
+                    if ($rootScope.isSongPlaying) {
+                        playerService.playPrevSong();
+                    }
+                    break;
+                case 'next':
+                    if ($rootScope.isSongPlaying) {
+                        playerService.playNextSong();
+                    }
+                    break;
+            }
+        });
+    });
+
     server.listen(8319);
 });
