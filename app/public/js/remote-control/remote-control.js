@@ -36,6 +36,7 @@ app.controller('RemoteCtrl', function (
     });
 
     var wss = new ws({ server: server, path: '/__remote_control' });
+    var elPlayer = document.getElementById('player');
 
     wss.broadcast = function broadcast(data) {
         wss.clients.forEach(function each(client) {
@@ -48,7 +49,8 @@ app.controller('RemoteCtrl', function (
             id: 'init',
             playing: $rootScope.isSongPlaying,
             queue: queueService.list,
-            position: queueService.currentPosition
+            position: queueService.currentPosition,
+            progress: (elPlayer.currentTime / elPlayer.duration) * 100
         }));
 
         ws.on('message', function incoming(message) {
@@ -81,6 +83,13 @@ app.controller('RemoteCtrl', function (
             }
         });
     });
+
+    setInterval(function() {
+        wss.broadcast(JSON.stringify({
+            id: 'progress',
+            progress: (elPlayer.currentTime / elPlayer.duration) * 100
+        }));
+    }, 1000);
 
     server.listen(8319);
 });

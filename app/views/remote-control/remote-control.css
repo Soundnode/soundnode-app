@@ -14,13 +14,17 @@ body {
     overflow: scroll;
 }
 
+#queue ul {
+    padding-right: 40px;
+}
+
 #queue ul li {
     display: block;
 }
 
 #queue ul li img {
     float: left;
-    height: 40px;
+    height: 42px;
     margin-right: 8px;
 }
 
@@ -29,11 +33,22 @@ body {
     margin-bottom: 0;
 }
 
+#queue ul li.active h2 {
+    color: #f50;
+}
+
 #queue ul li h3 {
     display: inline-block;
     font-size: 11px;
     color: #949599;
     margin-top: 0;
+}
+
+#progress {
+    background-color: #f50;
+    position: fixed;
+    bottom: 48px;
+    height: 4px;
 }
 
 #controls {

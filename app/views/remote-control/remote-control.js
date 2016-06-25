@@ -14,14 +14,19 @@ ws.onmessage = function(message) {
             var icon = msg.playing ? 'pause' : 'play';
             document.getElementById('playpause').className = 'fa fa-' + icon;
             var output = '';
-            msg.queue.forEach(function(track) {
-                output += '<li><h2><img src="' + track.songThumbnail + '">' + track.songTitle + '</h2><h3>' + track.songUser + '</h3></li>';
+            msg.queue.forEach(function(track, id) {
+                output += id === msg.position ? '<li class="active">' : '<li>';
+                output += '<img src="' + track.songThumbnail + '"><h2>' + track.songTitle + '</h2><h3>' + track.songUser + '</h3></li>';
             });
             document.getElementById('queue').innerHTML = '<ul>' + output + '</ul>';
+            document.getElementById('progress').style.width = msg.progress + 'vw';
             break;
         case 'playState':
             var icon = msg.playing ? 'pause' : 'play';
             document.getElementById('playpause').className = 'fa fa-' + icon;
+            break;
+        case 'progress':
+            document.getElementById('progress').style.width = msg.progress + 'vw';
             break;
     }
 }
