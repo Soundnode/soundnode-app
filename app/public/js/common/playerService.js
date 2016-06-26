@@ -282,8 +282,17 @@ app.factory('playerService', function(
         if ( $rootScope.shuffle && !$rootScope.repeat ) {
             utilsService.shuffle();
         } else if ( !$rootScope.repeat && utilsService.isLastTrackInQueue() ) {
-            utilsService.scrollToBottom();
-            utilsService.addLoadedTracks();
+
+            if (!utilsService.isDiscover()) {
+                utilsService.scrollToBottom();
+                utilsService.addLoadedTracks();
+            } else if (utilsService.isLastTrackGroup()) {
+                utilsService.scrollToBottom();
+                utilsService.playLoadedTrackGroup();
+            } else {
+                utilsService.playNextTrackGroup();
+            }
+
         } else if ( !$rootScope.repeat && !utilsService.isLastTrackInQueue() ) {
             queueService.next();
         }

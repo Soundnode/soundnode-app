@@ -1,0 +1,34 @@
+<div class="discoverView">
+    <h1> {{ ::title }}</h1>
+
+    <!-- Song list wrapper -->
+    <div class="discoverView_inner">
+        <ul class="discoverListing"
+            infinite-scroll='loadMore()'
+            infinite-scroll-distance='0'
+            infinite-scroll-container='".mainView"'
+            infinite-scroll-immediate-check='false' >
+
+            <li class="discoverListing_item" ng-repeat="group in data">
+
+                <h2 class="discoverListing_item_header">Because you {{ group.relation === 1 ? 'played' : 'liked' }}:
+                    <span>{{ group.seed_sound.title }}</span></h2>
+
+                <ul class="songList">
+                    <li class="songList_item" ng-repeat="track in group.recommended"
+                        ng-if="track.kind == 'track' && track.streamable">
+
+                        <tracks data="track"/>
+
+                    </li>
+
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+    <!-- Song list wrapper / end -->
+
+    <div ng-include="'views/common/loading.html'"></div>
+
+</div>
