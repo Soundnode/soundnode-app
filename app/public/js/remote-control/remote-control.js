@@ -8,8 +8,9 @@ var remoteControlHtml = fs.readFileSync('./views/remote-control/remote-control.h
 var remoteControlCss = fs.readFileSync('./views/remote-control/remote-control.css');
 var remoteControlJs = fs.readFileSync('./views/remote-control/remote-control.js');
 var placeholderPng = fs.readFileSync('./public/img/song-placeholder.png');
+var faviconIco = fs.readFileSync('./soundnode.ico');
 
-app.controller('RemoteCtrl', function (
+app.controller('RemoteCtrl', function(
     $scope,
     $rootScope,
     playerService,
@@ -22,7 +23,7 @@ app.controller('RemoteCtrl', function (
     SCapiService,
     notificationFactory
 ) {
-    var server = http.createServer(function (req, res) {
+    var server = http.createServer(function(req, res) {
         switch (req.url) {
             case '/':
                 res.end(remoteControlHtml);
@@ -36,42 +37,38 @@ app.controller('RemoteCtrl', function (
             case '/placeholder.png':
                 res.end(placeholderPng);
                 break;
+            case '/favicon.ico':
+                res.end(faviconIco);
+                break;
         }
     });
 
     var wss = new ws({ server: server, path: '/__remote_control' });
     var elPlayer = document.getElementById('player');
+    var queue = queueService.list;
 
-    wss.broadcast = function broadcast(data) {
-        wss.clients.forEach(function each(client) {
+    wss.broadcast = function(data) {
+        wss.clients.forEach(function(client) {
             client.send(data);
         });
     };
 
-    wss.on('connection', function connection(ws) {
+    wss.on('connection', function(ws) {
         ws.send(JSON.stringify({
             id: 'init',
             playing: $rootScope.isSongPlaying,
-            queue: queueService.list,
+            queue: queue,
             position: queueService.currentPosition,
             progress: (elPlayer.currentTime / elPlayer.duration) * 100
         }));
 
-        ws.on('message', function incoming(message) {
+        ws.on('message', function(message) {
             switch (message) {
                 case 'playpause':
                     if ($rootScope.isSongPlaying) {
                         playerService.pauseSong();
-                        wss.broadcast(JSON.stringify({
-                            id: 'playState',
-                            playing: $rootScope.isSongPlaying
-                        }));
                     } else {
                         playerService.playSong();
-                        wss.broadcast(JSON.stringify({
-                            id: 'playState',
-                            playing: $rootScope.isSongPlaying
-                        }));
                     }
                     break;
                 case 'prev':
@@ -102,6 +99,20 @@ app.controller('RemoteCtrl', function (
                 position: queueService.currentPosition
             }));
         }
+    }
+
+    elPlayer.onplay = function() {
+        wss.broadcast(JSON.stringify({
+            id: 'playing',
+            playing: true
+        }));
+    }
+
+    elPlayer.onpause = function() {
+        wss.broadcast(JSON.stringify({
+            id: 'playing',
+            playing: false
+        }));
     }
 
     server.listen(8319);

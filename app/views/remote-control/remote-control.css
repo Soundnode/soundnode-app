@@ -63,13 +63,11 @@ body {
     padding: 0;
     margin: 0;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 #controls ul li {
@@ -85,4 +83,3 @@ body {
     color: #fff;
     font-size: 32px;
 }
-

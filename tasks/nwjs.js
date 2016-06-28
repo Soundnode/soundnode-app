@@ -10,6 +10,7 @@ var config = {
             '<%= settings.app %>/index.html',
             '<%= settings.app %>/package.json',
             '<%= settings.app %>/soundnode.icns',
+            '<%= settings.app %>/soundnode.ico',
             '<%= settings.app %>/soundnode.png',
             '<%= settings.app %>/views/**/*',
             '<%= settings.app %>/public/js/**/*',
