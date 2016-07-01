@@ -10,6 +10,7 @@ var config = {
             '<%= settings.app %>/index.html',
             '<%= settings.app %>/package.json',
             '<%= settings.app %>/soundnode.icns',
+            '<%= settings.app %>/soundnode.ico',
             '<%= settings.app %>/soundnode.png',
             '<%= settings.app %>/views/**/*',
             '<%= settings.app %>/public/js/**/*',
@@ -17,7 +18,8 @@ var config = {
             '<%= settings.app %>/public/stylesheets/css/**/*',
             '<%= settings.app %>/dist/**/*',
             './node_modules/universal-analytics/**/*',
-            './node_modules/mpris-service/**/*'
+            './node_modules/mpris-service/**/*',
+            './node_modules/ws/**/*'
         ]
     };
 

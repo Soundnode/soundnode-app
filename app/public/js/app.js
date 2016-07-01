@@ -121,6 +121,10 @@ app.run(function(
 
     });
 
+    if (window.localStorage.remoteControllerToggle) {
+        document.getElementById('RemoteCtrl').setAttribute('ng-controller', 'RemoteCtrl');
+    }
+
     // disable cmd (ctrl) + click to open a new tab/page
     document.addEventListener('click', function(e) {
         if ( e.metaKey ) {

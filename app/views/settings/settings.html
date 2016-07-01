@@ -7,12 +7,24 @@
         <li class="full-flex">
             <div class="settings-container leftSide">
                 <h2>Notifications</h2>
-                <label>Enable/Disable song notifications </label>
+                <label>Enable/Disable song notifications.</label>
             </div>
             <div class="settings-switch">
                 <div class="onoffswitch">
                     <input type="checkbox" class="onoffswitch-checkbox" name="notifications" id="notificationSettings" ng-model="notification" ng-change="notificationSettings()" ng-checked="notification">
                     <label class="onoffswitch-label" for="notificationSettings"></label>
+                </div>
+            </div>
+        </li>
+        <li class="full-flex">
+            <div class="settings-container leftSide">
+                <h2>Remote controller</h2>
+                <label>Enable/Disable remote controller. Requires a restart of Soundnode.</label>
+            </div>
+            <div class="settings-switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" class="onoffswitch-checkbox" name="remoteController" id="remoteControllerSettings" ng-model="remoteController" ng-change="remoteControllerSettings()" ng-checked="remoteController">
+                    <label class="onoffswitch-label" for="remoteControllerSettings"></label>
                 </div>
             </div>
         </li>

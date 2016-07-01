@@ -1,0 +1,85 @@
+body {
+    color: #fff;
+    font-family: sans-serif;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+#queue {
+    background-color: #121314;
+    position: fixed;
+    width: 100vw;
+    height: calc(100vh - 48px);
+    overflow: scroll;
+}
+
+#queue ul {
+    padding-right: 40px;
+}
+
+#queue ul li {
+    display: block;
+}
+
+#queue ul li img {
+    float: left;
+    height: 42px;
+    margin-right: 8px;
+}
+
+#queue ul li h2 {
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+#queue ul li.active h2 {
+    color: #f50;
+}
+
+#queue ul li h3 {
+    display: inline-block;
+    font-size: 11px;
+    color: #949599;
+    margin-top: 0;
+}
+
+#progress {
+    background-color: #f50;
+    position: fixed;
+    bottom: 48px;
+    height: 4px;
+}
+
+#controls {
+    background-color: #222326;
+    position: fixed;
+    width: 100vw;
+    height: 48px;
+    bottom: 0;
+}
+
+#controls ul {
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+#controls ul li {
+    display: inline-block;
+    margin: 8px;
+}
+
+#controls ul li a {
+    text-decoration: none;
+}
+
+#controls ul li a::before {
+    color: #fff;
+    font-size: 32px;
+}

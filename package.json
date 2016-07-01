@@ -30,12 +30,13 @@
     "webpack": "^1.12.2"
   },
   "optionalDependencies": {
-      "dbus": "MarshallOfSound/node-dbus#linux-only",
-      "mpris-service": "MarshallOfSound/mpris-service"
+    "dbus": "MarshallOfSound/node-dbus#linux-only",
+    "mpris-service": "MarshallOfSound/mpris-service"
   },
   "dependencies": {
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "universal-analytics": "^0.3.9"
+    "universal-analytics": "^0.3.9",
+    "ws": "^1.1.1"
   }
 }

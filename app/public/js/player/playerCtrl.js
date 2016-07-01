@@ -357,5 +357,4 @@ app.controller('PlayerCtrl', function (
         }
     });
 
-
 });
