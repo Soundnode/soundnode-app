@@ -128,6 +128,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     -webkit-user-select: initial;
 }
 
+.unselectable-text,
+.unselectable-text * {
+    -webkit-user-select: none;
+}
+
 body {
 	#toast-container{
 		& > div {
@@ -147,7 +152,7 @@ body {
 			box-shadow: none;
 		}
 	}
-		
+
 	.toast-message a,
 	.toast-message label {
 		font-size: 0.900em;
@@ -157,7 +162,7 @@ body {
 	.toast-message a:hover {
 		color: #bdc3c7;
 	}
-	
+
 	.toast {
 		background-color: #333;
 	}

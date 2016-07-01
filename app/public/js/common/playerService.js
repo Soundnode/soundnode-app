@@ -363,24 +363,55 @@ app.factory('playerService', function(
         }
     }
 
+    /**
+     * Manage scrub interaction / event handling
+     */
+
+    var allowClick = true;
+
     scrub.on('click', function(e) {
         var el = this;
-        scrubTimeTrack(e, el);
+
+        // this stops the click event on window.blur
+        if (allowClick) {
+            scrubTimeTrack(e, el);
+        }
     });
+
+    var $$window = $($window);
+
+    $$window.on({
+        blur: function () { allowClick = false },
+        focus: function () { allowClick = true }
+    })
+
+    function releaseScrub (e) {
+        // delay permission for text selection to allow some room for mouse release by the user
+        setTimeout(function(){
+            document.body.classList.remove('unselectable-text');
+        }, 1000);
+
+        $$window.off('.scrubevents');
+        scrub.off('.scrubevents');
+        scrub.removeClass('mousetrap');
+    }
 
     scrub.on('mousedown', function (e) {
-        scrub.on('mousemove', function (e) {
+        // prevent undesired text select
+        document.body.classList.add('unselectable-text');
+
+        // mouse movement threshold
+        scrub.addClass('mousetrap');
+
+        scrub.on('mousemove.scrubevents', function (e) {
             var el = this;
+
             scrubTimeTrack(e, el);
+            $window.getSelection().empty();
         });
-    });
 
-    scrub.on('mouseup', function (e) {
-        scrub.unbind('mousemove');
-    });
-
-    scrub.on('dragstart', function (e) {
-        e.preventDefault();
+        scrub.on('mouseup.scrubevents mouseleave.scrubevents', releaseScrub);
+        $$window.on('blur.scrubevents', releaseScrub);
     });
 
     return player;

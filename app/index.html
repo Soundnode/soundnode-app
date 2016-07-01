@@ -136,8 +136,10 @@
     <!-- now player -->
     <div class="player" ng-controller="PlayerCtrl">
         <div class="player_inner">
-            <div class="player_progress">
-                <span class="player_progress_bar" id="player-progress"></span>
+            <div class="player_progress_wrapper">
+                <div class="player_progress">
+                    <span class="player_progress_bar" id="player-progress"></span>
+                </div>
             </div>
             <div class="player_details">
                 <img id="playerThumb" src="public/img/song-placeholder.png" alt="" class="player_thumb" ng-click="goToSong($event)">
