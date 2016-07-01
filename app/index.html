@@ -70,10 +70,10 @@
             <!-- user -->
             <div class="user" ng-controller="UserCtrl">
                 <div class="user_profile clearfix">
-                    <img ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
+                    <img ng-click="loadUserProfile()" ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
                     <div class="user_inner">
-                        <span class="user_name" title="{{ data.username}}">{{ data.username }}</span>
+                        <a href="" class="user_name" title="{{ data.username}}" ng-click="loadUserProfile()">{{ data.username }}</a>
                         <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
                     </div>
                 </div>

@@ -34,12 +34,12 @@
 
     <h3 class="songList_item_song_info clearfix">
         <div class="songList_item_song_user selectable-text">
-            <a ui-sref="profile({id: {{data.user.id}}})">
+            <a class="pointer" ui-sref="profile({id: {{data.user.id}}})">
                 {{ data.user.username }}
             </a>
             <span class="songList_item_repost" ng-if="type === 'track-repost'">
                 <i class="fa fa-retweet"></i>
-                <a ui-sref="profile({ id: {{ user.id }} })" title="Reposted by {{ user.username }}">
+                <a class="pointer" ui-sref="profile({ id: {{ user.id }} })" title="Reposted by {{ user.username }}">
                     {{ user.username }}
                 </a>
             </span>

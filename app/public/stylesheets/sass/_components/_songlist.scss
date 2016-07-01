@@ -37,10 +37,10 @@
 }
 
 .songList_item_song_button {
+  @extend .pointer;
   display: flex;
   font-size: 50px;
   width: 100%;
-  cursor: pointer;
   position: absolute;
   top: 0;
   height: 100%;
@@ -55,6 +55,10 @@
   & .fa:last-child {
     display: none;
   }
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 li.active {
@@ -119,7 +123,7 @@ div.active {
   overflow: hidden;
   height: 46px;
   &:hover {
-    cursor: pointer;
+    @extend .pointer;
   }
 }
 
@@ -168,12 +172,12 @@ div.active {
       }
 
     &:hover {
-      cursor: pointer;
+      @extend .pointer;
       color: #FFF;
 
       & > .fa {
         color: #FFF;
-        cursor: pointer;
+        @extend .pointer;
       }
     }
 
@@ -211,7 +215,7 @@ div.active {
         color: #FFF;
         transition: $transitionFastValue;
         &:hover {
-            cursor: pointer;
+            @extend .pointer;
             background: #FFF;
             color: #000;
         }

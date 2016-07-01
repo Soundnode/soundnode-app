@@ -22,6 +22,7 @@ app.controller('ProfileCtrl', function (
     $scope.busy = false;
     //tracks
     $scope.data = '';
+    $scope.isLoggedInUser = userId == $rootScope.userId;
     $scope.follow_button_text = '';
 
 
@@ -81,7 +82,9 @@ app.controller('ProfileCtrl', function (
     };
 
     $scope.setFollowButtonText = function() {
-        if ($scope.isFollowing) {
+        if ($scope.isLoggedInUser) {
+            $scope.follow_button_text = 'Logged In';
+        } else if ($scope.isFollowing) {
             $scope.follow_button_text = 'Following';
         } else {
             $scope.follow_button_text = 'Follow';
@@ -89,12 +92,15 @@ app.controller('ProfileCtrl', function (
     };
 
     $scope.hoverIn = function() {
-        if ($scope.isFollowing) {
+        if ($scope.isFollowing && !$scope.isLoggedInUser) {
             $scope.follow_button_text = 'Unfollow';
         }
     };
 
     $scope.changeFollowing = function() {
+        if ($scope.isLoggedInUser) {
+            return // nothing to do
+        }
         if ($scope.isFollowing) {
             $scope.isFollowing = false;
             SCapiService.unfollowUser(userId)
