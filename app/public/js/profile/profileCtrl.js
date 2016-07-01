@@ -29,7 +29,7 @@ app.controller('ProfileCtrl', function (
     SCapiService.getProfile(userId)
         .then(function(data) {
             $scope.profile_data = data;
-            $scope.profile_data.description = data.description && data.description.replace(/\n/g, '<br>') || '';
+            $scope.profile_data.description = ( data.description ) ? data.description.replace(/\n/g, '<br>') : '';
             $scope.followers_count = numberWithCommas(data.followers_count);
         }, function(error) {
             console.log('error', error);
