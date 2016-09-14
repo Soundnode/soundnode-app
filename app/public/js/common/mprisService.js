@@ -8,7 +8,7 @@ var gui = require("nw.gui");
 app.factory("mprisService", function($rootScope, $log, $timeout, $window, $state) {
     // media keys are supported on osx/windows already anyway
     var supportedPlatforms = {
-        "linux": true,
+        "linux": false,
         "win32": false,
         "darwin": false
     };
