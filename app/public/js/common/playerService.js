@@ -352,7 +352,8 @@ app.factory('playerService', function(
     function scrubTimeTrack(e, el) {
         var percent = ( e.offsetX / $(el).width() );
         var duration = player.elPlayer.duration;
-        var seek = percent * duration;
+        var scale = parseFloat(localStorage.getItem("scale"));
+        var seek = (percent * duration) / scale;
 
         if ( player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3 ) {
             notificationFactory.error("Something went wrong. I can't play this track :(");
