@@ -13,6 +13,16 @@
 #          $ VERSION=0.6.4 DIST=linux32 ./fpm/build-deb
 #          $ ls *.deb
 
+check_dependencies() {
+    for PACKAGE_NAME in "$@"; do
+        PACKAGE_STATUS="$(dpkg-query -W -f='${Status}' "$PACKAGE_NAME" 2>/dev/null | grep -q -P '^install ok installed$'; echo $?)"
+        if [ "$PACKAGE_STATUS" -ne 0 ]; then
+            printf " - I require %s to build soundnode. To solve this problem, run this: sudo apt install %s\n" "$1" "$1" >&2
+            exit 1
+        fi
+    done
+}
+
 DIST=${DIST:-"linux64"}
 
 if [ "$VERSION" = "" ]; then
@@ -39,8 +49,8 @@ if [ ! -d "$DIST_DIR" ]; then
     exit 5
 fi
 
-# Check if imagemagick is installed
-convert -version >/dev/null 2>&1 || { echo "I require imagemagick but it's not installed. Aborting." >&2; exit 3; }
+# Check build dependencies
+check_dependencies python2.7 imagemagick libdbus-glib-1-dev wine
 
 # Create package icon
 convert -resize 48 app/soundnode.png fpm/soundnode-48x48.png
@@ -54,19 +64,35 @@ fpm -t deb \
     --vendor "http://www.soundnodeapp.com/" \
     --url "http://www.soundnodeapp.com/" \
     --version "$VERSION" \
-    --depends "libgconf-2-4" \
-    --depends "libglib2.0-0" \
-    --depends "libnss3" \
-    --depends "libfontconfig1" \
-    --depends "libpangocairo-1.0-0" \
-    --depends "libxi6" \
-    --depends "libxcomposite1" \
+	--depends "libc6" \
+	--depends "libnspr4" \
     --depends "libasound2" \
-    --depends "libxdamage1" \
-    --depends "libxtst6" \
-    --depends "libxrandr2" \
+    --depends "libc6-i386" \
+    --depends "libcairo2" \
+    --depends "libdbus-1-3" \
+    --depends "libexpat1" \
+    --depends "libfontconfig1" \
+    --depends "libfreetype6" \
+    --depends "libgcc1" \
+    --depends "libgconf-2-4" \
+    --depends "libgdk-pixbuf2.0-0" \
+    --depends "libglib2.0-0" \
     --depends "libgtk2.0-0" \
     --depends "libnotify4" \
+    --depends "libnss3" \
+    --depends "libpango-1.0-0" \
+    --depends "libpangocairo-1.0-0" \
+    --depends "libstdc++6" \
+    --depends "libx11-6" \
+    --depends "libxcomposite1" \
+    --depends "libxcursor1" \
+    --depends "libxdamage1" \
+    --depends "libxext6" \
+    --depends "libxfixes3" \
+    --depends "libxi6" \
+    --depends "libxrandr2" \
+    --depends "libxrender1" \
+    --depends "libxtst6" \
     --category "sound" \
     --iteration "1" \
     --package "fpm/packages" \
