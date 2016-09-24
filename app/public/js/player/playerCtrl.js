@@ -226,7 +226,7 @@ app.controller('PlayerCtrl', function (
     /**
      * Add native media shortcuts for linux based systems
      */
-     if(process.platform === "linux") {
+     if(process.platform === "linux" && mprisService) {
          // Set a default state
          mprisService.playbackStatus = mprisService.playbackStatus || "Stopped";
 

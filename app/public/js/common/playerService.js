@@ -185,7 +185,7 @@ app.factory('playerService', function(
         document.querySelector('.player_favorite').classList.remove('active');
 
         // mpris only supports linux
-        if(process.platform === "linux") {
+        if(process.platform === "linux" && mprisService) {
             // tell mpris that we're now playing & send off the attributes for dbus to use.
             mprisService.play("0", duration, trackObj.songThumbnail, trackObj.songTitle, trackObj.songUser);
         }
@@ -212,7 +212,7 @@ app.factory('playerService', function(
         /**
          * linux mpris passthrough for media keys & desktop integration
          */
-        if(process.platform === "linux") {
+        if(process.platform === "linux" && mprisService) {
             mprisService.play("0", duration, player.elThumb.src, player.elTitle.innerHTML, player.elUser.innerHTML);
         }
     };
@@ -228,7 +228,7 @@ app.factory('playerService', function(
         /**
          * linux mpris passthrough for media keys & desktop integration
          */
-        if(process.platform === "linux") {
+        if(process.platform === "linux" && mprisService) {
             mprisService.pause();
         }
     };

@@ -29,10 +29,6 @@
     "time-grunt": "^1.2.2",
     "webpack": "^1.12.2"
   },
-  "optionalDependencies": {
-      "dbus": "MarshallOfSound/node-dbus#linux-only",
-      "mpris-service": "MarshallOfSound/mpris-service"
-  },
   "dependencies": {
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
