@@ -322,6 +322,16 @@ app.controller('PlayerCtrl', function (
     });
 
     hotkeys.add({
+        combo: ['command+h', 'ctrl+h'],
+        description: 'Heart track',
+        callback: function() {
+          $timeout(function() {
+            angular.element(".player_favorite").triggerHandler('click');
+          }, 0);
+        }
+    });
+
+    hotkeys.add({
         combo: ['shift+q'],
         description: 'Toggle Queue',
         callback: function(e) {
