@@ -11,7 +11,7 @@ class SettingsButton extends Component {
 class SettingsList extends Component {
     render () {
         return (
-            <ul className="subNav_nav" data-isvisible={this.props.isVisible}>
+            <ul className="subNav_nav" data-isvisible={this.props.isVisible} onClick={this.props.onClick}>
                 <li className="subNav_nav_item" data-ng-controller="AboutCtrl">
                     <a data-ng-click="openModal()">About</a>
                 </li>
@@ -34,9 +34,23 @@ class SettingsApp extends Component {
         super(props);
 
         this.state = {
-            isVisible: false
+            isVisible: false,
+            isMouseIn: false
         };
+
+        //Close when we click on the UI
+        window.addEventListener('click', this.closeOut.bind(this), false);
     }
+
+    stopClose (e) {
+        e.stopPropagation();
+    };
+
+    closeOut () {
+        this.setState({
+            isVisible: false
+        });
+    };
 
     toggleSettings () {
         this.setState({
@@ -44,11 +58,16 @@ class SettingsApp extends Component {
         });
     };
 
+    stopEventsAndToggleSettings (e) {
+      this.stopClose(e);
+      this.toggleSettings();
+    };
+
     render () {
         return (
             <div>
-                <SettingsButton onClick={this.toggleSettings.bind(this)} />
-                <SettingsList isVisible={this.state.isVisible} />
+                <SettingsButton onClick={this.stopEventsAndToggleSettings.bind(this)} />
+                <SettingsList onClick={this.stopClose.bind(this)} isVisible={this.state.isVisible} />
             </div>
         )
     }
