@@ -15,8 +15,8 @@ app.controller('PlayerCtrl', function (
 ) {
     $scope.imgPath = 'public/img/temp-playing.png';
 
-    $timeout(function() {
-        if(window.localStorage.volume) {
+    $timeout(function () {
+        if (window.localStorage.volume) {
             $scope.volume = window.localStorage.volume;
             playerService.volume($scope.volume);
         } else {
@@ -31,7 +31,7 @@ app.controller('PlayerCtrl', function (
      * @type {exports}
      */
     $scope.isVisible = false;
-    $scope.toggleRange = function() {
+    $scope.toggleRange = function () {
         $scope.isVisible = !$scope.isVisible;
     };
 
@@ -41,52 +41,52 @@ app.controller('PlayerCtrl', function (
      * @param volume [value of the volume]
      * @method adjustVolume
      */
-    $scope.adjustVolume = function(volume) {
+    $scope.adjustVolume = function (volume) {
         $log.log('volume', volume);
         playerService.volume(volume);
     };
 
     var gui = require('nw.gui');
 
-    $scope.playPause = function($event) {
-        if ( $rootScope.isSongPlaying ) {
+    $scope.playPause = function ($event) {
+        if ($rootScope.isSongPlaying) {
             playerService.pauseSong();
         } else {
             playerService.playSong();
         }
     };
 
-    $scope.prevSong = function($event) {
-        if ( $rootScope.isSongPlaying ) {
+    $scope.prevSong = function ($event) {
+        if ($rootScope.isSongPlaying) {
             playerService.playPrevSong();
         }
     };
 
-    $scope.nextSong = function($event) {
-        if ( $rootScope.isSongPlaying ) {
+    $scope.nextSong = function ($event) {
+        if ($rootScope.isSongPlaying) {
             playerService.playNextSong();
         }
     };
 
-    $scope.lock = function($event) {
+    $scope.lock = function ($event) {
         var elButton = document.querySelector('.player_lock');
         elButton.classList.toggle('active');
         $rootScope.lock = !$rootScope.lock;
     };
 
-    $scope.repeat = function($event) {
+    $scope.repeat = function ($event) {
         var elButton = document.querySelector('.player_repeat');
         elButton.classList.toggle('active');
         $rootScope.repeat = !$rootScope.repeat;
     };
 
-    $scope.shuffle = function($event) {
+    $scope.shuffle = function ($event) {
         var elButton = document.querySelector('.player_shuffle');
         elButton.classList.toggle('active');
         $rootScope.shuffle = !$rootScope.shuffle;
     };
 
-    $scope.toggleQueue = function($event) {
+    $scope.toggleQueue = function ($event) {
         var elButton = document.querySelector('.player_queueList');
         elButton.classList.toggle('active');
         document.querySelector('.queueList').classList.toggle('active');
@@ -102,47 +102,47 @@ app.controller('PlayerCtrl', function (
         $state.go('profile', { id: trackObj.songUserId });
     };
 
-    $scope.favorite = function($event) {
+    $scope.favorite = function ($event) {
         var userId = $rootScope.userId;
         var track = queueService.getTrack();
 
-        if ( $event.currentTarget.classList.contains('active') ) {
+        if ($event.currentTarget.classList.contains('active')) {
 
             SCapiService.deleteFavorite(userId, track.songId)
-                .then(function(status) {
-                    if ( typeof status == "object" ) {
+                .then(function (status) {
+                    if (typeof status == "object") {
                         notificationFactory.warn("Song removed from likes!");
                         $event.currentTarget.classList.remove('active');
                         $rootScope.$broadcast("track::unfavorited", track.songId);
                     }
-                }, function() {
+                }, function () {
                     notificationFactory.error("Something went wrong!");
                 })
         } else {
             SCapiService.saveFavorite(userId, track.songId)
-                .then(function(status) {
-                    if ( typeof status == "object" ) {
+                .then(function (status) {
+                    if (typeof status == "object") {
                         notificationFactory.success("Song added to likes!");
                         $event.currentTarget.classList.add('active');
-                        $rootScope.$broadcast("track::favorited",  track.songId);
+                        $rootScope.$broadcast("track::favorited", track.songId);
                     }
-                }, function(status) {
+                }, function (status) {
                     notificationFactory.error("Something went wrong!");
                 });
         }
     };
 
     // Listen for updates from other scopes about favorites and unfavorites
-    $scope.$on('track::favorited', function(event, trackId) {
+    $scope.$on('track::favorited', function (event, trackId) {
         var track = queueService.getTrack();
-        if ( track && trackId == track.songId ) {
+        if (track && trackId == track.songId) {
             var elFavorite = document.querySelector('.player_favorite');
             elFavorite.classList.add('active');
         }
     });
-    $scope.$on('track::unfavorited', function(event, trackId) {
+    $scope.$on('track::unfavorited', function (event, trackId) {
         var track = queueService.getTrack();
-        if ( track && trackId == track.songId ) {
+        if (track && trackId == track.songId) {
             var elFavorite = document.querySelector('.player_favorite');
             elFavorite.classList.remove('active');
         }
@@ -152,8 +152,8 @@ app.controller('PlayerCtrl', function (
      * Used between multiple functions, so we'll leave it here so it reduces
      * the amount of times we define it.
      */
-    var togglePlayPause = function() {
-        if ( $rootScope.isSongPlaying ) {
+    var togglePlayPause = function () {
+        if ($rootScope.isSongPlaying) {
             playerService.pauseSong();
         } else {
             playerService.playSong();
@@ -166,54 +166,54 @@ app.controller('PlayerCtrl', function (
     */
     var playPause = new gui.Shortcut({
         key: 'MediaPlayPause',
-        active: function() {
-            $scope.$apply(function() {
+        active: function () {
+            $scope.$apply(function () {
                 togglePlayPause();
             });
         },
-        failed: function() {
+        failed: function () {
             // nothing here
         }
     });
 
     var stop = new gui.Shortcut({
         key: 'MediaStop',
-        active: function() {
-            $scope.$apply(function() {
-                if ( $rootScope.isSongPlaying ) {
+        active: function () {
+            $scope.$apply(function () {
+                if ($rootScope.isSongPlaying) {
                     playerService.stopSong();
                 }
             });
         },
-        failed: function() {
+        failed: function () {
             // nothing here
         }
     });
 
     var prevTrack = new gui.Shortcut({
         key: 'MediaPrevTrack',
-        active: function() {
-            $scope.$apply(function() {
-                if ( $rootScope.isSongPlaying ) {
+        active: function () {
+            $scope.$apply(function () {
+                if ($rootScope.isSongPlaying) {
                     playerService.playPrevSong();
                 }
             });
         },
-        failed: function() {
+        failed: function () {
             // nothing here
         }
     });
 
     var nextTrack = new gui.Shortcut({
         key: 'MediaNextTrack',
-        active: function() {
-            $scope.$apply(function() {
-                if ( $rootScope.isSongPlaying ) {
+        active: function () {
+            $scope.$apply(function () {
+                if ($rootScope.isSongPlaying) {
                     playerService.playNextSong();
                 }
             });
         },
-        failed: function() {
+        failed: function () {
             // nothing here
         }
     });
@@ -226,39 +226,39 @@ app.controller('PlayerCtrl', function (
     /**
      * Add native media shortcuts for linux based systems
      */
-     if(process.platform === "linux" && mprisService) {
-         // Set a default state
-         mprisService.playbackStatus = mprisService.playbackStatus || "Stopped";
+    if (process.platform === "linux" && mprisService) {
+        // Set a default state
+        mprisService.playbackStatus = mprisService.playbackStatus || "Stopped";
 
-         // When the user toggles play/pause
-         mprisService.on("playpause", function() {
-             togglePlayPause();
-         });
+        // When the user toggles play/pause
+        mprisService.on("playpause", function () {
+            togglePlayPause();
+        });
 
-         // When the user stops the song
-         mprisService.on("stop", function() {
-             playerService.stopSong();
-         });
+        // When the user stops the song
+        mprisService.on("stop", function () {
+            playerService.stopSong();
+        });
 
-         // When the user requests next song
-         mprisService.on("next", function() {
-             playerService.playNextSong();
-         });
+        // When the user requests next song
+        mprisService.on("next", function () {
+            playerService.playNextSong();
+        });
 
-         // When the user requests previous song
-         mprisService.on("previous", function() {
-             playerService.playPrevSong();
-         });
+        // When the user requests previous song
+        mprisService.on("previous", function () {
+            playerService.playPrevSong();
+        });
 
-         // When the user toggles shuffle
-         mprisService.on("shuffle", function() {
-             playerService.shuffle();
-         });
-     }
+        // When the user toggles shuffle
+        mprisService.on("shuffle", function () {
+            playerService.shuffle();
+        });
+    }
 
-//    function unregister() {
-//        gui.App.unregisterGlobalHotKey(shortcut);
-//    }
+    //    function unregister() {
+    //        gui.App.unregisterGlobalHotKey(shortcut);
+    //    }
 
     //
     // Add not native shortcuts
@@ -267,7 +267,7 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: 'space',
         description: 'Play/Pause song',
-        callback: function(event) {
+        callback: function (event) {
             event.preventDefault();
             togglePlayPause();
         }
@@ -276,7 +276,7 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['command+return', 'ctrl+return'],
         description: 'Play/Pause song',
-        callback: function() {
+        callback: function () {
             togglePlayPause();
         }
     });
@@ -284,8 +284,8 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: 'ctrl+right',
         description: 'Next song',
-        callback: function() {
-            if ( $rootScope.isSongPlaying ) {
+        callback: function () {
+            if ($rootScope.isSongPlaying) {
                 playerService.playNextSong();
             }
         }
@@ -294,8 +294,8 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: 'ctrl+left',
         description: 'Prev song',
-        callback: function() {
-            if ( $rootScope.isSongPlaying ) {
+        callback: function () {
+            if ($rootScope.isSongPlaying) {
                 playerService.playPrevSong();
             }
         }
@@ -304,8 +304,8 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['command+up', 'ctrl+up'],
         description: 'Volume Up',
-        callback: function(e) {
-        	e.preventDefault();
+        callback: function (e) {
+            e.preventDefault();
             playerService.volume(playerService.volume() + 0.1);
             $scope.volume = playerService.volume();
         }
@@ -314,27 +314,27 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['command+down', 'ctrl+down'],
         description: 'Volume Down',
-        callback: function(e) {
-        	e.preventDefault();
+        callback: function (e) {
+            e.preventDefault();
             playerService.volume(playerService.volume() - 0.1);
             $scope.volume = playerService.volume();
         }
     });
 
     hotkeys.add({
-        combo: ['command+h', 'ctrl+h'],
+        combo: ['command+l', 'ctrl+l'],
         description: 'Heart track',
-        callback: function() {
-          $timeout(function() {
-            angular.element(".player_favorite").triggerHandler('click');
-          }, 0);
+        callback: function () {
+            $timeout(function () {
+                angular.element(".player_favorite").triggerHandler('click');
+            }, 0);
         }
     });
 
     hotkeys.add({
         combo: ['shift+q'],
         description: 'Toggle Queue',
-        callback: function(e) {
+        callback: function (e) {
             e.preventDefault();
             $scope.toggleQueue()
         }
@@ -343,7 +343,7 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['shift+r'],
         description: 'Toggle repeat on/off',
-        callback: function(e) {
+        callback: function (e) {
             e.preventDefault();
             $scope.repeat()
         }
@@ -352,7 +352,7 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['shift+s'],
         description: 'Toggle shuffle on/off',
-        callback: function(e) {
+        callback: function (e) {
             e.preventDefault();
             $scope.shuffle()
         }
@@ -361,7 +361,7 @@ app.controller('PlayerCtrl', function (
     hotkeys.add({
         combo: ['shift+l'],
         description: 'Toggle lock on/off',
-        callback: function(e) {
+        callback: function (e) {
             e.preventDefault();
             $scope.lock()
         }
