@@ -1,9 +1,10 @@
 {
-  "name": "Grunt-builder",
+  "name": "Soundnode",
   "version": "0.6.5",
-  "main": "app/index.html",
+  "main": "main.js",
   "description": "Soundnode App is the Soundcloud for desktop",
   "scripts": {
+    "start": "electron .",
     "build": "webpack -d -p",
     "watch": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +17,7 @@
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "electron-prebuilt": "^1.4.3",
     "eslint": "^1.8.0",
     "eslint-plugin-react": "^3.7.1",
     "grunt": "^1.0.1",
@@ -30,8 +32,19 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
+    "angular": "^1.3.8",
+    "angular-hotkeys": "^1.7.0",
+    "angular-sanitize": "^1.5.8",
+    "angular-toastr": "^2.1.1",
+    "angular-ui-router": "^0.3.1",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.1.1",
+    "ng-dialog": "^0.6.4",
+    "ng-infinite-scroll": "^1.3.0",
+    "normalize.css": "^5.0.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "toastr": "^2.1.2",
     "universal-analytics": "^0.3.11"
   }
 }
