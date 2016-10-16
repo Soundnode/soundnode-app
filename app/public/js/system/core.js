@@ -4,4 +4,3 @@
 authentication.init();
 userConfig.windowState();
 userConfig.scaleInit();
-guiConfig.init();

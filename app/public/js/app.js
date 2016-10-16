@@ -102,8 +102,8 @@ app.run(function (
   window.settings.visitor.pageview("/").send();
 
   // toastr config override
-  toastr.options.positionClass = 'toast-top-right';
-  toastr.options.timeOut = 4000;
+  // toastr.options.positionClass = 'toast-top-right';
+  // toastr.options.timeOut = 4000;
 
   $rootScope.oldView = "";
   $rootScope.currentView = "";

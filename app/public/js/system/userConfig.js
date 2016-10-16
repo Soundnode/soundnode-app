@@ -1,68 +1,80 @@
 "use strict";
 
-var gui = window.require('nw.gui');
-var userConfig = {};
+const {
+  ipcRenderer
+} = require('electron');
 
-userConfig.checkAuth = function() {
+let userConfig = {};
 
-    if( ! window.localStorage.SC ) {
-        console.log('User not saved');
-        return false;
-    }
+userConfig.checkAuth = function () {
 
-    console.log('User is saved');
+  if (!window.localStorage.SC) {
+    console.log('User not saved');
+    return false;
+  }
 
-    var lastPlayedSongDuration = +window.localStorage.lastPlayedSongDuration || 0;
-    var queueCurrentPosition = +window.localStorage.queueCurrentPosition;
+  console.log('User is saved');
 
-    // Expose some globals to the window
-    window.SC = window.localStorage.SC;
-    window.scAccessToken = window.localStorage.scAccessToken;
-    window.scClientId = window.localStorage.scClientId;
+  let lastPlayedSongDuration = +window.localStorage.lastPlayedSongDuration || 0;
+  let queueCurrentPosition = +window.localStorage.queueCurrentPosition;
 
-    // Bring Soundnode to focus
-    window.focus();
+  // Expose some globals to the window
+  window.SC = window.localStorage.SC;
+  window.scAccessToken = window.localStorage.scAccessToken;
+  window.scClientId = window.localStorage.scClientId;
 
-    return true;
+  // Bring Soundnode to focus
+  window.focus();
+
+  return true;
 };
 
-userConfig.saveUser = function() {
-    console.log('Saving user to localStorage');
-    // Save all to localStorage
-    window.localStorage.SC = window.SC;
-    window.localStorage.scAccessToken = window.SC.accessToken();
-    window.localStorage.scClientId = window.SC.options.client_id;
-
-    console.dir('window.localStorage.SC', window.localStorage.SC)
+userConfig.saveUser = function () {
+  console.log('Saving user to localStorage');
+  // Save all to localStorage
+  window.localStorage.SC = window.SC;
+  window.localStorage.scAccessToken = window.SC.accessToken();
+  window.localStorage.scClientId = window.SC.options.client_id;
 };
 
-userConfig.windowState = function() {
-    if(window.localStorage.width || window.localStorage.height) {
-        gui.Window.get().width = Math.round(window.localStorage.width);
-        gui.Window.get().height = Math.round(window.localStorage.height);
-    }
+userConfig.windowState = function () {
+  let width, height;
 
-    gui.Window.get().on('resize', function(width, height) {
-        if (gui.Window.get().x < 100 && gui.Window.get().y < 100) return;
-        userConfig.saveWindow(width, height);
-    });
+  if (window.localStorage.width && window.localStorage.height) {
+    width = Math.round(window.localStorage.width);
+    height = Math.round(window.localStorage.height);
+
+    ipcRenderer.send('resizeApp', width, height);
+  }
+
+  // userConfig.saveWindowSize(width, height);
+  window.addEventListener('resize', () => {
+    userConfig.saveWindowSize(
+      ipcRenderer.send('getSize').width,
+      ipcRenderer.send('getSize').height
+    );
+  }, false);
 };
 
-userConfig.saveWindow = function(width, height) {
-    if(width || height) {
-        window.localStorage.width = Math.round(width);
-        window.localStorage.height = Math.round(height);
-    }
+userConfig.saveWindow = function (width, height) {
+  if (width || height) {
+    window.localStorage.width = Math.round(width);
+    window.localStorage.height = Math.round(height);
+  }
 };
 
-userConfig.scaleWindow = function(scaleValue){
-    window.localStorage.scale = scaleValue;
-    window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale
+userConfig.scaleWindow = function (scaleValue) {
+  window.localStorage.scale = scaleValue;
+  window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale
 };
 
-userConfig.scaleInit = function() {
-    if ( ! window.localStorage.scale ) {
-        window.localStorage.setItem('scale', 1);
-    }
-    window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale;
+userConfig.scaleInit = function () {
+  if (!window.localStorage.scale) {
+    window.localStorage.setItem('scale', 1);
+  }
+  window.document.getElementsByTagName("body")[0].style.zoom = window.localStorage.scale;
 };
+
+module.exports = {
+  userConfig: userConfig
+}
