@@ -1,8 +1,0 @@
-build:
-    - 'clean:build'
-    - 'shell'
-    - 'sass:production'
-
-dev:
-    - 'sass:dev'
-    - 'shell'

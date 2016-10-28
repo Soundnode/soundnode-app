@@ -62,9 +62,7 @@ See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Devel
 
 ## Contributors
 
-Thanks to a friend at [Studio-424](http://studio-424.com/) for designing the logo.
-
-and Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or helped to make Soundnode better.
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or have help make Soundnode better.
 
 ## License
 
