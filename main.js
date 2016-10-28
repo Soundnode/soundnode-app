@@ -5,13 +5,21 @@ const {
   BrowserWindow,
   ipcMain
 } = require('electron');
+const windowStateKeeper = require('electron-window-state');
 
 let mainWindow;
 
 app.on('ready', () => {
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 1180,
+    defaultHeight: 755
+  });
+
   mainWindow = new BrowserWindow({
-    width: 1180,
-    height: 755,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
     minWidth: 800,
     minHeight: 640,
     center: true,
@@ -21,7 +29,7 @@ app.on('ready', () => {
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.openDevTools({ detach: true });
+    mainWindow.webContents.openDevTools();
   }
 
   mainWindow.webContents.on('will-navigate', function (e, url) {
@@ -35,6 +43,8 @@ app.on('ready', () => {
     mainWindow.show();
     mainWindow.focus();
   });
+
+  mainWindowState.manage(mainWindow);
 });
 
 app.on('activate', () => {

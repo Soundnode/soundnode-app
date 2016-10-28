@@ -213,11 +213,15 @@
   </script>
 
 	<!-- app -->
-	<script src="public/js/system/settings.js"></script>
-	<script src="public/js/system/authentication.js"></script>
-	<script src="public/js/system/userConfig.js"></script>
-	<script src="public/js/system/guiConfig.js"></script>
-	<script src="public/js/system/core.js"></script>
+	<script>
+    const srcPath = './public/js';
+    require(`${srcPath}/system/settings`);
+    require(`${srcPath}/system/authentication`);
+    require(`${srcPath}/system/userConfig`);
+    require(`${srcPath}/system/guiConfig`);
+    require(`${srcPath}/system/core`);
+  </script>
+
 	<script src="public/js/app.js"></script>
 
 	<!-- services/factories -->
@@ -225,7 +229,7 @@
 	<script src="public/js/common/SCapiService.js"></script>
 	<script src="public/js/common/SC2apiService.js"></script>
 	<script src="public/js/common/playerService.js"></script>
-	<!--<script src="public/js/common/mprisService.js"></script>-->
+	<script src="public/js/common/mprisService.js"></script>
 	<script src="public/js/common/notificationFactory.js"></script>
 	<script src="public/js/common/modalFactory.js"></script>
 

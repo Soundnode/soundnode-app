@@ -258,10 +258,7 @@ app.controller('PlayerCtrl', function (
   //        gui.App.unregisterGlobalHotKey(shortcut);
   //    }
 
-  //
-  // Add not native shortcuts
-  //
-
+  //TODO: replace all hotkeys to native electrom commands
   hotkeys.add({
     combo: 'space',
     description: 'Play/Pause song',

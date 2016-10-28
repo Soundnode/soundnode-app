@@ -1,5 +1,9 @@
 "use strict";
 
+const {
+  ipcRenderer
+} = require('electron');
+
 let guiConfig = {};
 
 // close the App
@@ -16,3 +20,7 @@ guiConfig.minimize = function () {
 guiConfig.maximize = function () {
   ipcRenderer.send('maximizeApp');
 };
+
+module.exports = {
+  guiConfig: guiConfig
+}

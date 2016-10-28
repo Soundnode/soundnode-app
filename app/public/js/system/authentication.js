@@ -1,5 +1,7 @@
 "use strict";
 
+const userConfig = require('./userConfig').userConfig;
+
 let authentication = {};
 let authenticationId;
 
