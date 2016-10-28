@@ -3,7 +3,9 @@
 const {
   app,
   BrowserWindow,
-  ipcMain
+  ipcMain,
+  ipcRenderer,
+  globalShortcut
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 
@@ -45,18 +47,12 @@ app.on('ready', () => {
   });
 
   mainWindowState.manage(mainWindow);
+  initializeMediaShortcuts();
 });
 
 app.on('activate', () => {
   mainWindow.show();
   mainWindow.focus();
-})
-
-/**
- * Resize app window based on received optons
- */
-ipcMain.on('resizeApp', (e, width, height) => {
-
 });
 
 /**
@@ -95,18 +91,20 @@ ipcMain.on('closeApp', () => {
   }
 });
 
-ipcMain.on('getSize', (e) => {
-  e.returnValue = getSize();
-});
+function initializeMediaShortcuts() {
+  globalShortcut.register('MediaPlayPause', () => {
+    mainWindow.webContents.send('MediaPlayPause');
+  });
 
-/**
- * Get app size and return width and height in an obj
- */
-function getSize() {
-  let appSize = mainWindow.getSize();
+  globalShortcut.register('MediaStop', () => {
+    mainWindow.webContents.send('MediaStop');
+  });
 
-  return {
-    width: appSize[0],
-    height: appSize[1]
-  }
+  globalShortcut.register('MediaPreviousTrack', () => {
+    mainWindow.webContents.send('MediaPreviousTrack');
+  });
+
+  globalShortcut.register('MediaNextTrack', () => {
+    mainWindow.webContents.send('MediaNextTrack');
+  });
 }

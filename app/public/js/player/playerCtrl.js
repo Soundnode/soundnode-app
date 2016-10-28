@@ -162,64 +162,39 @@ app.controller('PlayerCtrl', function (
   /*
   * Add native media shortcuts
   */
-  // var playPause = new gui.Shortcut({
-  //     key: 'MediaPlayPause',
-  //     active: function () {
-  //         $scope.$apply(function () {
-  //             togglePlayPause();
-  //         });
-  //     },
-  //     failed: function () {
-  //         // nothing here
-  //     }
-  // });
+  ipcRenderer.on('MediaPlayPause', () => {
+    console.log('MediaPlayPause called');
+    $scope.$apply(function () {
+      togglePlayPause();
+    });
+  });
 
-  // var stop = new gui.Shortcut({
-  //     key: 'MediaStop',
-  //     active: function () {
-  //         $scope.$apply(function () {
-  //             if ($rootScope.isSongPlaying) {
-  //                 playerService.stopSong();
-  //             }
-  //         });
-  //     },
-  //     failed: function () {
-  //         // nothing here
-  //     }
-  // });
+  ipcRenderer.on('MediaStop', () => {
+    console.log('MediaStop called');
+    $scope.$apply(function () {
+      if ($rootScope.isSongPlaying) {
+        playerService.stopSong();
+      }
+    });
+  });
 
-  // var prevTrack = new gui.Shortcut({
-  //     key: 'MediaPrevTrack',
-  //     active: function () {
-  //         $scope.$apply(function () {
-  //             if ($rootScope.isSongPlaying) {
-  //                 playerService.playPrevSong();
-  //             }
-  //         });
-  //     },
-  //     failed: function () {
-  //         // nothing here
-  //     }
-  // });
+  ipcRenderer.on('MediaPreviousTrack', () => {
+    console.log('MediaPreviousTrack called');
+    $scope.$apply(function () {
+      if ($rootScope.isSongPlaying) {
+        playerService.playPrevSong();
+      }
+    });
+  });
 
-  // var nextTrack = new gui.Shortcut({
-  //     key: 'MediaNextTrack',
-  //     active: function () {
-  //         $scope.$apply(function () {
-  //             if ($rootScope.isSongPlaying) {
-  //                 playerService.playNextSong();
-  //             }
-  //         });
-  //     },
-  //     failed: function () {
-  //         // nothing here
-  //     }
-  // });
-
-  // gui.App.registerGlobalHotKey(playPause);
-  // gui.App.registerGlobalHotKey(stop);
-  // gui.App.registerGlobalHotKey(prevTrack);
-  // gui.App.registerGlobalHotKey(nextTrack);
+  ipcRenderer.on('MediaNextTrack', () => {
+    console.log('MediaNextTrack called');
+    $scope.$apply(function () {
+      if ($rootScope.isSongPlaying) {
+        playerService.playNextSong();
+      }
+    });
+  });
 
   /**
    * Add native media shortcuts for linux based systems
@@ -253,10 +228,6 @@ app.controller('PlayerCtrl', function (
       playerService.shuffle();
     });
   }
-
-  //    function unregister() {
-  //        gui.App.unregisterGlobalHotKey(shortcut);
-  //    }
 
   //TODO: replace all hotkeys to native electrom commands
   hotkeys.add({
