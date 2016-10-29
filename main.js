@@ -4,7 +4,6 @@ const {
   app,
   BrowserWindow,
   ipcMain,
-  ipcRenderer,
   globalShortcut
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
@@ -50,22 +49,19 @@ app.on('ready', () => {
   initializeMediaShortcuts();
 });
 
+app.on('will-quit', () => {
+  // Unregister all shortcuts.
+  globalShortcut.unregisterAll()
+})
+
 app.on('activate', () => {
-  mainWindow.show();
-  mainWindow.focus();
+  showAndFocus();
 });
 
 /**
  * Receive maximize event and trigger command
  */
 ipcMain.on('maximizeApp', () => {
-  mainWindow.maximize();
-});
-
-/**
- * Receive minimize event and trigger command
- */
-ipcMain.on('minimizeApp', () => {
   if (mainWindow.isMaximized()) {
     mainWindow.unmaximize();
   } else {
@@ -74,10 +70,21 @@ ipcMain.on('minimizeApp', () => {
 });
 
 /**
+ * Receive minimize event and trigger command
+ */
+ipcMain.on('minimizeApp', () => {
+  mainWindow.minimize()
+});
+
+/**
  * Receive hide event and trigger command
  */
 ipcMain.on('hideApp', () => {
   mainWindow.hide();
+});
+
+ipcMain.on('showApp', () => {
+  showAndFocus();
 });
 
 /**
@@ -90,6 +97,11 @@ ipcMain.on('closeApp', () => {
     mainWindow.hide();
   }
 });
+
+function showAndFocus() {
+  mainWindow.show();
+  mainWindow.focus();
+}
 
 function initializeMediaShortcuts() {
   globalShortcut.register('MediaPlayPause', () => {

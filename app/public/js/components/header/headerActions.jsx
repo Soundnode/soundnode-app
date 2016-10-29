@@ -1,3 +1,4 @@
+const guiConfig = require('../../system/guiConfig').guiConfig;
 import React, { Component } from 'react';
 
 class BackForwardActions extends Component {
@@ -16,7 +17,6 @@ class BackForwardActions extends Component {
 }
 
 class WindowActions extends Component {
-
   closeApp() {
     guiConfig.close();
   }

@@ -159,10 +159,11 @@ app.factory('playerService', function (
     if (window.localStorage.notificationToggle === "true") {
       songNotification = new Notification(songNotificationTitle, {
         body: trackObj.songUser,
-        icon: trackObj.songThumbnail
+        icon: trackObj.songThumbnail,
+        silent: true
       });
       songNotification.onclick = function () {
-        // gui.Window.get().show();
+        ipcRenderer.send('showApp');
       };
     }
 
