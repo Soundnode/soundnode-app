@@ -5,8 +5,9 @@
   "description": "Soundnode App is the Soundcloud for desktop",
   "scripts": {
     "start": "electron .",
-    "build": "npm run webpack:prod && npm run sass:prod && npm run package:all",
+    "build": "npm run clean && npm run webpack:prod && npm run sass:prod && npm run package:all",
     "watch": "npm run webpack:dev & npm run sass:dev",
+    "clean": "rm -rf ./dist",
     "webpack:prod": "./node_modules/.bin/webpack -p --config ./webpack.prod.js",
     "webpack:dev": "./node_modules/.bin/webpack -d --watch --config ./webpack.dev.js",
     "sass:prod": "./node_modules/.bin/node-sass --include-path ./app/public/stylesheets/sass --output-style compressed ./app/public/stylesheets/sass/app.scss ./app/public/stylesheets/css/app.css",
