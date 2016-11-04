@@ -10,6 +10,8 @@ Follow us on twitter for updates [@Soundnodeapp](https://www.twitter.com/soundno
 Featured on [Producthunt](https://www.producthunt.com/tech/soundnode-2), [TNW](http://thenextweb.com/apps/2016/01/25/soundnode-is-the-soundcloud-desktop-app-youve-been-waiting-for/#gref) 
 and [Gizmodo](http://gizmodo.com/soundnode-turns-soundcloud-into-a-spotify-like-desktop-1754953529)
 
+**Be aware that Soundnode relies on Soundcloud API which only allowing third party apps to play 15 thousand tracks daily. Once the rate limit is reached all users aren't able to play any song until the end of the current day the limit was reached.**
+
 ![alt tag](https://raw.githubusercontent.com/Soundnode/soundnode-app/master/Soundnode-app.png)
 
 ## Features
