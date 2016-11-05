@@ -4,7 +4,8 @@ const {
   app,
   BrowserWindow,
   ipcMain,
-  globalShortcut
+  globalShortcut,
+  Menu
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 
@@ -47,6 +48,7 @@ app.on('ready', () => {
 
   mainWindowState.manage(mainWindow);
   initializeMediaShortcuts();
+  menuBar();
 });
 
 app.on('will-quit', () => {
@@ -119,4 +121,73 @@ function initializeMediaShortcuts() {
   globalShortcut.register('MediaNextTrack', () => {
     mainWindow.webContents.send('MediaNextTrack');
   });
+}
+
+function menuBar() {
+  const template = [
+    {
+      role: 'view',
+      submenu: [
+        {
+          role: 'togglefullscreen'
+        },
+        {
+          role: 'close'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Learn More',
+          click() {
+            require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/wiki/Help')
+          }
+        },
+        {
+          label: 'License',
+          click() {
+            require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md')
+          }
+        }
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click(item, focusedWindow) {
+            if (focusedWindow) {
+              focusedWindow.reload()
+            }
+          }
+        },
+        {
+          label: 'Toggle Developer Tools',
+          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+          click(item, focusedWindow) {
+            if (focusedWindow) {
+              focusedWindow.webContents.toggleDevTools()
+            }
+          }
+        },
+        {
+          type: 'separator'
+        },
+        {
+          role: 'resetzoom'
+        },
+        {
+          role: 'zoomin'
+        },
+        {
+          role: 'zoomout'
+        }
+      ]
+    }
+  ];
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu)
 }
