@@ -2,6 +2,8 @@
 Soundnode App
 ============
 
+>The Soundnode core is migrating to Electron from NW.js (even though we are on Electron list of cases) for many reasons. So don't worry about the last time something was changed in master because there is work being done [here](https://github.com/Soundnode/soundnode-app/pull/894)
+
 Soundnode App is an Open-Source project to support Soundcloud for desktop Mac, Windows, and Linux. <br>
 It's built with NW.js, Node.js, Angular.js, and uses the Soundcloud API.
 
