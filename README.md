@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/Soundnode/soundnode-app.png?label=roadmap&title=roadmap)](https://waffle.io/Soundnode/soundnode-app)
 Soundnode App
 ============
 
