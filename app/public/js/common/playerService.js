@@ -114,11 +114,11 @@ app.factory('playerService', function(
                 queueService.insert(currentElData);
                 queueService.push(currentElSiblings);
             } else {
-
                 // find track in the Queue
                 trackPosition = queueService.find(currentElData.songId);
                 if ( trackPosition === 0 || trackPosition > 0 ) {
                     queueService.currentPosition = trackPosition;
+                    queueService.queueUpStart = null;
                 } else {
                     queueService.insert(currentElData);
                     queueService.next();

@@ -60,6 +60,16 @@
             <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
             <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
             <a copy-directive data-copy="{{ data.permalink_url }}" title="Copy"> <i class="fa fa-clipboard"></i></a>
+            <a
+              queue-up
+              title="Queue Up"
+              data-song-url="{{ data.stream_url }}"
+              data-song-thumbnail="{{ data.artwork_url }}"
+              data-song-title="{{ data.title }}"
+              data-song-user="{{ data.user.username }}"
+              data-song-user-id="{{ data.user.id }}"
+              data-song-id="{{ data.id }}"
+              > <i class="fa fa-plus"></i></a>
         </div>
         <div class="songList_item_additional_details">
             <span class="songList_item_genre" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
