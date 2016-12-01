@@ -44,8 +44,7 @@ app.controller('QueueCtrl', function(
             return;
         }
 
-        var trackId = queueService.getTrack().songId;
-        var track = document.querySelector('.queueListView_list_item[data-song-id="' + trackId + '"]');
+        var track = document.querySelector('.queueListView_list_item[data-queue-position="' + queueService.currentPosition + '"]');
         var oldActive = document.querySelector('.queueListView_list_item.active');
 
         if ( oldActive ) {

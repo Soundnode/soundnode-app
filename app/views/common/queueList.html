@@ -8,13 +8,14 @@
             <span class="labelColumn">ARTIST</span>
         </li>
         <li class="queueListView_list_item"
-            ng-repeat="item in data"
+            ng-repeat="item in data track by $index"
             song
             data-song-url="{{ item.songUrl }}"
             data-song-thumbnail="{{ item.songThumbnail }}"
             data-song-title="{{ item.songTitle }}"
             data-song-user="{{ item.songUser }}"
             data-song-id="{{ item.songId }}"
+            data-queue-position="{{ $index }}"
             ng-click="activateTrackInQueue($event)">
 
             <small class="queueListView_list_item_index">{{ $index + 1 }}</small>
