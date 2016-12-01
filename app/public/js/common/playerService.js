@@ -292,6 +292,15 @@ app.factory('playerService', function(
     };
 
     /**
+     * Responsible to activate shuffle mode for the queue list
+     * @method shuffle
+     */
+    player.shuffle = function() {
+        //Send the shuffle event
+        $rootScope.$broadcast('queueList::shuffle');
+    }
+
+    /**
      * Set the song time.
      * @param  {Number} time The time in milliseconds you want to set
      */

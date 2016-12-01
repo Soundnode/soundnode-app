@@ -149,6 +149,13 @@ app.controller('PlayerCtrl', function (
     });
 
     /**
+     * Toggles shuffle mode
+     */
+    $scope.$on('queueList::shuffle', function(event){
+        $scope.shuffle();
+    });
+
+    /**
      * Used between multiple functions, so we'll leave it here so it reduces
      * the amount of times we define it.
      */
