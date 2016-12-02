@@ -42,6 +42,104 @@ gui.App.on('reopen', function() {
     guiConfig.getGUI.show();
 });
 
+
+// Get the minimize event
+guiConfig.getGUI.on('minimize', function() {
+    if (window.localStorage.minimizeToTray === 'false' || !window.settings.traySupport()) {
+        return false;
+    }
+    this.hide();
+
+    // Show tray
+    this.tray = new gui.Tray({ title: 'Soundnode', icon: 'soundnode.png' });
+
+    // Build tray menu
+    var trayMenu = new gui.Menu(),
+        playerElement = document.querySelector('[ng-controller=PlayerCtrl]'),
+        playerScope = angular.element(playerElement).scope();
+
+    // Separator
+    var separator = new gui.MenuItem({
+        type: 'separator'
+    });
+
+    // Open
+    trayMenu.append(
+        new gui.MenuItem({
+        label: 'Open',
+        click: function() {
+            guiConfig.getGUI.show();
+        }
+    }));
+
+    // Developer Tools
+    trayMenu.append(
+        new gui.MenuItem({
+        label: 'Developer Tools',
+        click: function() {
+            guiConfig.openDevTools();
+        }
+    }));
+
+    // Seperator
+    trayMenu.append(separator);
+
+    // Play/Pause
+    trayMenu.append(
+        new gui.MenuItem({
+            label: 'Play / Pause',
+            click: function() {
+                playerScope.playPause();
+            }
+        })
+    );
+
+    // Seperator
+    trayMenu.append(separator);
+
+    // Next
+    trayMenu.append(
+        new gui.MenuItem({
+            label: 'Next',
+            click: function() {
+                playerScope.nextSong();
+            }
+        })
+    );
+
+    // Previous
+    trayMenu.append(
+        new gui.MenuItem({
+            label: 'Previous',
+            click: function() {
+                playerScope.prevSong();
+            }
+        })
+    );
+
+    // Separator
+    trayMenu.append(separator);
+
+    // Exit
+    trayMenu.append(
+        new gui.MenuItem({
+        label: 'Exit',
+        click: function() {
+            gui.App.closeAllWindows();
+            this.close(true);
+        }
+    }));
+
+    // Assign menu to tray
+    this.tray.menu = trayMenu;
+
+    // Show window and remove tray when clicked
+    this.tray.on('click', function() {
+        guiConfig.getGUI.show();
+        this.remove();
+        guiConfig.tray = null;
+    });
+});
 // open dev tools
 guiConfig.openDevTools = function () {
     guiConfig.getGUI.showDevTools();

@@ -17,6 +17,22 @@ app.controller('SettingsCtrl', function ($scope, notificationFactory) {
     };
 
     /**
+     * Enable or disable minimize to tray
+     * ONLY FOR WINDOWS OS
+     */
+    if ( window.localStorage.minimizeToTray ) {
+        $scope.minimize = JSON.parse(window.localStorage.minimizeToTray);
+    } else {
+        window.localStorage.minimizeToTray = $scope.minimize = false;
+    }
+
+    $scope.minimizeSettings = function() {
+        window.localStorage.minimizeToTray = $scope.minimize;
+    };
+
+    $scope.showTraySettings = window.settings.traySupport();
+
+    /**
      * Clea storage which remove everything stored in window.localStorage
      */
     $scope.cleanStorage = function() {

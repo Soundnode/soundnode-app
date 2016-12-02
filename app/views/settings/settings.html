@@ -16,6 +16,18 @@
                 </div>
             </div>
         </li>
+        <li class="full-flex" ng-hide="!showTraySettings">
+            <div class="settings-container leftSide">
+                <h2>Tray</h2>
+                <label>Enable/Disable minimization to tray </label>
+            </div>
+            <div class="settings-switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" class="onoffswitch-checkbox" name="minimize" id="minimizeSettings" ng-model="minimize" ng-change="minimizeSettings()" ng-checked="minimize">
+                    <label class="onoffswitch-label" for="minimizeSettings"></label>
+                </div>
+            </div>
+        </li>
         <li class="full-flex">
             <div class="settings-container leftSide">
                 <h2>Clean local storage</h2>
