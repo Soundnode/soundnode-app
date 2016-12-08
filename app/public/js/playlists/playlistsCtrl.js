@@ -149,7 +149,7 @@ app.controller('PlaylistsCtrl', function (
                 songUser: track.user.username,
                 songTitle: track.title,
                 songThumbnail: track.artwork_url,
-                songUrl: track.track_uri
+                songUrl: track.stream_url
             };
             queueService.insert(trackItem);
         }
