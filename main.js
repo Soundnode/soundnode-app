@@ -170,7 +170,7 @@ ipcMain.on('closeApp', () => {
 
 //
 ipcMain.on('destroyApp', () => {
-    mainWindow.destroy();
+    mainWindow.close();
 });
 
 function showAndFocus() {
