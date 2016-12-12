@@ -1,6 +1,6 @@
 "use strict";
 
-var ua = require('universal-analytics');
+const ua = require('universal-analytics');
 
 // Set up some core settings
 window.settings = {};

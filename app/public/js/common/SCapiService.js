@@ -28,8 +28,8 @@ app.service('SCapiService', function (
 
     this.get = function (endpoint, params) {
 
-        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken
-            , that = this;
+        var url = 'https://api.soundcloud.com/' + endpoint + '.json?' + params + '&oauth_token=' + $window.scAccessToken;
+        var that = this;
 
         this.isLoading();
 

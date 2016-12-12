@@ -1,5 +1,6 @@
 "use strict";
 
+const fs = require('fs');
 const {
   app,
   BrowserWindow,
@@ -9,9 +10,79 @@ const {
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 
+// custom constants
+const clientId = '342b8a7af638944906dcdb46f9d56d98';
+const redirectUri = 'http://sc-redirect.herokuapp.com/callback.html';
+const SCconnect = `https://soundcloud.com/connect?&client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token`;
+const userConfigPath = `file://${__dirname}/userConfig.json`;
+
 let mainWindow;
+let authenticationWindow;
 
 app.on('ready', () => {
+  checkUserConfig();
+});
+
+function checkUserConfig() {
+  const userConfigExists = fs.existsSync(userConfigPath);
+
+  if (userConfigExists) {
+    const userConfig = fs.readFileSync(userConfigPath, 'utf8');
+    console.log('user config', JSON.parse(userConfig));
+  } else {
+    console.log('not authenticated');
+    authenticateUser();
+  }
+}
+
+/**
+ * User config file doesn't exists
+ * therefore open soundcloud authentication page
+ */
+function authenticateUser() {
+  let contents;
+
+  authenticationWindow = new BrowserWindow({
+    width: 600,
+    height: 600,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: false,
+      webSecurity: false
+    }
+  });
+  authenticationWindow.loadURL(SCconnect);
+  authenticationWindow.show();
+
+  contents = authenticationWindow.webContents;
+
+  contents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
+    const access_tokenStr = 'access_token=';
+    const expires_inStr = '&expires_in';
+    let accessToken;
+
+    if (newUrl.indexOf('access_token=') < 0) {
+      return false;
+    }
+
+    accessToken = newUrl.substring(newUrl.indexOf(access_tokenStr) + 13, newUrl.indexOf(expires_inStr));
+    console.log('only access token', accessToken);
+
+    setUserData(accessToken);
+    authenticationWindow.destroy();
+  });
+}
+
+function setUserData(accessToken) {
+  fs.writeFileSync(userConfigPath, {
+    accessToken: accessToken,
+    clientId: clientId
+  }, 'utf-8');
+
+  initMainWindow();
+}
+
+function initMainWindow() {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1180,
     defaultHeight: 755
@@ -49,7 +120,7 @@ app.on('ready', () => {
   mainWindowState.manage(mainWindow);
   initializeMediaShortcuts();
   menuBar();
-});
+}
 
 app.on('will-quit', () => {
   // Unregister all shortcuts.

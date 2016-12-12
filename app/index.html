@@ -2,205 +2,210 @@
 <html lang="en">
 
 <head>
-	<title>Soundnode</title>
+  <title>Soundnode</title>
 
-	<!-- style -->
-	<link href="../node_modules/normalize.css/normalize.css" rel="stylesheet">
-	<link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="public/stylesheets/css/app.css" rel="stylesheet">
-	<link href="../node_modules/angular-hotkeys/build/hotkeys.min.css" rel="stylesheet">
-	<link href="../node_modules/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
-	<link href="../node_modules/toastr/build/toastr.min.css" rel="stylesheet" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <!-- style -->
+  <link href="../node_modules/normalize.css/normalize.css" rel="stylesheet">
+  <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="public/stylesheets/css/app.css" rel="stylesheet">
+  <link href="../node_modules/angular-hotkeys/build/hotkeys.min.css" rel="stylesheet">
+  <link href="../node_modules/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+  <link href="../node_modules/toastr/build/toastr.min.css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
-	<!-- meta -->
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <!-- meta -->
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
 
 </head>
 
+<script>
+// expose accessToken and clientId
+</script>
+
 <body data-isVisible="false" ng-controller="AppCtrl">
 
-	<!-- loading gif -->
-	<div class="box-loader loading">
-		<h4>Authenticating your Soundcloud account.</h4>
+  <!-- loading gif -->
+  <div class="box-loader loading">
+    <h4>Authenticating your Soundcloud account.</h4>
 
-		<div class="loader"></div>
-	</div>
-	<!-- loading gif / end -->
+    <div class="loader"></div>
+  </div>
+  <!-- loading gif / end -->
 
-	<!-- UI App -->
-	<div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
+  <!-- UI App -->
+  <div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
 
-		<!-- header -->
-		<header class="topFrame">
-			<div class="headerActionsApp"></div>
+    <!-- header -->
+    <header class="topFrame">
+      <div class="headerActionsApp"></div>
 
-			<ul class="topbarSearch">
-				<!-- search -->
-				<div class="search" ng-controller="SearchInputCtrl">
-					<form ng-submit="onSubmit(keyword)" class="search-form">
-						<input type="search" placeholder="Search" id="search" class="search_field" ng-change="typeahead(keyword)" ng-model="keyword"
-							ng-model-options="{debounce: 350}" ng-focus="refocusTypehead(keyword)" ng-blur="blurTypeahead()">
-						<i class="fa fa-search search-icon"></i>
-						<input type="submit" id="submit" value="Submit" class="searchButton" />
-					</form>
-					<div class="dropdown" id="searchDropDown">
-					</div>
-				</div>
-				<!-- search / end -->
-			</ul>
+      <ul class="topbarSearch">
+        <!-- search -->
+        <div class="search" ng-controller="SearchInputCtrl">
+          <form ng-submit="onSubmit(keyword)" class="search-form">
+            <input type="search" placeholder="Search" id="search" class="search_field" ng-change="typeahead(keyword)" ng-model="keyword"
+              ng-model-options="{debounce: 350}" ng-focus="refocusTypehead(keyword)" ng-blur="blurTypeahead()">
+            <i class="fa fa-search search-icon"></i>
+            <input type="submit" id="submit" value="Submit" class="searchButton" />
+          </form>
+          <div class="dropdown" id="searchDropDown">
+          </div>
+        </div>
+        <!-- search / end -->
+      </ul>
 
-			<ul class="appInfo">
-				<li class="appInfo_item subNav settingsApp"></li>
-				<li class="appInfo_item" ng-controller="UpdaterCtrl">
-					<a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
-				</li>
-			</ul>
-		</header>
-		<!-- header / end -->
+      <ul class="appInfo">
+        <li class="appInfo_item subNav settingsApp"></li>
+        <li class="appInfo_item" ng-controller="UpdaterCtrl">
+          <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
+        </li>
+      </ul>
+    </header>
+    <!-- header / end -->
 
-		<!-- aside -->
-		<aside class="aside">
+    <!-- aside -->
+    <aside class="aside">
 
-			<!-- header -->
-			<header class="header">
-				<!-- user -->
-				<div class="user" ng-controller="UserCtrl">
-					<div class="user_profile clearfix">
-						<img ng-click="loadUserProfile()" ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
+      <!-- header -->
+      <header class="header">
+        <!-- user -->
+        <div class="user" ng-controller="UserCtrl">
+          <div class="user_profile clearfix">
+            <img ng-click="loadUserProfile()" ng-src="{{ data.avatar_url }}" alt="{{ data.username }}" class="user_thumb">
 
-						<div class="user_inner">
-							<a href="" class="user_name" title="{{ data.username}}" ng-click="loadUserProfile()">{{ data.username }}</a>
-							<a href="" class="user_logOut" ng-click="logOut()">Log out</a>
-						</div>
-					</div>
-					<div class="user_info">
-						<span class="user_info_wrap" ui-sref="following">
+            <div class="user_inner">
+              <a href="" class="user_name" title="{{ data.username}}" ng-click="loadUserProfile()">{{ data.username }}</a>
+              <a href="" class="user_logOut" ng-click="logOut()">Log out</a>
+            </div>
+          </div>
+          <div class="user_info">
+            <span class="user_info_wrap" ui-sref="following">
                         <small>{{ data.followings_count }}</small>
                         <small>following</small>
                     </span>
-						<span class="user_info_wrap" ui-sref="followers">
+            <span class="user_info_wrap" ui-sref="followers">
                         <small>{{ data.followers_count }}</small>
                         <small>followers</small>
                     </span>
-					</div>
-				</div>
-				<!-- user / end -->
-			</header>
-			<!-- header / end -->
+          </div>
+        </div>
+        <!-- user / end -->
+      </header>
+      <!-- header / end -->
 
-			<!-- main nav -->
-			<nav class="mainNav">
-				<h2 class="ui_title">Main</h2>
-				<ul class="mainNav_nav">
-					<li class="mainNav_item" ui-sref-active="active">
-						<a class="mainNav_button" ui-sref="charts">
-							<i class="fa fa-trophy"></i>
-							<span class="mainNav_tit">Top 50</span>
-						</a>
-					</li>
-					<li class="mainNav_item" ui-sref-active="active">
-						<a class="mainNav_button" ui-sref="stream">
-							<i class="fa fa-cloud"></i>
-							<span class="mainNav_tit">Stream</span>
-						</a>
-					</li>
-					<li class="mainNav_item" ui-sref-active="active">
-						<a class="mainNav_button" ui-sref="favorites">
-							<i class="fa fa-heart"></i>
-							<span class="mainNav_tit">Likes</span>
-						</a>
-					</li>
-					<li class="mainNav_item" ui-sref-active="active">
-						<a class="mainNav_button" ui-sref="tracks">
-							<i class="fa fa-tags"></i>
-							<span class="mainNav_tit">Tracks</span>
-						</a>
-					</li>
-					<li class="mainNav_item" ui-sref-active="active">
-						<a class="mainNav_button" ui-sref="playlists">
-							<i class="fa fa-bookmark"></i>
-							<span class="mainNav_tit">Playlists</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-			<!-- main nav / end -->
+      <!-- main nav -->
+      <nav class="mainNav">
+        <h2 class="ui_title">Main</h2>
+        <ul class="mainNav_nav">
+          <li class="mainNav_item" ui-sref-active="active">
+            <a class="mainNav_button" ui-sref="charts">
+              <i class="fa fa-trophy"></i>
+              <span class="mainNav_tit">Top 50</span>
+            </a>
+          </li>
+          <li class="mainNav_item" ui-sref-active="active">
+            <a class="mainNav_button" ui-sref="stream">
+              <i class="fa fa-cloud"></i>
+              <span class="mainNav_tit">Stream</span>
+            </a>
+          </li>
+          <li class="mainNav_item" ui-sref-active="active">
+            <a class="mainNav_button" ui-sref="favorites">
+              <i class="fa fa-heart"></i>
+              <span class="mainNav_tit">Likes</span>
+            </a>
+          </li>
+          <li class="mainNav_item" ui-sref-active="active">
+            <a class="mainNav_button" ui-sref="tracks">
+              <i class="fa fa-tags"></i>
+              <span class="mainNav_tit">Tracks</span>
+            </a>
+          </li>
+          <li class="mainNav_item" ui-sref-active="active">
+            <a class="mainNav_button" ui-sref="playlists">
+              <i class="fa fa-bookmark"></i>
+              <span class="mainNav_tit">Playlists</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- main nav / end -->
 
-		</aside>
-		<!-- aside / end -->
+    </aside>
+    <!-- aside / end -->
 
-		<!-- now player -->
-		<div class="player" ng-controller="PlayerCtrl">
-			<div class="player_inner">
-				<div class="player_progress_wrapper">
-					<div class="player_progress">
-						<span class="player_progress_bar" id="player-progress"></span>
-					</div>
-				</div>
-				<div class="player_details">
-					<img id="playerThumb" src="public/img/song-placeholder.png" alt="" class="player_thumb" ng-click="goToSong($event)">
+    <!-- now player -->
+    <div class="player" ng-controller="PlayerCtrl">
+      <div class="player_inner">
+        <div class="player_progress_wrapper">
+          <div class="player_progress">
+            <span class="player_progress_bar" id="player-progress"></span>
+          </div>
+        </div>
+        <div class="player_details">
+          <img id="playerThumb" src="public/img/song-placeholder.png" alt="" class="player_thumb" ng-click="goToSong($event)">
 
-					<h2 id="playerTitle" class="player_title" ng-click="goToSong($event)"></h2>
-					<h4 id="playerUser" class="player_user" ng-click="goToUser($event)"></h4>
+          <h2 id="playerTitle" class="player_title" ng-click="goToSong($event)"></h2>
+          <h4 id="playerUser" class="player_user" ng-click="goToUser($event)"></h4>
 
-					<div class="player_time">
-						<span class="player_timeCurrent" id="player-timecurrent"></span>
-						<span class="player_duration" id="player-duration"></span>
-					</div>
-					<div class="player_actions">
-						<span class="player_favorite" ng-click="favorite($event)" ng-hide="!isSongPlaying">
+          <div class="player_time">
+            <span class="player_timeCurrent" id="player-timecurrent"></span>
+            <span class="player_duration" id="player-duration"></span>
+          </div>
+          <div class="player_actions">
+            <span class="player_favorite" ng-click="favorite($event)" ng-hide="!isSongPlaying">
                         &nbsp;<i class="fa fa-heart"></i>
                     </span>
-					</div>
-				</div>
-				<div class="player_controls">
-					<span class="player_prevSong" ng-click="prevSong($event)">
+          </div>
+        </div>
+        <div class="player_controls">
+          <span class="player_prevSong" ng-click="prevSong($event)">
                     <i class="fa fa-step-backward thin"></i>
                 </span>
-					<span class="player_play-pause" ng-click="playPause($event)">
+          <span class="player_play-pause" ng-click="playPause($event)">
                     <i class="fa fa-play"></i>
                     <i class="fa fa-pause thin"></i>
                 </span>
-					<span class="player_nextSong" ng-click="nextSong($event)">
+          <span class="player_nextSong" ng-click="nextSong($event)">
                     <i class="fa fa-step-forward thin"></i>
                 </span>
-					<span class="player_lock" ng-click="lock($event)">
+          <span class="player_lock" ng-click="lock($event)">
                     <i class="fa fa-lock thin"></i>
                 </span>
-					<span class="player_repeat" ng-click="repeat($event)">
+          <span class="player_repeat" ng-click="repeat($event)">
                     <i class="fa fa-repeat thin"></i>
                 </span>
-					<span class="player_shuffle" ng-click="shuffle($event)">
+          <span class="player_shuffle" ng-click="shuffle($event)">
                     <i class="fa fa-random thin"></i>
                 </span>
-					<span class="player_queueList" ng-click="toggleQueue($event)">
+          <span class="player_queueList" ng-click="toggleQueue($event)">
                     <i class="fa fa-list thin"></i>
                 </span>
-				</div>
-				<div class="player_volume">
-					<i class="fa fa-volume-up" ng-click="toggleRange()"></i>
-					<input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1"
-						step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
-				</div>
-				<audio id="player" controls src="" class="player_currentSong"></audio>
-			</div>
-		</div>
-		<!-- now player / end -->
+        </div>
+        <div class="player_volume">
+          <i class="fa fa-volume-up" ng-click="toggleRange()"></i>
+          <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1"
+            step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
+        </div>
+        <audio id="player" controls src="" class="player_currentSong"></audio>
+      </div>
+    </div>
+    <!-- now player / end -->
 
-		<!-- main view -->
-		<div class="mainView" ui-view></div>
-		<!-- main view / end -->
+    <!-- main view -->
+    <div class="mainView" ui-view></div>
+    <!-- main view / end -->
 
-		<!-- queue list -->
-		<queue-list class="queueList"></queue-list>
-		<!-- queue list / end -->
+    <!-- queue list -->
+    <queue-list class="queueList"></queue-list>
+    <!-- queue list / end -->
 
-	</div>
-	<!-- UI App / end -->
+  </div>
+  <!-- UI App / end -->
 
-	<!-- vendors -->
-	<script>
+  <!-- vendors -->
+  <script>
     const nodeModulesPath = '../node_modules';
     window.$ = window.jQuery = require(`${nodeModulesPath}/jquery/dist/jquery.min.js`);
     require(`${nodeModulesPath}/angular/angular.min.js`);
@@ -211,8 +216,8 @@
     require(`${nodeModulesPath}/ng-dialog/js/ngDialog.min.js`);
   </script>
 
-	<!-- app -->
-	<script>
+  <!-- app -->
+  <script>
     const srcPath = './public/js';
     require(`${srcPath}/system/settings`);
     require(`${srcPath}/system/authentication`);
@@ -221,58 +226,58 @@
     require(`${srcPath}/system/core`);
   </script>
 
-	<script src="public/js/app.js"></script>
+  <script src="public/js/app.js"></script>
 
-	<!-- services/factories -->
-	<script src="public/js/common/queueService.js"></script>
-	<script src="public/js/common/SCapiService.js"></script>
-	<script src="public/js/common/SC2apiService.js"></script>
-	<script src="public/js/common/playerService.js"></script>
-	<script src="public/js/common/mprisService.js"></script>
-	<script src="public/js/common/notificationFactory.js"></script>
-	<script src="public/js/common/modalFactory.js"></script>
+  <!-- services/factories -->
+  <script src="public/js/common/queueService.js"></script>
+  <script src="public/js/common/SCapiService.js"></script>
+  <script src="public/js/common/SC2apiService.js"></script>
+  <script src="public/js/common/playerService.js"></script>
+  <script src="public/js/common/mprisService.js"></script>
+  <script src="public/js/common/notificationFactory.js"></script>
+  <script src="public/js/common/modalFactory.js"></script>
 
-	<!-- controllers -->
-	<script src="public/js/common/appCtrl.js"></script>
-	<script src="public/js/common/queueCtrl.js"></script>
-	<script src="public/js/search/searchInputCtrl.js"></script>
-	<script src="public/js/search/searchCtrl.js"></script>
-	<script src="public/js/stream/streamCtrl.js"></script>
-	<script src="public/js/charts/chartsCtrl.js"></script>
-	<script src="public/js/user/userCtrl.js"></script>
-	<script src="public/js/player/playerCtrl.js"></script>
-	<script src="public/js/favorites/favoritesCtrl.js"></script>
-	<script src="public/js/tracks/tracksCtrl.js"></script>
-	<script src="public/js/playlists/playlistsCtrl.js"></script>
-	<script src="public/js/playlists/playlistDashboardCtrl.js"></script>
-	<script src="public/js/following/followingCtrl.js"></script>
-	<script src="public/js/followers/followersCtrl.js"></script>
-	<script src="public/js/about/aboutCtrl.js"></script>
-	<script src="public/js/updater/updaterCtrl.js"></script>
-	<script src="public/js/profile/profileCtrl.js"></script>
-	<script src="public/js/track/trackCtrl.js"></script>
-	<script src="public/js/tag/tagCtrl.js"></script>
-	<script src="public/js/settings/settingsCtrl.js"></script>
-	<script src="public/js/news/newsCtrl.js"></script>
+  <!-- controllers -->
+  <script src="public/js/common/appCtrl.js"></script>
+  <script src="public/js/common/queueCtrl.js"></script>
+  <script src="public/js/search/searchInputCtrl.js"></script>
+  <script src="public/js/search/searchCtrl.js"></script>
+  <script src="public/js/stream/streamCtrl.js"></script>
+  <script src="public/js/charts/chartsCtrl.js"></script>
+  <script src="public/js/user/userCtrl.js"></script>
+  <script src="public/js/player/playerCtrl.js"></script>
+  <script src="public/js/favorites/favoritesCtrl.js"></script>
+  <script src="public/js/tracks/tracksCtrl.js"></script>
+  <script src="public/js/playlists/playlistsCtrl.js"></script>
+  <script src="public/js/playlists/playlistDashboardCtrl.js"></script>
+  <script src="public/js/following/followingCtrl.js"></script>
+  <script src="public/js/followers/followersCtrl.js"></script>
+  <script src="public/js/about/aboutCtrl.js"></script>
+  <script src="public/js/updater/updaterCtrl.js"></script>
+  <script src="public/js/profile/profileCtrl.js"></script>
+  <script src="public/js/track/trackCtrl.js"></script>
+  <script src="public/js/tag/tagCtrl.js"></script>
+  <script src="public/js/settings/settingsCtrl.js"></script>
+  <script src="public/js/news/newsCtrl.js"></script>
 
-	<!-- directives -->
-	<script src="public/js/playlists/collapsibleDirective.js"></script>
-	<script src="public/js/common/songDirective.js"></script>
-	<script src="public/js/common/copyDirective.js"></script>
-	<script src="public/js/common/openExternalLinkDirective.js"></script>
-	<script src="public/js/common/favoriteSongDirective.js"></script>
-	<script src="public/js/common/repostedSongDirective.js"></script>
-	<script src="public/js/common/showMoreDirective.js"></script>
-	<script src="public/js/common/tracksDirective.js"></script>
-	<script src="public/js/common/playlistDirective.js"></script>
-	<script src="public/js/common/queueListDirective.js"></script>
+  <!-- directives -->
+  <script src="public/js/playlists/collapsibleDirective.js"></script>
+  <script src="public/js/common/songDirective.js"></script>
+  <script src="public/js/common/copyDirective.js"></script>
+  <script src="public/js/common/openExternalLinkDirective.js"></script>
+  <script src="public/js/common/favoriteSongDirective.js"></script>
+  <script src="public/js/common/repostedSongDirective.js"></script>
+  <script src="public/js/common/showMoreDirective.js"></script>
+  <script src="public/js/common/tracksDirective.js"></script>
+  <script src="public/js/common/playlistDirective.js"></script>
+  <script src="public/js/common/queueListDirective.js"></script>
 
-	<!-- filters / utils -->
-	<script src="public/js/common/utilsService.js"></script>
-	<script src="public/js/common/roundFilter.js"></script>
+  <!-- filters / utils -->
+  <script src="public/js/common/utilsService.js"></script>
+  <script src="public/js/common/roundFilter.js"></script>
 
-	<!-- Webpack bundle -->
-	<script src="dist/bundle.js"></script>
+  <!-- Webpack bundle -->
+  <script src="dist/bundle.js"></script>
 
 </body>
 

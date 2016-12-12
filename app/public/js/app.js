@@ -1,5 +1,7 @@
 'use strict';
 
+const guiConfig = require('../../system/guiConfig').guiConfig;
+
 var app = angular.module('App', [
   'ui.router',
   'ngSanitize',
@@ -129,14 +131,6 @@ app.run(function (
   }, false);
 
   hotkeys.add({
-    combo: ['command+/', 'ctrl+/'],
-    description: 'Open devtools',
-    callback: function () {
-      guiConfig.openDevTools();
-    }
-  });
-
-  hotkeys.add({
     combo: ['command+w'],
     description: 'Minimize window',
     callback: function () {
@@ -152,33 +146,7 @@ app.run(function (
     }
   });
 
-  hotkeys.add({
-    combo: ['mod+0'],
-    description: 'Reset Window Scale to 1',
-    callback: function () {
-      userConfig.scaleWindow(1);
-    }
-  });
-
-  hotkeys.add({
-    combo: ['mod+=', 'mod++'],
-    description: 'Zoom in +0.1',
-    callback: function () {
-      var newScale = Number.parseFloat(window.localStorage.scale) + 0.1;
-      userConfig.scaleWindow(newScale);
-    }
-  });
-
-  hotkeys.add({
-    combo: ['mod+-'],
-    description: 'Zoom out -0.1',
-    callback: function () {
-      var newScale = Number.parseFloat(window.localStorage.scale) - 0.1;
-      userConfig.scaleWindow(newScale);
-    }
-  });
-
-  function updateOnlineStatus(event) {
+  function updateOnlineStatus() {
     if (!navigator.onLine) {
       notificationFactory.warn("Seems like internet connection is down.");
     } else {
