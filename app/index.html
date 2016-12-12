@@ -19,19 +19,14 @@
 
 </head>
 
-<script>
-// expose accessToken and clientId
-</script>
-
 <body data-isVisible="false" ng-controller="AppCtrl">
 
-  <!-- loading gif -->
+  <!-- loading -->
   <div class="box-loader loading">
-    <h4>Authenticating your Soundcloud account.</h4>
-
+    <h4>Starting application.</h4>
     <div class="loader"></div>
   </div>
-  <!-- loading gif / end -->
+  <!-- loading / end -->
 
   <!-- UI App -->
   <div id="app" class="ui_app" ng-class="{ songPlaying: isSongPlaying }">
@@ -220,10 +215,8 @@
   <script>
     const srcPath = './public/js';
     require(`${srcPath}/system/settings`);
-    require(`${srcPath}/system/authentication`);
-    require(`${srcPath}/system/userConfig`);
     require(`${srcPath}/system/guiConfig`);
-    require(`${srcPath}/system/core`);
+    require(`${srcPath}/system/startup`);
   </script>
 
   <script src="public/js/app.js"></script>

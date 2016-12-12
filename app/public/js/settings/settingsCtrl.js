@@ -21,7 +21,7 @@ app.controller('SettingsCtrl', function ($scope, notificationFactory) {
      */
     $scope.cleanStorage = function() {
         window.localStorage.clear();
-        notificationFactory.success('Your local storage is clean.');
+        guiConfig.logOut();
     }
 
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-const guiConfig = require('../../system/guiConfig').guiConfig;
+const guiConfig = require(`${__dirname}/public/js/system/guiConfig.js`).guiConfig;
 
 var app = angular.module('App', [
   'ui.router',
