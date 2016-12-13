@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  target: 'node',
   devtool: 'eval',
   entry: path.join(__dirname, './app/public/js/components/main.jsx'),
   output: {
@@ -21,8 +22,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'components', 'vendors']
+    extensions: ['', '.js', '.jsx']
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

@@ -34,9 +34,9 @@ app.controller('AboutCtrl', function (
   $http({
     method: 'GET',
     url: urlAbout,
-    config: config
+    headers: config.headers
   }).then(function successCallback(response) {
-    $scope.content = response;
+    $scope.content = response.data
   }, function errorCallback(error) {
     console.log('Error retrieving about', error)
   });
@@ -47,9 +47,9 @@ app.controller('AboutCtrl', function (
   $http({
     method: 'GET',
     url: urlRelease,
-    config: config
+    headers: config.headers
   }).then(function successCallback(response) {
-    var release = response[0];
+    var release = response.data[0];
     $scope.appLatestVersion = release.tag_name;
   }, function errorCallback(error) {
     console.log('Error retrieving latest release', error);
