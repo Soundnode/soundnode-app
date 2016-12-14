@@ -36,6 +36,7 @@ app.factory('queueService', function() {
      */
     Queue.clear = function() {
         this.list.length = this.currentPosition = 0;
+        this.queueUpStart = null;
     };
 
     /**
@@ -43,6 +44,8 @@ app.factory('queueService', function() {
      * @propriety currentPosition
      */
     Queue.currentPosition = 0;
+    Queue.queueUpStart = null;
+    Queue.queueUpLength = 0;
 
     /**
      * Push tracks from array to Queue list
@@ -71,13 +74,22 @@ app.factory('queueService', function() {
      * @param  currentElData [track obj]
      * @method insert
      */
-    Queue.insert = function(currentElData) {
+    Queue.insert = function(currentElData, queueUp) {
         if ( this.isEmpty() ) {
             this.list.splice(0, 0, currentElData);
             return;
         }
 
-        var addAt = this.currentPosition + 1;
+        if ( queueUp ) {
+          if ( this.queueUpStart === null ) {
+            this.queueUpStart = this.currentPosition + 1;
+            this.queueUpLength = 0;
+          }
+          var addAt = this.queueUpStart + this.queueUpLength++;
+        } else {
+          var addAt = this.currentPosition + 1;
+          this.queueUpStart = null;
+        }
         this.list.splice(addAt, 0, currentElData);
     };
 
@@ -99,6 +111,10 @@ app.factory('queueService', function() {
         if ( this.currentPosition !== 0 ) {
             --this.currentPosition;
         }
+
+        if ( this.currentPosition < (this.queueUpStart - 1) ) {
+          this.queueUpStart = null;
+        }
     };
 
     /**
@@ -109,6 +125,10 @@ app.factory('queueService', function() {
     Queue.next = function() {
         if ( this.currentPosition !== this.size() ) {
             ++this.currentPosition;
+        }
+
+        if ( this.currentPosition >= (this.queueUpStart + this.queueUpLength) ) {
+          this.queueUpStart = null;
         }
     };
 
