@@ -59,6 +59,17 @@ app.service('SC2apiService', function (
             .catch(onResponseError);
     };
 
+
+    this.getDiscover = function () {
+        var params = {
+            limit: 10
+        };
+        return sendRequest('me/personalized-tracks', { params: params })
+            .then(onResponseSuccess)
+            .then(updateNextPageUrl)
+            .catch(onResponseError);
+    };
+
     /**
      * Get next page for last requested resource
      * @return {promise}

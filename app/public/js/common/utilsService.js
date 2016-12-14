@@ -5,7 +5,8 @@ app.factory('utilsService', function(
     SCapiService,
     $q,
     $rootScope,
-    $timeout
+    $timeout,
+    $state
 ) {
     /**
      * API (helpers/utils) to interact with the UI
@@ -235,6 +236,48 @@ app.factory('utilsService', function(
             }, 1500);
         }
 
+    };
+
+    /**
+     * Checks if user is on Discover view
+     * @returns {boolean}
+     */
+    Utils.isDiscover = function () {
+        return $state.current.name === 'discover';
+    };
+
+    /**
+     * Checks if thats the last track group (Discover view)
+     * @returns {boolean}
+     */
+    Utils.isLastTrackGroup = function () {
+        var track = $(this.getCurrentSong());
+        return track.closest('ul').parent().next().length === 0;
+    };
+
+    /**
+     * Plays song from next track group (Discover view)
+     */
+    Utils.playNextTrackGroup = function () {
+        var self = this;
+        $timeout(function() {
+            var track = $(self.getCurrentSong());
+            track.closest('ul')
+                .parent() // li element
+                .next()
+                .find('.songList_item_song_button')[0] // first from list
+                .click();
+        },0);
+    };
+
+    /**
+     * Plays next track group after new tracks have been loaded (Discover view)
+     */
+    Utils.playLoadedTrackGroup = function () {
+        var self = this;
+        $rootScope.$watch('isLoading', function(newVal, oldVal) {
+            if (oldVal) self.playNextTrackGroup();
+        });
     };
 
     return Utils;

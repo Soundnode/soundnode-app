@@ -31,6 +31,11 @@ app.config(function (
             templateUrl: 'views/charts/charts.html',
             controller: 'ChartsCtrl'
         })
+        .state('discover', {
+            url: '/discover/',
+            templateUrl: 'views/discover/discover.html',
+            controller: 'DiscoverCtrl'
+        })
         .state('favorites', {
             url: '/favorites',
             templateUrl: 'views/favorites/favorites.html',
