@@ -76,7 +76,7 @@ app.factory('playerService', function (
     }
     if (value >= 0 && value <= 1) {
       player.elPlayer.volume = parseFloat(value).toFixed(1);
-      window.localStorage.volume = parseFloat(value).toFixed(1);
+      $window.localStorage.volume = parseFloat(value).toFixed(1);
     }
   };
 

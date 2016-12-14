@@ -15,6 +15,7 @@ app.controller('PlayerCtrl', function (
 ) {
   $scope.imgPath = 'public/img/temp-playing.png';
 
+  // TODO: Use $window to remove the need to use $timeout hack
   $timeout(function () {
     if (window.localStorage.volume) {
       $scope.volume = window.localStorage.volume;
@@ -42,7 +43,6 @@ app.controller('PlayerCtrl', function (
    * @method adjustVolume
    */
   $scope.adjustVolume = function (volume) {
-    $log.log('volume', volume);
     playerService.volume(volume);
   };
 
@@ -163,14 +163,12 @@ app.controller('PlayerCtrl', function (
   * Add native media shortcuts
   */
   ipcRenderer.on('MediaPlayPause', () => {
-    console.log('MediaPlayPause called');
     $scope.$apply(function () {
       togglePlayPause();
     });
   });
 
   ipcRenderer.on('MediaStop', () => {
-    console.log('MediaStop called');
     $scope.$apply(function () {
       if ($rootScope.isSongPlaying) {
         playerService.stopSong();
@@ -179,7 +177,6 @@ app.controller('PlayerCtrl', function (
   });
 
   ipcRenderer.on('MediaPreviousTrack', () => {
-    console.log('MediaPreviousTrack called');
     $scope.$apply(function () {
       if ($rootScope.isSongPlaying) {
         playerService.playPrevSong();
@@ -188,7 +185,6 @@ app.controller('PlayerCtrl', function (
   });
 
   ipcRenderer.on('MediaNextTrack', () => {
-    console.log('MediaNextTrack called');
     $scope.$apply(function () {
       if ($rootScope.isSongPlaying) {
         playerService.playNextSong();
