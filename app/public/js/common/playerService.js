@@ -258,9 +258,7 @@ app.factory('playerService', function(
             player.elPlayer.currentTime = 0;
             return false;
         }
-        if ( $rootScope.shuffle && ! $rootScope.repeat ) {
-            utilsService.shuffle();
-        } else if ( ! $rootScope.repeat ) {
+        if ( ! $rootScope.repeat ) {
             queueService.prev();
         }
 
@@ -279,12 +277,14 @@ app.factory('playerService', function(
             return false;
         }
 
-        if ( $rootScope.shuffle && !$rootScope.repeat ) {
-            utilsService.shuffle();
-        } else if ( !$rootScope.repeat && utilsService.isLastTrackInQueue() ) {
-            utilsService.scrollToBottom();
-            utilsService.addLoadedTracks();
-        } else if ( !$rootScope.repeat && !utilsService.isLastTrackInQueue() ) {
+        if ( !$rootScope.repeat ) {
+            if ( utilsService.isLastTrackInQueue() ) { 
+                utilsService.scrollToBottom();
+                utilsService.addLoadedTracks();
+            }
+            if ( $rootScope.shuffle ) {
+                    utilsService.shuffle();
+            }
             queueService.next();
         }
 

@@ -84,10 +84,19 @@ app.factory('utilsService', function(
      * @returns {number} [index in array]
      */
     Utils.shuffle = function() {
-        var max = queueService.size() - 1;
-        var min = 0;
-
-        queueService.currentPosition = Math.floor(Math.random() * (max - min) + min);
+        var past = queueService.getAll();
+        var next = queueService.currentPosition + 1;
+        var future = past.splice(next, past.length);
+    
+        var current = future.length, temp, random;
+        while (current) {
+            random = Math.floor(Math.random() * current--);
+            temp = future[current];
+            future[current] = future[random];
+            future[random] = temp;
+        }
+      
+        queueService.list = past.concat(future);
     };
 
     /**
