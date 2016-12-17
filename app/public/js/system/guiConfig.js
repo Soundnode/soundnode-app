@@ -3,6 +3,32 @@
 var gui = require('nw.gui');
 var guiConfig = {};
 
+// Tray Icon for System
+var tray = new gui.Tray({ title: 'Tray', icon: 'soundnode.png' });
+
+// Give it a menu
+var menu = new gui.Menu();
+
+var visible = false;
+// Controlar visibilidad al dar click sobre el icono
+tray.click = function(){
+  if(visible){
+    guiConfig.getGUI.hide();
+  }else {
+    guiConfig.getGUI.show();
+  }
+  visible=!visible;
+};
+
+// Anexamos un boton de Salir al Menu del TrayIcon
+var menuitem = new gui.MenuItem({ label: 'Salir [X]' });
+menu.append(menuitem);
+menuitem.click = function() {
+    guiConfig.getGUI.close(true);
+};
+
+// Menu for Try Icon
+tray.menu = menu;
 
 // Store the GUI window
 guiConfig.getGUI = gui.Window.get();
