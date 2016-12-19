@@ -36,7 +36,8 @@ app.factory('playerService', function (
   mprisService,
   notificationFactory,
   queueService,
-  utilsService
+  utilsService,
+  modalFactory
 ) {
 
   $rootScope.isSongPlaying = false;
@@ -146,7 +147,15 @@ app.factory('playerService', function (
       trackObj.songThumbnail = 'public/img/song-placeholder.png';
     }
 
-    this.elPlayer.setAttribute('src', trackObj.songUrl + '?client_id=' + $window.scClientId);
+    var trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
+
+    // check rate limit
+    if (!utilsService.isPlayable(trackUrl)) {
+      modalFactory.rateLimitReached();
+      return false;
+    }
+
+    this.elPlayer.setAttribute('src', trackUrl);
     this.elThumb.setAttribute('src', trackObj.songThumbnail);
     this.elThumb.setAttribute('alt', trackObj.songTitle);
     this.elTitle.innerHTML = trackObj.songTitle;

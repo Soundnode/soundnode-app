@@ -1,3 +1,17 @@
+body {
+  .ngdialog-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    margin-top: -250px;
+    margin-left: -400px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    font-size: 20px;
+  }
+}
+
 .mainView {
   // flex: 5 0 0;
   padding: 10px 20px;
