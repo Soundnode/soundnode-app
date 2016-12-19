@@ -3,6 +3,7 @@
 app.controller('PlayerCtrl', function (
   $scope,
   $rootScope,
+  $window,
   playerService,
   mprisService,
   queueService,
@@ -15,17 +16,14 @@ app.controller('PlayerCtrl', function (
 ) {
   $scope.imgPath = 'public/img/temp-playing.png';
 
-  // TODO: Use $window to remove the need to use $timeout hack
-  $timeout(function () {
-    if (window.localStorage.volume) {
-      $scope.volume = window.localStorage.volume;
-      playerService.volume($scope.volume);
-    } else {
-      $scope.volume = 1.0;
-      playerService.volume($scope.volume);
-      window.localStorage.volume = $scope.volume;
-    }
-  });
+  if ($window.localStorage.volume) {
+    $scope.volume = +$window.localStorage.volume;
+    playerService.volume($scope.volume);
+  } else {
+    $scope.volume = 1.0;
+    playerService.volume($scope.volume);
+    $window.localStorage.volume = +$scope.volume;
+  }
 
   /**
    * Show/Hide volume range
