@@ -1,69 +1,62 @@
-<div class="songList_item_container_artwork"
-     ng-class="{ active: hover }"
-     ng-mouseover="hover = true"
-     ng-mouseleave="hover = false">
-                    <span class="songList_item_song_button"
-                          id="{{ data.id }}"
-                          song
-                          data-song-url="{{ data.stream_url }}"
-                          data-song-thumbnail="{{ data.artwork_url }}"
-                          data-song-title="{{ data.title }}"
-                          data-song-user="{{ data.user.username }}"
-                          data-song-user-id="{{ data.user.id }}"
-                          data-song-id="{{ data.id }}" >
+<div class="songList_item_container_artwork" ng-class="{ active: hover }" ng-mouseover="hover = true" ng-mouseleave="hover = false">
+	<span class="songList_item_song_button" id="{{ data.id }}" song data-song-url="{{ data.stream_url }}" data-song-thumbnail="{{ data.artwork_url }}"
+		data-song-title="{{ data.title }}" data-song-user="{{ data.user.username }}" data-song-user-id="{{ data.user.id }}" data-song-id="{{ data.id }}">
 
                         <i class="fa fa-play"></i>
                         <i class="fa fa-pause"></i>
                     </span>
-    <img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" onerror="if (this.src != 'public/img/logo-short.png') this.src = 'public/img/logo-short.png';" alt="{{ data.title }}" class="songList_item_artwork">
-    <div class="songList_item_song_social_details">
-        <span class="songList_comment_count">
+	<img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" onerror="if (this.src != 'public/img/logo-short.png') this.src = 'public/img/logo-short.png';"
+		alt="{{ data.title }}" class="songList_item_artwork">
+	<div class="songList_item_song_social_details">
+		<span class="songList_comment_count">
             <i class="fa fa-comments"></i>{{data.comment_count | round}}
         </span>
-        <span class="songList_likes_count">
+		<span class="songList_likes_count">
             <i class="fa fa-heart"></i>{{data.likes_count || data.favoritings_count | round}}
         </span>
-        <span class="songList_reposts_count" ng-if="data.reposts_count">
+		<span class="songList_reposts_count" ng-if="data.reposts_count">
             <i class="fa fa-retweet"></i>{{data.reposts_count | round}}
         </span>
-    </div>
+	</div>
 </div>
 
 <section class="songList_item_inner">
-    <h2 class="songList_item_song_tit selectable-text" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
+	<h2 class="songList_item_song_tit selectable-text" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
 
-    <h3 class="songList_item_song_info clearfix">
-        <div class="songList_item_song_user selectable-text">
-            <a class="pointer" ui-sref="profile({id: {{data.user.id}}})">
+	<h3 class="songList_item_song_info clearfix">
+		<div class="songList_item_song_user selectable-text">
+			<a class="pointer" ui-sref="profile({id: {{data.user.id}}})">
                 {{ data.user.username }}
             </a>
-            <span class="songList_item_repost" ng-if="type === 'track-repost'">
+			<span class="songList_item_repost" ng-if="type === 'track-repost'">
                 <i class="fa fa-retweet"></i>
                 <a class="pointer" ui-sref="profile({ id: {{ user.id }} })" title="Reposted by {{ user.username }}">
                     {{ user.username }}
                 </a>
             </span>
-        </div>
-        <div ng-controller="AppCtrl" class="songList_item_song_length">
-            {{ formatSongDuration (data.duration) }}
-        </div>
-    </h3>
+		</div>
+		<div ng-controller="AppCtrl" class="songList_item_song_length">
+			{{ formatSongDuration (data.duration) }}
+		</div>
+	</h3>
 
-    <div class="songList_item_song_details">
-        <div class="songList_item_actions">
-            <a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" count="data.favoritings_count" ng-class="{liked: data.user_favorite}" title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
-                <i class="fa fa-heart"></i>
-            </a>
-            <a reposted-song data-song-id="{{ data.id }}" reposted="data.user_reposted" ng-class="{ reposted: data.user_reposted }" title="{{data.user_reposted ? 'Unpost' : 'Repost'}}" ng-if="data.user.id !== $root.userId">
-                <i class="fa fa-retweet"></i>
-            </a>
-            <a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
-            <a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
-            <a copy-directive data-copy="{{ data.permalink_url }}" title="Copy"> <i class="fa fa-clipboard"></i></a>
-        </div>
-        <div class="songList_item_additional_details">
-            <span class="songList_item_genre" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
-            <span class="songList_item_license">{{ data.license }}</span>
-        </div>
-    </div>
+	<div class="songList_item_song_details">
+		<div class="songList_item_actions">
+			<a favorite-song data-song-id="{{ data.id }}" favorite="data.user_favorite" count="data.favoritings_count" ng-class="{liked: data.user_favorite}"
+				title="{{data.user_favorite ? 'Unlike' : 'Like'}}">
+				<i class="fa fa-heart"></i>
+			</a>
+			<a reposted-song data-song-id="{{ data.id }}" reposted="data.user_reposted" ng-class="{ reposted: data.user_reposted }" title="{{data.user_reposted ? 'Unpost' : 'Repost'}}"
+				ng-if="data.user.id !== $root.userId">
+				<i class="fa fa-retweet"></i>
+			</a>
+			<a data-song-id="{{ data.id }}" data-song-name="{{ data.title }}" playlist title="Add to playlist"> <i class="fa fa-bookmark"></i></a>
+			<a href="{{ data.permalink_url }}" open-external target="_blank" title="Permalink"> <i class="fa fa-external-link"></i></a>
+			<a copy-directive data-copy="{{ data.permalink_url }}" title="Copy"> <i class="fa fa-clipboard"></i></a>
+		</div>
+		<div class="songList_item_additional_details">
+			<span class="songList_item_genre" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
+			<span class="songList_item_license">{{ data.license }}</span>
+		</div>
+	</div>
 </section>
