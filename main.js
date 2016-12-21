@@ -2,11 +2,11 @@
 
 const fs = require('fs-extra');
 const {
-    app,
-    BrowserWindow,
-    ipcMain,
-    globalShortcut,
-    Menu
+  app,
+  BrowserWindow,
+  ipcMain,
+  globalShortcut,
+  Menu
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 
@@ -20,17 +20,17 @@ let mainWindow;
 let authenticationWindow;
 
 app.on('ready', () => {
-    checkUserConfig();
+  checkUserConfig();
 });
 
 function checkUserConfig() {
-    const userConfigExists = fs.existsSync(userConfigPath);
+  const userConfigExists = fs.existsSync(userConfigPath);
 
-    if (userConfigExists) {
-        initMainWindow();
-    } else {
-        authenticateUser();
-    }
+  if (userConfigExists) {
+    initMainWindow();
+  } else {
+    authenticateUser();
+  }
 }
 
 /**
@@ -38,229 +38,229 @@ function checkUserConfig() {
  * therefore open soundcloud authentication page
  */
 function authenticateUser() {
-    let contents;
+  let contents;
 
-    authenticationWindow = new BrowserWindow({
-        width: 600,
-        height: 600,
-        frame: false,
-        webPreferences: {
-            nodeIntegration: false,
-            webSecurity: false
-        }
-    });
-    authenticationWindow.loadURL(SCconnect);
-    authenticationWindow.show();
+  authenticationWindow = new BrowserWindow({
+    width: 600,
+    height: 600,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: false,
+      webSecurity: false
+    }
+  });
+  authenticationWindow.loadURL(SCconnect);
+  authenticationWindow.show();
 
-    contents = authenticationWindow.webContents;
+  contents = authenticationWindow.webContents;
 
-    contents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
-        const access_tokenStr = 'access_token=';
-        const expires_inStr = '&expires_in';
-        let accessToken;
+  contents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
+    const access_tokenStr = 'access_token=';
+    const expires_inStr = '&expires_in';
+    let accessToken;
 
-        if (newUrl.indexOf('access_token=') < 0) {
-            return false;
-        }
+    if (newUrl.indexOf('access_token=') < 0) {
+      return false;
+    }
 
-        accessToken = newUrl.substring(newUrl.indexOf(access_tokenStr) + 13, newUrl.indexOf(expires_inStr));
+    accessToken = newUrl.substring(newUrl.indexOf(access_tokenStr) + 13, newUrl.indexOf(expires_inStr));
 
-        setUserData(accessToken);
-        authenticationWindow.destroy();
-    });
+    setUserData(accessToken);
+    authenticationWindow.destroy();
+  });
 }
 
 function setUserData(accessToken) {
-    fs.writeFileSync(userConfigPath, JSON.stringify({
-        accessToken: accessToken,
-        clientId: clientId
-    }), 'utf-8');
+  fs.writeFileSync(userConfigPath, JSON.stringify({
+    accessToken: accessToken,
+    clientId: clientId
+  }), 'utf-8');
 
-    initMainWindow();
+  initMainWindow();
 }
 
 function initMainWindow() {
-    let mainWindowState = windowStateKeeper({
-        defaultWidth: 1180,
-        defaultHeight: 755
-    });
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 1180,
+    defaultHeight: 755
+  });
 
-    mainWindow = new BrowserWindow({
-        x: mainWindowState.x,
-        y: mainWindowState.y,
-        width: mainWindowState.width,
-        height: mainWindowState.height,
-        minWidth: 800,
-        minHeight: 640,
-        center: true,
-        frame: false
-    });
+  mainWindow = new BrowserWindow({
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    minWidth: 800,
+    minHeight: 640,
+    center: true,
+    frame: false
+  });
 
-    mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 
-    if (process.env.NODE_ENV === 'development') {
-        mainWindow.webContents.openDevTools();
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools();
+  }
+
+  mainWindow.webContents.on('will-navigate', function (e, url) {
+    if (url.indexOf('build/index.html#') < 0) {
+      e.preventDefault();
     }
+  });
 
-    mainWindow.webContents.on('will-navigate', function(e, url) {
-        if (url.indexOf('build/index.html#') < 0) {
-            e.preventDefault();
-        }
-    });
+  mainWindow.webContents.on('did-finish-load', function () {
+    mainWindow.setTitle('Soundnode');
+    mainWindow.show();
+    mainWindow.focus();
+  });
 
-    mainWindow.webContents.on('did-finish-load', function() {
-        mainWindow.setTitle('Soundnode');
-        mainWindow.show();
-        mainWindow.focus();
-    });
-
-    mainWindowState.manage(mainWindow);
-    initializeMediaShortcuts();
-    menuBar();
+  mainWindowState.manage(mainWindow);
+  initializeMediaShortcuts();
+  menuBar();
 }
 
 app.on('will-quit', () => {
-    // Unregister all shortcuts.
-    globalShortcut.unregisterAll()
+  // Unregister all shortcuts.
+  globalShortcut.unregisterAll()
 })
 
 app.on('activate', () => {
-    showAndFocus();
+  showAndFocus();
 });
 
 /**
  * Receive maximize event and trigger command
  */
 ipcMain.on('maximizeApp', () => {
-    if (mainWindow.isMaximized()) {
-        mainWindow.unmaximize();
-    } else {
-        mainWindow.maximize();
-    }
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow.maximize();
+  }
 });
 
 /**
  * Receive minimize event and trigger command
  */
 ipcMain.on('minimizeApp', () => {
-    mainWindow.minimize()
+  mainWindow.minimize()
 });
 
 /**
  * Receive hide event and trigger command
  */
 ipcMain.on('hideApp', () => {
-    mainWindow.hide();
+  mainWindow.hide();
 });
 
 ipcMain.on('showApp', () => {
-    showAndFocus();
+  showAndFocus();
 });
 
 /**
  * Receive close event and trigger command
  */
 ipcMain.on('closeApp', () => {
-    if (process.platform !== "darwin") {
-        mainWindow.destroy();
-    } else {
-        mainWindow.hide();
-    }
+  if (process.platform !== "darwin") {
+    mainWindow.destroy();
+  } else {
+    mainWindow.hide();
+  }
 });
 
 //
 ipcMain.on('destroyApp', () => {
-    mainWindow.close();
+  mainWindow.close();
 });
 
 function showAndFocus() {
-    mainWindow.show();
-    mainWindow.focus();
+  mainWindow.show();
+  mainWindow.focus();
 }
 
 function initializeMediaShortcuts() {
-    globalShortcut.register('MediaPlayPause', () => {
-        mainWindow.webContents.send('MediaPlayPause');
-    });
+  globalShortcut.register('MediaPlayPause', () => {
+    mainWindow.webContents.send('MediaPlayPause');
+  });
 
-    globalShortcut.register('MediaStop', () => {
-        mainWindow.webContents.send('MediaStop');
-    });
+  globalShortcut.register('MediaStop', () => {
+    mainWindow.webContents.send('MediaStop');
+  });
 
-    globalShortcut.register('MediaPreviousTrack', () => {
-        mainWindow.webContents.send('MediaPreviousTrack');
-    });
+  globalShortcut.register('MediaPreviousTrack', () => {
+    mainWindow.webContents.send('MediaPreviousTrack');
+  });
 
-    globalShortcut.register('MediaNextTrack', () => {
-        mainWindow.webContents.send('MediaNextTrack');
-    });
+  globalShortcut.register('MediaNextTrack', () => {
+    mainWindow.webContents.send('MediaNextTrack');
+  });
 }
 
 function menuBar() {
-    const template = [
+  const template = [
+    {
+      role: 'view',
+      submenu: [
         {
-            role: 'view',
-            submenu: [
-                {
-                    role: 'togglefullscreen'
-                },
-                {
-                    role: 'close'
-                },
-                {
-                    type: 'separator'
-                },
-                {
-                    label: 'Learn More',
-                    click() {
-                        require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/wiki/Help')
-                    }
-                },
-                {
-                    label: 'License',
-                    click() {
-                        require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md')
-                    }
-                }
-            ]
+          role: 'togglefullscreen'
         },
         {
-            role: 'window',
-            submenu: [
-                {
-                    label: 'Reload',
-                    accelerator: 'CmdOrCtrl+R',
-                    click(item, focusedWindow) {
-                        if (focusedWindow) {
-                            focusedWindow.reload()
-                        }
-                    }
-                },
-                {
-                    label: 'Toggle Developer Tools',
-                    accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                    click(item, focusedWindow) {
-                        if (focusedWindow) {
-                            focusedWindow.webContents.toggleDevTools()
-                        }
-                    }
-                },
-                {
-                    type: 'separator'
-                },
-                {
-                    role: 'resetzoom'
-                },
-                {
-                    role: 'zoomin'
-                },
-                {
-                    role: 'zoomout'
-                }
-            ]
+          role: 'close'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Learn More',
+          click() {
+            require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/wiki/Help')
+          }
+        },
+        {
+          label: 'License',
+          click() {
+            require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md')
+          }
         }
-    ];
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click(item, focusedWindow) {
+            if (focusedWindow) {
+              focusedWindow.reload()
+            }
+          }
+        },
+        {
+          label: 'Toggle Developer Tools',
+          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+          click(item, focusedWindow) {
+            if (focusedWindow) {
+              focusedWindow.webContents.toggleDevTools()
+            }
+          }
+        },
+        {
+          type: 'separator'
+        },
+        {
+          role: 'resetzoom'
+        },
+        {
+          role: 'zoomin'
+        },
+        {
+          role: 'zoomout'
+        }
+      ]
+    }
+  ];
 
-    const menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu)
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu)
 }

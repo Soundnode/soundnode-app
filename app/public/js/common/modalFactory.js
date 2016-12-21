@@ -1,5 +1,7 @@
 'use strict';
 
+const moment = require('moment');
+
 app.factory('modalFactory', function (
   $http,
   ngDialog
@@ -32,10 +34,10 @@ app.factory('modalFactory', function (
     });
   }
 
-  function rateLimitReached() {
+  function rateLimitReached(timeToReset) {
     return ngDialog.open({
       showClose: false,
-      template: 'views/common/modals/default.html',
+      template: 'views/common/modals/rate-limit.html',
       controller: ['$scope', function ($scope) {
         var urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
         var config = {
@@ -45,6 +47,7 @@ app.factory('modalFactory', function (
         };
 
         $scope.content = '';
+        $scope.timeToReset = moment().to(timeToReset);
 
         $scope.closeModal = function () {
           ngDialog.closeAll();

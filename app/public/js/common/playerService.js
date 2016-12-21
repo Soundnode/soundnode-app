@@ -151,7 +151,6 @@ app.factory('playerService', function (
 
     // check rate limit
     if (!utilsService.isPlayable(trackUrl)) {
-      modalFactory.rateLimitReached();
       return false;
     }
 

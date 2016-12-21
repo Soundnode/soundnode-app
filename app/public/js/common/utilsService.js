@@ -5,7 +5,8 @@ app.factory('utilsService', function (
   SCapiService,
   $q,
   $rootScope,
-  $timeout
+  $timeout,
+  modalFactory
 ) {
   /**
    * API (helpers/utils) to interact with the UI
@@ -241,7 +242,8 @@ app.factory('utilsService', function (
     SCapiService.checkRateLimit(trackUrl)
       .then(function () {
         return true;
-      }, function () {
+      }, function (response) {
+        modalFactory.rateLimitReached(response);
         return false;
       });
   }

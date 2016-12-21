@@ -38,7 +38,7 @@ app.service('SCapiService', function (
       }, function (response) {
         console.log('error checkRateLimit')
         // something went wrong
-        return $q.reject(false);
+        return $q.reject(response.errors[0].meta.reset_time);
       });
   }
 

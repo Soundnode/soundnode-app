@@ -1,6 +1,12 @@
 'use strict';
 
-app.controller('UserCtrl', function ($rootScope, $scope, $window, $state, SCapiService) {
+app.controller('UserCtrl', function (
+  $rootScope,
+  $scope,
+  $window,
+  $state,
+  SCapiService
+) {
   var endpoint = 'me';
   var params = '';
 
@@ -10,8 +16,8 @@ app.controller('UserCtrl', function ($rootScope, $scope, $window, $state, SCapiS
     .then(function (data) {
       $rootScope.userId = data.id;
       $scope.data = data;
-    }, function (error) {
-      console.log('error', error);
+    }, function () {
+      guiConfig.logOut();
     });
 
   $scope.logOut = function () {
