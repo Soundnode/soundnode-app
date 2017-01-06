@@ -1,12 +1,17 @@
 Soundnode App
 ============
 
-[![Analytics](https://ga-beacon.appspot.com/UA-50973331-1/soundnode-app/readme)](https://github.com/igrigorik/ga-beacon)
+[![Join the chat at https://gitter.im/Soundnode/soundnode-app](https://badges.gitter.im/Soundnode/soundnode-app.svg)](https://gitter.im/Soundnode/soundnode-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Soundnode App is a Open-Source project to support Soundcloud for desktop. <br>
-Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
+Soundnode App is an Open-Source project to support Soundcloud for desktop Mac, Windows, and Linux. <br>
+It's built with Electron, Node.js, Angular.js, and uses the Soundcloud API.
 
-**Why I built it?!** take a look here on my [blog post](http://www.bymichaellancaster.com/blog/soundnode-soundcloud-for-desktop-dev-release/)
+Follow us on twitter for updates [@Soundnodeapp](https://www.twitter.com/soundnodeapp).
+
+Featured on [Producthunt](https://www.producthunt.com/tech/soundnode-2), [TNW](http://thenextweb.com/apps/2016/01/25/soundnode-is-the-soundcloud-desktop-app-youve-been-waiting-for/#gref) 
+and [Gizmodo](http://gizmodo.com/soundnode-turns-soundcloud-into-a-spotify-like-desktop-1754953529)
+
+**Be aware that Soundnode relies on Soundcloud API which only allowing third party apps to play 15 thousand tracks daily. When the rate limit is reached all users aren't able to play any song until the end of the current day the limit was reached.**
 
 ![alt tag](https://raw.githubusercontent.com/Soundnode/soundnode-app/master/Soundnode-app.png)
 
@@ -14,44 +19,53 @@ Built with Node-Webkit, Node.js, Angular.js and consuming Soundcloud API.
 
 - No need to install
 - Native media keyboard shortcuts
-- Desktop song notification
-- Back/Forward navigation
-- Listen to songs from your Streams, Likes, Tracks or Playlists
-- Save songs to your Like playlist
-- Search for songs
-- Automatic notification for update
+- Search for new songs
+- Easy navigation
+- Listen to songs from your Stream, Likes, Tracks, Following or Playlists
+- Like songs and save to your liked playlist
+- Full playlist feature
+- Follow/Unfollow users
 
-## Status
-[Status issue](https://github.com/Soundnode/soundnode-app/issues/97)
+And much more!
+
+## Reasons to contribute
+
+- You will learn new things
+- ~5000 daily users
 
 ## How to contribute
 
-First, building, testing and reporting bug is highly appreciated. Please include console's output and reproduction step in your bug report if possible.
+First, building, testing, and reporting bugs is highly appreciated. Please include console's output and steps to reproduce the problem in your bug report if possible.
 
-If you want to develop, you can look at the issues, specially the bugs and then fix them.
+If you want to develop, you can look at the issues, especially the bugs and then fix them.
 Here's a [list of issues](https://github.com/Soundnode/soundnode-app/issues?state=open).
 
-Please follow the [contributions guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
+Please follow the [contribution guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
 
 ## Development
 
-If you started work on any fix/new feature please notify what you are working on [status issue](https://github.com/Soundnode/soundnode-app/issues/97)
+We use [Waffle.io](https://waffle.io/) as our project management tool, you can check what's going on here: [Soundnode App status](https://waffle.io/Soundnode/soundnode-app)
 
-Check out how to run Node-Webkit here [Node-Webkit page](https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps)
+Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-run-apps)
 
-Node-Webkit don't support mp3 and h264 in video and audio tag by default because of patented media formats.
+NW.js don't support mp3 and h264 in video and audio tag by default because of patented media formats.
 but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
 <br>
-See the [Development's page](https://github.com/Soundnode/soundnode-app/wiki/Development)
+See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Development)
 
 ## Supported Platforms
 
 - Windows
 - Mac
+- Linux
 
 ## Author
 
 - [Michael Lancaster](https://github.com/weblancaster)
+
+## Contributors
+
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or have help make Soundnode better.
 
 ## License
 
