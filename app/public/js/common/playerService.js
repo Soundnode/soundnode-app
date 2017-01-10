@@ -37,7 +37,8 @@ app.factory('playerService', function (
   notificationFactory,
   queueService,
   utilsService,
-  modalFactory
+  modalFactory,
+  osNotificationService
 ) {
 
   $rootScope.isSongPlaying = false;
@@ -135,10 +136,11 @@ app.factory('playerService', function (
    * @method playNewSong
    */
   player.playNewSong = function () {
+    var trackUrl;
+    var that = this;
     var trackObj = queueService.getTrack();
     var trackObjId = trackObj.songId;
     var duration = player.elPlayer.duration * 1000;
-    var songNotification;
 
     utilsService.deactivateCurrentSong();
     utilsService.activateCurrentSong(trackObjId);
@@ -147,55 +149,44 @@ app.factory('playerService', function (
       trackObj.songThumbnail = 'public/img/song-placeholder.png';
     }
 
-    var trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
+    trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
 
     // check rate limit
-    if (!utilsService.isPlayable(trackUrl)) {
-      return false;
-    }
+    utilsService.isPlayable(trackUrl).then(function () {
+      that.elPlayer.setAttribute('src', trackUrl);
+      that.elThumb.setAttribute('src', trackObj.songThumbnail);
+      that.elThumb.setAttribute('alt', trackObj.songTitle);
+      that.elTitle.innerHTML = trackObj.songTitle;
+      that.elTitle.setAttribute('title', trackObj.songTitle);
+      that.elUser.innerHTML = trackObj.songUser;
+      that.elPlayer.play();
 
-    this.elPlayer.setAttribute('src', trackUrl);
-    this.elThumb.setAttribute('src', trackObj.songThumbnail);
-    this.elThumb.setAttribute('alt', trackObj.songTitle);
-    this.elTitle.innerHTML = trackObj.songTitle;
-    this.elTitle.setAttribute('title', trackObj.songTitle);
-    this.elUser.innerHTML = trackObj.songUser;
-    this.elPlayer.play();
+      // show OS notification
+      osNotificationService.show(trackObj);
 
-    var songNotificationTitle = (trackObj.songTitle.length > 63 && process.platform == "win32") ? trackObj.songTitle.substr(0, 60) + "..." : trackObj.songTitle;
+      // Make sure the favorite heart is active if user liked it
+      utilsService.updateTracksLikes([trackObj], true) // use cache to start
+        .then(function () {
+          if (trackObj.user_favorite) {
+            that.elPlayerFavorite.addClass('active');
+          }
+        });
 
-    if (window.localStorage.notificationToggle === "true") {
-      songNotification = new Notification(songNotificationTitle, {
-        body: trackObj.songUser,
-        icon: trackObj.songThumbnail,
-        silent: true
-      });
-      songNotification.onclick = function () {
-        ipcRenderer.send('showApp');
-      };
-    }
+      $rootScope.isSongPlaying = true;
+      $rootScope.$broadcast('activateQueue');
 
-    // Make sure the favorite heart is active if user liked it
-    var fav = this.elPlayerFavorite;
-    utilsService.updateTracksLikes([trackObj], true) // use cache to start
-      .then(function () {
-        if (trackObj.user_favorite) {
-          fav.addClass('active');
-        }
-      });
+      // remove the active class from player favorite icon before play new song
+      // TODO: this should check if the current song is already favorited
+      document.querySelector('.player_favorite').classList.remove('active');
 
-    $rootScope.isSongPlaying = true;
-    $rootScope.$broadcast('activateQueue');
-
-    // remove the active class from player favorite icon before play new song
-    // TODO: this should check if the current song is already favorited
-    document.querySelector('.player_favorite').classList.remove('active');
-
-    // mpris only supports linux
-    if (process.platform === "linux" && mprisService) {
-      // tell mpris that we're now playing & send off the attributes for dbus to use.
-      mprisService.play("0", duration, trackObj.songThumbnail, trackObj.songTitle, trackObj.songUser);
-    }
+      // mpris only supports linux
+      if (process.platform === "linux" && mprisService) {
+        // tell mpris that we're now playing & send off the attributes for dbus to use.
+        mprisService.play("0", duration, trackObj.songThumbnail, trackObj.songTitle, trackObj.songUser);
+      }
+    }, function (response) {
+      modalFactory.rateLimitReached(response);
+    });
   };
 
   // Updates cache when liking or unliking a song, so future checks will be correct
