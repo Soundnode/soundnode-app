@@ -21,6 +21,8 @@
 
 'use strict';
 
+const { webFrame } = require('electron');
+
 /**
  * Set a max timeout for when the user tries to go back a song
  * If the user is over the timeout, Lets restart the song instead of go to the previous track
@@ -350,7 +352,7 @@ app.factory('playerService', function (
   function scrubTimeTrack(e, el) {
     var percent = (e.offsetX / $(el).width());
     var duration = player.elPlayer.duration;
-    var scale = parseFloat(localStorage.getItem("scale"));
+    var scale = parseFloat(webFrame.getZoomFactor());
     var seek = (percent * duration) / scale;
 
     if (player.elPlayer.networkState === 0 || player.elPlayer.networkState === 3) {
