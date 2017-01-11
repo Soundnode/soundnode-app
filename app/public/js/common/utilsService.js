@@ -117,9 +117,16 @@ app.factory('utilsService', function (
    * @return {promise}            - promise with original collection
    */
   Utils.updateTracksLikes = function (collection, fromCache) {
-    var fetchLikedIds = fromCache ?
-      $q(function (resolve) { resolve(Utils.likesIds) }) :
-      SCapiService.getFavoritesIds();
+    var fetchLikedIds;
+
+    if ( fromCache ) {
+      fetchLikedIds = $q(function(resolve) {
+        resolve(Utils.likesIds)
+      });
+    } else {
+      fetchLikedIds = SCapiService.getFavoritesIds()
+    }
+
     return fetchLikedIds.then(function (ids) {
       if (!fromCache) {
         Utils.likesIds = ids;
@@ -239,13 +246,7 @@ app.factory('utilsService', function (
   };
 
   Utils.isPlayable = function (trackUrl) {
-    SCapiService.checkRateLimit(trackUrl)
-      .then(function () {
-        return true;
-      }, function (response) {
-        modalFactory.rateLimitReached(response);
-        return false;
-      });
+    return SCapiService.checkRateLimit(trackUrl);
   }
 
   return Utils;
