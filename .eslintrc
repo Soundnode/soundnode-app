@@ -1,20 +1,45 @@
 {
   "rules": {
     "block-scoped-var": 1,
-    "brace-style": [1, "1tbs"],
-    "camelcase": [1, {"properties": "always"}],
+    "brace-style": [
+      1,
+      "1tbs"
+    ],
+    "camelcase": [
+      1,
+      {
+        "properties": "always"
+      }
+    ],
     "comma-dangle": 1,
-    "comma-spacing": [1, {"before": false, "after": true}],
-    "comma-style": [1, "last"],
-    "curly": [2, "multi"],
-    "eol-last": 1,
-    "generator-star-spacing": [1, "after"],
+    "comma-spacing": [
+      1,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "comma-style": [
+      1,
+      "last"
+    ],
+    "eol-last": 0,
+    "generator-star-spacing": [
+      1,
+      "after"
+    ],
     "guard-for-in": 1,
-    "indent": [1, 2],
+    "indent": [
+      1,
+      2
+    ],
     "no-eq-null": 2,
     "no-extra-parens": 1,
     "no-lonely-if": 1,
-    "no-mixed-spaces-and-tabs": [1, "smart-tabs"],
+    "no-mixed-spaces-and-tabs": [
+      1,
+      "smart-tabs"
+    ],
     "no-spaced-func": 1,
     "no-throw-literal": 2,
     "no-trailing-spaces": 0,
@@ -22,10 +47,22 @@
     "no-undefined": 2,
     "no-unused-vars": 1,
     "no-var": 1,
-    "quotes": [0, "double", "avoid-escape"],
+    "quotes": [
+      0,
+      "double",
+      "avoid-escape"
+    ],
     "radix": 1,
-    "semi-spacing": [1, {"before": false, "after": true}],
-    "strict": [1],
+    "semi-spacing": [
+      1,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "strict": [
+      1
+    ],
     "vars-on-top": 1,
     "wrap-iife": 1,
     "react/display-name": 0,
@@ -70,5 +107,3 @@
     "react"
   ]
 }
-
-

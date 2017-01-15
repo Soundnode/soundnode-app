@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Soundnode
-GenericName=Soundcloud client
-Comment=Soundnode App is an Open-Source project to support Soundcloud for desktop Mac, Windows, and Linux.
-Exec=/usr/share/soundnode/Soundnode
-Icon=soundnode
-Terminal=false
-Categories=AudioVideo;Audio;
-Type=Application

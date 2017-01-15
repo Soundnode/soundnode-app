@@ -1,9 +1,10 @@
-[![Stories in Ready](https://badge.waffle.io/Soundnode/soundnode-app.png?label=roadmap&title=roadmap)](https://waffle.io/Soundnode/soundnode-app)
+[![Join the chat at https://gitter.im/Soundnode/soundnode-app](https://badges.gitter.im/Soundnode/soundnode-app.svg)](https://gitter.im/Soundnode/soundnode-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Soundnode App
 ============
 
 Soundnode App is an Open-Source project to support Soundcloud for desktop Mac, Windows, and Linux. <br>
-It's built with NW.js, Node.js, Angular.js, and uses the Soundcloud API.
+It's built with Electron, Node.js, Angular.js, and uses the Soundcloud API.
 
 Follow us on twitter for updates [@Soundnodeapp](https://www.twitter.com/soundnodeapp).
 
@@ -64,9 +65,7 @@ See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Devel
 
 ## Contributors
 
-Thanks to a friend at [Studio-424](http://studio-424.com/) for designing the logo.
-
-and Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or helped to make Soundnode better.
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or have help make Soundnode better.
 
 ## License
 
