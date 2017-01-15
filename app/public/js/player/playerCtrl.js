@@ -51,117 +51,13 @@ app.controller('PlayerCtrl', function (
       playerService.playSong();
     }
   };
-
-  $scope.prevSong = function ($event) {
-      if ($rootScope.isSongPlaying) {
-          playerService.playPrevSong();
-      }
-  };
-
-  $scope.nextSong = function ($event) {
-      if ($rootScope.isSongPlaying) {
-          playerService.playNextSong();
-      }
-  };
-
-  $scope.lock = function ($event) {
-      var elButton = document.querySelector('.player_lock');
-      elButton.classList.toggle('active');
-      $rootScope.lock = !$rootScope.lock;
-  };
-
-  $scope.repeat = function ($event) {
-      var elButton = document.querySelector('.player_repeat');
-      elButton.classList.toggle('active');
-      $rootScope.repeat = !$rootScope.repeat;
-  };
-
-  $scope.shuffle = function ($event) {
-      var elButton = document.querySelector('.player_shuffle');
-      elButton.classList.toggle('active');
-      $rootScope.shuffle = !$rootScope.shuffle;
-  };
-
-  $scope.toggleQueue = function ($event) {
-      var elButton = document.querySelector('.player_queueList');
-      elButton.classList.toggle('active');
-      document.querySelector('.queueList').classList.toggle('active');
-  };
-
-  $scope.goToSong = function ($event) {
-      var trackObj = queueService.getTrack();
-      $state.go('track', { id: trackObj.songId });
-  };
-
-  $scope.goToUser = function ($event) {
-      var trackObj = queueService.getTrack();
-      $state.go('profile', { id: trackObj.songUserId });
-  };
-
-  $scope.favorite = function ($event) {
-      var userId = $rootScope.userId;
-      var track = queueService.getTrack();
-
-      if ($event.currentTarget.classList.contains('active')) {
-
-          SCapiService.deleteFavorite(userId, track.songId)
-              .then(function (status) {
-                  if (typeof status == "object") {
-                      notificationFactory.warn("Song removed from likes!");
-                      $event.currentTarget.classList.remove('active');
-                      $rootScope.$broadcast("track::unfavorited", track.songId);
-                  }
-              }, function () {
-                  notificationFactory.error("Something went wrong!");
-              })
-      } else {
-          SCapiService.saveFavorite(userId, track.songId)
-              .then(function (status) {
-                  if (typeof status == "object") {
-                      notificationFactory.success("Song added to likes!");
-                      $event.currentTarget.classList.add('active');
-                      $rootScope.$broadcast("track::favorited", track.songId);
-                  }
-              }, function (status) {
-                  notificationFactory.error("Something went wrong!");
-              });
-      }
-  };
-
-  // Listen for updates from other scopes about favorites and unfavorites
-  $scope.$on('track::favorited', function (event, trackId) {
-      var track = queueService.getTrack();
-      if (track && trackId == track.songId) {
-          var elFavorite = document.querySelector('.player_favorite');
-          elFavorite.classList.add('active');
-      }
-  });
-  $scope.$on('track::unfavorited', function (event, trackId) {
-      var track = queueService.getTrack();
-      if (track && trackId == track.songId) {
-          var elFavorite = document.querySelector('.player_favorite');
-          elFavorite.classList.remove('active');
-      }
-  });
-
+  
   /**
    * Toggles shuffle mode
    */
   $scope.$on('queueList::shuffle', function(event){
       $scope.shuffle();
   });
-
-  /**
-   * Used between multiple functions, so we'll leave it here so it reduces
-   * the amount of times we define it.
-   */
-  var togglePlayPause = function () {
-      if ($rootScope.isSongPlaying) {
-          playerService.pauseSong();
-      } else {
-          playerService.playSong();
-      }
-  };
   
   $scope.prevSong = function ($event) {
     if ($rootScope.isSongPlaying) {
