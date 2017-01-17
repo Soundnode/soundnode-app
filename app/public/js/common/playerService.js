@@ -304,15 +304,6 @@ app.factory('playerService', function (
    * Set the song time.
    * @param  {Number} time The time in milliseconds you want to set
    */
-  player.setSongTime = function(time) {
-    if(isNaN(time)) throw new Error("You can only set time with a number");
-    return document.getElementById('player').currentTime = time;
-  }
-
-  /**
-   * Set the song time.
-   * @param  {Number} time The time in milliseconds you want to set
-   */
   player.setSongTime = function (time) {
     if (isNaN(time)) throw new Error("You can only set time with a number");
     return document.getElementById('player').currentTime = time;
