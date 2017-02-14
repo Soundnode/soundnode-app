@@ -4,7 +4,7 @@
   "main": "main.js",
   "description": "Soundnode App is the Soundcloud for desktop",
   "scripts": {
-    "start": "electron .",
+    "start": "./node_modules/.bin/electron .",
     "build": "npm run clean && npm run webpack:prod && npm run sass:prod && npm run package:all",
     "watch": "npm run webpack:dev & npm run sass:dev",
     "clean": "./node_modules/.bin/rimraf ./dist",
