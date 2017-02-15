@@ -181,7 +181,7 @@
         <div class="player_volume">
           <i class="fa fa-volume-up" ng-click="toggleRange()"></i>
           <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1"
-            step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
+            step="0.0625" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
         </div>
         <audio id="player" controls src="" class="player_currentSong"></audio>
       </div>
