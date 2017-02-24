@@ -38,7 +38,7 @@
     "node-sass": "^4.5.0",
     "npm": "^4.2.0",
     "rimraf": "^2.5.4",
-    "webpack": "^2.2.1"
+    "webpack": "^1.12.2"
   },
   "dependencies": {
     "angular": "^1.6.2",
