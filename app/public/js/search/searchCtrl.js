@@ -11,6 +11,7 @@ app.controller('searchCtrl', function (
 
     $scope.title = 'Results for: ' + $stateParams.q;
     $scope.data = '';
+    $scope.listView = $rootScope.toggleTrackView();
     var limit = 20;
 
     SCapiService.search('tracks', limit, $stateParams.q)
@@ -41,6 +42,14 @@ app.controller('searchCtrl', function (
                 $scope.busy = false;
                 $rootScope.isLoading = false;
             });
+    };
+
+    $scope.clickGrid = function() {
+            $scope.listView = false;
+    };
+
+    $scope.clickList = function() {
+            $scope.listView = true;
     };
 
 });

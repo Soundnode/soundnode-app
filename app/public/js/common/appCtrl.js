@@ -15,6 +15,12 @@ app.controller('AppCtrl', function ($rootScope, $scope, $window, $log, ngDialog)
         }
     };
 
+    $rootScope.toggleTrackView = function(){
+        if (angular.isUndefined($scope.list))
+             $scope.list = false;
+            return ($scope.list);
+    };
+
     // Format song duration on tracks
     // for human reading
     $scope.formatSongDuration = function (duration) {

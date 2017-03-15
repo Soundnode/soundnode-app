@@ -1,4 +1,5 @@
-<div class="songList_item_container_artwork" ng-class="{ active: hover }" ng-mouseover="hover = true" ng-mouseleave="hover = false">
+<div ng-class="{ songList_item_list_container_artwork:list, songList_item_container_artwork: !list, active: hover}" ng-class="{ active: hover }" 
+	ng-mouseover="hover = true" ng-mouseleave="hover = false">
 	<span class="songList_item_song_button" id="{{ data.id }}" song data-song-url="{{ data.stream_url }}" data-song-thumbnail="{{ data.artwork_url }}"
 		data-song-title="{{ data.title }}" data-song-user="{{ data.user.username }}" data-song-user-id="{{ data.user.id }}" data-song-id="{{ data.id }}">
 
@@ -6,7 +7,7 @@
                         <i class="fa fa-pause"></i>
                     </span>
 	<img ng-controller="AppCtrl" ng-src="{{ showBigArtwork (data.artwork_url) }}" onerror="if (this.src != 'public/img/logo-short.png') this.src = 'public/img/logo-short.png';"
-		alt="{{ data.title }}" class="songList_item_artwork">
+		alt="{{ data.title }}" class="songList_item_artwork" ng-class="{songList_item_list_artwork: list, songList_item_artwork: !list }">
 	<div class="songList_item_song_social_details">
 		<span class="songList_comment_count">
             <i class="fa fa-comments"></i>{{data.comment_count | round}}
@@ -21,7 +22,7 @@
 </div>
 
 <section class="songList_item_inner">
-	<h2 class="songList_item_song_tit selectable-text" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
+	<h2 class="selectable-text" ng-class="{songList_item_list_song_tit: list, songList_item_song_tit: !list }" title="{{ data.title }}" ui-sref="track({id: {{data.id}}})">{{ data.title }}</h2>
 
 	<h3 class="songList_item_song_info clearfix">
 		<div class="songList_item_song_user selectable-text">
@@ -55,7 +56,7 @@
 			<a copy-directive data-copy="{{ data.permalink_url }}" title="Copy"> <i class="fa fa-clipboard"></i></a>
 		</div>
 		<div class="songList_item_additional_details">
-			<span class="songList_item_genre" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
+			<span ng-class="{songList_item_list_genre: list, songList_item_genre: !list }" ui-sref="tag({name: data.genre})">#{{ data.genre }}</span>
 			<span class="songList_item_license">{{ data.license }}</span>
 		</div>
 	</div>

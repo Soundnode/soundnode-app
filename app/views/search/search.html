@@ -1,5 +1,19 @@
 <div class="searchView">
-    <h1> {{ ::title }} {{ keyword }}</h1>
+    <h1> {{ ::title }} {{ keyword }}
+                <div class="songList_item_container_layout" ng-class="{active: hoverGrid || !listView}"
+            ng-mouseover="hoverGrid = true"
+            ng-mouseleave="hoverGrid = false"
+            ng-click='clickGrid()'>
+        <i class="fa fa-th"></i>
+        </div>
+        <div class="songList_item_container_layout" ng-class="{active: hoverList || listView}"
+            ng-mouseover="hoverList = true"
+            ng-mouseleave="hoverList = false"
+            ng-click='clickList()'>
+         <i class="fa fa-list"></i>
+        </div>
+    </h1>
+
 
     <!-- Song list wrapper -->
     <div class="searchView_inner">
@@ -10,10 +24,10 @@
             infinite-scroll-container='".mainView"'
             infinite-scroll-immediate-check='false'>
 
-            <li class="songList_item" ng-repeat="data in data"
+            <li ng-class="{ songList_item_list: listView, songList_item: !listView }" ng-repeat="data in data"
                 ng-if="data.kind == 'track' && data.streamable" >
 
-                <tracks data="data"/>
+                <tracks data="data" list="listView"/>
 
             </li>
         </ul>
