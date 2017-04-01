@@ -125,7 +125,7 @@ app.run(function (
 
   // disable cmd (ctrl) + click and middle mouse click to open a new tab/page
   document.addEventListener('click', function (e) {
-    if (e.metaKey || e.which === 2) {
+    if (e.metaKey || e.ctrlKey || e.which === 2) {
       e.preventDefault();
     }
   }, false);
