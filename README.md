@@ -28,11 +28,6 @@ and [Gizmodo](http://gizmodo.com/soundnode-turns-soundcloud-into-a-spotify-like-
 
 And much more!
 
-## Reasons to contribute
-
-- You will learn new things
-- ~5000 daily users
-
 ## How to contribute
 
 First, building, testing, and reporting bugs is highly appreciated. Please include console's output and steps to reproduce the problem in your bug report if possible.
@@ -44,14 +39,10 @@ Please follow the [contribution guidelines](https://github.com/Soundnode/soundno
 
 ## Development
 
-We use [Waffle.io](https://waffle.io/) as our project management tool, you can check what's going on here: [Soundnode App status](https://waffle.io/Soundnode/soundnode-app)
+See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Development) for a complete guide on how to build
+the app locally on your computer.
 
-Check out how to run at [NW.js page](https://github.com/nwjs/nw.js/wiki/How-to-run-apps)
-
-NW.js don't support mp3 and h264 in video and audio tag by default because of patented media formats.
-but here's how you can [support audio](https://github.com/Soundnode/soundnode-app/wiki/Support-mp3-and-h264-in-video-and-audio-tag) and develop.
-<br>
-See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Development)
+Check out [Electron documentation](https://electron.atom.io/docs/)
 
 ## Supported Platforms
 
@@ -65,7 +56,7 @@ See the [Development page](https://github.com/Soundnode/soundnode-app/wiki/Devel
 
 ## Contributors
 
-Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or have help make Soundnode better.
+Thanks to all [contributors](https://github.com/Soundnode/soundnode-app/graphs/contributors) that are helping or helped making Soundnode better.
 
 ## License
 
