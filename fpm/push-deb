@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# This script pushes debian package files to the soundcloud debian repository.
+#
+# Example: $ make deb
+#          $ cd fpm
+#          $ ./push-deb JonasGroeger/soundnode packages/soundnode_0.6.4-10-g98c1257-1_amd64.deb
+#          $ ./push-deb JonasGroeger/soundnode packages/soundnode_0.6.4-10-g98c1257-1_i386.deb
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: ./push-deb REPOSITORY FILE"
+    exit 3
+fi
+
+package_cloud version >/dev/null 2>&1 || { echo "I require package_cloud but it's not installed. To install run 'sudo gem install package_cloud'."; exit 3; }
+
+PACKAGECLOUD_REPOSITORY="$1"
+DEB_FILE="$2"
+
+if echo "$PACKAGECLOUD_REPOSITORY" | grep -qv "/"; then
+    echo "The repository must contain a slash!"
+    exit 4
+fi
+
+if [ "$DEB_FILE" = "" ]; then
+    echo "Please provide a *.deb file to upload!"
+    exit 5
+fi
+
+if [ ! -f "$DEB_FILE" ]; then
+    echo "$DEB_FILE is not a file! Please provide valid files!"
+    exit 6
+fi
+
+if file "$DEB_FILE" | grep -qv "Debian binary package"; then
+    echo "$DEB_FILE is not a valid debian package!"
+    exit 7
+fi
+
+package_cloud push "$PACKAGECLOUD_REPOSITORY/ubuntu/trusty" "$DEB_FILE"
+package_cloud push "$PACKAGECLOUD_REPOSITORY/ubuntu/xenial" "$DEB_FILE"
+package_cloud push "$PACKAGECLOUD_REPOSITORY/debian/jessie" "$DEB_FILE"
