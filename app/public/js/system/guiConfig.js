@@ -4,6 +4,7 @@ const {
   ipcRenderer
 } = require('electron');
 const fs = require('fs-extra');
+const userHome = require('user-home');
 
 let guiConfig = {};
 
@@ -28,7 +29,19 @@ guiConfig.maximize = function () {
 };
 
 guiConfig.logOut = function () {
-  fs.removeSync(`${__dirname}/userConfig.json`);
+  let _userConfigPath = `${__dirname}/app/public/js/system/userConfig.json`; // Windows specific for now
+
+  /** Linux platforms - XDG Standard */
+  if (process.platform === 'linux') {
+    _userConfigPath = `${userHome}/.config/Soundnode/userConfig.json`;
+  }
+
+  /** Mac os configuration location */
+  if (process.platform === 'darwin') {
+    _userConfigPath = `${userHome}/Library/Preferences/Soundnode/userConfig.json`;
+  }
+
+  fs.removeSync(`${_userConfigPath}`);
   this.destroy();
 };
 
