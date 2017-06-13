@@ -9,25 +9,12 @@ const {
   Menu
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
-const userHome = require('user-home');
+const Configuration = require('./app/public/js/common/configLocation');
 
 // custom constants
 const clientId = '342b8a7af638944906dcdb46f9d56d98';
 const redirectUri = 'http://sc-redirect.herokuapp.com/callback.html';
 const SCconnect = `https://soundcloud.com/connect?&client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token`;
-let _userConfigPath = `${__dirname}/app/public/js/system/userConfig.json`; // Windows specific for now
-
-/** Linux platforms - XDG Standard */
-if (process.platform === 'linux') {
-  _userConfigPath = `${userHome}/.config/Soundnode/userConfig.json`;
-}
-
-/** Mac os configuration location */
-if (process.platform === 'darwin') {
-  _userConfigPath = `${userHome}/Library/Preferences/Soundnode/userConfig.json`;
-}
-
-const userConfigPath = _userConfigPath.slice(0); // Just to make sure it doesn't keep reference to the mutable string.
 
 let mainWindow;
 let authenticationWindow;
@@ -37,7 +24,7 @@ app.on('ready', () => {
 });
 
 function checkUserConfig() {
-  const userConfigExists = fs.existsSync(userConfigPath);
+  const userConfigExists = Configuration.configExists;
 
   if (userConfigExists) {
     initMainWindow();
@@ -84,7 +71,7 @@ function authenticateUser() {
 }
 
 function setUserData(accessToken) {
-  fs.writeFileSync(userConfigPath, JSON.stringify({
+  fs.writeFileSync(Configuration.path, JSON.stringify({
     accessToken: accessToken,
     clientId: clientId
   }), 'utf-8');
