@@ -31,14 +31,14 @@ app.service('SCapiService', function (
   this.checkRateLimit = function (urlStream) {
     return $http.get(urlStream)
       .then(function (response) {
-        console.log('success checkRateLimit')
+        console.log('Limit not reached.')
         if (response.status === 429) {
           return false;
         }
       }, function (response) {
-        console.log('error checkRateLimit')
+        console.log('Limit has been reached.')
         // something went wrong
-        return $q.reject(response.errors[0].meta.reset_time);
+        return $q.reject(response.data.errors[0].meta.reset_time);
       });
   }
 

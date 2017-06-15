@@ -1,13 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import HeaderActions from './header/headerActions.jsx';
-import SettingsNav from './header/settingsNav.jsx';
-
-// because of https://github.com/babel/babel/issues/2700
-// writing components using ES2015 class won't work
-// when trying to set state as the class property
-// when not in the constructor
+import HeaderActions from "./header/headerActions";
+import SettingsButton from "./header/settingsButton";
 
 // While migration is happening
 // for every component group
@@ -18,10 +13,10 @@ import SettingsNav from './header/settingsNav.jsx';
 
 ReactDOM.render(
     <HeaderActions />,
-    document.querySelector('.headerActionsApp')
+    document.querySelector(".headerActionsApp")
 );
 
 ReactDOM.render(
-    <SettingsNav />,
-    document.querySelector('.settingsApp')
+    <SettingsButton />,
+    document.querySelector(".settingsApp")
 );
