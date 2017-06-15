@@ -39,8 +39,8 @@ app.factory('modalFactory', function (
       showClose: false,
       template: 'views/common/modals/rate-limit.html',
       controller: ['$scope', function ($scope) {
-        var urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
-        var config = {
+        const urlGH = 'https://api.github.com/repos/Soundnode/soundnode-about/contents/rate-limit-reached.html';
+        const config = {
           headers: {
             'Accept': 'application/vnd.github.v3.raw+json'
           }
