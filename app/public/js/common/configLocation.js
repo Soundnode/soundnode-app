@@ -28,7 +28,7 @@ class Configuration {
     static get location () {
         let userConfigPath = null;
 
-        /** Linux platforms - XDG Standard */
+        /** Windows platform */
         if (process.platform === 'win32') {
             userConfigPath = `${userHome}/.config/Soundnode`;
         }
