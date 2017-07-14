@@ -9,7 +9,12 @@ const mkdirp = require('mkdirp');
  */
 const folderExists = folder => {
     let exists = false;
-    fs.stat(folder, (err, stats) => { if (stats.isDirectory()) exists = true; });
+    fs.statSync(folder, (err, stats) => {
+        if (stats.isDirectory()) {
+            exists = true;
+        }
+    });
+
     return exists;
 };
 
@@ -40,7 +45,11 @@ class Configuration {
         }
 
         if (!folderExists(userConfigPath)) {
-            mkdirp(userConfigPath, err => { if (err) console.error(err); });
+            mkdirp(userConfigPath, err => {
+                if (err) {
+                    console.error(err);
+                }
+            });
         }
 
         return userConfigPath;
