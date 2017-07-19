@@ -2,22 +2,6 @@ const fs = require('fs-extra');
 const userHome = require('user-home');
 const mkdirp = require('mkdirp');
 
-/**
- * Check if a given folder exists before trying to access any of it's children
- * 
- * @param {String} folder The folder we're checking
- */
-const folderExists = folder => {
-    let exists = false;
-    fs.statSync(folder, (err, stats) => {
-        if (stats.isDirectory()) {
-            exists = true;
-        }
-    });
-
-    return exists;
-};
-
 class Configuration {
 
     /**
@@ -44,7 +28,7 @@ class Configuration {
             userConfigPath = `${userHome}/Library/Preferences/Soundnode`;
         }
 
-        if (!folderExists(userConfigPath)) {
+        if (!fs.statSync(userConfigPath).isDirectory()) {
             mkdirp(userConfigPath, err => {
                 if (err) {
                     console.error(err);
