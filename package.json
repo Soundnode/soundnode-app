@@ -10,7 +10,7 @@
   "scripts": {
     "prestart": "npm run watch",
     "start": "./node_modules/.bin/electron .",
-    "build": "npm run clean && npm run webpack:prod && npm run sass:prod && npm run package:all",
+    "release": "npm run clean && npm run webpack:prod && npm run sass:prod && npm run package:all",
     "watch": "npm run webpack:dev & npm run sass:dev",
     "clean": "./node_modules/.bin/rimraf ./dist",
     "webpack:prod": "./node_modules/.bin/webpack -p --config ./webpack.prod.js",
