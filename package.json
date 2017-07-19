@@ -1,6 +1,6 @@
 {
   "name": "Soundnode",
-  "version": "0.6.5",
+  "version": "7.0.0",
   "main": "main.js",
   "description": "Soundnode App is the Soundcloud for desktop",
   "repository": {
