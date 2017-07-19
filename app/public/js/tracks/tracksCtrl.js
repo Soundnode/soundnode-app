@@ -7,6 +7,7 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
     $scope.title = 'Tracks';
     $scope.data = '';
     $scope.busy = false;
+    $scope.list = $rootScope.toggleTrackView();
 
     SCapiService.get(endpoint, params)
                 .then(function(data) {
@@ -35,5 +36,4 @@ app.controller('TracksCtrl', function ($scope, SCapiService, $rootScope) {
                 $rootScope.isLoading = false;
             });
     };
-
 });

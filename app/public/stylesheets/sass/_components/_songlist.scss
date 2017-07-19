@@ -19,10 +19,21 @@
     margin: 10px 0 0 0;
   }
 }
+.songList_item_list {
+  @extend .songList_item;
+  margin: 0px 5px 5px 0px;
+  width: 80%;
+  height: 100px;
+}
 
 .songList_item_box {
   width: 300px;
   height: 300px;
+}
+
+.songList_item_inner {
+  float: left;
+  margin-left: 5px;
 }
 
 .songList_item_container_artwork {
@@ -31,9 +42,23 @@
   border: 1px solid $separatorDarkColor;
 }
 
+.songList_item_list_container_artwork{
+  @extend .songList_item_container_artwork;
+  width: 100px !important;
+  height: 100px !important;
+  float: left;
+  border: 0px !important;
+}
+
 .songList_item_artwork {
   display: block;
   width: 100%;
+}
+
+.songList_item_list_artwork {
+  @extend .songList_item_artwork;
+  width: 100px !important;
+  height: 100px !important;
 }
 
 .songList_item_song_button {
@@ -60,14 +85,33 @@
   cursor: pointer;
 }
 
+.songList_item_list_song_button{
+  @extend .songList_item_song_button;
+  font-size: 25px !important;
+}
+
 li.active {
   & .songList_item_song_button {
     opacity: 1;
   }
 }
 
+li.active {
+  & .songList_item_list_song_button {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
 div.active {
   & .songList_item_song_button {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
+div.active {
+  & .songList_item_list_song_button {
     -webkit-transform: scale(1);
     opacity: 1;
   }
@@ -123,6 +167,11 @@ div.active {
   &:hover {
     @extend .pointer;
   }
+}
+
+.songList_item_list_song_tit{
+  @extend .songList_item_song_tit;
+  font-size: 16px !important;
 }
 
 .songList_item_song_social_details {
@@ -221,6 +270,29 @@ div.active {
 
     & .songList_item_license {
         display: none;
+    }
+}
+
+.songList_item_list_genre {
+  @extend .songList_item_genre;
+  padding: 0px 0px !important;
+  top: 2px !important;
+}
+
+.songList_item_container_layout{
+  float: right;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  margin-top:-5px;
+    .fa {
+        color: #949599;
+    }
+
+    &.active {
+        .fa {
+            color: #f50;
+        }
     }
 }
 

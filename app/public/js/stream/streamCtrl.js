@@ -12,6 +12,7 @@ app.controller('StreamCtrl', function (
     $scope.title = 'Stream';
     $scope.data = '';
     $scope.busy = false;
+    $scope.listView = $rootScope.toggleTrackView();
 
     SC2apiService.getStream()
         .then(filterCollection)
@@ -46,6 +47,14 @@ app.controller('StreamCtrl', function (
                 $scope.busy = false;
                 $rootScope.isLoading = false;
             });
+    };
+
+    $scope.clickGrid = function() {
+            $scope.listView = false;
+    };
+
+    $scope.clickList = function() {
+            $scope.listView = true;
     };
 
     function filterCollection(data) {
