@@ -2,7 +2,7 @@
   height: auto;
 }
 .songList_item.playlist[data-playlist-hidden="true"] {
-  height: 15px;
+  height: 115px;
 }
 
 .songList_item.playlist {
@@ -21,15 +21,26 @@
     margin: 0 0 10px 0;
     cursor: pointer;
     width: 100%;
-    float: none;
+    float: left;
 
-    & span {
-      cursor: pointer;
+    img {
+      float: left;
+      margin-right: 15px;
+    }
+
+    .title_meta {
+      float: left;
+
+      h2 {
+        margin-bottom: 10px;
+      }
     }
   }
 
   & .songList_item_songs_list {
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
+    float: left;
+    width: 100%;
   }
 
   & .songList_item_songs_list_item {
