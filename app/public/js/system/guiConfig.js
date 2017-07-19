@@ -4,6 +4,7 @@ const {
   ipcRenderer
 } = require('electron');
 const fs = require('fs-extra');
+const configuration = require('../common/configLocation');
 
 let guiConfig = {};
 
@@ -28,8 +29,8 @@ guiConfig.maximize = function () {
 };
 
 guiConfig.logOut = function () {
-  fs.removeSync(`${__dirname}/userConfig.json`);
-  this.destroy();
+  fs.removeSync(configuration.getPath());
+  guiConfig.destroy();
 };
 
 module.exports = {

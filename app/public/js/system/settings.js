@@ -1,8 +1,8 @@
 "use strict";
 
 const ua = require('universal-analytics');
-const fs = require('fs');
-const userConfig = JSON.parse(fs.readFileSync(`${__dirname}/userConfig.json`, 'utf-8'));
+const configuration = require('../common/configLocation');
+const userConfig = configuration.getConfigfile();
 
 // Set up some core settings
 window.settings = {};
