@@ -9,7 +9,7 @@ const {
   Menu
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
-const Configuration = require('./app/public/js/common/configLocation');
+const configuration = require('./app/public/js/common/configLocation');
 
 // custom constants
 const clientId = '342b8a7af638944906dcdb46f9d56d98';
@@ -24,9 +24,9 @@ app.on('ready', () => {
 });
 
 function checkUserConfig() {
-  const userConfigExists = Configuration.configExists;
+  const containsConfig = configuration.containsConfig();
 
-  if (userConfigExists) {
+  if (containsConfig) {
     initMainWindow();
   } else {
     authenticateUser();
@@ -71,7 +71,7 @@ function authenticateUser() {
 }
 
 function setUserData(accessToken) {
-  fs.writeFileSync(Configuration.path, JSON.stringify({
+  fs.writeFileSync(configuration.getPath(), JSON.stringify({
     accessToken: accessToken,
     clientId: clientId
   }), 'utf-8');
