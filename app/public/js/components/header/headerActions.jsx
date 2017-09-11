@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BackForwardActions from "./backForwardbuttons";
+import BackForwardActions from "./backForwardButtons";
 import WindowActions from "./windowActions";
 
 class HeaderActions extends Component {
