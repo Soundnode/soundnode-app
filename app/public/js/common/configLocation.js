@@ -38,12 +38,26 @@ const configuration = {
       userConfigPath = `${userHome}/Library/Preferences/Soundnode`;
     }
 
-    // create user config in path
-    // if there is no userConfig path
-    if (!fs.statSync(userConfigPath).isDirectory()) {
-      this.createUserConfig()
+    // Guard to assert type of string.
+    if (typeof userConfigPath !== "string") {
+      throw `Could not set userConfigPath for this OS ${process.platform}`
     }
 
+    // create user config in path
+    // if there is no userConfig path
+    //
+    // fs.statSync will throw an exception if
+    // any directory along the path doesn't exist.
+    // Solution: use try catch.
+    try {
+      var fi = fs.statSync(userConfigPath);
+      if (!fi.isDirectory()) {
+        this.createUserConfig(userConfigPath);
+      }
+    }
+    catch(error) {
+      this.createUserConfig(userConfigPath);
+    }
     return userConfigPath;
   },
 
