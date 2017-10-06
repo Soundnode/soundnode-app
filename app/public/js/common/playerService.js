@@ -85,6 +85,21 @@ app.factory('playerService', function (
   };
 
   /**
+   * Adjust player speed
+   * @param speed [playback rate]
+   * @method adjustSpeed
+   */
+  player.adjustSpeed = function(speed) {
+    if (typeof speed === 'undefined') {
+      return player.elPlayer.playbackRate;
+    }
+    if (speed >= 0.5 && speed <= 3.5) {
+      player.elPlayer.playbackRate = speed;
+      $window.localStorage.playbackRate = speed;
+    }
+  };
+
+  /**
    * Responsible to check if there's a song
    * playing if so check if the clicked song
    * is the current song playing and call pause

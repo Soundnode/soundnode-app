@@ -183,6 +183,11 @@
           <input class="player_volume_range" ng-model="volume" type="range" name="volume_range" id="volume_range" min="0.0" max="1"
             step="0.1" ng-change="adjustVolume(volume)" data-isVisible="{{ isVisible }}" />
         </div>
+        <div class="player_volume">
+          <i class="fa fa-tachometer" ng-click="toggleSpeedRange()"></i>
+          <input class="player_volume_range" ng-model="speed" type="range" name="speed_range" id="speed_range" min="0.5" max="3.5"
+            step="0.1" ng-change="adjustSpeed(speed)" data-isVisible="{{ isSpeedVisible }}" />
+        </div>
         <audio id="player" controls src="" class="player_currentSong"></audio>
       </div>
     </div>

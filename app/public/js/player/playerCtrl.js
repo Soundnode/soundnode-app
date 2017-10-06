@@ -25,6 +25,15 @@ app.controller('PlayerCtrl', function (
     $window.localStorage.volume = +$scope.volume;
   }
 
+  if ($window.localStorage.playbackRate) {
+    $scope.speed = +$window.localStorage.playbackRate;
+    playerService.adjustSpeed($scope.speed);
+  } else {
+    $scope.speed = 1.0;
+    playerService.adjustSpeed($scope.speed);
+    $window.localStorage.playbackRate = +$scope.speed;
+  }
+
   /**
    * Show/Hide volume range
    * @type {exports}
@@ -33,6 +42,14 @@ app.controller('PlayerCtrl', function (
   $scope.toggleRange = function () {
     $scope.isVisible = !$scope.isVisible;
   };
+  /**
+   * Show/Hide playback speed range
+   * @type {exports}
+   */
+  $scope.isSpeedVisible = false;
+  $scope.toggleSpeedRange = function () {
+    $scope.isSpeedVisible = !$scope.isSpeedVisible;
+  }
 
   /**
    * Responsible to send a new volume
@@ -42,6 +59,16 @@ app.controller('PlayerCtrl', function (
    */
   $scope.adjustVolume = function (volume) {
     playerService.volume(volume);
+  };
+
+  /**
+   * Responsible to send a new speed
+   * value on speed change
+   * @param speed [value of the speed]
+   * @method adjustSpeed
+   */
+  $scope.adjustSpeed = function (speed) {
+    playerService.adjustSpeed(speed);
   };
 
   $scope.playPause = function ($event) {
