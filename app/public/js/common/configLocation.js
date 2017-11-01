@@ -40,9 +40,10 @@ const configuration = {
 
     // create user config in path
     // if there is no userConfig path
-    if (!fs.statSync(userConfigPath).isDirectory()) {
-      this.createUserConfig()
-    }
+    fs.ensureDir(userConfigPath, err => {
+      // console.log(err) // => null
+      // dir has now been created, including the directory it is to be placed in
+    })
 
     return userConfigPath;
   },
