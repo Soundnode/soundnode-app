@@ -151,7 +151,9 @@ app.factory('playerService', function (
       trackObj.songThumbnail = 'public/img/song-placeholder.png';
     }
 
-    trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
+    //trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
+    // Fuck the rate limit, use youtube-dl to extract a streamable URL
+    trackUrl = require('child_process').execSync(`youtube-dl -g '${trackObj.songUrl}'`).toString();
 
     // check rate limit
     utilsService.isPlayable(trackUrl).then(function () {
