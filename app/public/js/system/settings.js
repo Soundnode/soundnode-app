@@ -17,4 +17,4 @@ window.settings.visitor = ua('UA-67310953-1');
 window.scAccessToken = userConfig.accessToken;
 
 // set window clientId
-window.scClientId = userConfig.clientId;
+window.localStorage.setItem('scClientId', userConfig.clientId);

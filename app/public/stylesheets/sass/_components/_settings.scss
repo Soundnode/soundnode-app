@@ -12,6 +12,11 @@
     justify-content: center;
     margin: 10px 0 10px;
 }
+
+.flex-column {
+    flex-direction: column;
+}
+
 // Switch for Settings
 .onoffswitch {
     position: relative;
@@ -63,4 +68,14 @@
     background-color: #FF5500;
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.settings-secondary-container {
+    width: 590px;
+}
+
+input[type="text"].full-width {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 100%;
 }
