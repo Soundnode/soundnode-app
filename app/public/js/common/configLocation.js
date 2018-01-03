@@ -14,6 +14,18 @@ const configuration = {
     });
   },
 
+  createIfNotExist(path) {
+    try {
+      const pathInfo = fs.statSync(path);
+      if (!pathInfo.isDirectory()) {
+        this.createUserConfig(path);
+      }
+    }
+    catch(error) {
+      this.createUserConfig(path);
+    }
+  },
+
   /**
    * Get the configuration folder location
    *
@@ -42,17 +54,8 @@ const configuration = {
       throw `could not set config path for this OS ${process.platform}`
     }
 
-    // create user config in path
-    // if there is no userConfig path
-    try {
-      const configFileInfo = fs.statSync(userConfigPath);
-      if (!configFileInfo.isDirectory()) {
-        this.createUserConfig(userConfigPath);
-      }
-    }
-    catch(error) {
-      this.createUserConfig(userConfigPath);
-    }
+    createIfNotExist(userConfigPath)
+
     return userConfigPath;
   },
 
