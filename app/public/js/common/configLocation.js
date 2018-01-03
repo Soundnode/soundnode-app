@@ -54,7 +54,7 @@ const configuration = {
       throw `could not set config path for this OS ${process.platform}`
     }
 
-    createIfNotExist(userConfigPath)
+    this.createIfNotExist(userConfigPath)
 
     return userConfigPath;
   },
