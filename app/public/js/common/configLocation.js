@@ -14,6 +14,18 @@ const configuration = {
     });
   },
 
+  createIfNotExist(path) {
+    try {
+      const pathInfo = fs.statSync(path);
+      if (!pathInfo.isDirectory()) {
+        this.createUserConfig(path);
+      }
+    }
+    catch(error) {
+      this.createUserConfig(path);
+    }
+  },
+
   /**
    * Get the configuration folder location
    *
@@ -27,7 +39,6 @@ const configuration = {
       userConfigPath = `${userHome}/.config/Soundnode`;
     }
 
-
     /** Linux platforms - XDG Standard */
     if (process.platform === 'linux') {
       userConfigPath = `${userHome}/.config/Soundnode`;
@@ -38,11 +49,12 @@ const configuration = {
       userConfigPath = `${userHome}/Library/Preferences/Soundnode`;
     }
 
-    // create user config in path
-    // if there is no userConfig path
-    if (!fs.statSync(userConfigPath).isDirectory()) {
-      this.createUserConfig()
+    /** Unsupported platform */
+    if (userConfigPath === null) {
+      throw `could not set config path for this OS ${process.platform}`
     }
+
+    this.createIfNotExist(userConfigPath)
 
     return userConfigPath;
   },
