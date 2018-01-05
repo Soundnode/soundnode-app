@@ -146,8 +146,9 @@
 
 .topbarSearch {
   position: absolute;
-  left: 205px;
+  right: 60px;
   -webkit-app-region: no-drag;
+  max-width: 500px;
 }
 
 @media (max-width: 940px) {
