@@ -2,6 +2,7 @@
 
 app.controller('SettingsCtrl', function ($scope, notificationFactory) {
     $scope.title = "Settings";
+    $scope.client_id = window.localStorage.scClientId;
 
     /**
      * Enable or disable song notification
@@ -14,6 +15,10 @@ app.controller('SettingsCtrl', function ($scope, notificationFactory) {
 
     $scope.notificationSettings = function() {
         window.localStorage.notificationToggle = $scope.notification;
+    };
+
+    $scope.scClientId = function () {
+        window.localStorage.scClientId = $scope.client_id;
     };
 
     /**

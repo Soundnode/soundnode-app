@@ -16,6 +16,15 @@
                 </div>
             </div>
         </li>
+        <li class="full-flex flex-column">
+            <div class="settings-secondary-container leftSide">
+                <h2>API Key</h2>
+                <label>Swap out API Key for your own.</label>
+            </div>
+            <div class="settings-secondary-container leftSide">
+                <input type="text" class="full-width" name="client_id" id="client_id" ng-model="client_id" ng-change="scClientId()" ng-value="client_id">
+            </div>
+        </li>
         <li class="full-flex">
             <div class="settings-container leftSide">
                 <h2>Clean local storage</h2>

@@ -151,7 +151,7 @@ app.factory('playerService', function (
       trackObj.songThumbnail = 'public/img/song-placeholder.png';
     }
 
-    trackUrl = trackObj.songUrl + '?client_id=' + $window.scClientId;
+    trackUrl = trackObj.songUrl + '?client_id=' + window.localStorage.scClientId;
 
     // check rate limit
     utilsService.isPlayable(trackUrl).then(function () {
