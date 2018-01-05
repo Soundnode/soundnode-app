@@ -145,10 +145,11 @@
 }
 
 .topbarSearch {
-  position: absolute;
-  right: 60px;
-  -webkit-app-region: no-drag;
+  position: relative;
+  float: right;
+  margin-right: 10px;
   max-width: 500px;
+  -webkit-app-region: no-drag;
 }
 
 @media (max-width: 940px) {
