@@ -204,6 +204,7 @@ function menuBar() {
     },
     {
       role: 'view',
+      label: 'View',
       submenu: [
         {
           role: 'togglefullscreen'
@@ -225,9 +226,6 @@ function menuBar() {
           click() {
             require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md')
           }
-        },
-        {
-          role: 'paste'
         }
       ]
     },
