@@ -3,6 +3,7 @@
 const ua = require('universal-analytics');
 const configuration = require('../common/configLocation');
 const userConfig = configuration.getConfigfile();
+const fs = require('fs-extra');
 
 // Set up some core settings
 window.settings = {};
@@ -18,3 +19,10 @@ window.scAccessToken = userConfig.accessToken;
 
 // set window clientId
 window.localStorage.setItem('scClientId', userConfig.clientId);
+
+window.settings.updateUserConfig = function () {
+    fs.writeFileSync(configuration.getPath(), JSON.stringify({
+        accessToken: userConfig.accessToken,
+        clientId: window.localStorage.scClientId
+    }), 'utf-8');
+}
