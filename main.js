@@ -199,6 +199,9 @@ function initializeMediaShortcuts() {
 function menuBar() {
   const template = [
     {
+      role: 'editMenu'
+    },
+    {
       role: 'view',
       submenu: [
         {
