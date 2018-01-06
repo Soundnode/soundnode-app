@@ -199,7 +199,8 @@ function initializeMediaShortcuts() {
 function menuBar() {
   const template = [
     {
-      role: 'editMenu'
+      role: 'editMenu',
+      label: 'Soundnode'
     },
     {
       role: 'view',
