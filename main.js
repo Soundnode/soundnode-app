@@ -221,12 +221,18 @@ function menuBar() {
           click() {
             require('electron').shell.openExternal('https://github.com/Soundnode/soundnode-app/blob/master/LICENSE.md')
           }
+        },
+        {
+          role: 'paste'
         }
       ]
     },
     {
-      role: 'window',
+      role: 'windowMenu',
       submenu: [
+        {
+          role: 'quit'
+        },
         {
           label: 'Reload',
           accelerator: 'CmdOrCtrl+R',
