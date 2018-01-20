@@ -19,6 +19,7 @@ app.controller('SettingsCtrl', function ($scope, notificationFactory) {
 
     $scope.scClientId = function () {
         window.localStorage.scClientId = $scope.client_id;
+        window.settings.updateUserConfig();
     };
 
     /**
