@@ -48,7 +48,7 @@
     "angular-ui-router": "^0.4.2",
     "electron-window-state": "^4.0.2",
     "font-awesome": "^4.7.0",
-    "fs-extra": "^3.0.1",
+    "fs-extra": "^6.0.0",
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
