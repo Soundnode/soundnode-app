@@ -199,7 +199,12 @@ function initializeMediaShortcuts() {
 function menuBar() {
   const template = [
     {
+      role: 'editMenu',
+      label: 'Soundnode'
+    },
+    {
       role: 'view',
+      label: 'View',
       submenu: [
         {
           role: 'togglefullscreen'
@@ -225,8 +230,11 @@ function menuBar() {
       ]
     },
     {
-      role: 'window',
+      role: 'windowMenu',
       submenu: [
+        {
+          role: 'quit'
+        },
         {
           label: 'Reload',
           accelerator: 'CmdOrCtrl+R',
