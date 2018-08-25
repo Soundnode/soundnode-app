@@ -9,7 +9,7 @@
 
   & .search-icon {
     position: absolute;
-    top: 10px;
+    top: 6px;
     right: 5px;
     color: $defaultColor;
     transition: $transitionFastValue;
@@ -23,20 +23,28 @@
   border-bottom: 1px solid $separatorCleanColor;
   background: transparent;
   border-radius: 0;
-  color: $defaultColor;
+  color: #ffffff;
   height: auto;
   padding: 5px 5px 5px;
   width: 100%;
+  font-weight: 700;
+
   &:focus {
     box-shadow: none;
-    border-bottom-color: $linkColor;
-    color: $linkColor;
-      & +.search-icon {
-          color: $linkColor;
-      }
+    border-bottom-color: #ffffff;
+
+    & +.search-icon {
+      color: #ffffff;
+    }
   }
+
   &:hover {
     cursor: text;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ffffff;
+    font-weight: 400;
   }
 }
 

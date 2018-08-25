@@ -1,20 +1,21 @@
 .dropdown {
     position: absolute;
-    top: 36px;
+    top: 46px;
     z-index: 1000;
     display: none;
     min-width: 160px;
-    padding: 5px 0;
+    padding: 0;
     margin: 2px 0 0;
     list-style: none;
     font-size: 13px;
-    background-color: $sectionBackground;
-    border-radius: 0 0 2px 2px;
-    box-shadow: 0 6px 12px 5px rgba(0, 0, 0, 0.3);
+    background-color: #111;
+    border-radius: 0 0 7px 7px;
+    box-shadow: 2px 2px 20px 2px #000000;
     width: 100%;
+    overflow: hidden;
 }
 
-.artist-container {
+.artist-container, .tracks-container {
     margin-bottom: 10px;
 }
 
@@ -23,6 +24,10 @@
     padding: 10px 10px 10px 10px;
     text-align: left;
 
+    &, & h4 {
+        cursor: pointer;
+    }
+
     & img {
         margin-right: 10px;
         width: 25px;
@@ -30,17 +35,18 @@
     }
 
     &:hover {
-        cursor: pointer;
+        background: rgba(0, 0, 0, 0.4);
+
         & h4 {
+            font-weight: 700;
             color: #FFF;
-            cursor: pointer;
         }
     }
 }
 
 .dropdown h3, .dropdown h4 {
-    color: $defaultColor;
-    font-weight: 400;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .dropdown h3 {
@@ -48,9 +54,13 @@
     text-transform: uppercase;
     font-size: 13px;
     &.dropdown-title {
-        padding: 5px 10px;
-        color: $linkColor;
-        border-left: 1px solid $linkColor;
+        color: $scColor;
+        border-left: 5px solid $scColor;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        will-change: padding-left;
+        transition: all 0.3s ease-in-out;
     }
 }
 
@@ -62,14 +72,17 @@
 }
 
 .dropdown h3.show-all {
-    padding: 5px 10px;
-    text-align: right;
-    font-size: 12px;
-    margin-top: 10px;
-    border-right: 1px solid $linkColor;
+    color: $scColor;
+    border-left: 5px solid $scColor;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    will-change: padding-left;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
         color: #FFF;
         cursor: pointer;
+        padding-left: 15px;
     }
 }

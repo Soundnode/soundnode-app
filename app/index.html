@@ -35,6 +35,13 @@
     <header class="topFrame">
       <div class="headerActionsApp"></div>
 
+      <ul class="appInfo">
+        <li class="appInfo_item subNav settingsApp"></li>
+        <li class="appInfo_item" ng-controller="UpdaterCtrl">
+          <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
+        </li>
+      </ul>
+
       <ul class="topbarSearch">
         <!-- search -->
         <div class="search" ng-controller="SearchInputCtrl">
@@ -48,13 +55,6 @@
           </div>
         </div>
         <!-- search / end -->
-      </ul>
-
-      <ul class="appInfo">
-        <li class="appInfo_item subNav settingsApp"></li>
-        <li class="appInfo_item" ng-controller="UpdaterCtrl">
-          <a href="http://www.soundnodeapp.com" target="_blank" open-external ng-class="{ updateAvailable: updateAvailable }" data-link="true"> update available! </a>
-        </li>
       </ul>
     </header>
     <!-- header / end -->
