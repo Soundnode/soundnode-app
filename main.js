@@ -90,6 +90,7 @@ function initMainWindow() {
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
+    maximizable: true,
     minWidth: 800,
     minHeight: 640,
     center: true,
