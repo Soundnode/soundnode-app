@@ -7,11 +7,15 @@
     "type": "git",
     "url": "git://github.com/Soundnode/soundnode-app.git"
   },
+  "engines": {
+    "node": ">=8.0.0",
+    "yarn": ">=1.5.0"
+  },
   "scripts": {
-    "prestart": "npm run watch",
+    "prestart": "yarn watch",
     "start": "./node_modules/.bin/electron .",
-    "release": "npm run clean && npm run webpack:prod && npm run sass:prod && npm run package:all",
-    "watch": "npm run webpack:dev & npm run sass:dev",
+    "release": "yarn clean && yarn webpack:prod && yarn sass:prod && yarn package:all",
+    "watch": "yarn webpack:dev & yarn sass:dev",
     "clean": "./node_modules/.bin/rimraf ./dist",
     "webpack:prod": "./node_modules/.bin/webpack -p --config ./webpack.prod.js",
     "webpack:dev": "./node_modules/.bin/webpack -d --watch --config ./webpack.dev.js",
@@ -20,7 +24,7 @@
     "package:osx": "electron-packager ./ Soundnode --platform=darwin --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.ico",
     "package:linux": "electron-packager ./ Soundnode --platform=linux --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
     "package:win32": "electron-packager ./ Soundnode --platform=win32 --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
-    "package:all": "npm run package:osx && npm run package:linux && npm run package:win32"
+    "package:all": "yarn package:osx && yarn package:linux && yarn package:win32"
   },
   "author": "Michael Lancaster",
   "license": "GPL-3.0",
