@@ -38,6 +38,7 @@
     "install": "^0.10.1",
     "node-sass": "^4.5.0",
     "rimraf": "^2.5.4",
+    "semver": "~5.5.1",
     "webpack": "^3.3.0"
   },
   "dependencies": {
