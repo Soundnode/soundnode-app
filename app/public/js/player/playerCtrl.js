@@ -51,7 +51,14 @@ app.controller('PlayerCtrl', function (
       playerService.playSong();
     }
   };
-
+  
+  /**
+   * Toggles shuffle mode
+   */
+  $scope.$on('queueList::shuffle', function(event){
+      $scope.shuffle();
+  });
+  
   $scope.prevSong = function ($event) {
     if ($rootScope.isSongPlaying) {
       playerService.playPrevSong();

@@ -12,7 +12,8 @@ app.controller('PlaylistsCtrl', function (
     notificationFactory,
     modalFactory,
     utilsService,
-    queueService
+    queueService,
+    playerService
 ) {
     var endpoint = 'me/playlists'
         , params = 'limit=125';
@@ -129,4 +130,32 @@ app.controller('PlaylistsCtrl', function (
             return newSize;
         }
     };
+
+    /**
+     * Responsible to shuffle a playlist
+     * instead of having to play then shuffle
+     * @param tracks [ tracks in playlist ]
+     * @method shufflePlaylist
+     */
+    $scope.shufflePlaylist = function (tracks){
+        queueService.clear();
+        for(var i = 0; i < tracks.length; i++)
+        {
+            var track = tracks[i];
+            var trackItem = {
+                playList: true,
+                songId: track.id,
+                songUserId: track.user.id,
+                songUser: track.user.username,
+                songTitle: track.title,
+                songThumbnail: track.artwork_url,
+                songUrl: track.stream_url
+            };
+            queueService.insert(trackItem);
+        }
+        if(!$rootScope.shuffle){
+            playerService.shuffle();
+        }
+        playerService.playNextSong();
+    }
 });

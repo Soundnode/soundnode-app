@@ -278,7 +278,7 @@ app.factory('playerService', function (
     if ($rootScope.lock) {
       return false;
     }
-
+    
     if ($rootScope.shuffle && !$rootScope.repeat) {
       utilsService.shuffle();
     } else if (!$rootScope.repeat && utilsService.isLastTrackInQueue()) {
@@ -287,9 +287,18 @@ app.factory('playerService', function (
     } else if (!$rootScope.repeat && !utilsService.isLastTrackInQueue()) {
       queueService.next();
     }
-
+    
     this.playNewSong();
   };
+
+  /**
+   * Responsible to activate shuffle mode for the queue list
+   * @method shuffle
+   */
+  player.shuffle = function() {
+      //Send the shuffle event
+      $rootScope.$broadcast('queueList::shuffle');
+  }
 
   /**
    * Set the song time.
