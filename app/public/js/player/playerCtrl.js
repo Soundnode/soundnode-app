@@ -45,11 +45,7 @@ app.controller('PlayerCtrl', function (
   };
 
   $scope.playPause = function ($event) {
-    if ($rootScope.isSongPlaying) {
-      playerService.pauseSong();
-    } else {
-      playerService.playSong();
-    }
+    togglePlayPause();
   };
 
   $scope.prevSong = function ($event) {
@@ -149,7 +145,9 @@ app.controller('PlayerCtrl', function (
    * the amount of times we define it.
    */
   var togglePlayPause = function () {
-    if ($rootScope.isSongPlaying) {
+    var track = queueService.getTrack();
+
+    if ($rootScope.isSongPlaying || track == null) {
       playerService.pauseSong();
     } else {
       playerService.playSong();
