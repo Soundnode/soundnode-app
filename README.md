@@ -32,7 +32,7 @@ And much more!
 
 Since soundcloud apply rate limit to third party app you need to configure your own API key to make soundnode work.
 
-Unfortunatly soundcloud suspended new application creation, so to retrieve your api key, you have to dig into soundcloud website.
+Unfortunately soundcloud suspended new application creation, so to retrieve your api key, you have to dig into soundcloud website.
 
 * Login to soundcloud.com on favorite browser
 * Look for and api call and write down the client_id parameter
