@@ -1,6 +1,8 @@
 'use strict';
 
 const guiConfig = require(`${__dirname}/public/js/system/guiConfig.js`).guiConfig;
+const DiscordRPC = require('discord-rpc');
+const discordClientId = '478507050637197342';
 
 var app = angular.module('App', [
   'ui.router',
@@ -92,12 +94,10 @@ app.config(function (
 
 app.run(function (
   $rootScope,
-  $log,
   $state,
-  SCapiService,
   hotkeys,
-  utilsService,
-  notificationFactory
+  notificationFactory,
+  discordService
 ) {
 
   //start GA
@@ -156,6 +156,15 @@ app.run(function (
 
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
+
+  DiscordRPC.register(discordClientId);
+
+  // TODO; Maybe hide behind an 'Enable social functionality' flag?
+  $rootScope.rpcClient = new DiscordRPC.Client({ transport: 'ipc' });
+
+  $rootScope.rpcClient.login({
+    clientId: discordClientId
+  }).catch(err => console.error('rpc client', err));
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 200);
