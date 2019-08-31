@@ -184,14 +184,10 @@ app.factory('playerService', function (
       $rootScope.$broadcast('activateQueue');
       
       if (window.socialEnabled) {
-        discordService.updatePresence(
-          $rootScope.currentSongUser,
-          $rootScope.currentSongTitle,
-          {
-            duration: player.elPlayer.duration * 1000,
-            currentTime: player.elPlayer.currentTime
-          }
-        );
+        player.elPlayer.ondurationchange = () => {
+          discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle);
+          player.elPlayer.ondurationchange = null;
+        };
       }
 
       // remove the active class from player favorite icon before play new song
@@ -227,10 +223,11 @@ app.factory('playerService', function (
     $rootScope.isSongPlaying = true;
 
     if (window.socialEnabled) {
-      discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle, {
-        duration: player.elPlayer.duration * 1000,
-        currentTime: player.elPlayer.currentTime
-      });
+      player.elPlayer.ondurationchange = () => {
+        discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle);
+        player.elPlayer.ondurationchange = null;
+      };
+      
     }
 
 

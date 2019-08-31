@@ -18,7 +18,7 @@ class DiscordService {
         this.$rootScope.rpcClient.clearActivity();
     }
 
-    updatePresence = (user, songName, details = {}) => {
+    updatePresence = (user, songName) => {
         this.$rootScope.rpcClient.setActivity({
             details: songName,
             state: "From " + user + "'s profile",
@@ -27,8 +27,7 @@ class DiscordService {
             smallImageKey: "play",
             smallImageText: "Playing",
             instance: false,
-            startTimestamp: details.currentTime,
-            endTimestamp: details.duration,
+            startTimestamp: Date.now(),
         });
     }
 }
