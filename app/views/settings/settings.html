@@ -16,6 +16,18 @@
                 </div>
             </div>
         </li>
+        <li class="full-flex">
+            <div class="settings-container leftSide">
+                <h2>Social Functionality</h2>
+                <label>Enable/Disable social functionality (discord etc)</label>
+            </div>
+            <div class="settings-switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" class="onoffswitch-checkbox" name="socials" id="socialSettings" ng-model="socialDisabled" ng-change="socialSettings()" ng-checked="socialDisabled">
+                    <label class="onoffswitch-label" for="socialSettings"></label>
+                </div>
+            </div>
+        </li>
         <li class="full-flex flex-column">
             <div class="settings-secondary-container leftSide">
                 <h2>API Key</h2>

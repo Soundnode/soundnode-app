@@ -1,8 +1,6 @@
 'use strict';
 
 const guiConfig = require(`${__dirname}/public/js/system/guiConfig.js`).guiConfig;
-const DiscordRPC = require('discord-rpc');
-const discordClientId = '478507050637197342';
 
 var app = angular.module('App', [
   'ui.router',
@@ -157,14 +155,37 @@ app.run(function (
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
 
-  DiscordRPC.register(discordClientId);
+  if (!window.socialSettings) {
+    const DiscordRPC = require('discord-rpc');
+    const discordClientId = '478507050637197342';
 
-  // TODO; Maybe hide behind an 'Enable social functionality' flag?
-  $rootScope.rpcClient = new DiscordRPC.Client({ transport: 'ipc' });
+    DiscordRPC.register(discordClientId);
+  
+    $rootScope.rpcClient = new DiscordRPC.Client({ transport: 'ipc' });
+  
+    $rootScope.rpcClient.login({
+      clientId: discordClientId
+    }).catch(err => console.error('rpc client', err));
+  }
 
-  $rootScope.rpcClient.login({
-    clientId: discordClientId
-  }).catch(err => console.error('rpc client', err));
+  $rootScope.$on('settings::updated', (ev, settings) => {
+    if (!settings.socialDisabled) {
+      const DiscordRPC = require('discord-rpc');
+      const discordClientId = '478507050637197342';
+  
+      DiscordRPC.register(discordClientId);
+    
+      $rootScope.rpcClient = new DiscordRPC.Client({ transport: 'ipc' });
+    
+      $rootScope.rpcClient.login({
+        clientId: discordClientId
+      }).catch(err => console.error('rpc client', err));
+    } else {
+      discordService.resetPresence();
+      $rootScope.rpcClient.destroy();
+    }
+  });
+
 });
 
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 200);

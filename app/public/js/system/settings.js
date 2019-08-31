@@ -17,12 +17,24 @@ window.settings.visitor = ua('UA-67310953-1');
 // set window access token
 window.scAccessToken = userConfig.accessToken;
 
+// Set window social settings
+window.socialSettings = userConfig.socialSettings;
+
 // set window clientId
 window.localStorage.setItem('scClientId', userConfig.clientId);
 
 window.settings.updateUserConfig = function () {
     fs.writeFileSync(configuration.getPath(), JSON.stringify({
         accessToken: userConfig.accessToken,
-        clientId: window.localStorage.scClientId
+        clientId: window.localStorage.scClientId,
+        socialSettings: userConfig.socialSettings || false,
     }), 'utf-8');
 }
+
+window.settings.setSocialSettings = (socialSettings) => {
+    fs.writeFileSync(configuration.getPath(), JSON.stringify({
+        accessToken: userConfig.accessToken,
+        clientId: window.localStorage.scClientId,
+        socialSettings: socialSettings || false,
+    }), 'utf-8');
+};
