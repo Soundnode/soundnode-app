@@ -65,6 +65,8 @@ function authenticateUser() {
 
     accessToken = url.substring(url.indexOf(access_tokenStr) + 13, url.indexOf(expires_inStr));
 
+    accessToken = accessToken.split('&scope=')[0];
+
     setUserData(accessToken);
     authenticationWindow.destroy();
   });
