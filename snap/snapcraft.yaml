@@ -1,0 +1,41 @@
+directories:
+  output: release
+  buildResources: build
+productName: soundnode
+appId: en.soundnode-app.soundnode
+linux:
+  maintainer: Jake Jarrett <jakeryanjarrett@gmail.com>
+  category: Audio
+  target:
+    - deb
+    - snap
+    - AppImage
+snap:
+  summary: A SoundCloud client for your desktop
+  stagePackages:
+    - libasound2
+    - libgconf2-4
+    - libnotify4
+    - libnspr4
+    - libnss3
+    - libpcre3
+    - libpulse0
+    - libxss1
+    - libxtst6
+    - gtk-update-icon-cache
+  plugs:
+    - bluez
+    - browser-support
+    - gsettings
+    - browser-support
+    - gsettings
+    - home
+    - mount-observe
+    - network
+    - opengl
+    - pulseaudio
+    - unity7
+    - x11
+    - mpris
+  category: Audio
+electronVersion: 6.0.6
