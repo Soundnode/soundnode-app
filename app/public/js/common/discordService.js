@@ -15,11 +15,10 @@ class DiscordService {
     }
 
     resetPresence = () => {
-        console.log('reset presence');
         this.$rootScope.rpcClient.clearActivity();
     }
 
-    updatePresence = (user, songName) => {
+    updatePresence = (user, songName, details = {}) => {
         this.$rootScope.rpcClient.setActivity({
             details: songName,
             state: "From " + user + "'s profile",
@@ -28,6 +27,8 @@ class DiscordService {
             smallImageKey: "play_icon",
             smallImageText: "Playing",
             instance: false,
+            startTimestamp: details.currentTime,
+            endTimestamp: details.duration,
         });
     }
 }

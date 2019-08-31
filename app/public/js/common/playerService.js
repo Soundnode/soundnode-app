@@ -183,7 +183,14 @@ app.factory('playerService', function (
       $rootScope.isSongPlaying = true;
       $rootScope.$broadcast('activateQueue');
 
-      discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle);
+      discordService.updatePresence(
+        $rootScope.currentSongUser,
+        $rootScope.currentSongTitle,
+        {
+          duration: player.elPlayer.duration * 1000,
+          currentTime: player.elPlayer.currentTime
+        }
+      );
 
       // remove the active class from player favorite icon before play new song
       // TODO: this should check if the current song is already favorited
@@ -217,7 +224,10 @@ app.factory('playerService', function (
     this.elPlayer.play();
     $rootScope.isSongPlaying = true;
 
-    discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle);
+    discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle, {
+      duration: player.elPlayer.duration * 1000,
+      currentTime: player.elPlayer.currentTime
+    });
 
     /**
      * linux mpris passthrough for media keys & desktop integration
