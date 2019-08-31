@@ -217,6 +217,8 @@ app.factory('playerService', function (
     this.elPlayer.play();
     $rootScope.isSongPlaying = true;
 
+    discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle);
+
     /**
      * linux mpris passthrough for media keys & desktop integration
      */
