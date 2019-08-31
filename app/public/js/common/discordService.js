@@ -22,9 +22,9 @@ class DiscordService {
         this.$rootScope.rpcClient.setActivity({
             details: songName,
             state: "From " + user + "'s profile",
-            largeImageKey: "soundcloud_icon",
-            largeImageText: "SoundCloud",
-            smallImageKey: "play_icon",
+            largeImageKey: "soundnode",
+            largeImageText: "Soundnode",
+            smallImageKey: "play",
             smallImageText: "Playing",
             instance: false,
             startTimestamp: details.currentTime,
