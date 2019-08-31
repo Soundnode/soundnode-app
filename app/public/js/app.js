@@ -155,7 +155,7 @@ app.run(function (
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
 
-  if (!window.socialSettings) {
+  if (window.socialEnabled) {
     const DiscordRPC = require('discord-rpc');
     const discordClientId = '478507050637197342';
 
@@ -169,7 +169,7 @@ app.run(function (
   }
 
   $rootScope.$on('settings::updated', (ev, settings) => {
-    if (!settings.socialDisabled) {
+    if (settings.socialEnabled) {
       const DiscordRPC = require('discord-rpc');
       const discordClientId = '478507050637197342';
   

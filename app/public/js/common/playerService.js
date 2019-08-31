@@ -183,7 +183,7 @@ app.factory('playerService', function (
       $rootScope.isSongPlaying = true;
       $rootScope.$broadcast('activateQueue');
       
-      if (!window.socialSettings) {
+      if (window.socialEnabled) {
         discordService.updatePresence(
           $rootScope.currentSongUser,
           $rootScope.currentSongTitle,
@@ -226,7 +226,7 @@ app.factory('playerService', function (
     this.elPlayer.play();
     $rootScope.isSongPlaying = true;
 
-    if (!window.socialSettings) {
+    if (window.socialEnabled) {
       discordService.updatePresence($rootScope.currentSongUser, $rootScope.currentSongTitle, {
         duration: player.elPlayer.duration * 1000,
         currentTime: player.elPlayer.currentTime
@@ -250,7 +250,7 @@ app.factory('playerService', function (
     this.elPlayer.pause();
     $rootScope.isSongPlaying = false;
 
-    if (!window.socialSettings) {
+    if (window.socialEnabled) {
       discordService.resetPresence();
     }
 

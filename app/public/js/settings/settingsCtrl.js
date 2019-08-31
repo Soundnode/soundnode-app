@@ -3,7 +3,7 @@
 app.controller('SettingsCtrl', function ($scope, $rootScope, notificationFactory) {
     $scope.title = "Settings";
     $scope.client_id = window.localStorage.scClientId;
-    $scope.socialDisabled = window.socialSettings;
+    $scope.socialEnabled = window.socialEnabled;
 
     /**
      * Enable or disable song notification
@@ -33,14 +33,14 @@ app.controller('SettingsCtrl', function ($scope, $rootScope, notificationFactory
     };
 
     $scope.socialSettings = () => {
-        window.settings.setSocialSettings($scope.socialDisabled);
+        window.settings.setSocialSettings($scope.socialEnabled);
         $scope.onChange();
     };
 
     $scope.onChange = () => {
-        window.socialSettings = $scope.socialDisabled;
+        window.socialEnabled = $scope.socialEnabled;
         $rootScope.$broadcast('settings::updated', {
-            socialDisabled: $scope.socialDisabled,
+            socialEnabled: $scope.socialEnabled,
             notificationSettings: $scope.notification
         })
     };

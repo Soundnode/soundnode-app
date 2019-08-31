@@ -18,7 +18,7 @@ window.settings.visitor = ua('UA-67310953-1');
 window.scAccessToken = userConfig.accessToken;
 
 // Set window social settings
-window.socialSettings = userConfig.socialSettings;
+window.socialEnabled = userConfig.socialEnabled;
 
 // set window clientId
 window.localStorage.setItem('scClientId', userConfig.clientId);
@@ -27,14 +27,14 @@ window.settings.updateUserConfig = function () {
     fs.writeFileSync(configuration.getPath(), JSON.stringify({
         accessToken: userConfig.accessToken,
         clientId: window.localStorage.scClientId,
-        socialSettings: userConfig.socialSettings || false,
+        socialEnabled: userConfig.socialEnabled != null ? userConfig.socialEnabled : true,
     }), 'utf-8');
 }
 
-window.settings.setSocialSettings = (socialSettings) => {
+window.settings.setSocialSettings = (socialEnabled) => {
     fs.writeFileSync(configuration.getPath(), JSON.stringify({
         accessToken: userConfig.accessToken,
         clientId: window.localStorage.scClientId,
-        socialSettings: socialSettings || false,
+        socialEnabled: socialEnabled != null ? socialEnabled : true,
     }), 'utf-8');
 };
