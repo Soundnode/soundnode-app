@@ -18,7 +18,7 @@
     "sass:prod": "./node_modules/.bin/node-sass --include-path ./app/public/stylesheets/sass --output-style compressed ./app/public/stylesheets/sass/app.scss ./app/public/stylesheets/css/app.css",
     "sass:dev": "./node_modules/.bin/node-sass --recursive --include-path ./app/public/stylesheets/sass --output-style expanded ./app/public/stylesheets/sass/app.scss ./app/public/stylesheets/css/app.css",
     "package:osx": "electron-packager ./ Soundnode --platform=darwin --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.ico",
-    "package:linux": "electron-packager ./ Soundnode --platform=linux --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
+    "package:linux": "electron-builder --config ./snap/snapcraft.yaml -l --x64",
     "package:win32": "electron-packager ./ Soundnode --platform=win32 --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
     "package:all": "npm run package:osx && npm run package:linux && npm run package:win32"
   },
@@ -32,6 +32,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.23.0",
     "electron": "^6.0.6",
+    "electron-builder": "^21.2.0",
     "electron-packager": "^8.5.1",
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
