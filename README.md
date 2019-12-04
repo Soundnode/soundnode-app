@@ -30,20 +30,20 @@ And much more!
 
 ## Configuration
 
-Since soundcloud apply rate limit to third party app you need to configure your own API key to make soundnode work.
+Since soundcloud applies a rate limit to third party apps, you need to configure your own API key to make soundnode work.
 
-Unfortunately soundcloud suspended new application creation, so to retrieve your api key, you have to dig into soundcloud website.
+Unfortunately soundcloud suspended new application creation, so to retrieve your api key, you have to dig into the soundcloud [website](https://soundcloud.com/).
 
 * Login to soundcloud.com on favorite browser
-* Look for and api call and write down the client_id parameter
+* Look for an api call and write down the client_id parameter
 ![dev tools](doc/img/dev_tools.png)
 * Edit your userConfig.json file (see here for location : https://github.com/eliecharra/soundnode-app/blob/master/app/public/js/common/configLocation.js#L34) and update clientId parameter with the previously retrieved one.
 
 ## How to contribute
 
-First, building, testing, and reporting bugs is highly appreciated. Please include console's output and steps to reproduce the problem in your bug report if possible.
+First, building, testing, and reporting bugs is highly appreciated. Please include the console's output and steps to reproduce the problem in your bug report, if possible.
 
-If you want to develop, you can look at the issues, especially the bugs and then fix them.
+If you want to develop, you can look at the issues, especially the bugs, and then fix them.
 Here's a [list of issues](https://github.com/Soundnode/soundnode-app/issues?state=open).
 
 Please follow the [contribution guidelines](https://github.com/Soundnode/soundnode-app/blob/master/CONTRIBUTING.md).
