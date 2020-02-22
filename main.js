@@ -54,16 +54,18 @@ function authenticateUser() {
 
   contents = authenticationWindow.webContents;
 
-  contents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
+  contents.on('did-navigate', (_event, url, httpResponseCode) => {
     const access_tokenStr = 'access_token=';
     const expires_inStr = '&expires_in';
     let accessToken;
 
-    if (newUrl.indexOf('access_token=') < 0) {
+    if (url.indexOf('access_token=') < 0) {
       return false;
     }
 
-    accessToken = newUrl.substring(newUrl.indexOf(access_tokenStr) + 13, newUrl.indexOf(expires_inStr));
+    accessToken = url.substring(url.indexOf(access_tokenStr) + 13, url.indexOf(expires_inStr));
+
+    accessToken = accessToken.split('&scope=')[0];
 
     setUserData(accessToken);
     authenticationWindow.destroy();
@@ -93,7 +95,10 @@ function initMainWindow() {
     minWidth: 800,
     minHeight: 640,
     center: true,
-    frame: false
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
