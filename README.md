@@ -37,7 +37,10 @@ Unfortunately soundcloud suspended new application creation, so to retrieve your
 * Login to soundcloud.com on favorite browser
 * Look for an api call and write down the client_id parameter
 ![dev tools](doc/img/dev_tools.png)
-* Edit your userConfig.json file (see here for location : https://github.com/eliecharra/soundnode-app/blob/master/app/public/js/common/configLocation.js#L34) and update clientId parameter with the previously retrieved one.
+* Edit your [`userConfig.json`](https://github.com/Soundnode/soundnode-app/blob/04ddd01e1135738ff36ef2b8152966c375e46674/app/public/js/common/configLocation.js#L34-L54) file:
+  * Linux: `$HOME/.config/Soundnode`
+  * MacOS: `$HOME/Library/Preferences/Soundnode`
+  * Windows: `$HOME/.config/Soundnode`
 
 ## How to contribute
 
