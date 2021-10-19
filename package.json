@@ -31,7 +31,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.23.0",
-    "electron": "^8.0.1",
+    "electron": "15.2.0",
     "electron-packager": "^14.2.1",
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
