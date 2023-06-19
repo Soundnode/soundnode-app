@@ -35,7 +35,7 @@
     "electron-packager": "^14.2.1",
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
-    "install": "^0.10.1",
+    "install": "^0.13.0",
     "node-sass": "^4.5.0",
     "rimraf": "^2.5.4",
     "webpack": "^3.3.0"
