@@ -33,7 +33,7 @@
     "babel-register": "^6.23.0",
     "electron": "^8.0.1",
     "electron-packager": "^14.2.1",
-    "eslint": "^4.0.0",
+    "eslint": "^8.0.0",
     "eslint-plugin-react": "^7.1.0",
     "install": "^0.10.1",
     "node-sass": "^4.5.0",
