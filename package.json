@@ -1,11 +1,11 @@
 {
   "name": "Soundnode",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "main": "main.js",
-  "description": "Soundnode App is the Soundcloud for desktop",
+  "description": "Soundnode desktop with XUNIA SOUNDS and SoundCloudOpen integration",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Soundnode/soundnode-app.git"
+    "url": "git://github.com/sonoxo/soundnode-app-xunia.git"
   },
   "scripts": {
     "prestart": "npm run watch",
@@ -20,9 +20,11 @@
     "package:osx": "electron-packager ./ Soundnode --platform=darwin --out ./dist/Soundnode --electron-version 8.0.1 --overwrite --icon ./app/soundnode.ico",
     "package:linux": "electron-packager ./ Soundnode --platform=linux --out ./dist/Soundnode --electron-version 8.0.1 --overwrite --icon ./app/soundnode.icns",
     "package:win32": "electron-packager ./ Soundnode --platform=win32 --out ./dist/Soundnode --electron-version 8.0.1 --overwrite --icon ./app/soundnode.icns",
-    "package:all": "npm run package:osx && npm run package:linux && npm run package:win32"
+    "package:all": "npm run package:osx && npm run package:linux && npm run package:win32",
+    "test:xunia": "node tests/xunia-soundcloudopen.test.js",
+    "check:xunia": "node --check integrations/soundcloudopenBridge.js && node --check app/public/js/xuniaSoundCloudOpen.js && node tests/xunia-soundcloudopen.test.js"
   },
-  "author": "Michael Lancaster",
+  "author": "Michael Lancaster / XUNIA integration by sonoxo",
   "license": "GPL-3.0",
   "devDependencies": {
     "babel-core": "6.26.3",
