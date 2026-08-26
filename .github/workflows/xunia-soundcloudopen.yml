@@ -1,0 +1,26 @@
+name: XUNIA SoundCloudOpen Bridge
+
+on:
+  push:
+    branches:
+      - master
+      - feature/xunia-soundcloudopen-desktop-bridge
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [18, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Verify XUNIA + SoundCloudOpen bridge
+        run: npm run check:xunia
