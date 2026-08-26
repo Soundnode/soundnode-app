@@ -10,6 +10,7 @@ const {
 } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const configuration = require('./app/public/js/common/configLocation');
+const soundCloudOpenBridge = require('./integrations/soundcloudopenBridge');
 
 // custom constants
 const clientId = '342b8a7af638944906dcdb46f9d56d98';
@@ -18,6 +19,7 @@ const SCconnect = `https://soundcloud.com/connect?&client_id=${clientId}&redirec
 
 let mainWindow;
 let authenticationWindow;
+let xuniaWindow;
 
 app.on('ready', () => {
   checkUserConfig();
@@ -124,6 +126,42 @@ function initMainWindow() {
   menuBar();
 }
 
+function openXuniaWindow() {
+  if (xuniaWindow && !xuniaWindow.isDestroyed()) {
+    xuniaWindow.show();
+    xuniaWindow.focus();
+    return;
+  }
+
+  xuniaWindow = new BrowserWindow({
+    width: 980,
+    height: 780,
+    minWidth: 720,
+    minHeight: 600,
+    title: 'XUNIA SOUNDS + SoundCloudOpen',
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  xuniaWindow.loadURL(`file://${__dirname}/app/xunia.html`);
+  xuniaWindow.on('closed', () => {
+    xuniaWindow = null;
+  });
+}
+
+ipcMain.handle('xunia:check', async () => {
+  return soundCloudOpenBridge.checkAvailability();
+});
+
+ipcMain.handle('xunia:mission', async (_event, payload) => {
+  return soundCloudOpenBridge.buildMission(payload || {});
+});
+
+ipcMain.handle('xunia:download', async (_event, payload) => {
+  return soundCloudOpenBridge.saveAuthorizedMedia(payload || {});
+});
+
 app.on('will-quit', () => {
   // Unregister all shortcuts.
   globalShortcut.unregisterAll()
@@ -206,6 +244,24 @@ function menuBar() {
     {
       role: 'editMenu',
       label: 'Soundnode'
+    },
+    {
+      label: 'XUNIA SOUNDS',
+      submenu: [
+        {
+          label: 'Open XUNIA SOUNDS + SoundCloudOpen',
+          accelerator: 'CmdOrCtrl+Shift+X',
+          click() {
+            openXuniaWindow();
+          }
+        },
+        {
+          label: 'SoundCloudOpen on GitHub',
+          click() {
+            require('electron').shell.openExternal('https://github.com/sonoxo/soundcloudopen')
+          }
+        }
+      ]
     },
     {
       role: 'view',
