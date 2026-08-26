@@ -1,3 +1,44 @@
+# SOUNDNODE APP — XUNIA DESKTOP
+
+## XUNIA SOUNDS + SoundCloudOpen
+
+This fork now includes a focused desktop bridge to [SoundCloudOpen](https://github.com/sonoxo/soundcloudopen).
+
+**Soundnode plays/browses → XUNIA SOUNDS builds the creator mission → 3LM CLAUDE can use BeatStars discovery → SoundCloudOpen handles authorized SoundCloud saving.**
+
+Open it from the desktop menu:
+
+**XUNIA SOUNDS → Open XUNIA SOUNDS + SoundCloudOpen**
+
+Shortcut: `Cmd/Ctrl + Shift + X`
+
+The new panel supports:
+
+- SoundCloudOpen/XUNIA CLI readiness checks;
+- VIRGINIA + BeatStars mission creation;
+- BPM, genre, mood, use-case, candidate-count, and optional SoundCloud source controls;
+- Claude prompt-only output;
+- authorized SoundCloud track/playlist saving through the existing SoundCloudOpen CLI; and
+- shell-safe process execution with argument arrays instead of command-string interpolation.
+
+Install the companion CLI on the same computer:
+
+```bash
+python3 -m pip install git+https://github.com/sonoxo/soundcloudopen.git
+soundcloudopen --version
+xunia-sounds --version
+```
+
+Focused verification:
+
+```bash
+npm run check:xunia
+```
+
+Full integration guide: [doc/XUNIA_SOUNDCLOUDOPEN.md](doc/XUNIA_SOUNDCLOUDOPEN.md)
+
+---
+
 [![Join the chat at https://gitter.im/Soundnode/soundnode-app](https://badges.gitter.im/Soundnode/soundnode-app.svg)](https://gitter.im/Soundnode/soundnode-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Soundnode App

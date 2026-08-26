@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XUNIA SOUNDS // SoundCloudOpen</title>
+  <style>
+    :root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { margin: 0; background: #090b13; color: #f4f7ff; }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .sub { color: #a9b5d1; margin-bottom: 24px; line-height: 1.5; }
+    .flow { background: #111629; border: 1px solid #2a3354; border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
+    .flow strong { display: block; margin-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .wide { grid-column: 1 / -1; }
+    label { display: block; font-size: 12px; font-weight: 700; color: #b9c6e8; margin-bottom: 6px; }
+    input, select, textarea { width: 100%; box-sizing: border-box; border-radius: 10px; border: 1px solid #303b60; background: #0f1423; color: white; padding: 10px 12px; }
+    textarea { min-height: 88px; resize: vertical; }
+    button { border: 0; border-radius: 10px; padding: 11px 14px; font-weight: 800; cursor: pointer; }
+    .primary { background: #8b5cf6; color: white; }
+    .secondary { background: #18213b; color: #dce7ff; border: 1px solid #33416d; }
+    .danger { background: #2a1720; color: #ffdbe6; border: 1px solid #633044; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+    .status { padding: 12px 14px; border-radius: 10px; background: #10182a; border: 1px solid #293657; margin-bottom: 14px; }
+    .status.good { border-color: #1d704f; }
+    .status.bad { border-color: #7a3345; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #070a11; border: 1px solid #222b45; border-radius: 12px; padding: 14px; min-height: 120px; }
+    .note { color: #9da9c8; font-size: 12px; line-height: 1.5; }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: auto; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <h1>XUNIA SOUNDS + SoundCloudOpen</h1>
+    <div class="sub">Desktop bridge for Soundnode. Describe a sound, build a VIRGINIA/BeatStars mission with XUNIA SOUNDS, or save SoundCloud media you own or are allowed to save.</div>
+
+    <div class="flow">
+      <strong>BEGINNER FLOW</strong>
+      YOU DESCRIBE → XUNIA SOUNDS BUILDS THE PLAN → CLAUDE/BEATSTARS DISCOVERY → REVIEW LICENSE → OPTIONAL SOUNDCLOUDOPEN SAVE
+    </div>
+
+    <div id="status" class="status">Checking SoundCloudOpen…</div>
+
+    <section class="grid">
+      <div class="wide">
+        <label for="prompt">Describe the sound you want</label>
+        <textarea id="prompt" placeholder="dark melodic trap with cold synths and space for vocals"></textarea>
+      </div>
+      <div>
+        <label for="genre">Genre</label>
+        <input id="genre" placeholder="trap">
+      </div>
+      <div>
+        <label for="mood">Mood</label>
+        <input id="mood" placeholder="cold, nocturnal, cinematic">
+      </div>
+      <div>
+        <label for="bpm">BPM</label>
+        <input id="bpm" type="number" min="1" max="400" placeholder="90">
+      </div>
+      <div>
+        <label for="count">Beat candidates</label>
+        <input id="count" type="number" min="1" max="10" value="5">
+      </div>
+      <div>
+        <label for="useCase">Use case</label>
+        <input id="useCase" placeholder="album song">
+      </div>
+      <div>
+        <label for="format">Audio format</label>
+        <select id="format">
+          <option>mp3</option><option>m4a</option><option>opus</option><option>flac</option><option>wav</option><option>aac</option>
+        </select>
+      </div>
+      <div class="wide">
+        <label for="soundcloudUrl">Optional authorized SoundCloud track / playlist</label>
+        <input id="soundcloudUrl" placeholder="https://soundcloud.com/your-account/your-track">
+      </div>
+      <div>
+        <label for="browser">Browser cookies for authorized/private media</label>
+        <select id="browser">
+          <option>auto</option><option>chrome</option><option>chromium</option><option>edge</option><option>firefox</option><option>brave</option><option>opera</option><option>safari</option><option>none</option>
+        </select>
+      </div>
+      <div>
+        <label for="output">Optional output folder</label>
+        <input id="output" placeholder="~/Music/SoundCloudOpen">
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="check" class="secondary">CHECK INTEGRATION</button>
+      <button id="mission" class="primary">BUILD XUNIA MISSION</button>
+      <button id="promptOnly" class="secondary">BUILD CLAUDE PROMPT</button>
+      <button id="save" class="danger">SAVE AUTHORIZED SOUNDCLOUD MEDIA</button>
+    </div>
+
+    <div class="note">The save button does not bypass SoundCloud permissions. Use it only for audio you own, downloads SoundCloud permits, or material you otherwise have permission to save.</div>
+    <pre id="outputView">Ready.</pre>
+  </main>
+  <script src="./public/js/xuniaSoundCloudOpen.js"></script>
+</body>
+</html>
